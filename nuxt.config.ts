@@ -142,9 +142,9 @@ export default defineNuxtConfig({
   site: {
     defaultLocale: 'fr',
     description:
-      'The complete solution for secure, high-performance, feature-rich web apps, powered by Nuxt.',
+      'Accédez à tous les bureaux du marché. Votre conseiller vous accompagne en visite et vous aide à négocier. Le tout gratuitement.',
     indexable: true,
-    name: 'Nuxt Fusion',
+    name: 'Petit Bureaux',
   },
 
   typescript: {
