@@ -70,18 +70,12 @@ export default defineNuxtConfig({
   },
 
   i18n: {
-    defaultLocale: 'en',
+    defaultLocale: 'fr',
     experimental: {
       localeDetector: './localeDetector.ts',
     },
     langDir: 'locales',
     locales: [
-      {
-        code: 'en',
-        files: makeLocaleFiles('en'),
-        iso: 'en-GB',
-        name: 'English',
-      },
       {
         code: 'fr',
         files: makeLocaleFiles('fr'),
@@ -89,7 +83,7 @@ export default defineNuxtConfig({
         name: 'Français',
       },
     ],
-    strategy: 'prefix',
+    strategy: 'no_prefix',
     vueI18n: './i18n.config.ts',
   },
 
@@ -153,7 +147,7 @@ export default defineNuxtConfig({
   },
 
   site: {
-    defaultLocale: 'en',
+    defaultLocale: 'fr',
     description:
       'The complete solution for secure, high-performance, feature-rich web apps, powered by Nuxt.',
     indexable: true,
@@ -171,11 +165,10 @@ export default defineNuxtConfig({
 
   zodI18n: {
     /**
-     * Since we choose to use 'en' and 'fr' as locales' code,
+     * Since we choose to use 'fr' as locales' code,
      * we have to tell zodI18n to use those codes instead of the default ones.
      */
     localeCodesMapping: {
-      'en-GB': 'en',
       'fr-FR': 'fr',
     },
   },
