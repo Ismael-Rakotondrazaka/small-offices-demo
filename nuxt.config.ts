@@ -120,7 +120,7 @@ export default defineNuxtConfig({
   naiveui: {
     themeConfig: {
       ...generateAntdColorThemes({
-        primary: '#4169E1', // TODO: Use your main color theme
+        primary: '#302aa7',
       }),
     },
   },
