@@ -126,7 +126,7 @@ export default defineNuxtConfig({
   },
 
   robots: {
-    disallow: ['/dashboard'],
+    disallow: [],
   },
 
   routeRules: {},
