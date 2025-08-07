@@ -129,15 +129,7 @@ export default defineNuxtConfig({
     disallow: ['/dashboard'],
   },
 
-  routeRules: {
-    // TODO: Use your customized route_rules
-    '/en/register': { prerender: true },
-    '/en/signin': { prerender: true },
-    '/en/techs': { prerender: true },
-    '/fr/register': { prerender: true },
-    '/fr/signin': { prerender: true },
-    '/fr/techs': { prerender: true },
-  },
+  routeRules: {},
 
   runtimeConfig: {
     /* ------------------------------ File Storage ------------------------------ */
