@@ -1,0 +1,13 @@
+{
+    "sider": {
+        "menus": {
+            "home": "Home",
+            "posts": "Posts",
+            "dashboard": "Dashboard",
+            "pinia": "Pinia",
+            "techs": "Techs",
+            "signIn": "Sign In",
+            "register": "Register"
+        }
+    }
+}

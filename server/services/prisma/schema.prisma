@@ -1,0 +1,88 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  output                 = "../../../generated/prisma"
+  provider               = "prisma-client"
+  runtime                = "nodejs"
+  moduleFormat           = "esm"
+  generatedFileExtension = "ts"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String       @id @default(uuid())
+  email        String?      @unique
+  firstName    String
+  lastName     String
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+  deletedAt    DateTime?
+  imageId      String?      @unique
+  image        Media?       @relation(name: "MediaUserProfileImage", fields: [imageId], references: [id])
+  medias       Media[]      @relation("MediaUserAuthor")
+  posts        Post[]
+  authAccesses AuthAccess[]
+}
+
+model Post {
+  id        String    @id @default(uuid())
+  content   String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+  authorId  String
+  author    User      @relation(fields: [authorId], references: [id])
+  imageId   String?
+  image     Media?    @relation(fields: [imageId], references: [id])
+}
+
+enum MediaType {
+  IMAGE
+  VIDEO
+  AUDIO
+  DOCUMENT
+  OTHER
+}
+
+model Media {
+  id           String    @id @default(uuid())
+  type         MediaType
+  relativePath String
+  size         Int?
+  ext          String?
+  name         String
+  originalName String
+  mimeType     String?
+  isPublic     Boolean   @default(false)
+  createdAt    DateTime  @default(now())
+  authorId     String
+  author       User      @relation(name: "MediaUserAuthor", fields: [authorId], references: [id])
+  profiledBy   User?     @relation("MediaUserProfileImage")
+  posts        Post[]
+}
+
+enum AuthProvider {
+  CREDENTIALS
+  FACEBOOK
+}
+
+model AuthAccess {
+  id         String       @id @default(uuid())
+  userId     String
+  user       User         @relation(fields: [userId], references: [id])
+  provider   AuthProvider
+  providerId String?      @unique
+  password   String?      @db.Text
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime     @updatedAt
+
+  @@index([provider, providerId]) // Faster OAuth lookups
+}

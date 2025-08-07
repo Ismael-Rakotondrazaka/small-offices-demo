@@ -1,0 +1,13 @@
+{
+    "sider": {
+        "menus": {
+            "home": "Accueil",
+            "posts": "Articles",
+            "dashboard": "Tableau de bord",
+            "pinia": "Pinia",
+            "techs": "Technologies",
+            "signIn": "Connexion",
+            "register": "Inscription"
+        }
+    }
+}

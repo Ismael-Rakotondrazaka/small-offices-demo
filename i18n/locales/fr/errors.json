@@ -1,0 +1,38 @@
+{
+  "errors": {
+    "default": "Quelque chose ne fonctionne pas correctement. Veuillez réessayer.",
+    "requests": {
+      "defaults": {
+        "badRequest": "La requête est invalide.",
+        "unauthorized": "Vous n'êtes pas autorisé.",
+        "forbidden": "Vous n'avez pas la permission d'accéder à cette ressource.",
+        "notFound": "La ressource est introuvable.",
+        "internalServer": "Une erreur interne du serveur s'est produite.",
+        "notImplemented": "Cette fonctionnalité n'est pas implémentée."
+      },
+      "register": {
+        "email": {
+          "alreadyUsed": "Le mail est déjà utilisé."
+        }
+      },
+      "auth": {
+        "signin": {
+          "Signin": "Essayez de vous connecter avec un autre compte.",
+          "OAuthSignin": "Essayez de vous connecter avec un autre compte.",
+          "OAuthCallback": "Essayez de vous connecter avec un autre compte.",
+          "OAuthCreateAccount": "Essayez de vous connecter avec un autre compte.",
+          "EmailCreateAccount": "Essayez de vous connecter avec un autre compte.",
+          "Callback": "Essayez de vous connecter avec un autre compte.",
+          "OAuthAccountNotLinked": "Pour confirmer votre identité, connectez-vous avec le même compte que celui utilisé initialement.",
+          "EmailSignin": "Vérifiez votre boîte de réception.",
+          "CredentialsSignin": "La connexion a échoué. Vérifiez que les informations fournies sont correctes.",
+          "SessionRequired": "Veuillez vous connecter pour cette page.",
+          "default": "Impossible de se connecter."
+        }
+      }
+    },
+    "ctas": {
+      "goBackHome": "Retour à l'accueil"
+    }
+  }
+}

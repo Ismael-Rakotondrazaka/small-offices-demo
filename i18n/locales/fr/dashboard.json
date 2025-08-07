@@ -1,0 +1,5 @@
+{
+    "dashboard": {
+        "welcome": "Bienvenue {firstName} !"
+    }
+}

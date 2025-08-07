@@ -1,0 +1,24 @@
+{
+  "forms": {
+    "buttons": {
+      "submit": "Submit",
+      "cancel": "Cancel",
+      "save": "Save",
+      "reset": "Reset",
+      "send": "Send",
+      "signIn": "Sign in",
+      "facebookLogin": "Sign in with Facebook",
+      "register": "Create account"
+    },
+    "fields": {
+      "email": {
+        "label": "Email",
+        "placeholder": "email{'@'}example.com"
+      },
+      "password": {
+        "label": "Password",
+        "placeholder": "********"
+      }
+    }
+  }
+}

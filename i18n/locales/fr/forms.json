@@ -1,0 +1,24 @@
+{
+  "forms": {
+    "buttons": {
+      "submit": "Envoyer",
+      "cancel": "Annuler",
+      "save": "Enregistrer",
+      "reset": "Réinitialiser",
+      "send": "Envoyer",
+      "signIn": "Se connecter",
+      "facebookLogin": "Se connecter avec Facebook",
+      "register": "Créer un compte"
+    },
+    "fields": {
+      "email": {
+        "label": "Adresse mail",
+        "placeholder": "email{'@'}exemple.com"
+      },
+      "password": {
+        "label": "Mot de passe",
+        "placeholder": "********"
+      }
+    }
+  }
+}

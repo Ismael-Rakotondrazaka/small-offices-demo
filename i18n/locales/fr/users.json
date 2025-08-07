@@ -1,0 +1,27 @@
+{
+  "users": {
+    "forms": {
+      "fields": {
+        "firstName": {
+          "label": "Prénom",
+          "placeholder": "Jean"
+        },
+        "lastName": {
+          "label": "Nom",
+          "placeholder": "Dupont"
+        },
+        "email": {
+          "label": "E-mail",
+          "placeholder": "email{'@'}exemple.com"
+        },
+        "password": {
+          "label": "Mot de passe",
+          "placeholder": "********"
+        }
+      },
+      "errors": {
+        "notFound": "Utilisateur non trouvé."
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "header": {
+    "menu": {
+      "title": "Menu"
+    },
+    "routes": {
+      "home": "Accueil",
+      "chats": "Discussions",
+      "about": "A propos"
+    },
+    "end": {
+      "signIn": "Se connecter",
+      "register": "S'inscrire"
+    }
+  }
+}
