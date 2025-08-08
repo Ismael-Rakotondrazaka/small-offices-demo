@@ -1,12 +1,9 @@
 export default defineNuxtRouteMiddleware(() => {
-  const { loggedIn } = useUserSession();
-  const localeRoute = useLocaleRoute();
+  const authUser = useSupabaseUser();
 
-  if (loggedIn.value) {
-    return navigateTo(
-      localeRoute({
-        name: 'chats',
-      }),
-    );
+  if (authUser.value === null) {
+    return navigateTo({
+      name: 'admin-dashboard',
+    });
   }
 });

@@ -1,4 +1,4 @@
-import type { UserDTO } from '~~/shared/domains/users/userDTO';
+import type { UserRoleDTO } from '~~/shared/domains/users/userRoleDTO';
 import type { Request } from '~~/shared/requests/request';
 
 import { z } from 'zod';
@@ -18,5 +18,5 @@ export type SignInWithCredentialsRequestBody = z.infer<
 >;
 
 export type SignInWithCredentialsRequestData = {
-  data: UserDTO;
+  data: UserRoleDTO;
 };

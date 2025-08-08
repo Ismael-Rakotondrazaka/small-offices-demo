@@ -1,6 +1,6 @@
-import type { UserRoleDTO } from '~~/shared';
+import type { UserRoleDTO } from '~~/shared/domains/users/userRoleDTO';
 
-import type { UserRoleModel } from './userModel';
+import type { UserRoleModel } from './userRoleModel';
 
 export abstract class UserRoleDTOMapper {
   static toDTO(model: UserRoleModel): UserRoleDTO {

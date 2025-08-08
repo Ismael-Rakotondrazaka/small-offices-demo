@@ -1,4 +1,4 @@
-import type { UserDTO } from '~~/shared/domains/users/userDTO';
+import type { UserRoleDTO } from '~~/shared/domains/users/userRoleDTO';
 import type { Request } from '~~/shared/requests/request';
 
 import { userConfig } from '~~/shared/domains/users/userConfig';
@@ -22,5 +22,5 @@ export type RegisterRequest = Request<RegisterRequestData, RegisterRequestBody>;
 export type RegisterRequestBody = z.infer<typeof RegisterRequestBodySchema>;
 
 export type RegisterRequestData = {
-  data: UserDTO;
+  data: UserRoleDTO;
 };

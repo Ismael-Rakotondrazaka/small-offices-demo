@@ -17,7 +17,6 @@ const [email, emailProps] = defineField(
 );
 
 const message = useMessage();
-const localeRoute = useLocaleRoute();
 const { t } = useI18n();
 
 const onSignInCredentialsClickHandler = handleSubmit(async (values) => {
@@ -34,14 +33,7 @@ const onSignInCredentialsClickHandler = handleSubmit(async (values) => {
 
     resetForm();
 
-    await navigateTo(
-      localeRoute({
-        name: 'dashboard',
-      }),
-      {
-        external: true,
-      },
-    );
+    await navigateTo('/admin/dashboard');
   }
   catch (error) {
     handleFetchError<SignInWithCredentialsRequest>(
@@ -58,9 +50,11 @@ const onSignInCredentialsClickHandler = handleSubmit(async (values) => {
   <div>
     <n-form>
       <n-p class="text-base">
-        {{
-          $t("auth.signIn.form.credentials.description")
-        }}
+        <i18n-t
+          keypath="admin.login.form.description"
+          tag="span"
+          scope="global"
+        />
       </n-p>
 
       <n-form-item
@@ -94,10 +88,14 @@ const onSignInCredentialsClickHandler = handleSubmit(async (values) => {
         @click="onSignInCredentialsClickHandler"
       >
         <template #icon>
-          <Icon name="mdi:login" />
+          <Icon name="mdi:shield-account" />
         </template>
 
-        {{ $t("forms.buttons.signIn") }}
+        <i18n-t
+          keypath="admin.login.form.submit"
+          tag="span"
+          scope="global"
+        />
       </n-button>
     </n-form>
   </div>

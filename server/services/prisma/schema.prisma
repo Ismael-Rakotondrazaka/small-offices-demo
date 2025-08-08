@@ -20,72 +20,80 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
-model User {
-  id           String       @id @default(uuid())
-  email        String?      @unique
-  firstName    String
-  lastName     String
-  createdAt    DateTime     @default(now())
-  updatedAt    DateTime     @updatedAt
-  deletedAt    DateTime?
-  imageId      String?      @unique
-  image        Media?       @relation(name: "MediaUserProfileImage", fields: [imageId], references: [id])
-  medias       Media[]      @relation("MediaUserAuthor")
-  posts        Post[]
-  authAccesses AuthAccess[]
+enum Role {
+  ADMIN
+  EDITOR
 }
 
-model Post {
-  id        String    @id @default(uuid())
-  content   String
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  deletedAt DateTime?
-  authorId  String
-  author    User      @relation(fields: [authorId], references: [id])
-  imageId   String?
-  image     Media?    @relation(fields: [imageId], references: [id])
+model UserRole {
+  id   String @id
+  role Role   @default(EDITOR)
 }
 
-enum MediaType {
-  IMAGE
-  VIDEO
-  AUDIO
-  DOCUMENT
-  OTHER
+model Office {
+  id             String          @id @default(uuid())
+  title          String
+  slug           String          @unique
+  priceCents     Int
+  arr            String
+  posts          String
+  services       Json
+  isFake         Boolean         @default(false)
+  lat            Float?
+  lng            Float?
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+  deletedAt      DateTime?
+  photos         Photo[]
+  leads          Lead[]
+  officeServices OfficeService[]
 }
 
-model Media {
-  id           String    @id @default(uuid())
-  type         MediaType
-  relativePath String
-  size         Int?
-  ext          String?
-  name         String
-  originalName String
-  mimeType     String?
-  isPublic     Boolean   @default(false)
-  createdAt    DateTime  @default(now())
-  authorId     String
-  author       User      @relation(name: "MediaUserAuthor", fields: [authorId], references: [id])
-  profiledBy   User?     @relation("MediaUserProfileImage")
-  posts        Post[]
+model Photo {
+  id        String   @id @default(uuid())
+  officeId  String
+  office    Office   @relation(fields: [officeId], references: [id])
+  url       String
+  alt       String?
+  createdAt DateTime @default(now())
 }
 
-enum AuthProvider {
-  CREDENTIALS
-  FACEBOOK
+enum LeadStatus {
+  PENDING // Lead has not been contacted yet
+  CONTACTED // Lead has been contacted
+  CONVERTED // Lead has been converted to a client
+  LOST // Lead has been lost
+  DELETED // Lead has been deleted
 }
 
-model AuthAccess {
-  id         String       @id @default(uuid())
-  userId     String
-  user       User         @relation(fields: [userId], references: [id])
-  provider   AuthProvider
-  providerId String?      @unique
-  password   String?      @db.Text
-  createdAt  DateTime     @default(now())
-  updatedAt  DateTime     @updatedAt
+model Lead {
+  id        String     @id @default(uuid())
+  officeId  String
+  office    Office     @relation(fields: [officeId], references: [id])
+  name      String
+  email     String
+  phone     String?
+  utmJson   Json?
+  status    LeadStatus @default(PENDING)
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+}
 
-  @@index([provider, providerId]) // Faster OAuth lookups
+model Service {
+  id             String          @id @default(uuid())
+  name           String
+  icon           String?
+  createdAt      DateTime        @default(now())
+  officeServices OfficeService[]
+}
+
+model OfficeService {
+  id        String   @id @default(uuid())
+  officeId  String
+  office    Office   @relation(fields: [officeId], references: [id])
+  serviceId String
+  service   Service  @relation(fields: [serviceId], references: [id])
+  createdAt DateTime @default(now())
+
+  @@unique([officeId, serviceId])
 }

@@ -6,8 +6,9 @@
             "dashboard": "Tableau de bord",
             "pinia": "Pinia",
             "techs": "Technologies",
-            "signIn": "Connexion",
-            "register": "Inscription"
+            "adminLogin": "Administration",
+            "register": "Inscription",
+            "adminDashboard": "Administration"
         }
     }
 }

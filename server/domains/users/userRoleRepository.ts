@@ -1,7 +1,7 @@
 import type { Prisma } from '~~/generated/prisma/client';
 import type { ExtendedPrismaClient } from '~~/server/services/prisma/prismaProvider';
 
-import type { UserRoleModel } from './userModel';
+import type { UserRoleModel } from './userRoleModel';
 
 export class UserRoleRepository {
   #prismaClient: ExtendedPrismaClient;

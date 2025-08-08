@@ -1,8 +1,8 @@
 import type { Post } from '~~/generated/prisma/client';
 import type { MediaBaseModel } from '~~/server/domains/media/mediaBaseModel';
-import type { UserModel } from '~~/server/domains/users/userModel';
+import type { UserRoleModel } from '~~/server/domains/users/userRoleModel';
 
 export interface PostModel extends Post {
-  author: UserModel;
+  author: UserRoleModel;
   image: MediaBaseModel | null;
 }

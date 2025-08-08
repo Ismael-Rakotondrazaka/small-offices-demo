@@ -1,6 +1,6 @@
 import type { PostDTO } from '~~/shared';
 
-import { UserDTOMapper } from '~~/server/domains/users/userDTOMapper';
+import { UserRoleDTOMapper } from '~~/server/domains/users/userRoleDTOMapper';
 
 import type { PostModel } from './postModel';
 
@@ -9,7 +9,7 @@ import { MediaDTOMapper } from '../media';
 export abstract class PostDTOMapper {
   static toDTO(post: PostModel): PostDTO {
     return {
-      author: UserDTOMapper.toDTO(post.author),
+      author: UserRoleDTOMapper.toDTO(post.author),
       content: post.content,
       createdAt: post.createdAt,
       deletedAt: post.deletedAt,

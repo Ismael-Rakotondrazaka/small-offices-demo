@@ -98,7 +98,6 @@ export default defineNuxtConfig({
     '@bg-dev/nuxt-naiveui',
     'nuxt-zod-i18n',
     '@nuxtjs/i18n',
-    'nuxt-auth-utils',
     'nuxt-authorization',
     'nuxt-gtag',
     '@nuxt/test-utils/module',
@@ -146,6 +145,16 @@ export default defineNuxtConfig({
       'Accédez à tous les bureaux du marché. Votre conseiller vous accompagne en visite et vous aide à négocier. Le tout gratuitement.',
     indexable: true,
     name: 'Petit Bureaux',
+  },
+
+  supabase: {
+    redirectOptions: {
+      callback: '/api/auth/callback',
+      exclude: [],
+      include: undefined,
+      login: '/admin/login',
+      saveRedirectToCookie: false,
+    },
   },
 
   typescript: {

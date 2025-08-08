@@ -1,3 +1,3 @@
-export * from './userDTOMapper';
-export * from './userModel';
-export * from './userRepository';
+export * from './userRoleDTOMapper';
+export * from './userRoleModel';
+export * from './userRoleRepository';

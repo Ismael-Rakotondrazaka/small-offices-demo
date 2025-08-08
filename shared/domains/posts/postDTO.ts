@@ -2,11 +2,11 @@ import {
   type MediaDTO,
   MediaDTOSchema,
 } from '~~/shared/domains/media/mediaDTO';
-import { type UserDTO, UserDTOSchema } from '~~/shared/domains/users/userDTO';
+import { type UserRoleDTO, UserRoleDTOSchema } from '~~/shared/domains/users/userRoleDTO';
 import { z } from 'zod';
 
 export interface PostDTO {
-  author: UserDTO;
+  author: UserRoleDTO;
   content: string;
   createdAt: Date;
   deletedAt: Date | null;
@@ -24,6 +24,6 @@ export const PostSchema = z.object({
 });
 
 export const PostDTOSchema: z.ZodType<PostDTO> = PostSchema.extend({
-  author: UserDTOSchema,
+  author: UserRoleDTOSchema,
   image: MediaDTOSchema.nullable(),
 });

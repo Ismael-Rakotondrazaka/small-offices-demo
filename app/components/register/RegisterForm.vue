@@ -33,16 +33,27 @@ const { t } = useI18n();
 
 const onSignInCredentialsClickHandler = handleSubmit(async (values) => {
   try {
-    await $fetch('/api/auth/register', {
-      body: values,
-      method: 'POST',
+    const supabaseAuth = useSupabaseAuth();
+    const { error } = await supabaseAuth.signUp({
+      email: values.email,
+      options: {
+        data: {
+          firstName: values.firstName,
+          lastName: values.lastName,
+        },
+      },
+      password: values.password,
     });
+
+    if (error) {
+      throw new Error(error.message);
+    }
 
     resetForm();
 
     await navigateTo(
       localeRoute({
-        name: 'chats',
+        name: 'dashboard',
       }),
       {
         external: true,

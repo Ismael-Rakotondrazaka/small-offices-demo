@@ -1,2 +1,2 @@
 export * from './userConfig';
-export * from './userDTO';
+export * from './userRoleDTO';

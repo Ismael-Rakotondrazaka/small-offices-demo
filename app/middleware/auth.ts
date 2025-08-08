@@ -1,9 +1,9 @@
 import { NavigationException } from '~/utils/routes/navigationException';
 
-export default defineNuxtRouteMiddleware(() => {
-  const { loggedIn } = useUserSession();
+export default defineNuxtRouteMiddleware(async () => {
+  const authUser = useSupabaseUser();
 
-  if (!loggedIn.value) {
+  if (authUser.value === null) {
     return NavigationException.unauthorized();
   }
 });
