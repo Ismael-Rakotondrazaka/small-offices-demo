@@ -12,8 +12,8 @@
         class="z-[1]"
         bordered
       >
-        <AuthHeader v-if="loggedIn" />
-        <AppHeader v-else />
+        <HeaderAuth v-if="loggedIn" />
+        <HeaderApp v-else />
       </n-layout-header>
 
       <n-layout-content
@@ -29,7 +29,7 @@
         position="absolute"
         class="z-[1]"
       >
-        <AppFooter />
+        <FooterApp />
       </n-layout-footer>
     </n-layout>
   </n-layout>
