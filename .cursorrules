@@ -1,99 +1,157 @@
+You are an expert in TypeScript, Node.js, NuxtJS, Vue 3, Naive UI, VueUse, and Tailwind.
 
-### ✅ Nuxt Cursor Rule
+# Project Overview – Petits Bureaux
+tagline: "Accédez à tous les bureaux du marché. Votre conseiller vous accompagne en visite et vous aide à négocier. Le tout gratuitement."
 
-You are an expert in TypeScript, Node.js, Nuxt 4, Vue 3, Zod v3, Naive UI, VueUse, and Tailwind.
+Main user journeys:
+- Search with map (Leaflet)
+- Office detail page
+- "Schedule a visit" form
+
+## Functional Modules
+
+### MOD-01 – Public Web Frontend
+description: Create a public-facing website with landing page, office listing, map view, and office detail pages.
+routes:
+  - / → LandingPage.vue
+  - /offices → OfficeList.vue
+  - /offices/:slug → OfficeDetail.vue
+
+### MOD-02 – Search Engine
+description: Implement search with filters and map integration using MapBox.
+routes:
+  - /search → SearchPage.vue
+
+### MOD-03 – CMS SEO Pages
+description: Generate static SEO-friendly pages using SSG for specific locations and office types.
+build: SSG
+
+### MOD-04 – Lead Capture
+description: Implement a visit scheduling form and send data to the CRM.
+endpoints:
+  - POST /leads → LeadController.store
+
+### MOD-05 – Back-Office Authentication
+description: Implement staff authentication and RBAC.
+routes:
+  - /admin/login → AdminLogin.vue
+
+### MOD-06 – CRUD Offices (Back-Office)
+description: Admin interface for managing offices (real/fake).
+routes:
+  - /admin/offices → AdminOffices.vue
+
+### MOD-07 – Lead Tracking (Back-Office)
+description: Admin interface for viewing and updating lead status.
+routes:
+  - /admin/leads → AdminLeads.vue
+
+### MOD-08 – Media Storage
+description: Implement media uploads to S3 with thumbnail generation.
+endpoints:
+  - POST /upload → UploadController.store
+
+### MOD-09 – Analytics & AB Testing
+description: Integrate GA4, conversion tracking, and AB testing with fake office flag.
+
+## Technical Architecture
+database:
+  type: PostgreSQL
+  tables:
+    - users: email, password_hash, role
+    - offices: title, slug, price_cents, arr, posts, services JSONB, is_fake, lat/lng
+    - photos: office_id, url, alt
+    - leads: office_id, name, email, phone, utm_json, status
+    - services: name, icon
+    - office_services: office_id, service_id
+    - audit_log: actor_id, action, target_table, target_id, meta
+indexes:
+  - GIN on offices.services
+
+## Security & GDPR
+encryption: HTTPS, AES-256 at rest
+rls: true
+ttl:
+  leads: Auto delete after 24 months of inactivity
+backups: Weekly
+legal_basis:
+  leads: Contract
+  cookies: Consent
+
+## SEO & Content Generation
+ssg_pages: offices, arrondissement pages
+clean_urls: /bureaux-paris-3, /office/:slug
+schema: Office, Place
+og_tags: Dynamic via OG Image Service
+sitemap: Daily update
+exclude_fake_from_sitemap: true
+
+## KPIs & Monitoring
+min_conversion_rate: 2% leads
+tracking: sessions, CTR listing, lead conversion rate
+
+## Annex
+ab_test:
+  fake_flag_percent: 20
+  endpoint: POST /leads → audit log + SES email
 
 ---
 
-### 🧱 Code Style and Structure
+# Coding Guidelines
 
-* Write concise, technical TypeScript code with accurate examples.
-* Use Composition API and declarative programming patterns; avoid Options API.
-* Prefer iteration and modularization over code duplication.
-* Use descriptive variable names with auxiliary verbs (e.g., `isLoading`, `hasError`).
-* Structure files: `exported component`, `composables`, `helpers`, `static content`, `types`.
+## Code Style and Structure
+- Write concise, technical TypeScript code with accurate examples.
+- Use composition API and declarative programming patterns; avoid options API.
+- Prefer iteration and modularization over code duplication.
+- Use descriptive variable names with auxiliary verbs (e.g., isLoading, hasError).
+- Structure files: exported component, composables, helpers, static content, types.
 
----
+## Naming Conventions
+- Directories: lowercase-with-dashes (e.g., components/auth-wizard)
+- Components: PascalCase (e.g., AuthWizard.vue)
+- Composables: camelCase (e.g., useAuthState.ts)
 
-### 📁 Naming Conventions
+## TypeScript Usage
+- Use TypeScript for all code; prefer types over interfaces.
+- Avoid enums; use const objects instead.
+- Use Vue 3 with TypeScript, leveraging defineComponent and PropType.
 
-* Use **lowercase with dashes** for directories (e.g., `components/auth-wizard`).
-* Use **PascalCase** for component names (e.g., `AuthWizard.vue`).
-* Use **camelCase** for composables (e.g., `useAuthState.ts`).
+## Syntax and Formatting
+- Use arrow functions for methods and computed properties.
+- Avoid unnecessary curly braces in conditionals; use concise syntax.
+- Use template syntax for declarative rendering.
 
----
+## UI and Styling
+- Use Naive UI and Tailwind for components and styling.
+- Utilize Naive UI's themes, dynamic rendering, and customization capabilities.
+- Implement responsive design with Tailwind CSS; mobile-first approach.
 
-### 🧩 TypeScript Usage
+## Performance Optimization
+- Leverage Nuxt's built-in optimizations.
+- Use Suspense for async components.
+- Implement lazy loading for routes and components.
+- Optimize images with WebP format, size data, lazy loading.
 
-* Use TypeScript for all code; **prefer `type` over `interface`**.
-* Avoid `enum`; use `const` objects with literal types instead.
-* Use Vue 3 with TypeScript, leveraging `defineComponent` and `PropType`.
+## Key Conventions
+- Use VueUse for composables/utilities.
+- Use Pinia for state management.
+- Optimize Web Vitals (LCP, CLS, FID).
+- Use Nuxt's auto-imports for components/composables.
 
----
+## Nuxt-specific Guidelines
+- Follow Nuxt 3 directory structure (pages/, components/, composables/).
+- Use:
+  - Auto-imports for components/composables
+  - File-based routing in pages/
+  - Server routes in server/
+  - Nuxt plugins for global functionality (e.g., Naive UI config)
+- Use useFetch and useAsyncData for data fetching.
+- Implement SEO best practices with useHead and useSeoMeta.
 
-### 🔧 Syntax and Formatting
+## Vue 3 and Composition API Best Practices
+- Use <script setup> syntax for concise definitions.
+- Leverage ref, reactive, computed for state.
+- Use provide/inject when appropriate.
+- Implement custom composables for reusable logic.
 
-* Use **arrow functions** for methods and computed properties.
-* Avoid unnecessary curly braces in conditionals.
-* Use **concise** syntax for simple statements.
-* Use **template syntax** for declarative rendering.
-
----
-
-### 🎨 UI and Styling
-
-* Use **Naive UI**, and **Tailwind** for components and styling.
-* Utilize **Naive UI**'s built-in themes, dynamic rendering, and customization capabilities.
-* Implement responsive design with Tailwind CSS; follow a **mobile-first** approach.
-
----
-
-### ⚙️ Performance Optimization
-
-* Leverage **Nuxt's built-in performance optimizations**.
-* Use `<Suspense>` for asynchronous components.
-* Implement **lazy loading** for routes and components.
-* Optimize images: use **WebP format**, include size data, implement lazy loading.
-
----
-
-### ⚡ Key Conventions
-
-* Use **VueUse** for common composables and utilities.
-* Use **Pinia** for state management.
-* Optimize **Web Vitals** (LCP, CLS, FID).
-* Utilize **Nuxt's auto-imports** for components and composables.
-
----
-
-### 🧩 Nuxt-specific Guidelines
-
-* Follow Nuxt 4 directory structure (`pages/`, `components/`, `composables/`).
-* Use Nuxt's built-in features:
-
-  * Auto-imports for components and composables.
-  * File-based routing (`pages/`).
-  * API/server routes (`server/`).
-  * Nuxt plugins for global features (e.g., plugin for Naive UI config).
-* Use `useFetch` and `useAsyncData` for data fetching.
-* Implement SEO best practices with `useHead` and `useSeoMeta`.
-
----
-
-### 🧠 Vue 3 and Composition API Best Practices
-
-* Use `<script setup>` syntax for concise component logic.
-* Leverage `ref`, `reactive`, and `computed` for state management.
-* Use `provide`/`inject` for dependency injection when needed.
-* Create **custom composables** for reusable business logic.
-
----
-
-📚 Always follow the latest official documentation for:
-
-* **Nuxt 4**: [https://nuxt.com/docs](https://nuxt.com/docs)
-* **Vue 3**: [https://vuejs.org](https://vuejs.org)
-* **Naive UI**: [https://www.naiveui.com](https://www.naiveui.com)
-* **VueUse**: [https://vueuse.org](https://vueuse.org)
-
----
+Follow Nuxt.js, Vue.js, and Naive UI documentation for up-to-date best practices.
