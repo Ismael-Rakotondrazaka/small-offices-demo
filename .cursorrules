@@ -42,7 +42,7 @@ You are an expert in TypeScript, Node.js, Nuxt 4, Vue 3, Zod v3, Naive UI, VueUs
 
 ### 🎨 UI and Styling
 
-* Use **Naive UI**, Radix Vue, and **Tailwind** for components and styling.
+* Use **Naive UI**, and **Tailwind** for components and styling.
 * Utilize **Naive UI**'s built-in themes, dynamic rendering, and customization capabilities.
 * Implement responsive design with Tailwind CSS; follow a **mobile-first** approach.
 
