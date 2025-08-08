@@ -147,11 +147,11 @@ export const storePostEventHandlerFn: EventHandlerFn<
 ```vue
 <template>
   <div class="mx-auto w-full max-w-2xl p-3">
-    <n-h1>{{ $t("posts.create.title") }}</n-h1>
+    <n-h1>Create a post</n-h1>
 
     <n-form id="create-post-form">
       <n-form-item
-        :label="$t('posts.forms.fields.content.label')"
+        label="Content"
         required
         v-bind="contentProps"
       >
@@ -159,7 +159,7 @@ export const storePostEventHandlerFn: EventHandlerFn<
           v-model:value="content"
           type="textarea"
           show-count
-          :placeholder="$t('posts.forms.fields.content.placeholder')"
+          placeholder="Enter content"
         />
       </n-form-item>
 
@@ -168,7 +168,7 @@ export const storePostEventHandlerFn: EventHandlerFn<
         :pending="isStorePostPending"
         @click="handleStorePost"
       >
-        {{ $t("posts.forms.ctas.publish") }}
+        Publish
       </n-button>
     </n-form>
   </div>
