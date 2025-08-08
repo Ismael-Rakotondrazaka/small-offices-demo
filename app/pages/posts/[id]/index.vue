@@ -20,7 +20,7 @@
         :description="error?.message ?? $t('errors.default')"
       />
     </div>
-    <ShowPostSkeleton
+    <PostShowSkeleton
       v-else
       class="w-full"
     />

@@ -1,6 +1,6 @@
 <template>
   <div class="mx-auto h-full w-full max-w-2xl p-3">
-    <IndexPostSkeleton
+    <PostIndexSkeleton
       v-if="status === 'pending'"
       class="w-full"
     />

@@ -23,7 +23,7 @@
 
         <LocaleSwitch />
 
-        <UserMenu />
+        <HeaderUserMenu />
       </n-space>
     </template>
   </n-page-header>
