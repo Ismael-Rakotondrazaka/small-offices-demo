@@ -102,6 +102,7 @@ export default defineNuxtConfig({
     'nuxt-authorization',
     'nuxt-gtag',
     '@nuxt/test-utils/module',
+    '@nuxtjs/supabase',
   ],
 
   naiveui: {
