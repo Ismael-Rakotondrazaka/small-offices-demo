@@ -99,7 +99,7 @@ The project uses Naive UI components with VeeValidate integration:
 <template>
   <n-form id="create-post-form">
     <n-form-item
-      :label="$t('posts.forms.fields.content.label')"
+      label="Content"
       required
       v-bind="contentProps"
     >
@@ -107,7 +107,7 @@ The project uses Naive UI components with VeeValidate integration:
         v-model:value="content"
         type="textarea"
         show-count
-        :placeholder="$t('posts.forms.fields.content.placeholder')"
+        placeholder="Enter content"
       />
     </n-form-item>
   </n-form>
@@ -137,12 +137,12 @@ Let's examine the complete post creation form from `app/pages/posts/create.vue`:
 ```vue
 <template>
   <div class="mx-auto w-full max-w-2xl p-3">
-    <n-h1>{{ $t("posts.create.title") }}</n-h1>
+    <n-h1>Create a post</n-h1>
 
     <n-form id="create-post-form">
       <!-- Content Field -->
       <n-form-item
-        :label="$t('posts.forms.fields.content.label')"
+        label="Content"
         required
         v-bind="contentProps"
       >
@@ -150,12 +150,12 @@ Let's examine the complete post creation form from `app/pages/posts/create.vue`:
           v-model:value="content"
           type="textarea"
           show-count
-          :placeholder="$t('posts.forms.fields.content.placeholder')"
+          placeholder="Enter content"
         />
       </n-form-item>
 
       <!-- Image Upload -->
-      <n-p>{{ $t("posts.forms.fields.image.label") }}</n-p>
+      <n-p>Image</n-p>
       <n-upload
         action="https://naive-upload.free.beeceptor.com/"
         :max="1"
@@ -165,7 +165,7 @@ Let's examine the complete post creation form from `app/pages/posts/create.vue`:
         :on-remove="handleRemove"
       >
         <n-button>
-          {{ $t("posts.forms.fields.image.upload.text") }}
+          Upload image
         </n-button>
       </n-upload>
       
@@ -182,7 +182,7 @@ Let's examine the complete post creation form from `app/pages/posts/create.vue`:
         :pending="isStorePostPending"
         @click="handleStorePost"
       >
-        {{ $t("posts.forms.ctas.publish") }}
+        Publish
       </n-button>
     </n-form>
   </div>
@@ -430,17 +430,7 @@ catch (error) {
 }
 ```
 
-### 5. Internationalization
-
-```typescript
-// Use i18n for labels and messages
-const { t } = useI18n({ useScope: 'global' });
-
-// In template
-{{ $t("posts.forms.fields.content.label") }}
-```
-
-### 6. Form Submission
+### 5. Form Submission
 
 ```typescript
 // Use handleSubmit for form submission
