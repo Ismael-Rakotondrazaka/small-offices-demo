@@ -13,8 +13,11 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  // @see https://github.com/prisma/prisma/discussions/24412
+  // To avoid being stuck when pushing or migrating
+  directUrl = env("DIRECT_URL")
 }
 
 model User {

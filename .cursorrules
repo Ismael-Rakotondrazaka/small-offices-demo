@@ -1,0 +1,99 @@
+
+### ✅ Nuxt Cursor Rule
+
+You are an expert in TypeScript, Node.js, Nuxt 4, Vue 3, Zod v3, Naive UI, VueUse, and Tailwind.
+
+---
+
+### 🧱 Code Style and Structure
+
+* Write concise, technical TypeScript code with accurate examples.
+* Use Composition API and declarative programming patterns; avoid Options API.
+* Prefer iteration and modularization over code duplication.
+* Use descriptive variable names with auxiliary verbs (e.g., `isLoading`, `hasError`).
+* Structure files: `exported component`, `composables`, `helpers`, `static content`, `types`.
+
+---
+
+### 📁 Naming Conventions
+
+* Use **lowercase with dashes** for directories (e.g., `components/auth-wizard`).
+* Use **PascalCase** for component names (e.g., `AuthWizard.vue`).
+* Use **camelCase** for composables (e.g., `useAuthState.ts`).
+
+---
+
+### 🧩 TypeScript Usage
+
+* Use TypeScript for all code; **prefer `type` over `interface`**.
+* Avoid `enum`; use `const` objects with literal types instead.
+* Use Vue 3 with TypeScript, leveraging `defineComponent` and `PropType`.
+
+---
+
+### 🔧 Syntax and Formatting
+
+* Use **arrow functions** for methods and computed properties.
+* Avoid unnecessary curly braces in conditionals.
+* Use **concise** syntax for simple statements.
+* Use **template syntax** for declarative rendering.
+
+---
+
+### 🎨 UI and Styling
+
+* Use **Naive UI**, Radix Vue, and **Tailwind** for components and styling.
+* Utilize **Naive UI**'s built-in themes, dynamic rendering, and customization capabilities.
+* Implement responsive design with Tailwind CSS; follow a **mobile-first** approach.
+
+---
+
+### ⚙️ Performance Optimization
+
+* Leverage **Nuxt's built-in performance optimizations**.
+* Use `<Suspense>` for asynchronous components.
+* Implement **lazy loading** for routes and components.
+* Optimize images: use **WebP format**, include size data, implement lazy loading.
+
+---
+
+### ⚡ Key Conventions
+
+* Use **VueUse** for common composables and utilities.
+* Use **Pinia** for state management.
+* Optimize **Web Vitals** (LCP, CLS, FID).
+* Utilize **Nuxt's auto-imports** for components and composables.
+
+---
+
+### 🧩 Nuxt-specific Guidelines
+
+* Follow Nuxt 4 directory structure (`pages/`, `components/`, `composables/`).
+* Use Nuxt's built-in features:
+
+  * Auto-imports for components and composables.
+  * File-based routing (`pages/`).
+  * API/server routes (`server/`).
+  * Nuxt plugins for global features (e.g., plugin for Naive UI config).
+* Use `useFetch` and `useAsyncData` for data fetching.
+* Implement SEO best practices with `useHead` and `useSeoMeta`.
+
+---
+
+### 🧠 Vue 3 and Composition API Best Practices
+
+* Use `<script setup>` syntax for concise component logic.
+* Leverage `ref`, `reactive`, and `computed` for state management.
+* Use `provide`/`inject` for dependency injection when needed.
+* Create **custom composables** for reusable business logic.
+
+---
+
+📚 Always follow the latest official documentation for:
+
+* **Nuxt 4**: [https://nuxt.com/docs](https://nuxt.com/docs)
+* **Vue 3**: [https://vuejs.org](https://vuejs.org)
+* **Naive UI**: [https://www.naiveui.com](https://www.naiveui.com)
+* **VueUse**: [https://vueuse.org](https://vueuse.org)
+
+---

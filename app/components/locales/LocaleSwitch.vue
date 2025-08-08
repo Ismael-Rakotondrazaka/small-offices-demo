@@ -24,7 +24,7 @@ import type { DropdownOption } from 'naive-ui';
 
 const switchLocalePath = useSwitchLocalePath();
 
-const handleSelect = (key: 'en' | 'fr') => {
+const handleSelect = (key: 'fr') => {
   const newPath = switchLocalePath(key);
   navigateTo(newPath);
 };

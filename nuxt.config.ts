@@ -42,13 +42,6 @@ export default defineNuxtConfig({
 
   compatibilityDate: '2025-07-15',
 
-  components: [
-    {
-      path: '~/components',
-      pathPrefix: false,
-    },
-  ],
-
   css: ['~/assets/styles/main.css', '~/assets/styles/tailwind.css'],
 
   devtools: {
@@ -70,18 +63,12 @@ export default defineNuxtConfig({
   },
 
   i18n: {
-    defaultLocale: 'en',
+    defaultLocale: 'fr',
     experimental: {
       localeDetector: './localeDetector.ts',
     },
     langDir: 'locales',
     locales: [
-      {
-        code: 'en',
-        files: makeLocaleFiles('en'),
-        iso: 'en-GB',
-        name: 'English',
-      },
       {
         code: 'fr',
         files: makeLocaleFiles('fr'),
@@ -89,7 +76,7 @@ export default defineNuxtConfig({
         name: 'Français',
       },
     ],
-    strategy: 'prefix',
+    strategy: 'no_prefix',
     vueI18n: './i18n.config.ts',
   },
 
@@ -120,24 +107,16 @@ export default defineNuxtConfig({
   naiveui: {
     themeConfig: {
       ...generateAntdColorThemes({
-        primary: '#4169E1', // TODO: Use your main color theme
+        primary: '#302aa7',
       }),
     },
   },
 
   robots: {
-    disallow: ['/dashboard'],
+    disallow: [],
   },
 
-  routeRules: {
-    // TODO: Use your customized route_rules
-    '/en/register': { prerender: true },
-    '/en/signin': { prerender: true },
-    '/en/techs': { prerender: true },
-    '/fr/register': { prerender: true },
-    '/fr/signin': { prerender: true },
-    '/fr/techs': { prerender: true },
-  },
+  routeRules: {},
 
   runtimeConfig: {
     /* ------------------------------ File Storage ------------------------------ */
@@ -161,11 +140,11 @@ export default defineNuxtConfig({
   },
 
   site: {
-    defaultLocale: 'en',
+    defaultLocale: 'fr',
     description:
-      'The complete solution for secure, high-performance, feature-rich web apps, powered by Nuxt.',
+      'Accédez à tous les bureaux du marché. Votre conseiller vous accompagne en visite et vous aide à négocier. Le tout gratuitement.',
     indexable: true,
-    name: 'Nuxt Fusion',
+    name: 'Petit Bureaux',
   },
 
   typescript: {
@@ -179,11 +158,10 @@ export default defineNuxtConfig({
 
   zodI18n: {
     /**
-     * Since we choose to use 'en' and 'fr' as locales' code,
+     * Since we choose to use 'fr' as locales' code,
      * we have to tell zodI18n to use those codes instead of the default ones.
      */
     localeCodesMapping: {
-      'en-GB': 'en',
       'fr-FR': 'fr',
     },
   },
