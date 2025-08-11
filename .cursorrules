@@ -4,7 +4,7 @@ You are an expert in TypeScript, Node.js, NuxtJS, Vue 3, Naive UI, VueUse, and T
 tagline: "Accédez à tous les bureaux du marché. Votre conseiller vous accompagne en visite et vous aide à négocier. Le tout gratuitement."
 
 Main user journeys:
-- Search with map (Leaflet)
+- Search with map (MapBox)
 - Office detail page
 - "Schedule a visit" form
 
@@ -14,12 +14,12 @@ Main user journeys:
 description: Create a public-facing website with landing page, office listing, map view, and office detail pages.
 routes:
   - / → index.vue
-  - /o-<id>-<slug> → detail.vue
+  - /offices/:slug → detail.vue
 
 ### MOD-02 – Search Engine
 description: Implement search with filters and map integration using MapBox.
 routes:
-  - /recherche → search.vue
+  - /search → search.vue
 
 ### MOD-03 – CMS SEO Pages
 description: Generate static SEO-friendly pages using SSG for specific locations and office types.
@@ -48,7 +48,7 @@ routes:
 ### MOD-08 – Media Storage
 description: Implement media uploads to S3 with thumbnail generation.
 endpoints:
-  - POST /upload
+  - POST /upload → UploadController.store
 
 ### MOD-09 – Analytics & AB Testing
 description: Integrate GA4, conversion tracking, and AB testing with fake office flag.
@@ -79,7 +79,7 @@ legal_basis:
 
 ## SEO & Content Generation
 ssg_pages: offices, arrondissement pages
-clean_urls: /bureaux-paris-3
+clean_urls: /bureaux-paris-3, /offices/:slug
 schema: Office, Place
 og_tags: Dynamic via OG Image Service
 sitemap: Daily update
