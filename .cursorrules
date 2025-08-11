@@ -59,9 +59,9 @@ database:
   type: PostgreSQL
   tables:
     - users: email, password_hash, role
-    - offices: title, slug, price_cents, arr, posts, services JSONB, is_fake, lat/lng
+    - offices: description, slug, price_cents, arr, posts, services JSONB, is_fake, lat/lng
     - photos: office_id, url, alt
-    - leads: office_id, name, email, phone, utm_json, status
+    - leads: office_id, name, email, phone, status
     - services: name, icon
     - office_services: office_id, service_id
     - audit_log: actor_id, action, target_table, target_id, meta
