@@ -16,7 +16,7 @@
         <div class="grid md:grid-cols-4 gap-4">
           <n-input
             v-model:value="searchQuery"
-            :placeholder="'Entrez une ville ou un arrondissement'"
+            placeholder="Entrez une ville ou un arrondissement"
             size="large"
           >
             <template #prefix>
@@ -27,14 +27,14 @@
           <n-select
             v-model:value="selectedType"
             :options="officeTypes"
-            :placeholder="'Type de bureau'"
+            placeholder="Type de bureau"
             size="large"
           />
 
           <n-select
             v-model:value="selectedPrice"
             :options="priceRanges"
-            :placeholder="'Fourchette de prix'"
+            placeholder="Fourchette de prix"
             size="large"
           />
 
@@ -71,7 +71,7 @@
           <n-select
             v-model:value="sortBy"
             :options="sortOptions"
-            :placeholder="'Trier par'"
+            placeholder="Trier par"
             size="small"
           />
         </div>

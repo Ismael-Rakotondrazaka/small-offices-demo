@@ -2,7 +2,7 @@
   <n-drawer
     v-if="isMobileOrTablet"
     v-model:show="showMenu"
-    :placement="'left'"
+    placement="left"
     class=""
   >
     <n-layout-sider

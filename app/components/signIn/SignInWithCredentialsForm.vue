@@ -56,25 +56,25 @@ const onSignInCredentialsClickHandler = handleSubmit(async (values) => {
 
       <n-form-item
         required
-        :label="'Adresse mail'"
+        label="Adresse mail"
         v-bind="emailProps"
       >
         <n-input
           v-model:value="email"
           type="text"
-          :placeholder="'email@exemple.com'"
+          placeholder="email@exemple.com"
         />
       </n-form-item>
 
       <n-form-item
         required
-        :label="'Mot de passe'"
+        label="Mot de passe"
         v-bind="passwordProps"
       >
         <n-input
           v-model:value="password"
           type="password"
-          :placeholder="'********'"
+          placeholder="********"
           show-password-on="click"
         />
       </n-form-item>
