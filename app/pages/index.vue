@@ -15,14 +15,16 @@
             </div>
 
             <div class="flex flex-col sm:flex-row gap-4">
-              <n-button
-                type="primary"
-                size="large"
-                class="text-lg px-8 py-4"
-                @click="navigateTo('/search')"
-              >
-                Rechercher des bureaux
-              </n-button>
+              <NuxtLinkLocale to="search">
+                <n-button
+                  type="primary"
+                  size="large"
+                  class="text-lg px-8 py-4"
+                  tag="span"
+                >
+                  Rechercher des bureaux
+                </n-button>
+              </NuxtLinkLocale>
               <n-button
                 size="large"
                 class="text-lg px-8 py-4"
@@ -192,14 +194,16 @@
         <p class="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
           Commencez votre recherche dès maintenant et bénéficiez de notre accompagnement gratuit
         </p>
-        <n-button
-          type="primary"
-          size="large"
-          class="text-lg px-8 py-4 bg-white text-blue-600 hover:bg-gray-100"
-          @click="navigateTo('/search')"
-        >
-          Commencer la recherche
-        </n-button>
+        <NuxtLinkLocale to="search">
+          <n-button
+            type="primary"
+            size="large"
+            class="text-lg px-8 py-4 bg-white text-blue-600 hover:bg-gray-100"
+            tag="span"
+          >
+            Commencer la recherche
+          </n-button>
+        </NuxtLinkLocale>
       </div>
     </section>
   </div>

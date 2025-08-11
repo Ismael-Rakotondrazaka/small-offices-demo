@@ -194,12 +194,14 @@
       <p class="text-gray-600 dark:text-gray-300 mb-6">
         Le bureau que vous recherchez n'existe pas ou a été supprimé.
       </p>
-      <n-button
-        type="primary"
-        @click="navigateTo('/search')"
-      >
-        Retour à la recherche
-      </n-button>
+      <NuxtLinkLocale to="search">
+        <n-button
+          type="primary"
+          tag="span"
+        >
+          Retour à la recherche
+        </n-button>
+      </NuxtLinkLocale>
     </div>
 
     <!-- Visit Form Modal -->
