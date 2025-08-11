@@ -1,16 +1,6 @@
 <template>
   <div class="container mx-auto px-4 py-8">
     <div class="max-w-6xl mx-auto">
-      <!-- Search Header -->
-      <div class="mb-8">
-        <h1 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-          Rechercher des bureaux
-        </h1>
-        <p class="text-lg text-gray-600 dark:text-gray-300">
-          Trouvez le bureau parfait selon vos besoins et votre budget
-        </p>
-      </div>
-
       <!-- Search Filters -->
       <n-card class="mb-8">
         <div class="grid md:grid-cols-4 gap-4">
@@ -24,10 +14,8 @@
             </template>
           </n-input>
 
-          <n-select
+          <OfficeTypeInput
             v-model:value="selectedType"
-            :options="officeTypes"
-            placeholder="Type de bureau"
             size="large"
           />
 
@@ -86,7 +74,7 @@
             <div class="space-y-4">
               <div class="aspect-video bg-gray-200 dark:bg-gray-700 rounded-lg overflow-hidden">
                 <img
-                  v-if="office.photos && office.photos.length > 0"
+                  v-if="Array.isArray(office.photos) && office.photos.length > 0 && office.photos[0]?.url"
                   :src="office.photos[0].url"
                   :alt="office.title"
                   class="w-full h-full object-cover"
@@ -113,10 +101,12 @@
                 <div class="flex items-center justify-between">
                   <div class="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400">
                     <Icon name="mdi:map-marker" />
-                    <span>{{ office.location }}</span>
+                    <span>
+                      {{ office.arr ? `Paris ${office.arr}` : 'Paris' }}
+                    </span>
                   </div>
                   <div class="text-lg font-bold text-blue-600 dark:text-blue-400">
-                    {{ formatPrice(office.price_cents) }}
+                    {{ formatPrice(office.price) }}
                   </div>
                 </div>
               </div>
@@ -167,21 +157,16 @@
 </template>
 
 <script lang="ts" setup>
+import type { OfficeType } from '~~/shared/domains';
+
 const route = useRoute();
 const searchQuery = ref(route.query.q as string || '');
-const selectedType = ref<null | string>(route.query.type as string || null);
+const selectedType = ref<null | OfficeType>(route.query.type as OfficeType || null);
 const selectedPrice = ref<null | string>(null);
 const sortBy = ref<null | string>('relevance');
 const isLoading = ref(false);
 const hasSearched = ref(false);
-const searchResults = ref<any[]>([]);
-
-const officeTypes = [
-  { label: 'Bureau privatif', value: 'private' },
-  { label: 'Espace de coworking', value: 'coworking' },
-  { label: 'Salle de réunion', value: 'meeting' },
-  { label: 'Bureau partagé', value: 'shared' },
-];
+const searchResults = ref<OfficeDTO[]>([]);
 
 const priceRanges = [
   { label: 'Moins de 500€', value: '0-500' },
@@ -211,7 +196,7 @@ const performSearch = async () => {
 
     const { data } = await useFetch('/api/offices', {
       query: Object.fromEntries(
-        Object.entries(query).filter(([_, value]) => value && value !== ''),
+        Object.entries(query).filter(([, value]) => value && value !== ''),
       ),
     });
 
@@ -239,11 +224,11 @@ const navigateToOffice = (slug: string) => {
   navigateTo(`/offices/${slug}`);
 };
 
-const formatPrice = (priceCents: number) => {
+const formatPrice = (price: number) => {
   return new Intl.NumberFormat('fr-FR', {
     currency: 'EUR',
     style: 'currency',
-  }).format(priceCents / 100);
+  }).format(price);
 };
 
 watch([searchQuery, selectedType, selectedPrice, sortBy], () => {
