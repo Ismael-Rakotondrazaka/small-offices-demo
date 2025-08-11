@@ -54,6 +54,10 @@ export default defineNuxtConfig({
     },
   },
 
+  experimental: {
+    typedPages: true,
+  },
+
   fonts: {},
 
   gtag: {
@@ -148,13 +152,7 @@ export default defineNuxtConfig({
   },
 
   supabase: {
-    redirectOptions: {
-      callback: '/api/auth/callback',
-      exclude: [],
-      include: undefined,
-      login: '/admin/login',
-      saveRedirectToCookie: false,
-    },
+    redirect: false,
   },
 
   typescript: {
