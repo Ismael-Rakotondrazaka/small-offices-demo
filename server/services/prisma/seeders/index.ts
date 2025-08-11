@@ -2,8 +2,6 @@
 import { PrismaClient } from '../../../../generated/prisma/client';
 import { createLeads } from './leads';
 import { createOffices } from './offices';
-import { createOfficeServices } from './officeServices';
-import { createPhotos } from './photos';
 import { createServices } from './services';
 
 const prismaClient = new PrismaClient();
@@ -28,33 +26,11 @@ const main = async () => {
 
   const offices = await createOffices({
     prisma: prismaClient,
-    years: simulationYears,
-  });
-
-  console.timeEnd('Offices seed duration');
-
-  /* ------------------------------ OfficeServices ----------------------------- */
-  console.time('OfficeServices seed duration');
-
-  await createOfficeServices({
-    offices,
-    prisma: prismaClient,
     services,
     years: simulationYears,
   });
 
-  console.timeEnd('OfficeServices seed duration');
-
-  /* --------------------------------- Photos ---------------------------------- */
-  console.time('Photos seed duration');
-
-  await createPhotos({
-    offices,
-    prisma: prismaClient,
-    years: simulationYears,
-  });
-
-  console.timeEnd('Photos seed duration');
+  console.timeEnd('Offices seed duration');
 
   /* ---------------------------------- Leads ---------------------------------- */
   console.time('Leads seed duration');

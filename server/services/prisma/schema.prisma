@@ -30,17 +30,23 @@ model UserRole {
   role Role   @default(EDITOR)
 }
 
+enum OfficeType {
+  INDEPENDENT_SPACE
+  PRIVATE_OFFICE
+  OPEN_SPACE
+}
+
 model Office {
   id             String          @id @default(uuid())
-  title          String
+  description    String          @db.Text
   slug           String          @unique
-  priceCents     Int
-  arr            String
-  posts          String
-  services       Json
+  price          Float
+  arr            Int
+  posts          Int
+  type           OfficeType
   isFake         Boolean         @default(false)
-  lat            Float?
-  lng            Float?
+  lat            Float
+  lng            Float
   createdAt      DateTime        @default(now())
   updatedAt      DateTime        @updatedAt
   deletedAt      DateTime?
@@ -73,7 +79,6 @@ model Lead {
   name      String
   email     String
   phone     String?
-  utmJson   Json?
   status    LeadStatus @default(PENDING)
   createdAt DateTime   @default(now())
   updatedAt DateTime   @updatedAt

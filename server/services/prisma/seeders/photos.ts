@@ -42,7 +42,7 @@ const createPhotoData = (arg: {
         id: arg.officeId,
       },
     },
-    url: faker.image.urlLoremFlickr({ category: 'business' }),
+    url: faker.image.urlPicsumPhotos({ height: 667, width: 1000 }),
   };
 };
 
