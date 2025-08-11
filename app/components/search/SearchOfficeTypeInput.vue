@@ -18,37 +18,31 @@
 
     <template #default>
       <div class="p-2">
-        <n-grid
+        <n-flex
           class="mb-2"
-          cols="4"
-          :x-gap="8"
-          :y-gap="8"
+          wrap
         >
-          <n-grid-item
+          <n-button
             v-for="type in OfficeTypes"
             :key="type"
+            round
+            :bordered="false"
+            type="primary"
+            size="large"
+            :primary="value === type"
+            :tertiary="value !== type"
+            class="w-full"
+            @click="handleClick(type)"
           >
-            <n-button
-              round
-              :bordered="false"
-              type="primary"
-              size="large"
-              :primary="value === type"
-              :tertiary="value !== type"
-              class="w-full"
-              @click="handleClick(type)"
-            >
-              <template #icon>
-                <Icon
-                  :name="iconMap[type]"
-                  class="text-lg"
-                />
-              </template>
-
-              {{ OfficeTypeLabel[type] }}
-            </n-button>
-          </n-grid-item>
-        </n-grid>
+            <template #icon>
+              <Icon
+                :name="iconMap[type]"
+                class="text-lg"
+              />
+            </template>
+            {{ OfficeTypeLabel[type] }}
+          </n-button>
+        </n-flex>
 
         <n-button
           type="primary"
