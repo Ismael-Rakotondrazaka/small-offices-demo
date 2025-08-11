@@ -14,8 +14,8 @@
         />
 
         <SearchOfficePriceRangeInput
-          v-model:max="priceMax"
-          v-model:min="priceMin"
+          v-model:max="priceLte"
+          v-model:min="priceGte"
         />
 
         <n-button
@@ -96,12 +96,48 @@ const arr = useRouteQuery<null | string | string[] | undefined, number[]>('arr',
     return [Number(value)];
   },
 });
-const type = useRouteQuery<OfficeType | undefined>('type[equals]');
-const priceMin = useRouteQuery<number | undefined>('price[gte]');
-const priceMax = useRouteQuery<number | undefined>('price[lte]');
+const type = useRouteQuery<null | string | string[] | undefined, OfficeType | undefined>('type[equals]', undefined, {
+  transform: (value) => {
+    if (value === null || value === undefined) {
+      return undefined;
+    }
+
+    return value as OfficeType;
+  },
+});
+const priceGte = useRouteQuery<null | string | string[] | undefined, number | undefined>('price[gte]', undefined, {
+  transform: (value) => {
+    if (value === null || value === undefined) {
+      return undefined;
+    }
+
+    const num = Number(value);
+
+    return num === 0 ? undefined : num;
+  },
+});
+const priceLte = useRouteQuery<null | string | string[] | undefined, number | undefined>('price[lte]', undefined, {
+  transform: (value) => {
+    if (value === null || value === undefined) {
+      return undefined;
+    }
+
+    const num = Number(value);
+
+    return num >= 100_000 ? undefined : num;
+  },
+});
 const page = useRouteQuery<number>('page', 1);
 const pageSize = useRouteQuery<number>('pageSize', officeConfig.PAGE_SIZE_DEFAULT_VALUE);
-const orderByPrice = useRouteQuery<'asc' | 'desc' | undefined>('orderBy[price]', 'asc');
+const orderByPrice = useRouteQuery<null | string | string[] | undefined, 'asc' | 'desc' | undefined>('orderBy[price]', 'asc', {
+  transform: (value) => {
+    if (value === null || value === undefined) {
+      return undefined;
+    }
+
+    return value as 'asc' | 'desc';
+  },
+});
 
 const query = computed<IndexOfficeRequestQuery>(() => ({
   'arr[equals]': arr.value.length === 1 ? arr.value[0] : undefined,
@@ -109,10 +145,11 @@ const query = computed<IndexOfficeRequestQuery>(() => ({
   'orderBy[price]': orderByPrice.value,
   'page': page.value,
   'pageSize': pageSize.value,
-  'price[gte]': priceMin.value,
-  'price[lte]': priceMax.value,
+  'price[gte]': priceGte.value,
+  'price[lte]': priceLte.value,
   'type[equals]': type.value,
 }));
+const queryDebounced = refDebounced(query, 500);
 
 const toggleSortByPrice = async () => {
   orderByPrice.value = orderByPrice.value === 'asc' ? 'desc' : 'asc';
@@ -120,7 +157,7 @@ const toggleSortByPrice = async () => {
 };
 
 const { data, execute, status }: Awaited<RequestToAsyncData<IndexOfficeRequest>> = useFetch('/api/offices', {
-  query,
+  query: queryDebounced,
 });
 
 const isLoading = useFetchLoading(status);
@@ -128,8 +165,8 @@ const isLoading = useFetchLoading(status);
 const resetSearch = async () => {
   arr.value = [];
   type.value = undefined;
-  priceMin.value = undefined;
-  priceMax.value = undefined;
+  priceGte.value = undefined;
+  priceLte.value = undefined;
   orderByPrice.value = 'asc';
 };
 </script>

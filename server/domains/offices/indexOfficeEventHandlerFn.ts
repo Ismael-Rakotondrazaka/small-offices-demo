@@ -11,8 +11,8 @@ export const IndexOfficeEventHandlerFn: EventHandlerFn<IndexOfficeRequest> = asy
   const haveWhereQueries = RequestInputHelper.haveWhereQueries<IndexOfficeRequest>(query, [
     'arr[equals]',
     'arr[in]',
-    'price[max]',
-    'price[min]',
+    'price[gte]',
+    'price[lte]',
     'type[equals]',
   ]);
   const where: Prisma.OfficeWhereInput = {
@@ -20,15 +20,15 @@ export const IndexOfficeEventHandlerFn: EventHandlerFn<IndexOfficeRequest> = asy
       ? [
           query['arr[equals]'] ? { arr: query['arr[equals]'] } : {},
           query['arr[in]'] ? { arr: { in: query['arr[in]'] } } : {},
-          query['price[max]'] ? { price: { lte: query['price[max]'] } } : {},
-          query['price[min]'] ? { price: { gte: query['price[min]'] } } : {},
+          query['price[gte]'] ? { price: { gte: query['price[gte]'] } } : {},
+          query['price[lte]'] ? { price: { lte: query['price[lte]'] } } : {},
           query['type[equals]'] ? { type: query['type[equals]'] } : {},
         ]
       : undefined,
   };
   const totalCount = await RepositoryProvider.officeRepository.count({ where });
   const pagination = new Pagination({ page: query.page, pageSize: query.pageSize, path, totalCount });
-  const offices = await RepositoryProvider.officeRepository.findMany({ orderBy: [{ createdAt: query['orderBy[price]'] }], skip: pagination.offset, take: pagination.pageSize, where });
+  const offices = await RepositoryProvider.officeRepository.findMany({ orderBy: [{ price: query['orderBy[price]'] }], skip: pagination.offset, take: pagination.pageSize, where });
 
   return {
     data: OfficeDTOMapper.toDTOs(offices),
