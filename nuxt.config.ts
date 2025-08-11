@@ -13,8 +13,10 @@ const makeLocaleFiles = (locale: string) =>
     'forms',
     'header',
     'home',
+    'office',
     'pinia',
     'posts',
+    'search',
     'sider',
     'users',
   ].map(name => `${locale}/${name}.json`);
