@@ -1,6 +1,6 @@
 <template>
   <div class="p-3 text-center">
-    <span>{{ $t("app.name") }} © {{ new Date().getFullYear() }}</span>
+    <span>Petit Bureaux © {{ new Date().getFullYear() }}</span>
   </div>
 </template>
 

@@ -41,14 +41,14 @@ const options: DropdownOption[] = [
   },
 ];
 
-const { clear } = useUserSession();
+const supabase = useSupabaseClient();
 
 const localeRoute = useLocaleRoute();
 
 const handleSelect = async (key: number | string) => {
   switch (String(key)) {
     case 'logout': {
-      await clear();
+      await supabase.auth.signOut();
 
       return navigateTo(
         localeRoute({

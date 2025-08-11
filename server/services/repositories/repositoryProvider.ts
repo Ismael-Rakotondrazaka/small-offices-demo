@@ -1,51 +1,71 @@
+import { LeadRepository } from '~~/server/domains/leads/leadRepository';
+import { OfficeRepository } from '~~/server/domains/offices/officeRepository';
+import { OfficeServiceRepository } from '~~/server/domains/officeServices/officeServiceRepository';
+import { PhotoRepository } from '~~/server/domains/photos/photoRepository';
+import { ServiceRepository } from '~~/server/domains/services/serviceRepository';
 import {
-  MediaRepository,
-  PostRepository,
-  UserRepository,
-} from '~~/server/domains';
-import { AuthAccessRepository } from '~~/server/domains/authAccesses/authAccessRepository';
+  UserRoleRepository,
+} from '~~/server/domains/userRoles/userRoleRepository';
 import { PrismaProvider } from '~~/server/services/prisma/prismaProvider';
 
-export abstract class RepositoryProvider {
-  public static get authAccessRepository(): AuthAccessRepository {
-    if (!this.#authAccessRepository) {
-      this.#authAccessRepository = new AuthAccessRepository(
-        PrismaProvider.instance,
-      );
+export class RepositoryProvider {
+  public static get leadRepository(): LeadRepository {
+    if (!this.#leadRepository) {
+      this.#leadRepository = new LeadRepository(PrismaProvider.instance);
     }
 
-    return this.#authAccessRepository;
+    return this.#leadRepository;
   }
 
-  public static get mediaRepository(): MediaRepository {
-    if (!this.#mediaRepository) {
-      this.#mediaRepository = new MediaRepository(PrismaProvider.instance);
+  public static get officeRepository(): OfficeRepository {
+    if (!this.#officeRepository) {
+      this.#officeRepository = new OfficeRepository(PrismaProvider.instance);
     }
 
-    return this.#mediaRepository;
+    return this.#officeRepository;
   }
 
-  public static get postRepository(): PostRepository {
-    if (!this.#postRepository) {
-      this.#postRepository = new PostRepository(PrismaProvider.instance);
+  public static get officeServiceRepository(): OfficeServiceRepository {
+    if (!this.#officeServiceRepository) {
+      this.#officeServiceRepository = new OfficeServiceRepository(PrismaProvider.instance);
     }
 
-    return this.#postRepository;
+    return this.#officeServiceRepository;
   }
 
-  public static get userRepository(): UserRepository {
-    if (!this.#userRepository) {
-      this.#userRepository = new UserRepository(PrismaProvider.instance);
+  public static get photoRepository(): PhotoRepository {
+    if (!this.#photoRepository) {
+      this.#photoRepository = new PhotoRepository(PrismaProvider.instance);
     }
 
-    return this.#userRepository;
+    return this.#photoRepository;
   }
 
-  static #authAccessRepository: AuthAccessRepository;
+  public static get serviceRepository(): ServiceRepository {
+    if (!this.#serviceRepository) {
+      this.#serviceRepository = new ServiceRepository(PrismaProvider.instance);
+    }
 
-  static #mediaRepository: MediaRepository;
+    return this.#serviceRepository;
+  }
 
-  static #postRepository: PostRepository;
+  public static get userRoleRepository(): UserRoleRepository {
+    if (!this.#userRoleRepository) {
+      this.#userRoleRepository = new UserRoleRepository(PrismaProvider.instance);
+    }
 
-  static #userRepository: UserRepository;
+    return this.#userRoleRepository;
+  }
+
+  static #leadRepository: LeadRepository;
+
+  static #officeRepository: OfficeRepository;
+
+  static #officeServiceRepository: OfficeServiceRepository;
+
+  static #photoRepository: PhotoRepository;
+
+  static #serviceRepository: ServiceRepository;
+
+  static #userRoleRepository: UserRoleRepository;
 }

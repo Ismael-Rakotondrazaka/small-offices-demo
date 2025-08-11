@@ -4,19 +4,8 @@ import tailwindcss from '@tailwindcss/vite';
 
 const makeLocaleFiles = (locale: string) =>
   [
-    'about',
-    'app',
-    'auth',
-    'dashboard',
     'dates',
     'errors',
-    'forms',
-    'header',
-    'home',
-    'pinia',
-    'posts',
-    'sider',
-    'users',
   ].map(name => `${locale}/${name}.json`);
 
 /* eslint-disable nuxt/nuxt-config-keys-order */
@@ -52,6 +41,10 @@ export default defineNuxtConfig({
     config: {
       stylistic: true,
     },
+  },
+
+  experimental: {
+    typedPages: true,
   },
 
   fonts: {},
@@ -98,10 +91,10 @@ export default defineNuxtConfig({
     '@bg-dev/nuxt-naiveui',
     'nuxt-zod-i18n',
     '@nuxtjs/i18n',
-    'nuxt-auth-utils',
     'nuxt-authorization',
     'nuxt-gtag',
     '@nuxt/test-utils/module',
+    '@nuxtjs/supabase',
   ],
 
   naiveui: {
@@ -145,6 +138,10 @@ export default defineNuxtConfig({
       'Accédez à tous les bureaux du marché. Votre conseiller vous accompagne en visite et vous aide à négocier. Le tout gratuitement.',
     indexable: true,
     name: 'Petit Bureaux',
+  },
+
+  supabase: {
+    redirect: false,
   },
 
   typescript: {

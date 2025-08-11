@@ -1,5 +1,5 @@
 <template>
-  <p v-if="loggedIn">
+  <p v-if="session !== null">
     <n-button @click="handleGoDashboard">
       Go back to dashboard.
     </n-button>
@@ -9,7 +9,7 @@
     <n-button @click="handleGoHome">
       <template #default>
         <span>
-          {{ $t("errors.ctas.goBackHome") }}
+          Retour à l'accueil
         </span>
       </template>
     </n-button>
@@ -17,7 +17,7 @@
 </template>
 
 <script lang="ts" setup>
-const { loggedIn } = useUserSession();
+const session = useSupabaseSession();
 
 const localeRoute = useLocaleRoute();
 

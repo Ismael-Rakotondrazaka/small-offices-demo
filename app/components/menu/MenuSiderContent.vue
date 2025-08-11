@@ -76,6 +76,19 @@ const dashboardMenu: ComputedRef<MenuOption> = computed(() => ({
     t('sider.menus.dashboard'),
   ),
 }));
+
+const adminDashboardMenu: ComputedRef<MenuOption> = computed(() => ({
+  icon: renderIcon('mdi:shield-account'),
+  key: 'admin-dashboard',
+  label: renderNuxtLinkLocale(
+    {
+      to: {
+        name: 'admin-dashboard',
+      },
+    },
+    t('sider.menus.adminDashboard'),
+  ),
+}));
 const piniaMenu: ComputedRef<MenuOption> = computed(() => ({
   icon: renderIcon('mdi:fruit-pineapple'),
   key: 'pinia',
@@ -100,16 +113,16 @@ const techsMenu: ComputedRef<MenuOption> = computed(() => ({
     t('sider.menus.techs'),
   ),
 }));
-const signInMenu: ComputedRef<MenuOption> = computed(() => ({
-  icon: renderIcon('mdi:login'),
-  key: 'signin',
+const adminLoginMenu: ComputedRef<MenuOption> = computed(() => ({
+  icon: renderIcon('mdi:shield-account'),
+  key: 'admin-login',
   label: renderNuxtLinkLocale(
     {
       to: {
-        name: 'signin',
+        name: 'admin-login',
       },
     },
-    t('sider.menus.signIn'),
+    t('sider.menus.adminLogin'),
   ),
 }));
 const registerMenu: ComputedRef<MenuOption> = computed(() => ({
@@ -125,13 +138,14 @@ const registerMenu: ComputedRef<MenuOption> = computed(() => ({
   ),
 }));
 
-const { loggedIn } = useUserSession();
+const session = useSupabaseSession();
 
 const menuOptions: ComputedRef<MenuOption[]> = computed(() =>
-  loggedIn.value
+  session.value
     ? [
         homeMenu.value,
         dashboardMenu.value,
+        adminDashboardMenu.value,
         postsMenu.value,
         piniaMenu.value,
         techsMenu.value,
@@ -141,7 +155,7 @@ const menuOptions: ComputedRef<MenuOption[]> = computed(() =>
         postsMenu.value,
         piniaMenu.value,
         techsMenu.value,
-        signInMenu.value,
+        adminLoginMenu.value,
         registerMenu.value,
       ],
 );

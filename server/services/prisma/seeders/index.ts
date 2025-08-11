@@ -1,8 +1,8 @@
 // We use nested imports to avoid interference with Nuxt ecosystem
 import { PrismaClient } from '../../../../generated/prisma/client';
-import { createPosts } from './posts';
-import { createProfileImages } from './profileImages';
-import { createUsers } from './users';
+import { createLeads } from './leads';
+import { createOffices } from './offices';
+import { createServices } from './services';
 
 const prismaClient = new PrismaClient();
 
@@ -11,35 +11,37 @@ const main = async () => {
 
   console.time('=> Total seed duration');
 
-  /* ---------------------------------- Users --------------------------------- */
-  console.time('Users seed duration');
+  /* --------------------------------- Services -------------------------------- */
+  console.time('Services seed duration');
 
-  const users = await createUsers({
+  const services = await createServices({
     prisma: prismaClient,
     years: simulationYears,
   });
 
-  console.timeEnd('Users seed duration');
+  console.timeEnd('Services seed duration');
 
-  /* ------------------------------ ProfileImages ----------------------------- */
-  console.time('ProfileImages seed duration');
+  /* --------------------------------- Offices --------------------------------- */
+  console.time('Offices seed duration');
 
-  await createProfileImages({
+  const offices = await createOffices({
     prisma: prismaClient,
-    users,
+    services,
+    years: simulationYears,
   });
 
-  console.timeEnd('ProfileImages seed duration');
+  console.timeEnd('Offices seed duration');
 
-  /* ---------------------------------- Post ---------------------------------- */
-  console.time('Posts seed duration');
+  /* ---------------------------------- Leads ---------------------------------- */
+  console.time('Leads seed duration');
 
-  await createPosts({
+  await createLeads({
+    offices,
     prisma: prismaClient,
-    users,
+    years: simulationYears,
   });
 
-  console.timeEnd('Posts seed duration');
+  console.timeEnd('Leads seed duration');
 
   console.timeEnd('=> Total seed duration');
 };

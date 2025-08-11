@@ -6,6 +6,7 @@ import type { Request } from '~~/shared';
 import type { z } from 'zod';
 
 import { allows as _allows, denies as _denies } from '#imports';
+import { serverSupabaseUser } from '#supabase/server';
 import { Exception } from '~~/server/core';
 
 export class EventHandlerBuilder<
@@ -57,7 +58,7 @@ export class EventHandlerBuilder<
               // eslint-disable-next-line @typescript-eslint/ban-ts-comment
               // @ts-ignore
               if (await _allows(event, ability, ...args)) {
-                return getUserSession(event);
+                return await serverSupabaseUser(event);
               }
 
               throw Exception.forbidden({
@@ -75,14 +76,19 @@ export class EventHandlerBuilder<
           path: event.path,
           query,
           userSession: {
-            get: () => {
-              return getUserSession(event);
+            get: async () => {
+              return await serverSupabaseUser(event);
             },
-            replace: (data) => {
-              return replaceUserSession(event, data);
-            },
-            require: () => {
-              return requireUserSession(event);
+            require: async () => {
+              const user = await serverSupabaseUser(event);
+
+              if (!user) {
+                throw Exception.unauthorized({
+                  data: {},
+                });
+              }
+
+              return user;
             },
           },
         });
