@@ -15,6 +15,7 @@ export const StoreOfficeEventHandlerFn: EventHandlerFn<StoreOfficeRequest> = asy
       posts: body.posts,
       price: body.price,
       slug: body.slug,
+      title: body.title,
       type: body.type,
     },
   });

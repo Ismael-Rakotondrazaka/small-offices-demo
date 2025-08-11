@@ -38,6 +38,7 @@ enum OfficeType {
 
 model Office {
   id             String          @id @default(uuid())
+  title          String
   description    String          @db.Text
   slug           String          @unique
   price          Float

@@ -9,7 +9,7 @@ export const UpdateOfficeRequestParamsSchema = z.object({ id: StringIdentifierSc
 
 export type UpdateOfficeRequestParams = z.infer<typeof UpdateOfficeRequestParamsSchema>;
 
-export const UpdateOfficeRequestBodySchema = z.object({ arr: z.number().min(1).max(20).optional(), description: z.string().optional(), isFake: z.boolean().optional(), lat: z.number().nullable().optional(), lng: z.number().nullable().optional(), posts: z.number().optional(), price: z.number().optional(), services: z.any().optional(), slug: z.string().optional() });
+export const UpdateOfficeRequestBodySchema = z.object({ arr: z.number().min(1).max(20).optional(), description: z.string().optional(), isFake: z.boolean().optional(), lat: z.number().nullable().optional(), lng: z.number().nullable().optional(), posts: z.number().optional(), price: z.number().optional(), services: z.any().optional(), slug: z.string().optional(), title: z.string().optional() });
 
 export type UpdateOfficeRequest = Request<UpdateOfficeRequestData, UpdateOfficeRequestBody, UpdateOfficeRequestParams>;
 export type UpdateOfficeRequestBody = z.infer<typeof UpdateOfficeRequestBodySchema>;

@@ -27,6 +27,7 @@ export const UpdateOfficeEventHandlerFn: EventHandlerFn<UpdateOfficeRequest> = a
       posts: body.posts,
       price: body.price,
       slug: body.slug,
+      title: body.title,
     },
     where: {
       id: params.id,

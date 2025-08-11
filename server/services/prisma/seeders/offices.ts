@@ -66,6 +66,7 @@ const createOfficeData = (arg: {
   services: Service[];
   years?: number;
 }): Prisma.OfficeCreateInput => {
+  const title = faker.company.name();
   const description = faker.lorem.paragraphs({
     max: 20,
     min: 5,
@@ -95,7 +96,8 @@ const createOfficeData = (arg: {
     },
     posts,
     price,
-    slug: faker.helpers.slugify(description).toLowerCase(),
+    slug: faker.helpers.slugify(title).toLowerCase(),
+    title,
     type,
     updatedAt: createdAt,
   };
