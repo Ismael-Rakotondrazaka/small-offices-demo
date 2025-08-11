@@ -4,10 +4,10 @@
       <!-- Search Header -->
       <div class="mb-8">
         <h1 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-          {{ $t('search.title') }}
+          Rechercher des bureaux
         </h1>
         <p class="text-lg text-gray-600 dark:text-gray-300">
-          {{ $t('search.description') }}
+          Trouvez le bureau parfait selon vos besoins et votre budget
         </p>
       </div>
 
@@ -16,56 +16,62 @@
         <div class="grid md:grid-cols-4 gap-4">
           <n-input
             v-model:value="searchQuery"
-            :placeholder="$t('search.locationPlaceholder')"
+            :placeholder="'Entrez une ville ou un arrondissement'"
             size="large"
           >
             <template #prefix>
               <Icon name="mdi:map-marker" />
             </template>
           </n-input>
-          
+
           <n-select
             v-model:value="selectedType"
             :options="officeTypes"
-            :placeholder="$t('search.typePlaceholder')"
+            :placeholder="'Type de bureau'"
             size="large"
           />
 
           <n-select
             v-model:value="selectedPrice"
             :options="priceRanges"
-            :placeholder="$t('search.pricePlaceholder')"
+            :placeholder="'Fourchette de prix'"
             size="large"
           />
-          
+
           <n-button
             type="primary"
             size="large"
             class="w-full"
             @click="performSearch"
           >
-            {{ $t('search.searchButton') }}
+            Rechercher
           </n-button>
         </div>
       </n-card>
 
       <!-- Search Results -->
-      <div v-if="isLoading" class="text-center py-12">
+      <div
+        v-if="isLoading"
+        class="text-center py-12"
+      >
         <n-spin size="large" />
         <p class="mt-4 text-gray-600 dark:text-gray-300">
-          {{ $t('search.loading') }}
+          Recherche en cours...
         </p>
       </div>
 
-      <div v-else-if="searchResults.length > 0" class="space-y-6">
+      <div
+        v-else-if="searchResults.length > 0"
+        class="space-y-6"
+      >
         <div class="flex justify-between items-center">
           <p class="text-gray-600 dark:text-gray-300">
-            {{ $t('search.resultsCount', { count: searchResults.length }) }}
+            {{ searchResults.length }} bureau(x) trouvé(s)
           </p>
           <n-select
             v-model:value="sortBy"
             :options="sortOptions"
-            :placeholder="$t('search.sortBy')"
+            :placeholder="'Trier par'"
             size="small"
           />
         </div>
@@ -84,12 +90,18 @@
                   :src="office.photos[0].url"
                   :alt="office.title"
                   class="w-full h-full object-cover"
-                />
-                <div v-else class="w-full h-full flex items-center justify-center">
-                  <Icon name="mdi:office-building" class="text-4xl text-gray-400" />
+                >
+                <div
+                  v-else
+                  class="w-full h-full flex items-center justify-center"
+                >
+                  <Icon
+                    name="mdi:office-building"
+                    class="text-4xl text-gray-400"
+                  />
                 </div>
               </div>
-              
+
               <div>
                 <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">
                   {{ office.title }}
@@ -97,7 +109,7 @@
                 <p class="text-gray-600 dark:text-gray-300 mb-3 line-clamp-2">
                   {{ office.description }}
                 </p>
-                
+
                 <div class="flex items-center justify-between">
                   <div class="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400">
                     <Icon name="mdi:map-marker" />
@@ -113,29 +125,41 @@
         </div>
       </div>
 
-      <div v-else-if="hasSearched" class="text-center py-12">
-        <Icon name="mdi:search-off" class="text-6xl text-gray-400 mx-auto mb-4" />
+      <div
+        v-else-if="hasSearched"
+        class="text-center py-12"
+      >
+        <Icon
+          name="mdi:search-off"
+          class="text-6xl text-gray-400 mx-auto mb-4"
+        />
         <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-          {{ $t('search.noResults.title') }}
+          Aucun résultat trouvé
         </h3>
         <p class="text-gray-600 dark:text-gray-300 mb-6">
-          {{ $t('search.noResults.description') }}
+          Essayez de modifier vos critères de recherche ou élargissez votre zone géographique
         </p>
         <n-button
           type="primary"
           @click="resetSearch"
         >
-          {{ $t('search.noResults.tryAgain') }}
+          Modifier la recherche
         </n-button>
       </div>
 
-      <div v-else class="text-center py-12">
-        <Icon name="mdi:map-search" class="text-6xl text-gray-400 mx-auto mb-4" />
+      <div
+        v-else
+        class="text-center py-12"
+      >
+        <Icon
+          name="mdi:map-search"
+          class="text-6xl text-gray-400 mx-auto mb-4"
+        />
         <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-          {{ $t('search.initial.title') }}
+          Commencez votre recherche
         </h3>
         <p class="text-gray-600 dark:text-gray-300">
-          {{ $t('search.initial.description') }}
+          Utilisez les filtres ci-dessus pour trouver des bureaux qui correspondent à vos critères
         </p>
       </div>
     </div>
@@ -145,9 +169,9 @@
 <script lang="ts" setup>
 const route = useRoute();
 const searchQuery = ref(route.query.q as string || '');
-const selectedType = ref<string | null>(route.query.type as string || null);
-const selectedPrice = ref<string | null>(null);
-const sortBy = ref<string | null>('relevance');
+const selectedType = ref<null | string>(route.query.type as string || null);
+const selectedPrice = ref<null | string>(null);
+const sortBy = ref<null | string>('relevance');
 const isLoading = ref(false);
 const hasSearched = ref(false);
 const searchResults = ref<any[]>([]);
@@ -156,46 +180,48 @@ const officeTypes = [
   { label: 'Bureau privatif', value: 'private' },
   { label: 'Espace de coworking', value: 'coworking' },
   { label: 'Salle de réunion', value: 'meeting' },
-  { label: 'Bureau partagé', value: 'shared' }
+  { label: 'Bureau partagé', value: 'shared' },
 ];
 
 const priceRanges = [
   { label: 'Moins de 500€', value: '0-500' },
   { label: '500€ - 1000€', value: '500-1000' },
   { label: '1000€ - 2000€', value: '1000-2000' },
-  { label: 'Plus de 2000€', value: '2000+' }
+  { label: 'Plus de 2000€', value: '2000+' },
 ];
 
 const sortOptions = [
   { label: 'Pertinence', value: 'relevance' },
   { label: 'Prix croissant', value: 'price_asc' },
   { label: 'Prix décroissant', value: 'price_desc' },
-  { label: 'Distance', value: 'distance' }
+  { label: 'Distance', value: 'distance' },
 ];
 
 const performSearch = async () => {
   isLoading.value = true;
   hasSearched.value = true;
-  
+
   try {
     const query = {
-      q: searchQuery.value,
-      type: selectedType.value,
       price: selectedPrice.value,
-      sort: sortBy.value
+      q: searchQuery.value,
+      sort: sortBy.value,
+      type: selectedType.value,
     };
-    
+
     const { data } = await useFetch('/api/offices', {
       query: Object.fromEntries(
-        Object.entries(query).filter(([_, value]) => value && value !== '')
-      )
+        Object.entries(query).filter(([_, value]) => value && value !== ''),
+      ),
     });
-    
-    searchResults.value = data.value || [];
-  } catch (error) {
+
+    searchResults.value = data.value?.data || [];
+  }
+  catch (error) {
     console.error('Search error:', error);
     searchResults.value = [];
-  } finally {
+  }
+  finally {
     isLoading.value = false;
   }
 };
@@ -215,8 +241,8 @@ const navigateToOffice = (slug: string) => {
 
 const formatPrice = (priceCents: number) => {
   return new Intl.NumberFormat('fr-FR', {
+    currency: 'EUR',
     style: 'currency',
-    currency: 'EUR'
   }).format(priceCents / 100);
 };
 

@@ -5,7 +5,7 @@
     <div class="flex items-center justify-center">
       <div class="w-full">
         <p class="mb-4 text-[24px] font-semibold uppercase text-primary">
-          {{ $t("app.description") }}
+          Accédez à tous les bureaux du marché. Votre conseiller vous accompagne en visite et vous aide à négocier. Le tout gratuitement.
         </p>
         <h1
           class="m-0 mb-4 flex w-[600px] items-center text-[75px] font-semibold"

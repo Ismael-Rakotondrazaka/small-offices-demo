@@ -7,7 +7,7 @@ definePageMeta({
 <template>
   <div class="container mx-auto">
     <n-card
-      :title="$t('auth.signIn.form.title')"
+      :title="'Se connecter'"
       size="small"
       class="mx-auto w-full max-w-md"
     >

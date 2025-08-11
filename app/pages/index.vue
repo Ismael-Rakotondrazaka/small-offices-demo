@@ -7,10 +7,10 @@
           <div class="space-y-8">
             <div class="space-y-4">
               <h1 class="text-4xl lg:text-6xl font-bold text-gray-900 dark:text-white leading-tight">
-                {{ $t('home.hero.title') }}
+                Trouvez votre bureau idéal
               </h1>
               <p class="text-xl lg:text-2xl text-gray-600 dark:text-gray-300 leading-relaxed">
-                {{ $t('home.hero.subtitle') }}
+                Accédez à tous les bureaux du marché. Votre conseiller vous accompagne en visite et vous aide à négocier. Le tout gratuitement.
               </p>
             </div>
 
@@ -21,14 +21,14 @@
                 class="text-lg px-8 py-4"
                 @click="navigateTo('/search')"
               >
-                {{ $t('home.hero.searchButton') }}
+                Rechercher des bureaux
               </n-button>
               <n-button
                 size="large"
                 class="text-lg px-8 py-4"
                 @click="scrollToFeatures"
               >
-                {{ $t('home.hero.learnMoreButton') }}
+                En savoir plus
               </n-button>
             </div>
 
@@ -38,14 +38,14 @@
                   name="mdi:check-circle"
                   class="text-green-500"
                 />
-                <span>{{ $t('home.hero.freeService') }}</span>
+                <span>Service 100% gratuit</span>
               </div>
               <div class="flex items-center space-x-2">
                 <Icon
                   name="mdi:check-circle"
                   class="text-green-500"
                 />
-                <span>{{ $t('home.hero.expertAdvice') }}</span>
+                <span>Conseil d'expert inclus</span>
               </div>
             </div>
           </div>
@@ -53,7 +53,7 @@
           <div class="relative">
             <div class="relative z-10">
               <img
-                src="/images/illustrations/hero/hero_4356x1800.webp"
+                :src="illustrationImage"
                 alt="Office spaces"
                 class="w-full h-auto rounded-2xl shadow-2xl"
               >
@@ -71,10 +71,10 @@
         <div class="max-w-4xl mx-auto">
           <div class="text-center mb-12">
             <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              {{ $t('home.search.title') }}
+              Recherche rapide
             </h2>
             <p class="text-lg text-gray-600 dark:text-gray-300">
-              {{ $t('home.search.description') }}
+              Trouvez rapidement des bureaux selon vos besoins et votre localisation
             </p>
           </div>
 
@@ -82,7 +82,7 @@
             <div class="grid md:grid-cols-3 gap-4">
               <n-input
                 v-model:value="searchQuery"
-                :placeholder="$t('home.search.locationPlaceholder')"
+                :placeholder="'Entrez une ville ou un arrondissement'"
                 size="large"
               >
                 <template #prefix>
@@ -93,7 +93,7 @@
               <n-select
                 v-model:value="selectedType"
                 :options="officeTypes"
-                :placeholder="$t('home.search.typePlaceholder')"
+                :placeholder="'Type de bureau'"
                 size="large"
               />
 
@@ -103,7 +103,7 @@
                 class="w-full"
                 @click="handleSearch"
               >
-                {{ $t('home.search.searchButton') }}
+                Rechercher
               </n-button>
             </div>
           </n-card>
@@ -119,10 +119,10 @@
       <div class="container mx-auto px-4">
         <div class="text-center mb-16">
           <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            {{ $t('home.features.title') }}
+            Pourquoi choisir Petits Bureaux ?
           </h2>
           <p class="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            {{ $t('home.features.description') }}
+            Nous vous accompagnons à chaque étape de votre recherche de bureau avec des services personnalisés et gratuits.
           </p>
         </div>
 
@@ -156,10 +156,10 @@
       <div class="container mx-auto px-4">
         <div class="text-center mb-16">
           <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            {{ $t('home.howItWorks.title') }}
+            Comment ça marche ?
           </h2>
           <p class="text-lg text-gray-600 dark:text-gray-300">
-            {{ $t('home.howItWorks.description') }}
+            Trois étapes simples pour trouver votre bureau idéal
           </p>
         </div>
 
@@ -187,10 +187,10 @@
     <section class="py-20 bg-blue-600 dark:bg-blue-700">
       <div class="container mx-auto px-4 text-center">
         <h2 class="text-3xl lg:text-4xl font-bold text-white mb-6">
-          {{ $t('home.cta.title') }}
+          Prêt à trouver votre bureau ?
         </h2>
         <p class="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-          {{ $t('home.cta.description') }}
+          Commencez votre recherche dès maintenant et bénéficiez de notre accompagnement gratuit
         </p>
         <n-button
           type="primary"
@@ -198,7 +198,7 @@
           class="text-lg px-8 py-4 bg-white text-blue-600 hover:bg-gray-100"
           @click="navigateTo('/search')"
         >
-          {{ $t('home.cta.button') }}
+          Commencer la recherche
         </n-button>
       </div>
     </section>
@@ -206,6 +206,8 @@
 </template>
 
 <script lang="ts" setup>
+import illustrationImage from '@/assets/images/illustrations/hero/hero_4356x1800.webp';
+
 defineOgImageComponent('DefaultOgImage');
 
 const featuresSection = ref<HTMLElement>();
@@ -221,19 +223,19 @@ const officeTypes = [
 
 const features = [
   {
-    description: 'Trouvez des bureaux près de chez vous avec notre carte interactive',
+    description: 'Trouvez votre bureau idéal',
     icon: 'mdi:map-marker-radius',
     id: 1,
-    title: 'Recherche géolocalisée',
+    title: 'Recherche rapide',
   },
   {
-    description: 'Un expert vous accompagne gratuitement dans votre recherche',
+    description: 'Trouvez rapidement des bureaux selon vos besoins et votre localisation',
     icon: 'mdi:account-tie',
     id: 2,
-    title: 'Conseil personnalisé',
+    title: 'Conseil d\'expert inclus',
   },
   {
-    description: 'Nous négocions les meilleurs tarifs pour vous',
+    description: 'Accédez à tous les bureaux du marché. Votre conseiller vous accompagne en visite et vous aide à négocier. Le tout gratuitement.',
     icon: 'mdi:handshake',
     id: 3,
     title: 'Négociation incluse',
@@ -289,7 +291,7 @@ const handleSearch = () => {
   navigateTo({
     path: '/search',
     query: Object.fromEntries(
-      Object.entries(query).filter(([_, value]) => value && value !== ''),
+      Object.entries(query).filter(([, value]) => value && value !== ''),
     ),
   });
 };

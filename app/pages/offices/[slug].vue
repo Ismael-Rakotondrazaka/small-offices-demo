@@ -6,7 +6,7 @@
     >
       <n-spin size="large" />
       <p class="mt-4 text-gray-600 dark:text-gray-300">
-        {{ $t('office.loading') }}
+        Chargement du bureau...
       </p>
     </div>
 
@@ -18,10 +18,10 @@
       <nav class="mb-8">
         <n-breadcrumb>
           <n-breadcrumb-item @click="navigateTo('/')">
-            {{ $t('office.breadcrumb.home') }}
+            Accueil
           </n-breadcrumb-item>
-                     <n-breadcrumb-item @click="navigateTo('/search')">
-            {{ $t('office.breadcrumb.search') }}
+          <n-breadcrumb-item @click="navigateTo('/search')">
+            Recherche
           </n-breadcrumb-item>
           <n-breadcrumb-item>
             {{ office.title }}
@@ -98,7 +98,7 @@
             <!-- Services -->
             <div v-if="office.services && office.services.length > 0">
               <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">
-                {{ $t('office.services.title') }}
+                Services inclus
               </h3>
               <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
                 <div
@@ -127,7 +127,7 @@
                   {{ formatPrice(office.price_cents) }}
                 </div>
                 <div class="text-gray-600 dark:text-gray-300">
-                  {{ $t('office.price.perMonth') }}
+                  par mois
                 </div>
               </div>
 
@@ -137,7 +137,7 @@
                 class="w-full"
                 @click="showVisitForm = true"
               >
-                {{ $t('office.actions.scheduleVisit') }}
+                Planifier une visite
               </n-button>
 
               <n-button
@@ -145,7 +145,7 @@
                 class="w-full"
                 @click="showContactForm = true"
               >
-                {{ $t('office.actions.contact') }}
+                Nous contacter
               </n-button>
             </div>
           </n-card>
@@ -153,25 +153,25 @@
           <!-- Quick Info -->
           <n-card>
             <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-              {{ $t('office.quickInfo.title') }}
+              Informations rapides
             </h3>
             <div class="space-y-3">
               <div class="flex justify-between">
-                <span class="text-gray-600 dark:text-gray-300">{{ $t('office.quickInfo.type') }}</span>
+                <span class="text-gray-600 dark:text-gray-300">Type</span>
                 <span class="font-medium">{{ getOfficeTypeLabel(office.type) }}</span>
               </div>
               <div class="flex justify-between">
-                <span class="text-gray-600 dark:text-gray-300">{{ $t('office.quickInfo.size') }}</span>
+                <span class="text-gray-600 dark:text-gray-300">Surface</span>
                 <span class="font-medium">{{ office.size_m2 }}m²</span>
               </div>
               <div class="flex justify-between">
-                <span class="text-gray-600 dark:text-gray-300">{{ $t('office.quickInfo.capacity') }}</span>
-                <span class="font-medium">{{ office.capacity }} {{ $t('office.quickInfo.people') }}</span>
+                <span class="text-gray-600 dark:text-gray-300">Capacité</span>
+                <span class="font-medium">{{ office.capacity }} personnes</span>
               </div>
               <div class="flex justify-between">
-                <span class="text-gray-600 dark:text-gray-300">{{ $t('office.quickInfo.availability') }}</span>
+                <span class="text-gray-600 dark:text-gray-300">Disponibilité</span>
                 <span class="font-medium text-green-600 dark:text-green-400">
-                  {{ $t('office.quickInfo.available') }}
+                  Disponible
                 </span>
               </div>
             </div>
@@ -189,16 +189,16 @@
         class="text-6xl text-gray-400 mx-auto mb-4"
       />
       <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-        {{ $t('office.notFound.title') }}
+        Bureau non trouvé
       </h3>
       <p class="text-gray-600 dark:text-gray-300 mb-6">
-        {{ $t('office.notFound.description') }}
+        Le bureau que vous recherchez n'existe pas ou a été supprimé.
       </p>
       <n-button
         type="primary"
-                 @click="navigateTo('/search')"
+        @click="navigateTo('/search')"
       >
-        {{ $t('office.notFound.backToSearch') }}
+        Retour à la recherche
       </n-button>
     </div>
 

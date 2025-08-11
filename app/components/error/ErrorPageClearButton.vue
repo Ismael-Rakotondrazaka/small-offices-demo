@@ -9,7 +9,7 @@
     <n-button @click="handleGoHome">
       <template #default>
         <span>
-          {{ $t("errors.ctas.goBackHome") }}
+          Retour à l'accueil
         </span>
       </template>
     </n-button>

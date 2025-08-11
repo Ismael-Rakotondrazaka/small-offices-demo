@@ -4,21 +4,8 @@ import tailwindcss from '@tailwindcss/vite';
 
 const makeLocaleFiles = (locale: string) =>
   [
-    'about',
-    'app',
-    'auth',
-    'dashboard',
     'dates',
     'errors',
-    'forms',
-    'header',
-    'home',
-    'office',
-    'pinia',
-    'posts',
-    'search',
-    'sider',
-    'users',
   ].map(name => `${locale}/${name}.json`);
 
 /* eslint-disable nuxt/nuxt-config-keys-order */

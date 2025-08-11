@@ -51,32 +51,30 @@ const onSignInCredentialsClickHandler = handleSubmit(async (values) => {
   <div>
     <n-form>
       <n-p class="text-base">
-        {{
-          $t("auth.signIn.form.credentials.description")
-        }}
+        Saisissez vos identifiants pour accéder à votre compte.
       </n-p>
 
       <n-form-item
         required
-        :label="$t('forms.fields.email.label')"
+        :label="'Adresse mail'"
         v-bind="emailProps"
       >
         <n-input
           v-model:value="email"
           type="text"
-          :placeholder="$t('forms.fields.email.placeholder')"
+          :placeholder="'email@exemple.com'"
         />
       </n-form-item>
 
       <n-form-item
         required
-        :label="$t('forms.fields.password.label')"
+        :label="'Mot de passe'"
         v-bind="passwordProps"
       >
         <n-input
           v-model:value="password"
           type="password"
-          :placeholder="$t('forms.fields.password.placeholder')"
+          :placeholder="'********'"
           show-password-on="click"
         />
       </n-form-item>
@@ -91,7 +89,7 @@ const onSignInCredentialsClickHandler = handleSubmit(async (values) => {
           <Icon name="mdi:login" />
         </template>
 
-        {{ $t("forms.buttons.signIn") }}
+        Se connecter
       </n-button>
     </n-form>
   </div>

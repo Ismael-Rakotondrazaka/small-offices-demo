@@ -1,17 +1,17 @@
 <template>
   <div class="mx-auto w-full max-w-2xl p-3">
-    <n-h1>{{ $t("pinia.title") }}</n-h1>
+    <n-h1>Pinia (état persistant)</n-h1>
 
     <n-space justify="space-around">
       <n-statistic
-        :label="$t('pinia.count.statistic.count')"
+        :label="'Compte'"
         class="mb-5"
       >
         <p>{{ countStore.count }}</p>
       </n-statistic>
 
       <n-statistic
-        :label="$t('pinia.count.statistic.doubledCount')"
+        :label="'Compte doublé'"
         class="mb-5"
       >
         <p>{{ countStore.doubledCount }}</p>
@@ -29,7 +29,7 @@
         </template>
 
         <template #default>
-          {{ $t("pinia.count.actions.decrement") }}
+          Décrémenter
         </template>
       </n-button>
 
@@ -42,7 +42,7 @@
         </template>
 
         <template #default>
-          {{ $t("pinia.count.actions.increment") }}
+          Incrémenter
         </template>
       </n-button>
 
@@ -55,7 +55,7 @@
         </template>
 
         <template #default>
-          {{ $t("pinia.count.actions.random") }}
+          Aléatoire
         </template>
       </n-button>
 
@@ -68,7 +68,7 @@
         </template>
 
         <template #default>
-          {{ $t("pinia.count.actions.reset") }}
+          Réinitialiser
         </template>
       </n-button>
     </n-space>
@@ -76,7 +76,7 @@
     <n-divider />
 
     <n-statistic
-      :label="$t('pinia.name.title')"
+      :label="'Nom'"
       class="mb-5"
     >
       <p>{{ countStore.name || "&nbsp;" }}</p>
@@ -86,7 +86,7 @@
       v-model:value="countStore.name"
       type="text"
       show-count
-      :placeholder="$t('pinia.name.input.placeholder')"
+      :placeholder="'Entrez un nom'"
     />
   </div>
 </template>

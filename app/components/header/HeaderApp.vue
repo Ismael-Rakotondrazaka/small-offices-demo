@@ -8,13 +8,15 @@
     </template>
 
     <template #title>
-      {{ $t("app.name") }}
+      <span class="text-xl font-bold text-primary">
+        Petit Bureaux
+      </span>
     </template>
 
     <template #subtitle>
-      <p class="!hidden lg:!inline-block">
-        {{ $t("app.description") }}
-      </p>
+      <span class="text-sm text-gray-600 dark:text-gray-300 hidden md:block">
+        Accédez à tous les bureaux du marché. Votre conseiller vous accompagne en visite et vous aide à négocier. Le tout gratuitement.
+      </span>
     </template>
 
     <template #extra>
