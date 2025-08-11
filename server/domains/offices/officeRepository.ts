@@ -70,6 +70,13 @@ export class OfficeRepository {
     return this.#prismaClient.office.findFirst({ include: OfficeRepository.#includeArg, orderBy, where });
   }
 
+  public async slugExists(slug: string): Promise<boolean> {
+    const count = await this.#prismaClient.office.count({
+      where: { slug },
+    });
+    return count > 0;
+  }
+
   public async updateOne(arg: {
     data: Prisma.OfficeUpdateArgs['data'];
     where: Prisma.OfficeWhereUniqueInput;
