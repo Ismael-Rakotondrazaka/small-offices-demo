@@ -13,14 +13,13 @@ Main user journeys:
 ### MOD-01 – Public Web Frontend
 description: Create a public-facing website with landing page, office listing, map view, and office detail pages.
 routes:
-  - / → LandingPage.vue
-  - /offices → OfficeList.vue
-  - /offices/:slug → OfficeDetail.vue
+  - / → index.vue
+  - /o-<id>-<slug> → detail.vue
 
 ### MOD-02 – Search Engine
 description: Implement search with filters and map integration using MapBox.
 routes:
-  - /search → SearchPage.vue
+  - /recherche → search.vue
 
 ### MOD-03 – CMS SEO Pages
 description: Generate static SEO-friendly pages using SSG for specific locations and office types.
@@ -34,22 +33,22 @@ endpoints:
 ### MOD-05 – Back-Office Authentication
 description: Implement staff authentication and RBAC.
 routes:
-  - /admin/login → AdminLogin.vue
+  - /admin/login
 
 ### MOD-06 – CRUD Offices (Back-Office)
 description: Admin interface for managing offices (real/fake).
 routes:
-  - /admin/offices → AdminOffices.vue
+  - /admin/offices
 
 ### MOD-07 – Lead Tracking (Back-Office)
 description: Admin interface for viewing and updating lead status.
 routes:
-  - /admin/leads → AdminLeads.vue
+  - /admin/leads
 
 ### MOD-08 – Media Storage
 description: Implement media uploads to S3 with thumbnail generation.
 endpoints:
-  - POST /upload → UploadController.store
+  - POST /upload
 
 ### MOD-09 – Analytics & AB Testing
 description: Integrate GA4, conversion tracking, and AB testing with fake office flag.
@@ -80,7 +79,7 @@ legal_basis:
 
 ## SEO & Content Generation
 ssg_pages: offices, arrondissement pages
-clean_urls: /bureaux-paris-3, /office/:slug
+clean_urls: /bureaux-paris-3
 schema: Office, Place
 og_tags: Dynamic via OG Image Service
 sitemap: Daily update
