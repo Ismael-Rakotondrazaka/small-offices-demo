@@ -10,6 +10,7 @@ import { OfficeDTOMapper } from './officeDTOMapper';
 export const IndexOfficeEventHandlerFn: EventHandlerFn<IndexOfficeRequest> = async ({ path, query }) => {
   const haveWhereQueries = RequestInputHelper.haveWhereQueries<IndexOfficeRequest>(query, [
     'arr[equals]',
+    'arr[in]',
     'price[max]',
     'price[min]',
     'type[equals]',
@@ -18,6 +19,7 @@ export const IndexOfficeEventHandlerFn: EventHandlerFn<IndexOfficeRequest> = asy
     AND: haveWhereQueries
       ? [
           query['arr[equals]'] ? { arr: query['arr[equals]'] } : {},
+          query['arr[in]'] ? { arr: { in: query['arr[in]'] } } : {},
           query['price[max]'] ? { price: { lte: query['price[max]'] } } : {},
           query['price[min]'] ? { price: { gte: query['price[min]'] } } : {},
           query['type[equals]'] ? { type: query['type[equals]'] } : {},

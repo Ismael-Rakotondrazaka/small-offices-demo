@@ -12,9 +12,10 @@ export type IndexOfficeRequestData = { data: OfficeDTO[]; pagination: Pagination
 
 export const IndexOfficeRequestQuerySchema = z.object({
   'arr[equals]': z.number().min(1).max(20),
+  'arr[in]': z.array(z.number().min(1).max(20)),
   'orderBy[price]': SortOrderSchema,
-  'price[max]': z.number(),
-  'price[min]': z.number(),
+  'price[gte]': z.number(),
+  'price[lte]': z.number(),
   'type[equals]': OfficeTypeSchema,
 }).partial().merge(makePaginatedSchema({ defaultPageSize: officeConfig.PAGE_SIZE_DEFAULT_VALUE }));
 

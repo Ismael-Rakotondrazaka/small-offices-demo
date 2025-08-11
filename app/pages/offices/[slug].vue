@@ -295,10 +295,11 @@
 <script lang="ts" setup>
 const route = useRoute();
 const officeSlug = route.params.slug as string;
+const message = useMessage();
 
 const isLoading = ref(true);
-const office = ref<any>(null);
-const currentPhoto = ref<any>(null);
+const office = ref<null | OfficeDTO>(null);
+const currentPhoto = ref<null | PhotoDTO>(null);
 const showVisitForm = ref(false);
 const showContactForm = ref(false);
 const isSubmittingVisit = ref(false);
@@ -351,11 +352,11 @@ const getOfficeTypeLabel = (type: string) => {
   return officeTypes[type as keyof typeof officeTypes] || type;
 };
 
-const formatPrice = (priceCents: number) => {
+const formatPrice = (price: number) => {
   return new Intl.NumberFormat('fr-FR', {
     currency: 'EUR',
     style: 'currency',
-  }).format(priceCents / 100);
+  }).format(price);
 };
 
 const fetchOffice = async () => {
@@ -403,11 +404,11 @@ const submitVisitForm = async () => {
       preferredDate: null,
     };
 
-    window.$message.success('Demande de visite envoyée avec succès !');
+    message.success('Demande de visite envoyée avec succès !');
   }
   catch (error) {
     console.error('Error submitting visit form:', error);
-    window.$message.error('Erreur lors de l\'envoi de la demande');
+    message.error('Erreur lors de l\'envoi de la demande');
   }
   finally {
     isSubmittingVisit.value = false;
