@@ -10,7 +10,7 @@
         <h1
           class="m-0 mb-4 flex w-[600px] items-center text-[75px] font-semibold"
         >
-          <span>Petit Bureaux</span>
+          <span>Petits Bureaux</span>
         </h1>
         <p class="text-[32px] leading-tight text-slate-500">
           {{ config.public.appUrl }}

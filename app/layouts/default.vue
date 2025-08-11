@@ -25,12 +25,8 @@
 
     <template #default>
       <slot />
-    </template>
 
-    <template #end>
-      <n-flex>
-        <NaiveColorModeSwitch />
-      </n-flex>
+      <FooterApp />
     </template>
   </NaiveLayoutNavbar>
 </template>

@@ -1,6 +1,6 @@
 <template>
   <div class="p-3 text-center">
-    <span>Petit Bureaux © {{ new Date().getFullYear() }}</span>
+    <span>Petits Bureaux © {{ new Date().getFullYear() }}</span>
   </div>
 </template>
 

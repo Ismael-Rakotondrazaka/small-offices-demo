@@ -29,7 +29,15 @@
 
     <template #end>
       <n-flex>
-        <NaiveColorModeSwitch />
+        <n-button
+          type="primary"
+          tertiary
+          @click="handleLogout"
+        >
+          <template #icon>
+            <Icon name="mdi:logout" />
+          </template>
+        </n-button>
       </n-flex>
     </template>
   </NaiveLayoutNavbar>
@@ -74,4 +82,28 @@ const drawerRoutes: MenuLinkRoute[] = [
 const routes = computed<MenuLinkRoute[]>(() =>
   drawerRoutes.map(route => omit(route, ['icon'])),
 );
+
+const supabase = useSupabaseClient();
+
+const localeRoute = useLocaleRoute();
+
+const message = useMessage();
+
+const handleLogout = async () => {
+  const { error } = await supabase.auth.signOut();
+
+  if (error) {
+    message.error('Une erreur est survenue lors de la déconnexion');
+
+    return;
+  }
+
+  message.success('Vous avez été déconnecté avec succès');
+
+  return navigateTo(
+    localeRoute({
+      name: 'admin-login',
+    }),
+  );
+};
 </script>
