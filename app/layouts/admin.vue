@@ -52,7 +52,7 @@ const drawerRoutes: MenuLinkRoute[] = [
     icon: 'mdi:office-building',
     label: 'Bureaux',
     to: {
-      name: 'admin-bureaux',
+      name: 'admin-offices',
     },
   },
   {

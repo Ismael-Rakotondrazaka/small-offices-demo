@@ -57,7 +57,7 @@
     <n-card title="Actions rapides">
       <NuxtLinkLocale
         :to="{
-          name: 'admin-bureaux-nouveau',
+          name: 'admin-offices-nouveau',
         }"
       >
         <n-button
