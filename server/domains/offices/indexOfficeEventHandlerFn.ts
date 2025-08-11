@@ -11,6 +11,8 @@ export const IndexOfficeEventHandlerFn: EventHandlerFn<IndexOfficeRequest> = asy
   const haveWhereQueries = RequestInputHelper.haveWhereQueries<IndexOfficeRequest>(query, [
     'arr[equals]',
     'arr[in]',
+    'posts[gte]',
+    'posts[lte]',
     'price[gte]',
     'price[lte]',
     'type[equals]',
@@ -20,6 +22,8 @@ export const IndexOfficeEventHandlerFn: EventHandlerFn<IndexOfficeRequest> = asy
       ? [
           query['arr[equals]'] ? { arr: query['arr[equals]'] } : {},
           query['arr[in]'] ? { arr: { in: query['arr[in]'] } } : {},
+          query['posts[gte]'] ? { posts: { gte: query['posts[gte]'] } } : {},
+          query['posts[lte]'] ? { posts: { lte: query['posts[lte]'] } } : {},
           query['price[gte]'] ? { price: { gte: query['price[gte]'] } } : {},
           query['price[lte]'] ? { price: { lte: query['price[lte]'] } } : {},
           query['type[equals]'] ? { type: query['type[equals]'] } : {},

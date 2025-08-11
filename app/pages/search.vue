@@ -9,6 +9,11 @@
           v-model:value="arr"
         />
 
+        <SearchOfficePostsRangeInput
+          v-model:max="postsLte"
+          v-model:min="postsGte"
+        />
+
         <SearchOfficeTypeInput
           v-model:value="type"
         />
@@ -127,6 +132,28 @@ const priceLte = useRouteQuery<null | string | string[] | undefined, number | un
     return num >= 100_000 ? undefined : num;
   },
 });
+const postsGte = useRouteQuery<null | string | string[] | undefined, number | undefined>('posts[gte]', undefined, {
+  transform: (value) => {
+    if (value === null || value === undefined) {
+      return undefined;
+    }
+
+    const num = Number(value);
+
+    return num === 0 ? undefined : num;
+  },
+});
+const postsLte = useRouteQuery<null | string | string[] | undefined, number | undefined>('posts[lte]', undefined, {
+  transform: (value) => {
+    if (value === null || value === undefined) {
+      return undefined;
+    }
+
+    const num = Number(value);
+
+    return num >= 500 ? undefined : num;
+  },
+});
 const page = useRouteQuery<number>('page', 1);
 const pageSize = useRouteQuery<number>('pageSize', officeConfig.PAGE_SIZE_DEFAULT_VALUE);
 const orderByPrice = useRouteQuery<null | string | string[] | undefined, 'asc' | 'desc' | undefined>('orderBy[price]', 'asc', {
@@ -145,6 +172,8 @@ const query = computed<IndexOfficeRequestQuery>(() => ({
   'orderBy[price]': orderByPrice.value,
   'page': page.value,
   'pageSize': pageSize.value,
+  'posts[gte]': postsGte.value,
+  'posts[lte]': postsLte.value,
   'price[gte]': priceGte.value,
   'price[lte]': priceLte.value,
   'type[equals]': type.value,
@@ -153,10 +182,9 @@ const queryDebounced = refDebounced(query, 500);
 
 const toggleSortByPrice = async () => {
   orderByPrice.value = orderByPrice.value === 'asc' ? 'desc' : 'asc';
-  await execute();
 };
 
-const { data, execute, status }: Awaited<RequestToAsyncData<IndexOfficeRequest>> = useFetch('/api/offices', {
+const { data, status }: Awaited<RequestToAsyncData<IndexOfficeRequest>> = useFetch('/api/offices', {
   query: queryDebounced,
 });
 
@@ -167,6 +195,8 @@ const resetSearch = async () => {
   type.value = undefined;
   priceGte.value = undefined;
   priceLte.value = undefined;
+  postsGte.value = undefined;
+  postsLte.value = undefined;
   orderByPrice.value = 'asc';
 };
 </script>

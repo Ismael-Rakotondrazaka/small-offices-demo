@@ -14,6 +14,8 @@ export const IndexOfficeRequestQuerySchema = z.object({
   'arr[equals]': z.coerce.number().min(1).max(20),
   'arr[in]': z.array(z.coerce.number().min(1).max(20)),
   'orderBy[price]': SortOrderSchema,
+  'posts[gte]': z.coerce.number(),
+  'posts[lte]': z.coerce.number(),
   'price[gte]': z.coerce.number(),
   'price[lte]': z.coerce.number(),
   'type[equals]': OfficeTypeSchema,
