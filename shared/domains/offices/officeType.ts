@@ -15,3 +15,5 @@ export const OfficeTypeLabel: Record<OfficeType, string> = {
   [OfficeType.OPEN_SPACE]: 'Open Space',
   [OfficeType.PRIVATE_OFFICE]: 'Bureau Privé',
 };
+
+export const OfficeTypes = Object.values(OfficeType);

@@ -1,5 +1,9 @@
 <template>
-  <naive-config :breakpoints="breakPoints">
+  <naive-config
+    :breakpoints="breakPoints"
+    :locale="frFR"
+    :date-locale="dateFrFR"
+  >
     <n-notification-provider>
       <n-message-provider
         placement="top"
@@ -17,6 +21,8 @@
 </template>
 
 <script lang="ts" setup>
+import { dateFrFR, frFR } from 'naive-ui';
+
 useHead({
   link: [
     {

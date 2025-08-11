@@ -39,7 +39,7 @@ const createPhotos = (
         alt: description,
         createdAt: arg.createdAt,
         id: createStringIdentifier(),
-        url: faker.image.urlLoremFlickr({ category: 'office', height: 667, width: 1000 }),
+        url: faker.image.urlPicsumPhotos({ height: 667, width: 1000 }),
       };
     }),
   };
