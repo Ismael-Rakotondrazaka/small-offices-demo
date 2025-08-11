@@ -137,7 +137,7 @@ export default defineNuxtConfig({
     description:
       'Accédez à tous les bureaux du marché. Votre conseiller vous accompagne en visite et vous aide à négocier. Le tout gratuitement.',
     indexable: true,
-    name: 'Petit Bureaux',
+    name: 'Petits Bureaux',
   },
 
   supabase: {

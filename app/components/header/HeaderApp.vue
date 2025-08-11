@@ -9,7 +9,7 @@
 
     <template #title>
       <span class="text-xl font-bold text-primary">
-        Petit Bureaux
+        Petits Bureaux
       </span>
     </template>
 
