@@ -45,7 +45,7 @@ const drawerRoutes: MenuLinkRoute[] = [
     icon: 'mdi:search',
     label: 'Rechercher',
     to: {
-      name: 'rechercher',
+      name: 'search',
     },
   },
 ];

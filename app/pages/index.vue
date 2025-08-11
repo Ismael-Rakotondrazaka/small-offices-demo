@@ -19,7 +19,7 @@
                 type="primary"
                 size="large"
                 class="text-lg px-8 py-4"
-                @click="navigateTo('/rechercher')"
+                @click="navigateTo('/search')"
               >
                 {{ $t('home.hero.searchButton') }}
               </n-button>
@@ -196,7 +196,7 @@
           type="primary"
           size="large"
           class="text-lg px-8 py-4 bg-white text-blue-600 hover:bg-gray-100"
-          @click="navigateTo('/rechercher')"
+          @click="navigateTo('/search')"
         >
           {{ $t('home.cta.button') }}
         </n-button>
@@ -287,7 +287,7 @@ const handleSearch = () => {
   };
 
   navigateTo({
-    path: '/rechercher',
+    path: '/search',
     query: Object.fromEntries(
       Object.entries(query).filter(([_, value]) => value && value !== ''),
     ),

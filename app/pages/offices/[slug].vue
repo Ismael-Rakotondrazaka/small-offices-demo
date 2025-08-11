@@ -20,7 +20,7 @@
           <n-breadcrumb-item @click="navigateTo('/')">
             {{ $t('office.breadcrumb.home') }}
           </n-breadcrumb-item>
-          <n-breadcrumb-item @click="navigateTo('/rechercher')">
+                     <n-breadcrumb-item @click="navigateTo('/search')">
             {{ $t('office.breadcrumb.search') }}
           </n-breadcrumb-item>
           <n-breadcrumb-item>
@@ -196,7 +196,7 @@
       </p>
       <n-button
         type="primary"
-        @click="navigateTo('/rechercher')"
+                 @click="navigateTo('/search')"
       >
         {{ $t('office.notFound.backToSearch') }}
       </n-button>
