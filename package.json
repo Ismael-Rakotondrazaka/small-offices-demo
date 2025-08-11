@@ -5,6 +5,9 @@
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
+    "dev:max": "node --max-old-space-size=12288 node_modules/nuxt/bin/nuxt.mjs dev",
+    "dev:host": "nuxt dev --host",
+    "dev:host:max": "node --max-old-space-size=12288 node_modules/nuxt/bin/nuxt.mjs dev --host",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
@@ -13,7 +16,7 @@
     "lint:fix": "eslint . --fix",
     "db:generate": "dotenv -- pnpm prisma generate",
     "db:push": "dotenv -- pnpm prisma db push",
-    "db:reset": "dotenv -- pnpm prisma db reset",
+    "db:reset": "dotenv -- pnpm prisma migrate reset",
     "db:seed": "dotenv -- pnpm tsx server/services/prisma/seeders/index.ts",
     "prepare": "nuxt prepare",
     "test": "vitest --run",
