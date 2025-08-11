@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { SignInWithCredentialsRequestBodySchema } from '#shared';
 
-const { defineField, handleSubmit, isSubmitting, resetForm, setErrors }
+const { defineField, handleSubmit, isSubmitting, resetForm }
   = useForm({
     validationSchema: toTypedSchema(SignInWithCredentialsRequestBodySchema),
   });
@@ -17,40 +17,33 @@ const [email, emailProps] = defineField(
 );
 
 const message = useMessage();
-const localeRoute = useLocaleRoute();
-const { t } = useI18n();
+
+const supabase = useSupabaseClient();
 
 const onSignInCredentialsClickHandler = handleSubmit(async (values) => {
-  try {
-    const supabaseAuth = useSupabaseAuth();
-    const { error } = await supabaseAuth.signIn({
-      email: values.email,
-      password: values.password,
-    });
+  const { error } = await supabase.auth.signInWithPassword({
+    email: values.email,
+    password: values.password,
+  });
 
-    if (error) {
-      throw new Error(error.message);
-    }
-
-    resetForm();
-
-    await navigateTo(
-      localeRoute({
-        name: 'dashboard',
-      }),
-      {
-        external: true,
-      },
+  if (error) {
+    message.error(
+      'La connexion a échoué. Vérifiez que les informations fournies sont correctes.',
     );
-  }
-  catch (error) {
-    handleFetchError<SignInWithCredentialsRequest>(
-      error,
-      t,
-      message,
-      setErrors,
-    );
-  }
+
+    return;
+  };
+
+  resetForm();
+
+  await navigateTo(
+    {
+      name: 'admin-dashboard',
+    },
+    {
+      external: true,
+    },
+  );
 });
 </script>
 
@@ -84,6 +77,7 @@ const onSignInCredentialsClickHandler = handleSubmit(async (values) => {
           v-model:value="password"
           type="password"
           :placeholder="$t('forms.fields.password.placeholder')"
+          show-password-on="click"
         />
       </n-form-item>
 

@@ -1,20 +1,13 @@
 <template>
   <n-page-header
     class="p-3"
-    @back="menuSiderStore.toggle"
   >
     <template #back>
       <HeaderMenuIcon />
     </template>
 
     <template #title>
-      {{ $t("app.name") }}
-    </template>
-
-    <template #subtitle>
-      <p class="!hidden lg:!inline-block">
-        {{ $t("app.description") }}
-      </p>
+      Petits Bureaux
     </template>
 
     <template #extra>
@@ -30,5 +23,4 @@
 </template>
 
 <script setup lang="ts">
-const menuSiderStore = useMenuSiderStore();
 </script>

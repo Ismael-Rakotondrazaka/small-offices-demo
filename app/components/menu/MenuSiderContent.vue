@@ -138,10 +138,10 @@ const registerMenu: ComputedRef<MenuOption> = computed(() => ({
   ),
 }));
 
-const { loggedIn } = useUserSession();
+const session = useSupabaseSession();
 
 const menuOptions: ComputedRef<MenuOption[]> = computed(() =>
-  loggedIn.value
+  session.value
     ? [
         homeMenu.value,
         dashboardMenu.value,
