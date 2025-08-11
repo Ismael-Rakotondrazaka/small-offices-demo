@@ -128,7 +128,7 @@ const createUpdateRequest = async (
     declarationKind: VariableDeclarationKind.Const,
     declarations: [
       {
-        initializer: `z.object({ id: IdentifierSchema });`,
+        initializer: `z.object({ id: StringIdentifierSchema });`,
         name: `Update${pascalCaseModelName}RequestParamsSchema`,
       },
     ],
@@ -211,7 +211,7 @@ const createShowRequest = async (
 
   sourceFile.addImportDeclaration({
     moduleSpecifier: '~~/shared/schemas/identifierSchema',
-    namedImports: ['IdentifierSchema'],
+    namedImports: ['StringIdentifierSchema'],
   });
 
   // Add Params
@@ -219,7 +219,7 @@ const createShowRequest = async (
     declarationKind: VariableDeclarationKind.Const,
     declarations: [
       {
-        initializer: `z.object({ id: IdentifierSchema });`,
+        initializer: `z.object({ id: StringIdentifierSchema });`,
         name: `Show${pascalCaseModelName}RequestParamsSchema`,
       },
     ],
@@ -291,7 +291,7 @@ const createDestroyRequest = async (
 
   sourceFile.addImportDeclaration({
     moduleSpecifier: '~~/shared/schemas/identifierSchema',
-    namedImports: ['IdentifierSchema'],
+    namedImports: ['StringIdentifierSchema'],
   });
 
   // Add Params
@@ -299,7 +299,7 @@ const createDestroyRequest = async (
     declarationKind: VariableDeclarationKind.Const,
     declarations: [
       {
-        initializer: `z.object({ id: IdentifierSchema });`,
+        initializer: `z.object({ id: StringIdentifierSchema });`,
         name: `Destroy${pascalCaseModelName}RequestParamsSchema`,
       },
     ],
