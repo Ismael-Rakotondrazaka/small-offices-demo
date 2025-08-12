@@ -29,7 +29,7 @@ const handleGoHome = () => {
 
 const handleGoDashboard = () => {
   clearError({
-    redirect: localeRoute('dashboard')?.href,
+    redirect: localeRoute('admin-dashboard')?.href,
   });
 };
 </script>

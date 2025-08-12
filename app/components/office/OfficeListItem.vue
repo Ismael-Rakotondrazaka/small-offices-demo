@@ -21,11 +21,13 @@
               },
             }"
           >
-            <img
+            <NuxtImg
               :src="photo.url"
               :alt="office.title"
               class="w-full h-full object-cover"
-            >
+              :placeholder="430"
+              loading="lazy"
+            />
           </NuxtLinkLocale>
         </n-carousel-item>
       </n-carousel>

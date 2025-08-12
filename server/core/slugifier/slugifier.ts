@@ -3,6 +3,7 @@ import _slugify from 'slugify';
 export abstract class Slugifier {
   static async generateUniqueSlug(
     baseSlug: string,
+    // eslint-disable-next-line no-unused-vars
     checkExists: (slug: string) => Promise<boolean>,
   ): Promise<string> {
     let slug = baseSlug;

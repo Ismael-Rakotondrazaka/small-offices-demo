@@ -1,9 +1,11 @@
 <template>
   <NaiveLayoutNavbar
+    id="layout-default"
     :routes="routes"
     :drawer-routes="drawerRoutes"
     drawer-width="90%"
     toggle-icon="mdi:menu"
+    class="bg-white"
   >
     <template #start>
       <NuxtLinkLocale

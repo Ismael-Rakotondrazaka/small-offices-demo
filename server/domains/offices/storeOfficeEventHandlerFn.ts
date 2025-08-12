@@ -1,16 +1,16 @@
 import type { StoreOfficeRequest } from '~~/shared';
 
-import { RepositoryProvider } from '~~/server/services';
 import { Slugifier } from '~~/server/core/slugifier';
+import { RepositoryProvider } from '~~/server/services';
 
 import { OfficeDTOMapper } from './officeDTOMapper';
 
 export const StoreOfficeEventHandlerFn: EventHandlerFn<StoreOfficeRequest> = async ({ body }) => {
   const baseSlug = body.slug || Slugifier.slugify(body.title);
-  
+
   const uniqueSlug = await Slugifier.generateUniqueSlug(
     baseSlug,
-    (slug) => RepositoryProvider.officeRepository.slugExists(slug)
+    slug => RepositoryProvider.officeRepository.slugExists(slug),
   );
 
   const office = await RepositoryProvider.officeRepository.addOne({
