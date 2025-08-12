@@ -50,12 +50,6 @@ const createStoreEventHandler = async (
   });
 
   sourceFile.addImportDeclaration({
-    isTypeOnly: true,
-    moduleSpecifier: '~~/shared',
-    namedImports: [{ name: `Store${pascalCaseModelName}Request` }],
-  });
-
-  sourceFile.addImportDeclaration({
     moduleSpecifier: `./${camelCaseModelName}DTOMapper`,
     namedImports: [`${pascalCaseModelName}DTOMapper`],
   });
@@ -141,13 +135,6 @@ const createUpdateEventHandler = async (
   sourceFile.addImportDeclaration({
     moduleSpecifier: '~~/server/services',
     namedImports: ['RepositoryProvider'],
-  });
-
-  sourceFile.addImportDeclaration({
-    moduleSpecifier: '~~/shared',
-    namedImports: [
-      { isTypeOnly: true, name: `Update${pascalCaseModelName}Request` },
-    ],
   });
 
   sourceFile.addImportDeclaration({
@@ -252,13 +239,6 @@ const createShowEventHandler = async (
   });
 
   sourceFile.addImportDeclaration({
-    moduleSpecifier: '~~/shared',
-    namedImports: [
-      { isTypeOnly: true, name: `Show${pascalCaseModelName}Request` },
-    ],
-  });
-
-  sourceFile.addImportDeclaration({
     moduleSpecifier: `./${camelCaseModelName}DTOMapper`,
     namedImports: [`${pascalCaseModelName}DTOMapper`],
   });
@@ -345,13 +325,6 @@ const createIndexEventHandler = async (
   });
 
   sourceFile.addImportDeclaration({
-    moduleSpecifier: '~~/shared',
-    namedImports: [
-      { isTypeOnly: true, name: `Index${pascalCaseModelName}Request` },
-    ],
-  });
-
-  sourceFile.addImportDeclaration({
     moduleSpecifier: `./${camelCaseModelName}DTOMapper`,
     namedImports: [`${pascalCaseModelName}DTOMapper`],
   });
@@ -419,13 +392,6 @@ const createDestroyEventHandler = async (
   sourceFile.addImportDeclaration({
     moduleSpecifier: '~~/server/services',
     namedImports: ['RepositoryProvider'],
-  });
-
-  sourceFile.addImportDeclaration({
-    moduleSpecifier: '~~/shared',
-    namedImports: [
-      { isTypeOnly: true, name: `Destroy${pascalCaseModelName}Request` },
-    ],
   });
 
   sourceFile.addImportDeclaration({

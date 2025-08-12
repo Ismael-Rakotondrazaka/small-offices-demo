@@ -1,6 +1,4 @@
-import type { StoreServiceRequest } from '~~/shared';
-
-import { RepositoryProvider } from '~~/server/services';
+import { RepositoryProvider } from '~~/server/services/repositories/repositoryProvider';
 
 import { ServiceDTOMapper } from './serviceDTOMapper';
 

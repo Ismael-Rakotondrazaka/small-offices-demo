@@ -1,5 +1,3 @@
-import type { LeadDTO } from '~~/shared';
-
 import type { LeadModel } from './leadModel';
 
 export abstract class LeadDTOMapper {
@@ -11,6 +9,7 @@ export abstract class LeadDTOMapper {
       name: model.name,
       officeId: model.officeId,
       phone: model.phone,
+      status: model.status,
       updatedAt: model.updatedAt,
     };
   }

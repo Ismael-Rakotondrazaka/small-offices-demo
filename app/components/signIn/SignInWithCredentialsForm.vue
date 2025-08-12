@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { SignInWithCredentialsRequestBodySchema } from '#shared';
-
 const { defineField, handleSubmit, isSubmitting, resetForm }
   = useForm({
     validationSchema: toTypedSchema(SignInWithCredentialsRequestBodySchema),

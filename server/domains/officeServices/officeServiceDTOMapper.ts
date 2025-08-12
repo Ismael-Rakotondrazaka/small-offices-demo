@@ -1,5 +1,3 @@
-import type { OfficeServiceDTO } from '~~/shared';
-
 import type { OfficeServiceModel } from './officeServiceModel';
 
 export abstract class OfficeServiceDTOMapper {

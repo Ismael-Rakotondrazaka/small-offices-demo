@@ -1,5 +1,3 @@
-import type { ServiceDTO } from '~~/shared';
-
 import type { ServiceModel } from './serviceModel';
 
 export abstract class ServiceDTOMapper {

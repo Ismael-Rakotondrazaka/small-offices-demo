@@ -84,7 +84,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { OfficeType } from '~~/shared/domains';
+import type { OfficeType } from '#imports';
 
 import { useRouteQuery } from '@vueuse/router';
 

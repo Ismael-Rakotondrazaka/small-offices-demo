@@ -1,6 +1,5 @@
 import type { File as GCSFile, Storage } from '@google-cloud/storage';
 import type { FileMetaData } from '~~/server/core/files/fileMetaData';
-import type { FileLike } from '~~/shared';
 
 import { FileUtility } from '~~/server/core/files/fileUtility';
 
