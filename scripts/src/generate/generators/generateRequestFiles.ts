@@ -44,7 +44,7 @@ const createStoreRequest = async (
 
   sourceFile.addImportDeclaration({
     isTypeOnly: true,
-    moduleSpecifier: '~~/shared/requests/request',
+    moduleSpecifier: '#shared/requests/request',
     namedImports: ['Request'],
   });
 
@@ -114,12 +114,12 @@ const createUpdateRequest = async (
 
   sourceFile.addImportDeclaration({
     isTypeOnly: true,
-    moduleSpecifier: '~~/shared/requests/request',
+    moduleSpecifier: '#shared/requests/request',
     namedImports: ['Request'],
   });
 
   sourceFile.addImportDeclaration({
-    moduleSpecifier: '~~/shared/schemas/identifierSchema',
+    moduleSpecifier: '#shared/schemas/identifierSchema',
     namedImports: ['StringIdentifierSchema'],
   });
 
@@ -128,7 +128,7 @@ const createUpdateRequest = async (
     declarationKind: VariableDeclarationKind.Const,
     declarations: [
       {
-        initializer: `z.object({ id: IdentifierSchema });`,
+        initializer: `z.object({ id: StringIdentifierSchema });`,
         name: `Update${pascalCaseModelName}RequestParamsSchema`,
       },
     ],
@@ -205,13 +205,13 @@ const createShowRequest = async (
 
   sourceFile.addImportDeclaration({
     isTypeOnly: true,
-    moduleSpecifier: '~~/shared/requests/request',
+    moduleSpecifier: '#shared/requests/request',
     namedImports: ['Request'],
   });
 
   sourceFile.addImportDeclaration({
-    moduleSpecifier: '~~/shared/schemas/identifierSchema',
-    namedImports: ['IdentifierSchema'],
+    moduleSpecifier: '#shared/schemas/identifierSchema',
+    namedImports: ['StringIdentifierSchema'],
   });
 
   // Add Params
@@ -219,7 +219,7 @@ const createShowRequest = async (
     declarationKind: VariableDeclarationKind.Const,
     declarations: [
       {
-        initializer: `z.object({ id: IdentifierSchema });`,
+        initializer: `z.object({ id: StringIdentifierSchema });`,
         name: `Show${pascalCaseModelName}RequestParamsSchema`,
       },
     ],
@@ -285,13 +285,13 @@ const createDestroyRequest = async (
 
   sourceFile.addImportDeclaration({
     isTypeOnly: true,
-    moduleSpecifier: '~~/shared/requests/request',
+    moduleSpecifier: '#shared/requests/request',
     namedImports: ['Request'],
   });
 
   sourceFile.addImportDeclaration({
-    moduleSpecifier: '~~/shared/schemas/identifierSchema',
-    namedImports: ['IdentifierSchema'],
+    moduleSpecifier: '#shared/schemas/identifierSchema',
+    namedImports: ['StringIdentifierSchema'],
   });
 
   // Add Params
@@ -299,7 +299,7 @@ const createDestroyRequest = async (
     declarationKind: VariableDeclarationKind.Const,
     declarations: [
       {
-        initializer: `z.object({ id: IdentifierSchema });`,
+        initializer: `z.object({ id: StringIdentifierSchema });`,
         name: `Destroy${pascalCaseModelName}RequestParamsSchema`,
       },
     ],
@@ -366,23 +366,23 @@ const createIndexRequest = async (
   });
 
   sourceFile.addImportDeclaration({
-    moduleSpecifier: `~~/shared/domains/${folderName}/${camelCaseModelName}Config`,
+    moduleSpecifier: `#shared/domains/${folderName}/${camelCaseModelName}Config`,
     namedImports: [`${camelCaseModelName}Config`],
   });
 
   sourceFile.addImportDeclaration({
     isTypeOnly: true,
-    moduleSpecifier: '~~/shared/requests/request',
+    moduleSpecifier: '#shared/requests/request',
     namedImports: ['Request'],
   });
 
   sourceFile.addImportDeclaration({
-    moduleSpecifier: '~~/shared/schemas/paginationSchema',
+    moduleSpecifier: '#shared/schemas/paginationSchema',
     namedImports: ['makePaginatedSchema'],
   });
 
   sourceFile.addImportDeclaration({
-    moduleSpecifier: '~~/shared/schemas/sortOrderSchema',
+    moduleSpecifier: '#shared/schemas/sortOrderSchema',
     namedImports: ['SortOrderSchema'],
   });
 

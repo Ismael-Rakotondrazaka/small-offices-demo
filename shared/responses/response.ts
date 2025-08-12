@@ -1,5 +1,5 @@
-import type { Request } from '~~/shared/requests/request';
-import type { FlattenedPath } from '~~/shared/types/flatten';
+import type { Request } from '#shared/requests/request';
+import type { FlattenedPath } from '#shared/types/flatten';
 import type { ReasonPhrases, StatusCodes } from 'http-status-codes';
 import type { Simplify } from 'type-fest';
 

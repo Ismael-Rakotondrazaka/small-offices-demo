@@ -1,1 +1,18 @@
 @import "tailwindcss";
+
+@font-face {
+    font-family: 'Roslindale';
+    src: url('~/assets/fonts/Roslindale.woff2') format('woff2'),
+        url('~/assets/fonts/Roslindale.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Roslindale-Bold';
+    src: url('~/assets/fonts/Roslindale-Bold.woff2') format('woff2'),
+        url('~/assets/fonts/Roslindale-Bold.woff') format('woff');
+}
+
+@theme {
+    --font-roslindale: "Roslindale", sans-serif;
+    --font-roslindale-bold: "Roslindale-Bold", sans-serif;
+}

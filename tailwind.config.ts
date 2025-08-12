@@ -15,7 +15,10 @@ export default <Partial<Config>>{
   theme: {
     extend: {
       colors: {
-        primary: '#4169E1',
+        primary: '#302aa7',
+      },
+      fontFamily: {
+        roslindale: ['Roslindale', 'sans-serif'],
       },
     },
   },

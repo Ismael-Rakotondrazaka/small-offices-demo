@@ -1,42 +1,54 @@
 <template>
-  <n-layout
-    :has-sider="true"
-    position="absolute"
-    class=""
+  <NaiveLayoutNavbar
+    id="layout-default"
+    :routes="routes"
+    :drawer-routes="drawerRoutes"
+    drawer-width="90%"
+    toggle-icon="mdi:menu"
+    class="bg-white"
   >
-    <MenuSider v-model:show-menu="menuSiderStore.isShown" />
-
-    <n-layout>
-      <n-layout-header
-        position="absolute"
-        class="z-[1]"
-        bordered
+    <template #start>
+      <NuxtLinkLocale
+        :to="{
+          name: 'index',
+        }"
       >
-        <AuthHeader v-if="loggedIn" />
-        <AppHeader v-else />
-      </n-layout-header>
+        <NuxtImg
+          src="/images/logos/logo-petits-bureaux.svg"
+          width="32"
+          height="32"
+        />
+      </NuxtLinkLocale>
+    </template>
 
-      <n-layout-content
-        content-style=""
-        class="my-20 lg:my-16"
-        :native-scrollbar="true"
-      >
-        <slot />
-      </n-layout-content>
+    <template #drawer-header>
+      Petits Bureaux
+    </template>
 
-      <n-layout-footer
-        bordered
-        position="absolute"
-        class="z-[1]"
-      >
-        <AppFooter />
-      </n-layout-footer>
-    </n-layout>
-  </n-layout>
+    <template #default>
+      <slot />
+
+      <FooterApp />
+    </template>
+  </NaiveLayoutNavbar>
 </template>
 
 <script setup lang="ts">
-const menuSiderStore = useMenuSiderStore();
+import type { MenuLinkRoute } from '#build/types/naiveui';
 
-const { loggedIn } = useUserSession();
+import { omit } from 'es-toolkit';
+
+const drawerRoutes: MenuLinkRoute[] = [
+  {
+    icon: 'mdi:search',
+    label: 'Rechercher',
+    to: {
+      name: 'search',
+    },
+  },
+];
+
+const routes = computed<MenuLinkRoute[]>(() =>
+  drawerRoutes.map(route => omit(route, ['icon'])),
+);
 </script>

@@ -36,11 +36,11 @@ export abstract class MailSender {
   static #getTransporter(): Transporter<SentMessageInfo> {
     if (!this.#transporter) {
       this.#transporter = createTransport({
+        // @ts-expect-error @types/nodemailer package is not in sync with nodemailer package
         auth: {
           pass: MailConfig.SMTP_PASSWORD,
           user: MailConfig.SMTP_USER,
         },
-        // @ts-expect-error @types/nodemailer package is not in sync with nodemailer package
         host: MailConfig.SMTP_HOST,
         port: MailConfig.SMTP_PORT,
         secure: true,

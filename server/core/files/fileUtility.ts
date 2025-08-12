@@ -1,5 +1,3 @@
-import type { FileLike } from '~~/shared/schemas/fileLikeSchema';
-
 import { IdentifierGenerator } from '~~/server/core/identifiers/identifierGenerator';
 import { Sanitizer } from '~~/server/core/sanitizer/sanitizer';
 import { Slugifier } from '~~/server/core/slugifier/slugifier';

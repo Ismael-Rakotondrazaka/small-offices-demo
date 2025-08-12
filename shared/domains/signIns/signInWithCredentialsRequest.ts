@@ -1,5 +1,4 @@
-import type { UserDTO } from '~~/shared/domains/users/userDTO';
-import type { Request } from '~~/shared/requests/request';
+import type { Request } from '#shared/requests/request';
 
 import { z } from 'zod';
 
@@ -17,6 +16,4 @@ export type SignInWithCredentialsRequestBody = z.infer<
   typeof SignInWithCredentialsRequestBodySchema
 >;
 
-export type SignInWithCredentialsRequestData = {
-  data: UserDTO;
-};
+export type SignInWithCredentialsRequestData = Record<string, never>;

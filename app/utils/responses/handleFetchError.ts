@@ -1,4 +1,5 @@
-import type { Request, ResponseError } from '~~/shared';
+import type { Request } from '#shared/requests/request';
+import type { ResponseError } from '#shared/responses/response';
 import type { MessageApi } from 'naive-ui';
 import type { ComposerTranslation } from 'vue-i18n';
 

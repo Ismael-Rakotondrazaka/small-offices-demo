@@ -1,0 +1,156 @@
+You are an expert in TypeScript, Node.js, NuxtJS, Vue 3, Naive UI, VueUse, and Tailwind.
+
+# Project Overview – Petits Bureaux
+tagline: "Accédez à tous les bureaux du marché. Votre conseiller vous accompagne en visite et vous aide à négocier. Le tout gratuitement."
+
+Main user journeys:
+- Search with map (MapBox)
+- Office detail page
+- "Schedule a visit" form
+
+## Functional Modules
+
+### MOD-01 – Public Web Frontend
+description: Create a public-facing website with landing page, office listing, map view, and office detail pages.
+routes:
+  - / → index.vue
+  - /offices/:slug → detail.vue
+
+### MOD-02 – Search Engine
+description: Implement search with filters and map integration using MapBox.
+routes:
+  - /search → search.vue
+
+### MOD-03 – CMS SEO Pages
+description: Generate static SEO-friendly pages using SSG for specific locations and office types.
+build: SSG
+
+### MOD-04 – Lead Capture
+description: Implement a visit scheduling form and send data to the CRM.
+endpoints:
+  - POST /leads → LeadController.store
+
+### MOD-05 – Back-Office Authentication
+description: Implement staff authentication and RBAC.
+routes:
+  - /admin/login
+
+### MOD-06 – CRUD Offices (Back-Office)
+description: Admin interface for managing offices (real/fake).
+routes:
+  - /admin/offices
+
+### MOD-07 – Lead Tracking (Back-Office)
+description: Admin interface for viewing and updating lead status.
+routes:
+  - /admin/leads
+
+### MOD-08 – Media Storage
+description: Implement media uploads to S3 with thumbnail generation.
+endpoints:
+  - POST /upload → UploadController.store
+
+### MOD-09 – Analytics & AB Testing
+description: Integrate GA4, conversion tracking, and AB testing with fake office flag.
+
+## Technical Architecture
+database:
+  type: PostgreSQL
+  tables:
+    - users: email, password_hash, role
+    - offices: description, slug, price_cents, arr, posts, services JSONB, is_fake, lat/lng
+    - photos: office_id, url, alt
+    - leads: office_id, name, email, phone, status
+    - services: name, icon
+    - office_services: office_id, service_id
+    - audit_log: actor_id, action, target_table, target_id, meta
+indexes:
+  - GIN on offices.services
+
+## Security & GDPR
+encryption: HTTPS, AES-256 at rest
+rls: true
+ttl:
+  leads: Auto delete after 24 months of inactivity
+backups: Weekly
+legal_basis:
+  leads: Contract
+  cookies: Consent
+
+## SEO & Content Generation
+ssg_pages: offices, arrondissement pages
+clean_urls: /bureaux-paris-3, /offices/:slug
+schema: Office, Place
+og_tags: Dynamic via OG Image Service
+sitemap: Daily update
+exclude_fake_from_sitemap: true
+
+## KPIs & Monitoring
+min_conversion_rate: 2% leads
+tracking: sessions, CTR listing, lead conversion rate
+
+## Annex
+ab_test:
+  fake_flag_percent: 20
+  endpoint: POST /leads → audit log + SES email
+
+---
+
+# Coding Guidelines
+
+## Code Style and Structure
+- Write concise, technical TypeScript code with accurate examples.
+- Use composition API and declarative programming patterns; avoid options API.
+- Prefer iteration and modularization over code duplication.
+- Use descriptive variable names with auxiliary verbs (e.g., isLoading, hasError).
+- Structure files: exported component, composables, helpers, static content, types.
+
+## Naming Conventions
+- Directories: lowercase-with-dashes (e.g., components/auth-wizard)
+- Components: PascalCase (e.g., AuthWizard.vue)
+- Composables: camelCase (e.g., useAuthState.ts)
+
+## TypeScript Usage
+- Use TypeScript for all code; prefer types over interfaces.
+- Avoid enums; use const objects instead.
+- Use Vue 3 with TypeScript, leveraging defineComponent and PropType.
+
+## Syntax and Formatting
+- Use arrow functions for methods and computed properties.
+- Avoid unnecessary curly braces in conditionals; use concise syntax.
+- Use template syntax for declarative rendering.
+
+## UI and Styling
+- Use Naive UI and Tailwind for components and styling.
+- Utilize Naive UI's themes, dynamic rendering, and customization capabilities.
+- Implement responsive design with Tailwind CSS; mobile-first approach.
+
+## Performance Optimization
+- Leverage Nuxt's built-in optimizations.
+- Use Suspense for async components.
+- Implement lazy loading for routes and components.
+- Optimize images with WebP format, size data, lazy loading.
+
+## Key Conventions
+- Use VueUse for composables/utilities.
+- Use Pinia for state management.
+- Optimize Web Vitals (LCP, CLS, FID).
+- Use Nuxt's auto-imports for components/composables.
+
+## Nuxt-specific Guidelines
+- Follow Nuxt 3 directory structure (pages/, components/, composables/).
+- Use:
+  - Auto-imports for components/composables
+  - File-based routing in pages/
+  - Server routes in server/
+  - Nuxt plugins for global functionality (e.g., Naive UI config)
+- Use useFetch and useAsyncData for data fetching.
+- Implement SEO best practices with useHead and useSeoMeta.
+
+## Vue 3 and Composition API Best Practices
+- Use <script setup> syntax for concise definitions.
+- Leverage ref, reactive, computed for state.
+- Use provide/inject when appropriate.
+- Implement custom composables for reusable logic.
+
+Follow Nuxt.js, Vue.js, and Naive UI documentation for up-to-date best practices.

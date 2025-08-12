@@ -24,17 +24,6 @@ const createStoreApi = async (
 
   const sourceFile: SourceFile = project.createSourceFile(apiPath);
 
-  sourceFile.addImportDeclaration({
-    isTypeOnly: true,
-    moduleSpecifier: '~~/server/utils',
-    namedImports: [`Store${pascalCaseModelName}Request`],
-  });
-
-  sourceFile.addImportDeclaration({
-    moduleSpecifier: '~~/server/utils',
-    namedImports: [`Store${pascalCaseModelName}RequestBodySchema`],
-  });
-
   sourceFile.addExportAssignment({
     expression: `defineEventHandler(new EventHandlerBuilder<Store${pascalCaseModelName}Request>().body(Store${pascalCaseModelName}RequestBodySchema).handle(Store${pascalCaseModelName}EventHandlerFn))`,
     isExportEquals: false,
@@ -59,20 +48,6 @@ const createUpdateApi = async (
   }
 
   const sourceFile: SourceFile = project.createSourceFile(apiPath);
-
-  sourceFile.addImportDeclaration({
-    isTypeOnly: true,
-    moduleSpecifier: '~~/server/utils',
-    namedImports: [`Update${pascalCaseModelName}Request`],
-  });
-
-  sourceFile.addImportDeclaration({
-    moduleSpecifier: '~~/server/utils',
-    namedImports: [
-      `Update${pascalCaseModelName}RequestBodySchema`,
-      `Update${pascalCaseModelName}RequestParamsSchema`,
-    ],
-  });
 
   sourceFile.addExportAssignment({
     expression: `defineEventHandler(new EventHandlerBuilder<Update${pascalCaseModelName}Request>().body(Update${pascalCaseModelName}RequestBodySchema).params(Update${pascalCaseModelName}RequestParamsSchema).handle(Update${pascalCaseModelName}EventHandlerFn))`,
@@ -99,17 +74,6 @@ const createIndexApi = async (
 
   const sourceFile: SourceFile = project.createSourceFile(apiPath);
 
-  sourceFile.addImportDeclaration({
-    isTypeOnly: true,
-    moduleSpecifier: '~~/server/utils',
-    namedImports: [`Index${pascalCaseModelName}Request`],
-  });
-
-  sourceFile.addImportDeclaration({
-    moduleSpecifier: '~~/server/utils',
-    namedImports: [`Index${pascalCaseModelName}RequestQuerySchema`],
-  });
-
   sourceFile.addExportAssignment({
     expression: `defineEventHandler(new EventHandlerBuilder<Index${pascalCaseModelName}Request>().query(Index${pascalCaseModelName}RequestQuerySchema).handle(Index${pascalCaseModelName}EventHandlerFn))`,
     isExportEquals: false,
@@ -134,17 +98,6 @@ const createShowApi = async (
   }
 
   const sourceFile: SourceFile = project.createSourceFile(apiPath);
-
-  sourceFile.addImportDeclaration({
-    isTypeOnly: true,
-    moduleSpecifier: '~~/server/utils',
-    namedImports: [`Show${pascalCaseModelName}Request`],
-  });
-
-  sourceFile.addImportDeclaration({
-    moduleSpecifier: '~~/server/utils',
-    namedImports: [`Show${pascalCaseModelName}RequestParamsSchema`],
-  });
 
   sourceFile.addExportAssignment({
     expression: `defineEventHandler(new EventHandlerBuilder<Show${pascalCaseModelName}Request>().params(Show${pascalCaseModelName}RequestParamsSchema).handle(Show${pascalCaseModelName}EventHandlerFn))`,
@@ -171,17 +124,6 @@ const createDestroyApi = async (
   }
 
   const sourceFile: SourceFile = project.createSourceFile(apiPath);
-
-  sourceFile.addImportDeclaration({
-    isTypeOnly: true,
-    moduleSpecifier: '~~/server/utils',
-    namedImports: [`Destroy${pascalCaseModelName}Request`],
-  });
-
-  sourceFile.addImportDeclaration({
-    moduleSpecifier: '~~/server/utils',
-    namedImports: [`Destroy${pascalCaseModelName}RequestParamsSchema`],
-  });
 
   sourceFile.addExportAssignment({
     expression: `defineEventHandler(new EventHandlerBuilder<Destroy${pascalCaseModelName}Request>().params(Destroy${pascalCaseModelName}RequestParamsSchema).handle(Destroy${pascalCaseModelName}EventHandlerFn))`,

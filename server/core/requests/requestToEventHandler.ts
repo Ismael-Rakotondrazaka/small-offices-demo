@@ -1,9 +1,8 @@
-import type { UserSession, UserSessionRequired } from '#auth-utils';
+import type { Request, RequestToWSMessage } from '#shared/requests/request';
 import type {
   BouncerAbility,
   BouncerArgs,
 } from '~~/node_modules/nuxt-authorization/dist/utils/index.mjs';
-import type { Request, RequestToWSMessage } from '~~/shared/requests/request';
 import type { Peer } from 'crossws';
 import type { EventHandler } from 'h3';
 
@@ -22,7 +21,7 @@ export type EventHandlerFn<R extends Request<any, any, any, any>> = (inputs: {
     authorizeAndReturnUserSession: <Ability extends BouncerAbility<any>>(
       ability: Ability,
       ...args: BouncerArgs<Ability>
-    ) => Promise<UserSession>;
+    ) => Promise<null | UserSession>;
     denies: <Ability extends BouncerAbility<any>>(
       ability: Ability,
       ...args: BouncerArgs<Ability>
@@ -33,9 +32,8 @@ export type EventHandlerFn<R extends Request<any, any, any, any>> = (inputs: {
   path: string;
   query: R['input']['query'];
   userSession: {
-    get: () => Promise<UserSession>;
-    replace: (data: Omit<UserSession, 'id'>) => Promise<UserSession>;
-    require: () => Promise<UserSessionRequired>;
+    get: () => Promise<null | UserSession>;
+    require: () => Promise<UserSession>;
   };
 }) => R['output'];
 

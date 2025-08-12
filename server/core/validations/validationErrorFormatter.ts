@@ -1,4 +1,3 @@
-import type { ResponseErrorIssue } from '~~/shared';
 import type { ZodIssueOptionalMessage } from 'zod';
 
 import { z } from 'zod';
@@ -21,7 +20,7 @@ export abstract class ValidationErrorFormatter {
     const d = (
       dateInput: Date | number | string,
       format: Intl.DateTimeFormatOptions,
-      locale: string = 'en-US',
+      locale: string = 'fr-FR',
     ): string => {
       const fallbackValue = 'Invalid Date';
 
