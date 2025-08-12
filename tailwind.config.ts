@@ -17,6 +17,9 @@ export default <Partial<Config>>{
       colors: {
         primary: '#302aa7',
       },
+      fontFamily: {
+        roslindale: ['Roslindale', 'sans-serif'],
+      },
     },
   },
 };

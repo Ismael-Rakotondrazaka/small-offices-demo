@@ -75,6 +75,9 @@ export default defineNuxtConfig({
 
   image: {
     format: ['webp', 'svg', 'png'],
+    image: {
+      domains: ['localhost', 'picsum.photos'],
+    },
   },
 
   modules: [
@@ -95,6 +98,7 @@ export default defineNuxtConfig({
     'nuxt-gtag',
     '@nuxt/test-utils/module',
     '@nuxtjs/supabase',
+    '@nuxt/scripts',
   ],
 
   naiveui: {

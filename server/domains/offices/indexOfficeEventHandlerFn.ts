@@ -32,7 +32,7 @@ export const IndexOfficeEventHandlerFn: EventHandlerFn<IndexOfficeRequest> = asy
   };
   const totalCount = await RepositoryProvider.officeRepository.count({ where });
   const pagination = new Pagination({ page: query.page, pageSize: query.pageSize, path, totalCount });
-  const offices = await RepositoryProvider.officeRepository.findMany({ orderBy: [{ price: query['orderBy[price]'] }], skip: pagination.offset, take: pagination.pageSize, where });
+  const offices = await RepositoryProvider.officeRepository.findMany({ orderBy: [{ price: query['orderBy[price]'] }, { createdAt: query['orderBy[createdAt]'] }], skip: pagination.offset, take: pagination.pageSize, where });
 
   return {
     data: OfficeDTOMapper.toDTOs(offices),

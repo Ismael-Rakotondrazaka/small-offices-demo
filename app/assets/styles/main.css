@@ -2,3 +2,7 @@ html,
 body {
     font-family: Roboto, Lato, sans-serif;
 }
+
+#layout-default>.n-layout-scroll-container>.n-layout>.n-scrollbar>.n-scrollbar-container>.n-scrollbar-content .n-layout>.n-scrollbar>.n-scrollbar-container>.n-scrollbar-content {
+    padding: 0 !important;
+}

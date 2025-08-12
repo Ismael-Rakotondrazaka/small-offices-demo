@@ -1,5 +1,5 @@
-import { describe, expect, it } from 'vitest';
 import { Slugifier } from '~~/server/core/slugifier';
+import { describe, expect, it } from 'vitest';
 
 describe('Office Slug Generation', () => {
   it('should generate slug from title', () => {
@@ -23,9 +23,9 @@ describe('Office Slug Generation', () => {
   it('should generate unique slug when base slug exists', async () => {
     const baseSlug = 'test-office';
     const existingSlugs = ['test-office', 'test-office-1'];
-    
+
     const checkExists = async (slug: string) => existingSlugs.includes(slug);
-    
+
     const uniqueSlug = await Slugifier.generateUniqueSlug(baseSlug, checkExists);
     expect(uniqueSlug).toBe('test-office-2');
   });
@@ -33,10 +33,10 @@ describe('Office Slug Generation', () => {
   it('should return base slug when no conflict exists', async () => {
     const baseSlug = 'unique-office';
     const existingSlugs = ['other-office'];
-    
+
     const checkExists = async (slug: string) => existingSlugs.includes(slug);
-    
+
     const uniqueSlug = await Slugifier.generateUniqueSlug(baseSlug, checkExists);
     expect(uniqueSlug).toBe('unique-office');
   });
-}); 
+});

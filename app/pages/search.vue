@@ -178,7 +178,7 @@ const query = computed<IndexOfficeRequestQuery>(() => ({
   'price[lte]': priceLte.value,
   'type[equals]': type.value,
 }));
-const queryDebounced = refDebounced(query, 500);
+const queryDebounced = refDebounced(query, 1000);
 
 const toggleSortByPrice = async () => {
   orderByPrice.value = orderByPrice.value === 'asc' ? 'desc' : 'asc';

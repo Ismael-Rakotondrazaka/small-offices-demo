@@ -20,13 +20,16 @@
       <div class="">
         <n-grid
           class="mb-2"
-          cols="4"
-          :x-gap="8"
-          :y-gap="8"
+          cols="6"
+          x-gap="8"
+          y-gap="8"
+          item-responsive
+          responsive="screen"
         >
           <n-grid-item
             v-for="index in 20"
             :key="index"
+            span="1 m:2 l:3"
           >
             <n-button
               round
