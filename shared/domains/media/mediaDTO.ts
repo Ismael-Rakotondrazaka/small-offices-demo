@@ -1,4 +1,4 @@
-import type { Serialize } from '~~/shared/types/serialized';
+import type { Serialize } from '#shared/types/serialized';
 
 import { z } from 'zod';
 

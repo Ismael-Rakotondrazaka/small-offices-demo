@@ -369,7 +369,7 @@ pnpm run generate
 **2. Type errors in forms**
 ```bash
 # Solution: Check imports and generated types
-import { StorePostRequestBodySchema } from '~~/shared/domains/posts/storePostRequest';
+import { StorePostRequestBodySchema } from '#shared/domains/posts/storePostRequest';
 ```
 
 **3. API endpoints not working**
@@ -446,7 +446,7 @@ import { useForm } from 'vee-validate';
 import { toTypedSchema } from '@vee-validate/zod';
 
 // Generated types
-import { StorePostRequestBodySchema } from '~~/shared/domains/posts/storePostRequest';
+import { StorePostRequestBodySchema } from '#shared/domains/posts/storePostRequest';
 
 // Utilities
 import { makeInputProps } from '~~/app/utils/forms/makeInputProps';

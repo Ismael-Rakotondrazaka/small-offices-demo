@@ -1,4 +1,4 @@
-import type { FileLike } from '~~/shared/schemas/fileLikeSchema';
+import type { FileLike } from '#shared/schemas/fileLikeSchema';
 
 import { z } from 'zod';
 

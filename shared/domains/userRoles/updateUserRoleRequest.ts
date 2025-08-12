@@ -1,7 +1,7 @@
-import type { Request } from '~~/shared/requests/request';
+import type { Request } from '#shared/requests/request';
 
-import { RoleSchema } from '~~/shared/domains/roles/role';
-import { StringIdentifierSchema } from '~~/shared/schemas/identifierSchema';
+import { RoleSchema } from '#shared/domains/roles/role';
+import { StringIdentifierSchema } from '#shared/schemas/identifierSchema';
 import { z } from 'zod';
 
 import type { UserRoleDTO } from './userRoleDTO';
