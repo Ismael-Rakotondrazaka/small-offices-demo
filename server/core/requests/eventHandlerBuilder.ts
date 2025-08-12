@@ -1,8 +1,8 @@
+import type { Request } from '#shared/requests/request';
 import type {
   EventHandlerFn,
   RequestToEventHandler,
 } from '~~/server/core/requests/requestToEventHandler';
-import type { Request } from '~~/shared';
 import type { z } from 'zod';
 
 import { allows as _allows, denies as _denies } from '#imports';

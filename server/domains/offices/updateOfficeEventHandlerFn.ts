@@ -1,7 +1,5 @@
-import type { UpdateOfficeRequest } from '~~/shared';
-
 import { Slugifier } from '~~/server/core/slugifier';
-import { RepositoryProvider } from '~~/server/services';
+import { RepositoryProvider } from '~~/server/services/repositories/repositoryProvider';
 
 import { OfficeDTOMapper } from './officeDTOMapper';
 

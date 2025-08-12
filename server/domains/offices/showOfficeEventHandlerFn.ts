@@ -1,6 +1,4 @@
-import type { ShowOfficeRequest } from '~~/shared';
-
-import { RepositoryProvider } from '~~/server/services';
+import { RepositoryProvider } from '~~/server/services/repositories/repositoryProvider';
 
 import { OfficeDTOMapper } from './officeDTOMapper';
 

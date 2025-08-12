@@ -1,9 +1,8 @@
 import type { Prisma } from '~~/generated/prisma/client';
-import type { IndexServiceRequest } from '~~/shared';
 
 import { RequestInputHelper } from '~~/server/core';
 import { PaginationDTOMapper } from '~~/server/domains/paginations/paginationDTOMapper';
-import { RepositoryProvider } from '~~/server/services';
+import { RepositoryProvider } from '~~/server/services/repositories/repositoryProvider';
 
 import { ServiceDTOMapper } from './serviceDTOMapper';
 

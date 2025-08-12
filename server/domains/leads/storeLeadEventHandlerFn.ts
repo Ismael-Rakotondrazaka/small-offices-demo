@@ -1,6 +1,4 @@
-import type { StoreLeadRequest } from '~~/shared';
-
-import { RepositoryProvider } from '~~/server/services';
+import { RepositoryProvider } from '~~/server/services/repositories/repositoryProvider';
 
 import { LeadDTOMapper } from './leadDTOMapper';
 

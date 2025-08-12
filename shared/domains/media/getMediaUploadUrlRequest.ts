@@ -1,7 +1,7 @@
-import type { MediaType } from '~~/shared/domains/media/mediaType';
-import type { Request } from '~~/shared/requests/request';
+import type { MediaType } from '#shared/domains/media/mediaType';
+import type { Request } from '#shared/requests/request';
 
-import { FileLikeSchema } from '~~/shared/schemas/fileLikeSchema';
+import { FileLikeSchema } from '#shared/schemas/fileLikeSchema';
 import { z } from 'zod';
 
 import type { FileMetaDataDTO } from './mediaDTO';

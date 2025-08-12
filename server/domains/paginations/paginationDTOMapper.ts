@@ -1,5 +1,4 @@
 import type { Pagination } from '~~/server/core/paginations/pagination';
-import type { PaginationDTO } from '~~/shared';
 
 export abstract class PaginationDTOMapper {
   static toDTO(pagination: Pagination, count: number): PaginationDTO {

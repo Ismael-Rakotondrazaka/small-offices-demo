@@ -1,8 +1,8 @@
+import type { Request, RequestToWSMessage } from '#shared/requests/request';
 import type {
   BouncerAbility,
   BouncerArgs,
 } from '~~/node_modules/nuxt-authorization/dist/utils/index.mjs';
-import type { Request, RequestToWSMessage } from '~~/shared/requests/request';
 import type { Peer } from 'crossws';
 import type { EventHandler } from 'h3';
 

@@ -59,7 +59,7 @@
 </template>
 
 <script setup lang="ts">
-import { OfficeType, OfficeTypeLabel, OfficeTypes } from '~~/shared/domains/offices/officeType';
+import { OfficeType } from '#imports';
 
 const value = defineModel<OfficeType | undefined>('value', {
   default: undefined,

@@ -1,4 +1,3 @@
-import type { ResponseErrorIssue } from '~~/shared';
 import type { ZodIssueOptionalMessage } from 'zod';
 
 import { z } from 'zod';

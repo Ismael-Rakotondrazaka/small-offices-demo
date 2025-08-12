@@ -1,9 +1,9 @@
-import type { PaginationDTO } from '~~/shared/domains/paginations/paginationDTO';
-import type { Request } from '~~/shared/requests/request';
+import type { PaginationDTO } from '#shared/domains/paginations/paginationDTO';
+import type { Request } from '#shared/requests/request';
 
-import { leadConfig } from '~~/shared/domains/leads/leadConfig';
-import { makePaginatedSchema } from '~~/shared/schemas/paginationSchema';
-import { SortOrderSchema } from '~~/shared/schemas/sortOrderSchema';
+import { leadConfig } from '#shared/domains/leads/leadConfig';
+import { makePaginatedSchema } from '#shared/schemas/paginationSchema';
+import { SortOrderSchema } from '#shared/schemas/sortOrderSchema';
 import { z } from 'zod';
 
 import type { LeadDTO } from './leadDTO';

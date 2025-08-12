@@ -1,5 +1,3 @@
-import type { UserRoleDTO } from '~~/shared';
-
 import type { UserRoleModel } from './userRoleModel';
 
 export abstract class UserRoleDTOMapper {

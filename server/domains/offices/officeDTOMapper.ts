@@ -1,5 +1,3 @@
-import type { OfficeDTO } from '~~/shared';
-
 import { PhotoDTOMapper } from '~~/server/domains/photos/photoDTOMapper';
 import { ServiceDTOMapper } from '~~/server/domains/services/serviceDTOMapper';
 

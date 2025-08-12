@@ -1,6 +1,6 @@
-import type { Request } from '~~/shared/requests/request';
+import type { Request } from '#shared/requests/request';
 
-import { StringIdentifierSchema } from '~~/shared/schemas/identifierSchema';
+import { StringIdentifierSchema } from '#shared/schemas/identifierSchema';
 import { z } from 'zod';
 
 import type { PhotoDTO } from './photoDTO';

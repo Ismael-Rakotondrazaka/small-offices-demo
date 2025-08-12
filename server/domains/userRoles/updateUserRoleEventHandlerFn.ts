@@ -1,6 +1,4 @@
-import type { UpdateUserRoleRequest } from '~~/shared';
-
-import { RepositoryProvider } from '~~/server/services';
+import { RepositoryProvider } from '~~/server/services/repositories/repositoryProvider';
 
 import { UserRoleDTOMapper } from './userRoleDTOMapper';
 

@@ -1,4 +1,3 @@
-export * from '../../shared';
 export * from './dates';
 export * from './forms';
 export * from './paginations';

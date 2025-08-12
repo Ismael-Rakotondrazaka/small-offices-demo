@@ -32,14 +32,6 @@ export const generateDTOMapper = (
 
   const sourceFile = project.createSourceFile(DTOMapperPath);
 
-  // Add type imports
-  sourceFile.addImportDeclaration({
-    isTypeOnly: true,
-    kind: StructureKind.ImportDeclaration,
-    moduleSpecifier: '~~/shared',
-    namedImports: [`${pascalCaseModelName}DTO`],
-  });
-
   sourceFile.addImportDeclaration({
     isTypeOnly: true,
     kind: StructureKind.ImportDeclaration,

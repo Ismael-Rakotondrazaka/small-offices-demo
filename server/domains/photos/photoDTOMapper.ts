@@ -1,5 +1,3 @@
-import type { PhotoDTO } from '~~/shared';
-
 import type { PhotoModel } from './photoModel';
 
 export abstract class PhotoDTOMapper {
