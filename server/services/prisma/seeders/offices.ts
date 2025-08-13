@@ -159,12 +159,15 @@ const createOfficeServices = (
 };
 
 const createOfficeData = (arg: {
+  arr?: number;
   isFake?: boolean;
   services: Service[];
   years?: number;
 }): Prisma.OfficeCreateInput => {
   const title = faker.company.name();
-  const arrondissement = faker.helpers.arrayElement(PARIS_ARRONDISSEMENTS);
+  const arrondissement = arg.arr
+    ? PARIS_ARRONDISSEMENTS.find(a => a.arr === arg.arr) || faker.helpers.arrayElement(PARIS_ARRONDISSEMENTS)
+    : faker.helpers.arrayElement(PARIS_ARRONDISSEMENTS);
   const arr = arrondissement.arr;
   const { lat, lng } = getRandomLocationInArrondissement(arr);
   const price = faker.number.float({ max: 150000, min: 500, multipleOf: 100 });
@@ -200,15 +203,25 @@ export const createOffices = async (arg: {
   services: Service[];
   years: number;
 }): Promise<Office[]> => {
-  const officesData: Prisma.OfficeCreateInput[] = faker.helpers.multiple(
-    () => createOfficeData({ services: arg.services, years: arg.years }),
-    {
-      count: {
-        max: 50,
-        min: 20,
-      },
-    },
-  );
+  const totalOffices = faker.number.int({ max: 50, min: 20 });
+  const officesPerArrondissement = Math.ceil(totalOffices / PARIS_ARRONDISSEMENTS.length);
+
+  const officesData: Prisma.OfficeCreateInput[] = [];
+
+  PARIS_ARRONDISSEMENTS.forEach((arrondissement) => {
+    const arrOfficesCount = faker.number.int({
+      max: officesPerArrondissement + 2,
+      min: Math.max(1, officesPerArrondissement - 2),
+    });
+
+    for (let i = 0; i < arrOfficesCount; i++) {
+      officesData.push(createOfficeData({
+        arr: arrondissement.arr,
+        services: arg.services,
+        years: arg.years,
+      }));
+    }
+  });
 
   return Promise.all(
     officesData.map(officeData =>
