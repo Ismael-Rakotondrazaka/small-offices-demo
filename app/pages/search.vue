@@ -172,7 +172,19 @@ const orderByPrice = computed<IndexOfficeRequestQuery['orderBy[price]']>(() => {
   return value === 'asc' || value === 'desc' ? value : undefined;
 });
 
-const query = computed<IndexOfficeRequestQuery>(() => ({
+const query = computed<Props['propsQuery']>(() => ({
+  'arr': arr.value.length ? arr.value : undefined,
+  'orderBy[price]': orderByPrice.value,
+  'page': page.value,
+  'pageSize': pageSize.value,
+  'posts[gte]': postsGte.value,
+  'posts[lte]': postsLte.value,
+  'price[gte]': priceGte.value,
+  'price[lte]': priceLte.value,
+  'type[equals]': type.value,
+}));
+
+const requestQuery = computed<IndexOfficeRequestQuery>(() => ({
   'arr[equals]': arr.value.length === 1 ? arr.value[0] : undefined,
   'arr[in]': arr.value.length > 1 ? arr.value : undefined,
   'orderBy[price]': orderByPrice.value,
@@ -288,7 +300,7 @@ const onUpdatePageSizeHandler = (value: number) => {
 };
 
 const { data, status }: Awaited<RequestToAsyncData<IndexOfficeRequest>> = useFetch('/api/offices', {
-  query,
+  query: requestQuery,
 });
 
 const isLoading = useFetchLoading(status);
