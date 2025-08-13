@@ -1,11 +1,14 @@
 <template>
   <n-popover
+    v-model:show="showPopover"
     trigger="click"
     placement="bottom-start"
     :show-arrow="false"
   >
     <template #trigger>
-      <n-button>
+      <n-button
+        :type="isInitialValue ? 'default' : 'primary'"
+      >
         <template #icon>
           <Icon
             name="mdi:map-marker"
@@ -29,7 +32,7 @@
           <n-grid-item
             v-for="index in 20"
             :key="index"
-            span="1 m:2 l:3"
+            span="3 m:2 l:1"
           >
             <n-button
               round
@@ -46,29 +49,50 @@
           </n-grid-item>
         </n-grid>
 
-        <n-button
-          type="primary"
-          @click="reset"
-        >
-          <template #icon>
-            <icon name="mdi:refresh" />
-          </template>
-          Réinitialiser
-        </n-button>
+        <n-flex justify="space-between">
+          <n-button
+            type="primary"
+            secondary
+            @click="reset"
+          >
+            <template #icon>
+              <icon name="mdi:refresh" />
+            </template>
+            Réinitialiser
+          </n-button>
+
+          <n-button
+            type="primary"
+            primary
+            @click="apply"
+          >
+            <template #icon>
+              <icon name="mdi:check" />
+            </template>
+            Appliquer
+          </n-button>
+        </n-flex>
       </div>
     </template>
   </n-popover>
 </template>
 
 <script setup lang="ts">
-const value = defineModel<number[]>('value', {
-  default: () => [],
-  required: false,
-});
-
-const reset = () => {
-  value.value = [];
+type Props = {
+  value: number[];
 };
+
+const props = defineProps<Props>();
+
+type Emits = {
+  'update:value': [value: number[]];
+};
+
+const emit = defineEmits<Emits>();
+
+const value = ref<number[]>(props.value);
+
+const showPopover = ref(false);
 
 const handleClick = (index: number) => {
   if (value.value.includes(index)) {
@@ -78,6 +102,20 @@ const handleClick = (index: number) => {
     value.value = [...value.value, index];
   }
 };
+
+const apply = () => {
+  emit('update:value', value.value);
+  showPopover.value = false;
+};
+
+const reset = () => {
+  value.value = [];
+  apply();
+};
+
+const isInitialValue = computed(() => {
+  return value.value.length === 0;
+});
 </script>
 
 <style scoped></style>

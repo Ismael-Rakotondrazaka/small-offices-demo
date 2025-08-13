@@ -55,7 +55,7 @@
         </n-space>
         <n-button
           type="primary"
-          @click="value = [DEFAULT_VALUES.min, DEFAULT_VALUES.max]"
+          @click="reset"
         >
           <template #icon>
             <icon name="mdi:refresh" />
@@ -76,15 +76,19 @@ const DEFAULT_VALUES = {
   step: 500,
 };
 
-const min = defineModel<number | undefined>('min', {
-  default: undefined,
-  required: false,
-});
+type Props = {
+  max?: number;
+  min?: number;
+};
 
-const max = defineModel<number | undefined>('max', {
-  default: undefined,
-  required: false,
-});
+const props = defineProps<Props>();
+
+type Emits = {
+  'update:max': [value: number | undefined];
+  'update:min': [value: number | undefined];
+};
+
+const emit = defineEmits<Emits>();
 
 const marks = computed(() => ({
   [DEFAULT_VALUES.max]: `${DEFAULT_VALUES.max}+`,
@@ -92,13 +96,22 @@ const marks = computed(() => ({
 }));
 
 const value = ref<[number, number]>([
-  min.value ?? DEFAULT_VALUES.min,
-  max.value ?? DEFAULT_VALUES.max,
+  props.min ?? DEFAULT_VALUES.min,
+  props.max ?? DEFAULT_VALUES.max,
 ]);
 
+const min = ref<number | undefined>(props.min);
+const max = ref<number | undefined>(props.max);
+
 watch(value, (newValue) => {
-  min.value = newValue[0] === 0 ? undefined : newValue[0];
-  max.value = newValue[1] === 100_000 ? undefined : newValue[1];
+  const newMin = newValue[0] === 0 ? undefined : newValue[0];
+  const newMax = newValue[1] === 100_000 ? undefined : newValue[1];
+
+  min.value = newMin;
+  max.value = newMax;
+
+  emit('update:min', newMin);
+  emit('update:max', newMax);
 });
 
 watch(min, (newValue) => {
@@ -108,4 +121,12 @@ watch(min, (newValue) => {
 watch(max, (newValue) => {
   value.value[1] = newValue ?? DEFAULT_VALUES.max;
 });
+
+const reset = () => {
+  value.value = [DEFAULT_VALUES.min, DEFAULT_VALUES.max];
+  min.value = undefined;
+  max.value = undefined;
+  emit('update:min', undefined);
+  emit('update:max', undefined);
+};
 </script>

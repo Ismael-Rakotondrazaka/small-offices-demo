@@ -61,13 +61,20 @@
 <script setup lang="ts">
 import { OfficeType } from '#imports';
 
-const value = defineModel<OfficeType | undefined>('value', {
-  default: undefined,
-  required: false,
-});
+type Props = {
+  value?: OfficeType;
+};
+
+const props = defineProps<Props>();
+
+type Emits = {
+  'update:value': [value: OfficeType | undefined];
+};
+
+const emit = defineEmits<Emits>();
 
 const handleClick = (type: OfficeType) => {
-  value.value = type;
+  emit('update:value', type);
 };
 
 const iconMap: Record<OfficeType, string> = {
@@ -77,7 +84,7 @@ const iconMap: Record<OfficeType, string> = {
 };
 
 const reset = () => {
-  value.value = undefined;
+  emit('update:value', undefined);
 };
 </script>
 

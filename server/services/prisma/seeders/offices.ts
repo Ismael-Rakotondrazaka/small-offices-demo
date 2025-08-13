@@ -67,10 +67,6 @@ const createOfficeData = (arg: {
   years?: number;
 }): Prisma.OfficeCreateInput => {
   const title = faker.company.name();
-  const description = faker.lorem.paragraphs({
-    max: 20,
-    min: 5,
-  });
   const arr = faker.number.int({ max: 20, min: 1 });
   const price = faker.number.float({ fractionDigits: 2, max: 1500, min: 300 });
   const type = faker.helpers.enumValue($Enums.OfficeType);
@@ -83,7 +79,6 @@ const createOfficeData = (arg: {
   return {
     arr,
     createdAt,
-    description,
     id: createStringIdentifier(),
     isFake,
     lat,

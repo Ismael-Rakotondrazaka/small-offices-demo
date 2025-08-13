@@ -6,7 +6,6 @@ export interface OfficeDTO {
   arr: number;
   createdAt: Date;
   deletedAt: Date | null;
-  description: string;
   id: string;
   isFake: boolean;
   lat: number;
@@ -20,4 +19,4 @@ export interface OfficeDTO {
   updatedAt: Date;
 }
 
-export const OfficeDTOSchema: z.ZodType<OfficeDTO> = z.object({ arr: z.number(), createdAt: z.coerce.date(), deletedAt: z.coerce.date().nullable(), description: z.string(), id: z.string(), isFake: z.boolean(), lat: z.number(), lng: z.number(), photos: z.array(PhotoDTOSchema), posts: z.number(), price: z.number(), services: z.array(ServiceDTOSchema), slug: z.string(), title: z.string(), updatedAt: z.coerce.date() });
+export const OfficeDTOSchema: z.ZodType<OfficeDTO> = z.object({ arr: z.number(), createdAt: z.coerce.date(), deletedAt: z.coerce.date().nullable(), id: z.string(), isFake: z.boolean(), lat: z.number(), lng: z.number(), photos: z.array(PhotoDTOSchema), posts: z.number(), price: z.number(), services: z.array(ServiceDTOSchema), slug: z.string(), title: z.string(), updatedAt: z.coerce.date() });

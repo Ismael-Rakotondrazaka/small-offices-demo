@@ -2,6 +2,8 @@
 import { generateAntdColorThemes } from '@bg-dev/nuxt-naiveui/utils';
 import tailwindcss from '@tailwindcss/vite';
 
+import { staticPageLinks } from './static-pages';
+
 const makeLocaleFiles = (locale: string) =>
   [
     'dates',
@@ -106,6 +108,12 @@ export default defineNuxtConfig({
       ...generateAntdColorThemes({
         primary: '#302aa7',
       }),
+    },
+  },
+
+  nitro: {
+    prerender: {
+      routes: staticPageLinks.map(link => link.href),
     },
   },
 

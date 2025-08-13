@@ -29,7 +29,6 @@ export const UpdateOfficeEventHandlerFn: EventHandlerFn<UpdateOfficeRequest> = a
   const updatedOffice = await RepositoryProvider.officeRepository.updateOne({
     data: {
       arr: body.arr,
-      description: body.description,
       isFake: body.isFake,
       lat: body.lat,
       lng: body.lng,
