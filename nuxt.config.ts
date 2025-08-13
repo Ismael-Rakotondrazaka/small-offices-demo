@@ -101,6 +101,7 @@ export default defineNuxtConfig({
     '@nuxt/test-utils/module',
     '@nuxtjs/supabase',
     '@nuxt/scripts',
+    '@nuxtjs/leaflet',
   ],
 
   naiveui: {
