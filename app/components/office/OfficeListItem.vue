@@ -21,13 +21,13 @@
               },
             }"
           >
-            <NuxtImg
+            <n-image
               :alt="office.title"
               :src="photo.url"
-              class="w-full h-full object-cover"
-              placeholder="/images/loaders/placeholder-square.svg"
-              placeholder-class="object-cover max-h-56"
+              class="w-full h-full object-cover max-h-56"
+              fallback-src="/images/loaders/placeholder-square.svg"
               loading="lazy"
+              preview-disabled
             />
           </NuxtLink>
         </n-carousel-item>
