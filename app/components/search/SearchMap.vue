@@ -20,11 +20,23 @@
         <n-thing
           :bordered="false"
         >
-          <img
-            :alt="office.title"
-            :src="office.photos[0]!.url"
-            class="w-full h-full object-cover max-h-10"
+          <NuxtLink
+            :to="{
+              name: 'offices-slug',
+              params: {
+                slug: office.slug,
+              },
+            }"
           >
+            <img
+              :alt="office.title"
+              :src="office.photos[0]!.url"
+              class="w-full h-full object-cover max-h-24"
+            >
+            <span class="sr-only">
+              {{ office.title }}
+            </span>
+          </NuxtLink>
 
           <p
             strong
