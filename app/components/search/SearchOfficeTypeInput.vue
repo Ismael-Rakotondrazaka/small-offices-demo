@@ -1,11 +1,14 @@
 <template>
   <n-popover
+    v-model:show="showPopover"
     trigger="click"
     placement="bottom-start"
     :show-arrow="false"
   >
     <template #trigger>
-      <n-button>
+      <n-button
+        :type="isInitialValue ? 'default' : 'primary'"
+      >
         <template #icon>
           <Icon
             name="mdi:office-building"
@@ -29,8 +32,8 @@
             :bordered="false"
             type="primary"
             size="large"
-            :primary="value === type"
-            :tertiary="value !== type"
+            :primary="localValue === type"
+            :tertiary="localValue !== type"
             class="w-full"
             @click="handleClick(type)"
           >
@@ -44,15 +47,29 @@
           </n-button>
         </n-flex>
 
-        <n-button
-          type="primary"
-          @click="reset"
-        >
-          <template #icon>
-            <icon name="mdi:refresh" />
-          </template>
-          Réinitialiser
-        </n-button>
+        <n-flex justify="space-between">
+          <n-button
+            type="primary"
+            secondary
+            @click="reset"
+          >
+            <template #icon>
+              <icon name="mdi:refresh" />
+            </template>
+            Réinitialiser
+          </n-button>
+
+          <n-button
+            type="primary"
+            primary
+            @click="apply"
+          >
+            <template #icon>
+              <icon name="mdi:check" />
+            </template>
+            Appliquer
+          </n-button>
+        </n-flex>
       </div>
     </template>
   </n-popover>
@@ -73,8 +90,26 @@ type Emits = {
 
 const emit = defineEmits<Emits>();
 
+const showPopover = ref(false);
+
+const localValue = ref<OfficeType | undefined>(props.value);
+
+watch(() => props.value, (newValue) => {
+  localValue.value = newValue;
+});
+
 const handleClick = (type: OfficeType) => {
-  emit('update:value', type);
+  localValue.value = localValue.value === type ? undefined : type;
+};
+
+const apply = () => {
+  emit('update:value', localValue.value);
+  showPopover.value = false;
+};
+
+const reset = () => {
+  localValue.value = undefined;
+  apply();
 };
 
 const iconMap: Record<OfficeType, string> = {
@@ -83,9 +118,9 @@ const iconMap: Record<OfficeType, string> = {
   [OfficeType.PRIVATE_OFFICE]: 'mdi:door-closed',
 };
 
-const reset = () => {
-  emit('update:value', undefined);
-};
+const isInitialValue = computed(() => {
+  return localValue.value === undefined;
+});
 </script>
 
 <style scoped></style>

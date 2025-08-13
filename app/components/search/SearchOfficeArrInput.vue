@@ -94,6 +94,10 @@ const value = ref<number[]>(props.value);
 
 const showPopover = ref(false);
 
+watch(() => props.value, (newValue) => {
+  value.value = newValue;
+});
+
 const handleClick = (index: number) => {
   if (value.value.includes(index)) {
     value.value = value.value.filter(i => i !== index);
