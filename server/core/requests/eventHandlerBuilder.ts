@@ -1,4 +1,4 @@
-import type { Request } from '#shared/requests/request';
+import type { Request } from '~~/shared/requests/request';
 import type {
   EventHandlerFn,
   RequestToEventHandler,

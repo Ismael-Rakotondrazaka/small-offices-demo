@@ -1,26 +1,32 @@
 <template>
-  <div class="container mx-auto py-2">
-    <div class="max-w-6xl mx-auto">
+  <div class="container mx-auto py-2 px-4 sm:px-6 lg:px-8">
+    <div class="">
       <!-- Search Filters -->
       <n-flex
         class="mb-5"
       >
         <SearchOfficeArrInput
-          v-model:value="arr"
+          :value="arr"
+          @update:value="onUpdateArrHandler"
         />
 
         <SearchOfficePostsRangeInput
-          v-model:max="postsLte"
-          v-model:min="postsGte"
+          :max="postsLte"
+          :min="postsGte"
+          @update:max="onUpdatePostsLteHandler"
+          @update:min="onUpdatePostsGteHandler"
         />
 
         <SearchOfficeTypeInput
-          v-model:value="type"
+          :value="type"
+          @update:value="onUpdateTypeHandler"
         />
 
         <SearchOfficePriceRangeInput
-          v-model:max="priceLte"
-          v-model:min="priceGte"
+          :max="priceLte"
+          :min="priceGte"
+          @update:max="onUpdatePriceLteHandler"
+          @update:min="onUpdatePriceGteHandler"
         />
 
         <n-button
@@ -54,12 +60,14 @@
       <!-- Search Results -->
       <OfficePaginatedList
         v-if="data !== undefined"
-        v-model:page="page"
-        v-model:page-size="pageSize"
+        :page="page"
+        :page-size="pageSize"
         :offices="data.data"
         :total-count="data.pagination.totalCount"
         :total-pages="data.pagination.totalPages"
         :is-loading="isLoading"
+        @update:page="onUpdatePageHandler"
+        @update:page-size="onUpdatePageSizeHandler"
       />
 
       <div
@@ -86,84 +94,82 @@
 <script lang="ts" setup>
 import type { OfficeType } from '#imports';
 
-import { useRouteQuery } from '@vueuse/router';
+interface Props {
+  propsQuery?: {
+    arr?: number[];
+  } & IndexOfficeRequestQuery;
+}
 
-const arr = useRouteQuery<null | string | string[] | undefined, number[]>('arr', [], {
-  transform: (value) => {
-    if (value === null || value === undefined) {
-      return [];
-    }
+const props = defineProps<Props>();
 
-    if (Array.isArray(value)) {
-      return value.map(Number);
-    }
+const route = useRoute('search');
 
-    return [Number(value)];
-  },
+const arr = computed<number[]>(() => {
+  if (props.propsQuery?.['arr'] !== undefined) return props.propsQuery['arr'] ?? [];
+  const value = route.query.arr;
+  if (value === null || value === undefined) return [];
+  if (Array.isArray(value)) return value.map(Number);
+  return [Number(value)];
 });
-const type = useRouteQuery<null | string | string[] | undefined, OfficeType | undefined>('type[equals]', undefined, {
-  transform: (value) => {
-    if (value === null || value === undefined) {
-      return undefined;
-    }
 
-    return value as OfficeType;
-  },
+const type = computed<IndexOfficeRequestQuery['type[equals]']>(() => {
+  if (props.propsQuery?.['type[equals]'] !== undefined) return props.propsQuery['type[equals]'];
+  const value = route.query['type[equals]'];
+  if (value === null || value === undefined) return undefined;
+  return value as OfficeType;
 });
-const priceGte = useRouteQuery<null | string | string[] | undefined, number | undefined>('price[gte]', undefined, {
-  transform: (value) => {
-    if (value === null || value === undefined) {
-      return undefined;
-    }
 
-    const num = Number(value);
-
-    return num === 0 ? undefined : num;
-  },
+const priceGte = computed<IndexOfficeRequestQuery['price[gte]']>(() => {
+  if (props.propsQuery?.['price[gte]'] !== undefined) return props.propsQuery['price[gte]'];
+  const value = route.query['price[gte]'];
+  if (value === null || value === undefined) return undefined;
+  const num = Number(value);
+  return num === 0 ? undefined : num;
 });
-const priceLte = useRouteQuery<null | string | string[] | undefined, number | undefined>('price[lte]', undefined, {
-  transform: (value) => {
-    if (value === null || value === undefined) {
-      return undefined;
-    }
 
-    const num = Number(value);
-
-    return num >= 100_000 ? undefined : num;
-  },
+const priceLte = computed<IndexOfficeRequestQuery['price[lte]']>(() => {
+  if (props.propsQuery?.['price[lte]'] !== undefined) return props.propsQuery['price[lte]'];
+  const value = route.query['price[lte]'];
+  if (value === null || value === undefined) return undefined;
+  const num = Number(value);
+  return num >= 100_000 ? undefined : num;
 });
-const postsGte = useRouteQuery<null | string | string[] | undefined, number | undefined>('posts[gte]', undefined, {
-  transform: (value) => {
-    if (value === null || value === undefined) {
-      return undefined;
-    }
 
-    const num = Number(value);
-
-    return num === 0 ? undefined : num;
-  },
+const postsGte = computed<IndexOfficeRequestQuery['posts[gte]']>(() => {
+  if (props.propsQuery?.['posts[gte]'] !== undefined) return props.propsQuery['posts[gte]'];
+  const value = route.query['posts[gte]'];
+  if (value === null || value === undefined) return undefined;
+  const num = Number(value);
+  return num === 0 ? undefined : num;
 });
-const postsLte = useRouteQuery<null | string | string[] | undefined, number | undefined>('posts[lte]', undefined, {
-  transform: (value) => {
-    if (value === null || value === undefined) {
-      return undefined;
-    }
 
-    const num = Number(value);
-
-    return num >= 500 ? undefined : num;
-  },
+const postsLte = computed<IndexOfficeRequestQuery['posts[lte]']>(() => {
+  if (props.propsQuery?.['posts[lte]'] !== undefined) return props.propsQuery['posts[lte]'];
+  const value = route.query['posts[lte]'];
+  if (value === null || value === undefined) return undefined;
+  const num = Number(value);
+  return num >= 500 ? undefined : num;
 });
-const page = useRouteQuery<number>('page', 1);
-const pageSize = useRouteQuery<number>('pageSize', officeConfig.PAGE_SIZE_DEFAULT_VALUE);
-const orderByPrice = useRouteQuery<null | string | string[] | undefined, 'asc' | 'desc' | undefined>('orderBy[price]', 'asc', {
-  transform: (value) => {
-    if (value === null || value === undefined) {
-      return undefined;
-    }
 
-    return value as 'asc' | 'desc';
-  },
+const page = computed<number>(() => {
+  if (props.propsQuery?.page !== undefined) return props.propsQuery.page;
+  const value = route.query.page;
+  if (value === null || value === undefined) return 1;
+  return Number(value);
+});
+
+const pageSize = computed<number>(() => {
+  if (props.propsQuery?.pageSize !== undefined) return props.propsQuery.pageSize;
+  const value = route.query.pageSize;
+  if (value === null || value === undefined) return officeConfig.PAGE_SIZE_DEFAULT_VALUE;
+  return Number(value);
+});
+
+const orderByPrice = computed<IndexOfficeRequestQuery['orderBy[price]']>(() => {
+  if (props.propsQuery?.['orderBy[price]'] !== undefined) return props.propsQuery['orderBy[price]'];
+  const value = route.query['orderBy[price]'];
+  if (value === null || value === undefined) return undefined;
+  return value === 'asc' || value === 'desc' ? value : undefined;
 });
 
 const query = computed<IndexOfficeRequestQuery>(() => ({
@@ -178,26 +184,119 @@ const query = computed<IndexOfficeRequestQuery>(() => ({
   'price[lte]': priceLte.value,
   'type[equals]': type.value,
 }));
-const queryDebounced = refDebounced(query, 1000);
+
+const onUpdateArrHandler = (value: number[]) => {
+  return navigateTo({
+    name: 'search',
+    query: {
+      ...query.value,
+      arr: value.length ? value : undefined,
+      page: 1,
+      pageSize: officeConfig.PAGE_SIZE_DEFAULT_VALUE,
+    },
+  });
+};
+
+const onUpdateTypeHandler = (value: OfficeType | undefined) => {
+  return navigateTo({
+    name: 'search',
+    query: {
+      ...query.value,
+      'page': 1,
+      'pageSize': officeConfig.PAGE_SIZE_DEFAULT_VALUE,
+      'type[equals]': value,
+    },
+  });
+};
+
+const onUpdatePriceGteHandler = (value: number | undefined) => {
+  return navigateTo({
+    name: 'search',
+    query: {
+      ...query.value,
+      'page': 1,
+      'pageSize': officeConfig.PAGE_SIZE_DEFAULT_VALUE,
+      'price[gte]': value,
+    },
+  });
+};
+
+const onUpdatePriceLteHandler = (value: number | undefined) => {
+  return navigateTo({
+    name: 'search',
+    query: {
+      ...query.value,
+      'page': 1,
+      'pageSize': officeConfig.PAGE_SIZE_DEFAULT_VALUE,
+      'price[lte]': value,
+    },
+  });
+};
+
+const onUpdatePostsGteHandler = (value: number | undefined) => {
+  return navigateTo({
+    name: 'search',
+    query: {
+      ...query.value,
+      'page': 1,
+      'pageSize': officeConfig.PAGE_SIZE_DEFAULT_VALUE,
+      'posts[gte]': value,
+    },
+  });
+};
+
+const onUpdatePostsLteHandler = (value: number | undefined) => {
+  return navigateTo({
+    name: 'search',
+    query: {
+      ...query.value,
+      'page': 1,
+      'pageSize': officeConfig.PAGE_SIZE_DEFAULT_VALUE,
+      'posts[lte]': value,
+    },
+  });
+};
 
 const toggleSortByPrice = async () => {
-  orderByPrice.value = orderByPrice.value === 'asc' ? 'desc' : 'asc';
+  return navigateTo({
+    name: 'search',
+    query: {
+      ...query.value,
+      'orderBy[price]': orderByPrice.value === 'asc' ? 'desc' : 'asc',
+    },
+  });
+};
+
+const onUpdatePageHandler = (value: number) => {
+  return navigateTo({
+    name: 'search',
+    query: {
+      ...query.value,
+      page: value,
+    },
+  });
+};
+
+const onUpdatePageSizeHandler = (value: number) => {
+  return navigateTo({
+    name: 'search',
+    query: {
+      ...query.value,
+      pageSize: value,
+    },
+  });
 };
 
 const { data, status }: Awaited<RequestToAsyncData<IndexOfficeRequest>> = useFetch('/api/offices', {
-  query: queryDebounced,
+  query,
 });
 
 const isLoading = useFetchLoading(status);
 
 const resetSearch = async () => {
-  arr.value = [];
-  type.value = undefined;
-  priceGte.value = undefined;
-  priceLte.value = undefined;
-  postsGte.value = undefined;
-  postsLte.value = undefined;
-  orderByPrice.value = 'asc';
+  return navigateTo({
+    name: 'search',
+  });
 };
 </script>
 

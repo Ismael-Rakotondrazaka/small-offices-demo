@@ -1,4 +1,4 @@
-import type { Request, RequestToWSMessage } from '#shared/requests/request';
+import type { Request, RequestToWSMessage } from '~~/shared/requests/request';
 import type {
   BouncerAbility,
   BouncerArgs,

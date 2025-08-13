@@ -13,7 +13,7 @@
 import type { MenuOption } from 'naive-ui';
 import type { NuxtLinkProps } from 'nuxt/app';
 
-import { Icon, NuxtLinkLocale } from '#components';
+import { Icon, NuxtLink } from '#components';
 
 const { t } = useI18n({
   useScope: 'global',
@@ -26,15 +26,14 @@ const renderIcon = (name: string) => {
     });
 };
 
-const renderNuxtLinkLocale = (
+const renderNuxtLink = (
   props: {
     locale?: string | undefined;
   } & NuxtLinkProps,
   text: string,
 ) => {
   return () =>
-    // @ts-expect-error NuxtLinkLocale is a component that accepts props
-    h(NuxtLinkLocale, props, {
+    h(NuxtLink, props, {
       default: () => text,
     });
 };
@@ -42,7 +41,7 @@ const renderNuxtLinkLocale = (
 const homeMenu: ComputedRef<MenuOption> = computed(() => ({
   icon: renderIcon('mdi:home'),
   key: 'home',
-  label: renderNuxtLinkLocale(
+  label: renderNuxtLink(
     {
       to: {
         name: 'index',
@@ -55,7 +54,7 @@ const homeMenu: ComputedRef<MenuOption> = computed(() => ({
 const postsMenu: ComputedRef<MenuOption> = computed(() => ({
   icon: renderIcon('mdi:message'),
   key: 'posts',
-  label: renderNuxtLinkLocale(
+  label: renderNuxtLink(
     {
       to: {
         name: 'posts',
@@ -67,7 +66,7 @@ const postsMenu: ComputedRef<MenuOption> = computed(() => ({
 const dashboardMenu: ComputedRef<MenuOption> = computed(() => ({
   icon: renderIcon('mdi:chart-pie'),
   key: 'dashboard',
-  label: renderNuxtLinkLocale(
+  label: renderNuxtLink(
     {
       to: {
         name: 'dashboard',
@@ -80,7 +79,7 @@ const dashboardMenu: ComputedRef<MenuOption> = computed(() => ({
 const adminDashboardMenu: ComputedRef<MenuOption> = computed(() => ({
   icon: renderIcon('mdi:shield-account'),
   key: 'admin-dashboard',
-  label: renderNuxtLinkLocale(
+  label: renderNuxtLink(
     {
       to: {
         name: 'admin-dashboard',
@@ -92,7 +91,7 @@ const adminDashboardMenu: ComputedRef<MenuOption> = computed(() => ({
 const piniaMenu: ComputedRef<MenuOption> = computed(() => ({
   icon: renderIcon('mdi:fruit-pineapple'),
   key: 'pinia',
-  label: renderNuxtLinkLocale(
+  label: renderNuxtLink(
     {
       to: {
         name: 'pinia',
@@ -104,7 +103,7 @@ const piniaMenu: ComputedRef<MenuOption> = computed(() => ({
 const techsMenu: ComputedRef<MenuOption> = computed(() => ({
   icon: renderIcon('mdi:code-tags'),
   key: 'techs',
-  label: renderNuxtLinkLocale(
+  label: renderNuxtLink(
     {
       to: {
         name: 'techs',
@@ -116,7 +115,7 @@ const techsMenu: ComputedRef<MenuOption> = computed(() => ({
 const adminLoginMenu: ComputedRef<MenuOption> = computed(() => ({
   icon: renderIcon('mdi:shield-account'),
   key: 'admin-login',
-  label: renderNuxtLinkLocale(
+  label: renderNuxtLink(
     {
       to: {
         name: 'admin-login',
@@ -128,7 +127,7 @@ const adminLoginMenu: ComputedRef<MenuOption> = computed(() => ({
 const registerMenu: ComputedRef<MenuOption> = computed(() => ({
   icon: renderIcon('mdi:account-plus'),
   key: 'register',
-  label: renderNuxtLinkLocale(
+  label: renderNuxtLink(
     {
       to: {
         name: 'register',

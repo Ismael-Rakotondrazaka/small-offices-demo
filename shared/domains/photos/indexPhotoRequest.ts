@@ -1,9 +1,9 @@
-import type { PaginationDTO } from '#shared/domains/paginations/paginationDTO';
-import type { Request } from '#shared/requests/request';
+import type { PaginationDTO } from '~~/shared/domains/paginations/paginationDTO';
+import type { Request } from '~~/shared/requests/request';
 
-import { photoConfig } from '#shared/domains/photos/photoConfig';
-import { makePaginatedSchema } from '#shared/schemas/paginationSchema';
-import { SortOrderSchema } from '#shared/schemas/sortOrderSchema';
+import { photoConfig } from '~~/shared/domains/photos/photoConfig';
+import { makePaginatedSchema } from '~~/shared/schemas/paginationSchema';
+import { SortOrderSchema } from '~~/shared/schemas/sortOrderSchema';
 import { z } from 'zod';
 
 import type { PhotoDTO } from './photoDTO';

@@ -23,7 +23,7 @@
               <img :src="budgetRange">
             </n-card>
             <div class="space-y-4">
-              <NuxtLinkLocale to="search">
+              <NuxtLink to="search">
                 <n-button
                   type="primary"
                   class="w-full"
@@ -34,7 +34,7 @@
                   </template>
                   Voir 8 283 annonces
                 </n-button>
-              </NuxtLinkLocale>
+              </NuxtLink>
             </div>
           </div>
         </n-grid-item>

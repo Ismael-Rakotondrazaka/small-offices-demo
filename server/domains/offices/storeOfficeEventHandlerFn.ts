@@ -14,7 +14,6 @@ export const StoreOfficeEventHandlerFn: EventHandlerFn<StoreOfficeRequest> = asy
   const office = await RepositoryProvider.officeRepository.addOne({
     data: {
       arr: body.arr,
-      description: body.description,
       isFake: body.isFake,
       lat: body.lat,
       lng: body.lng,

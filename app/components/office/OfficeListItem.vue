@@ -13,7 +13,7 @@
           v-for="photo in office.photos"
           :key="photo.id"
         >
-          <NuxtLinkLocale
+          <NuxtLink
             :to="{
               name: 'offices-slug',
               params: {
@@ -21,14 +21,15 @@
               },
             }"
           >
-            <NuxtImg
-              :src="photo.url"
+            <n-image
               :alt="office.title"
-              class="w-full h-full object-cover"
-              :placeholder="430"
+              :src="photo.url"
+              class="w-full h-full object-cover max-h-56"
+              fallback-src="/images/loaders/placeholder-square.svg"
               loading="lazy"
+              preview-disabled
             />
-          </NuxtLinkLocale>
+          </NuxtLink>
         </n-carousel-item>
       </n-carousel>
     </template>

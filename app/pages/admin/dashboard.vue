@@ -55,7 +55,7 @@
     </n-grid>
 
     <n-card title="Actions rapides">
-      <NuxtLinkLocale
+      <NuxtLink
         :to="{
           name: 'admin-offices-nouveau',
         }"
@@ -73,7 +73,7 @@
           </template>
           Nouveau Bureau
         </n-button>
-      </NuxtLinkLocale>
+      </NuxtLink>
     </n-card>
 
     <n-h2>

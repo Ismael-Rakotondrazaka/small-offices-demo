@@ -38,23 +38,25 @@ import { generatePageSizes } from '~/utils';
 interface Props {
   isLoading: boolean;
   offices: Serialize<OfficeDTO>[];
+  page: number;
+  pageSize: number;
   totalCount: number;
   totalPages: number;
 }
+
 defineProps<Props>();
 
-const page = defineModel<number>('page', {
-  default: 1,
-});
+const emit = defineEmits<{
+  'update:page': [value: number];
+  'update:pageSize': [value: number];
+}>();
+
 const onUpdatePageHandler = (newPage: number) => {
-  page.value = newPage;
+  emit('update:page', newPage);
 };
 
-const pageSize = defineModel<number>('pageSize', {
-  default: 1,
-});
 const onUpdatePageSizeHandler = (newPageSize: number) => {
-  pageSize.value = newPageSize;
+  emit('update:pageSize', newPageSize);
 };
 
 const pageSizes = generatePageSizes(officeConfig.PAGE_SIZE_DEFAULT_VALUE);

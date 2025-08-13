@@ -8,17 +8,18 @@
     class="bg-white"
   >
     <template #start>
-      <NuxtLinkLocale
+      <NuxtLink
         :to="{
           name: 'index',
         }"
       >
-        <NuxtImg
+        <img
           src="/images/logos/logo-petits-bureaux.svg"
           width="32"
           height="32"
-        />
-      </NuxtLinkLocale>
+          alt="Petits Bureaux"
+        >
+      </NuxtLink>
     </template>
 
     <template #drawer-header>

@@ -1,9 +1,9 @@
-import type { PaginationDTO } from '#shared/domains/paginations/paginationDTO';
-import type { Request } from '#shared/requests/request';
+import type { PaginationDTO } from '~~/shared/domains/paginations/paginationDTO';
+import type { Request } from '~~/shared/requests/request';
 
-import { officeServiceConfig } from '#shared/domains/officeServices/officeServiceConfig';
-import { makePaginatedSchema } from '#shared/schemas/paginationSchema';
-import { SortOrderSchema } from '#shared/schemas/sortOrderSchema';
+import { officeServiceConfig } from '~~/shared/domains/officeServices/officeServiceConfig';
+import { makePaginatedSchema } from '~~/shared/schemas/paginationSchema';
+import { SortOrderSchema } from '~~/shared/schemas/sortOrderSchema';
 import { z } from 'zod';
 
 import type { OfficeServiceDTO } from './officeServiceDTO';

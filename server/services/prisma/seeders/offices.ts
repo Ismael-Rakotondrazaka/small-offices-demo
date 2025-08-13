@@ -11,6 +11,52 @@ import {
 
 import { createStringIdentifier } from './identifiers';
 
+const PARIS_ARRONDISSEMENTS = [
+  { arr: 1, lat: 48.8566, lng: 2.3522, name: 'Louvre' },
+  { arr: 2, lat: 48.8674, lng: 2.3414, name: 'Bourse' },
+  { arr: 3, lat: 48.8648, lng: 2.3617, name: 'Temple' },
+  { arr: 4, lat: 48.8566, lng: 2.3522, name: 'Hôtel-de-Ville' },
+  { arr: 5, lat: 48.8462, lng: 2.3439, name: 'Panthéon' },
+  { arr: 6, lat: 48.8534, lng: 2.3324, name: 'Luxembourg' },
+  { arr: 7, lat: 48.8566, lng: 2.3186, name: 'Palais-Bourbon' },
+  { arr: 8, lat: 48.8738, lng: 2.2950, name: 'Élysée' },
+  { arr: 9, lat: 48.8800, lng: 2.3376, name: 'Opéra' },
+  { arr: 10, lat: 48.8768, lng: 2.3597, name: 'Entrepôt' },
+  { arr: 11, lat: 48.8634, lng: 2.3788, name: 'Popincourt' },
+  { arr: 12, lat: 48.8404, lng: 2.3955, name: 'Reuilly' },
+  { arr: 13, lat: 48.8323, lng: 2.3561, name: 'Gobelins' },
+  { arr: 14, lat: 48.8331, lng: 2.3264, name: 'Observatoire' },
+  { arr: 15, lat: 48.8412, lng: 2.2976, name: 'Vaugirard' },
+  { arr: 16, lat: 48.8634, lng: 2.2769, name: 'Passy' },
+  { arr: 17, lat: 48.8837, lng: 2.3214, name: 'Batignolles-Monceau' },
+  { arr: 18, lat: 48.8925, lng: 2.3444, name: 'Butte-Montmartre' },
+  { arr: 19, lat: 48.8805, lng: 2.3826, name: 'Buttes-Chaumont' },
+  { arr: 20, lat: 48.8648, lng: 2.3984, name: 'Ménilmontant' },
+];
+
+const getRandomLocationInArrondissement = (arr: number) => {
+  const arrondissement = PARIS_ARRONDISSEMENTS.find(a => a.arr === arr);
+  if (!arrondissement) {
+    return { lat: 48.8566, lng: 2.3522 };
+  }
+
+  const latVariation = 0.005;
+  const lngVariation = 0.005;
+
+  return {
+    lat: faker.number.float({
+      fractionDigits: 6,
+      max: arrondissement.lat + latVariation,
+      min: arrondissement.lat - latVariation,
+    }),
+    lng: faker.number.float({
+      fractionDigits: 6,
+      max: arrondissement.lng + lngVariation,
+      min: arrondissement.lng - lngVariation,
+    }),
+  };
+};
+
 const createPhotos = (
   arg: { createdAt?: Date },
 ): Prisma.PhotoCreateManyOfficeInputEnvelope => {
@@ -32,14 +78,65 @@ const createPhotos = (
     'Espace détente avec jeux',
   ];
 
+  const SEED_IMAGES = [
+    '/images/offices/seeds/office-seed-1.webp',
+    '/images/offices/seeds/office-seed-2.webp',
+    '/images/offices/seeds/office-seed-3.webp',
+    '/images/offices/seeds/office-seed-4.webp',
+    '/images/offices/seeds/office-seed-5.webp',
+    '/images/offices/seeds/office-seed-6.webp',
+    '/images/offices/seeds/office-seed-7.webp',
+    '/images/offices/seeds/office-seed-8.webp',
+    '/images/offices/seeds/office-seed-9.webp',
+    '/images/offices/seeds/office-seed-10.webp',
+    '/images/offices/seeds/office-seed-11.webp',
+    '/images/offices/seeds/office-seed-12.webp',
+    '/images/offices/seeds/office-seed-13.webp',
+    '/images/offices/seeds/office-seed-14.webp',
+    '/images/offices/seeds/office-seed-15.webp',
+    '/images/offices/seeds/office-seed-16.webp',
+    '/images/offices/seeds/office-seed-17.webp',
+    '/images/offices/seeds/office-seed-18.webp',
+    '/images/offices/seeds/office-seed-19.webp',
+    '/images/offices/seeds/office-seed-20.webp',
+    '/images/offices/seeds/office-seed-21.webp',
+    '/images/offices/seeds/office-seed-22.webp',
+    '/images/offices/seeds/office-seed-23.webp',
+    '/images/offices/seeds/office-seed-24.webp',
+    '/images/offices/seeds/office-seed-25.webp',
+    '/images/offices/seeds/office-seed-26.webp',
+    '/images/offices/seeds/office-seed-27.webp',
+    '/images/offices/seeds/office-seed-28.webp',
+    '/images/offices/seeds/office-seed-29.webp',
+    '/images/offices/seeds/office-seed-30.webp',
+    '/images/offices/seeds/office-seed-31.webp',
+    '/images/offices/seeds/office-seed-32.webp',
+    '/images/offices/seeds/office-seed-33.webp',
+    '/images/offices/seeds/office-seed-34.webp',
+    '/images/offices/seeds/office-seed-35.webp',
+    '/images/offices/seeds/office-seed-36.webp',
+    '/images/offices/seeds/office-seed-37.webp',
+    '/images/offices/seeds/office-seed-38.webp',
+    '/images/offices/seeds/office-seed-39.webp',
+    '/images/offices/seeds/office-seed-40.webp',
+    '/images/offices/seeds/office-seed-41.webp',
+    '/images/offices/seeds/office-seed-42.webp',
+    '/images/offices/seeds/office-seed-43.webp',
+    '/images/offices/seeds/office-seed-44.webp',
+    '/images/offices/seeds/office-seed-45.webp',
+    '/images/offices/seeds/office-seed-46.webp',
+    '/images/offices/seeds/office-seed-47.webp',
+  ];
+
   return {
     data: faker.helpers.multiple(() => {
       const description = faker.helpers.arrayElement(PHOTO_DESCRIPTIONS);
+      const imageUrl = faker.helpers.arrayElement(SEED_IMAGES);
       return {
         alt: description,
         createdAt: arg.createdAt,
         id: createStringIdentifier(),
-        url: faker.image.urlPicsumPhotos({ height: 667, width: 1000 }),
+        url: imageUrl,
       };
     }),
   };
@@ -67,23 +164,18 @@ const createOfficeData = (arg: {
   years?: number;
 }): Prisma.OfficeCreateInput => {
   const title = faker.company.name();
-  const description = faker.lorem.paragraphs({
-    max: 20,
-    min: 5,
-  });
-  const arr = faker.number.int({ max: 20, min: 1 });
-  const price = faker.number.float({ fractionDigits: 2, max: 1500, min: 300 });
+  const arrondissement = faker.helpers.arrayElement(PARIS_ARRONDISSEMENTS);
+  const arr = arrondissement.arr;
+  const { lat, lng } = getRandomLocationInArrondissement(arr);
+  const price = faker.number.float({ max: 150000, min: 500, multipleOf: 100 });
   const type = faker.helpers.enumValue($Enums.OfficeType);
   const posts = faker.number.int({ max: 50, min: 1 });
-  const lat = faker.location.latitude({ max: 48.9, min: 48.8 });
-  const lng = faker.location.longitude({ max: 2.4, min: 2.3 });
   const createdAt = faker.date.past({ years: arg.years || 1 });
   const isFake = arg.isFake ?? faker.datatype.boolean({ probability: 0.2 });
 
   return {
     arr,
     createdAt,
-    description,
     id: createStringIdentifier(),
     isFake,
     lat,

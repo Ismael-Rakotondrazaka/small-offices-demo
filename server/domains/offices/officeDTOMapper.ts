@@ -9,7 +9,6 @@ export abstract class OfficeDTOMapper {
       arr: model.arr,
       createdAt: model.createdAt,
       deletedAt: model.deletedAt,
-      description: model.description,
       id: model.id,
       isFake: model.isFake,
       lat: model.lat,
