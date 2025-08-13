@@ -5,7 +5,7 @@ import { OfficeDTOMapper } from './officeDTOMapper';
 export const DestroyOfficeEventHandlerFn: EventHandlerFn<DestroyOfficeRequest> = async ({ params }) => {
   const office = await RepositoryProvider.officeRepository.findOne({
     where: {
-      id: params.id,
+      slug: params.slug,
     },
   });
 
@@ -17,7 +17,7 @@ export const DestroyOfficeEventHandlerFn: EventHandlerFn<DestroyOfficeRequest> =
 
   await RepositoryProvider.officeRepository.deleteOne({
     where: {
-      id: params.id,
+      slug: params.slug,
     },
   });
 

@@ -6,7 +6,7 @@ import { OfficeDTOMapper } from './officeDTOMapper';
 export const UpdateOfficeEventHandlerFn: EventHandlerFn<UpdateOfficeRequest> = async ({ body, params }) => {
   const office = await RepositoryProvider.officeRepository.findOne({
     where: {
-      id: params.id,
+      slug: params.slug,
     },
   });
 
@@ -38,7 +38,7 @@ export const UpdateOfficeEventHandlerFn: EventHandlerFn<UpdateOfficeRequest> = a
       title: body.title,
     },
     where: {
-      id: params.id,
+      slug: params.slug,
     },
   });
 

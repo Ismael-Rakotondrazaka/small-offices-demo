@@ -1,11 +1,10 @@
 import type { Request } from '~~/shared/requests/request';
 
-import { StringIdentifierSchema } from '~~/shared/schemas/identifierSchema';
 import { z } from 'zod';
 
 import type { OfficeDTO } from './officeDTO';
 
-export const UpdateOfficeRequestParamsSchema = z.object({ id: StringIdentifierSchema }); ;
+export const UpdateOfficeRequestParamsSchema = z.object({ slug: z.string() }); ;
 
 export type UpdateOfficeRequestParams = z.infer<typeof UpdateOfficeRequestParamsSchema>;
 

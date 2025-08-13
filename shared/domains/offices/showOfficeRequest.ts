@@ -1,11 +1,10 @@
 import type { Request } from '~~/shared/requests/request';
 
-import { StringIdentifierSchema } from '~~/shared/schemas/identifierSchema';
 import { z } from 'zod';
 
 import type { OfficeDTO } from './officeDTO';
 
-export const ShowOfficeRequestParamsSchema = z.object({ id: StringIdentifierSchema }); ;
+export const ShowOfficeRequestParamsSchema = z.object({ slug: z.string() }); ;
 
 export type ShowOfficeRequest = Request<ShowOfficeRequestData, Record<string, never>, ShowOfficeRequestParams>;
 export type ShowOfficeRequestData = {
