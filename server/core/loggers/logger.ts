@@ -1,7 +1,6 @@
 import type { Logger as WinstonLogger } from 'winston';
 
 import { createLogger, format, transports } from 'winston';
-import DailyRotateFile from 'winston-daily-rotate-file';
 
 const { colorize, combine, printf, timestamp } = format;
 
@@ -44,44 +43,9 @@ export class Logger {
         format: combine(colorize(), timestamp(), logFormat),
         level: this.isDev ? 'debug' : 'info',
       }),
-      // File transport for error logs
-      new DailyRotateFile({
-        datePattern: 'YYYY-MM-DD',
-        dirname: './logs',
-        filename: 'error-%DATE%.log',
-        level: 'error',
-        maxFiles: '30d',
-        maxSize: '20m',
-        zippedArchive: true,
-      }),
     ];
 
-    // Add development file transport only in dev mode
-    if (this.isDev) {
-      transportList.push(
-        new DailyRotateFile({
-          datePattern: 'YYYY-MM-DD',
-          dirname: './logs',
-          filename: 'dev-%DATE%.log',
-          level: 'debug',
-          maxFiles: '7d',
-          maxSize: '20m',
-          zippedArchive: true,
-        }),
-      );
-    }
-
     this.#logger = createLogger({
-      exceptionHandlers: [
-        new DailyRotateFile({
-          datePattern: 'YYYY-MM-DD',
-          dirname: './logs',
-          filename: 'exceptions-%DATE%.log',
-          maxFiles: '30d',
-          maxSize: '20m',
-          zippedArchive: true,
-        }),
-      ],
       format: combine(timestamp(), logFormat),
       level: this.isDev ? 'debug' : 'info',
       transports: transportList,
