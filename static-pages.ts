@@ -1,8 +1,5 @@
 import type { IndexOfficeRequestQuery } from './shared/domains/offices/indexOfficeRequest';
 
-import { officeConfig } from './shared/domains/offices/officeConfig';
-import { OfficeType } from './shared/domains/offices/officeType';
-
 export type StaticPageLink = {
   href: string;
   name: string;
@@ -22,10 +19,10 @@ export const staticPageLinks: StaticPageLink[] = [
     props: {
       propsQuery: {
         'page': 1,
-        'pageSize': officeConfig.PAGE_SIZE_DEFAULT_VALUE,
-        'type[equals]': OfficeType.OPEN_SPACE,
+        'pageSize': 15,
+        'type[equals]': 'OPEN_SPACE',
       },
-    },
+    } as const,
   },
   {
     href: '/bureaux-paris',
@@ -34,7 +31,7 @@ export const staticPageLinks: StaticPageLink[] = [
     props: {
       propsQuery: {
         page: 1,
-        pageSize: officeConfig.PAGE_SIZE_DEFAULT_VALUE,
+        pageSize: 15,
       },
     },
   },
@@ -46,10 +43,10 @@ export const staticPageLinks: StaticPageLink[] = [
       propsQuery: {
         'arr': [1],
         'page': 1,
-        'pageSize': officeConfig.PAGE_SIZE_DEFAULT_VALUE,
-        'type[equals]': OfficeType.OPEN_SPACE,
+        'pageSize': 15,
+        'type[equals]': 'OPEN_SPACE',
       },
-    },
+    } as const,
   },
   {
     href: '/coworking-paris-2',
@@ -59,10 +56,10 @@ export const staticPageLinks: StaticPageLink[] = [
       propsQuery: {
         'arr': [2],
         'page': 1,
-        'pageSize': officeConfig.PAGE_SIZE_DEFAULT_VALUE,
-        'type[equals]': OfficeType.OPEN_SPACE,
+        'pageSize': 15,
+        'type[equals]': 'OPEN_SPACE',
       },
-    },
+    } as const,
   },
   {
     href: '/coworking-paris-3',
@@ -72,10 +69,10 @@ export const staticPageLinks: StaticPageLink[] = [
       propsQuery: {
         'arr': [3],
         'page': 1,
-        'pageSize': officeConfig.PAGE_SIZE_DEFAULT_VALUE,
-        'type[equals]': OfficeType.OPEN_SPACE,
+        'pageSize': 15,
+        'type[equals]': 'OPEN_SPACE',
       },
-    },
+    } as const,
   },
   {
     href: '/coworking-paris-4',
@@ -85,10 +82,10 @@ export const staticPageLinks: StaticPageLink[] = [
       propsQuery: {
         'arr': [4],
         'page': 1,
-        'pageSize': officeConfig.PAGE_SIZE_DEFAULT_VALUE,
-        'type[equals]': OfficeType.OPEN_SPACE,
+        'pageSize': 15,
+        'type[equals]': 'OPEN_SPACE',
       },
-    },
+    } as const,
   },
   {
     href: '/coworking-paris-5',
@@ -98,10 +95,10 @@ export const staticPageLinks: StaticPageLink[] = [
       propsQuery: {
         'arr': [5],
         'page': 1,
-        'pageSize': officeConfig.PAGE_SIZE_DEFAULT_VALUE,
-        'type[equals]': OfficeType.OPEN_SPACE,
+        'pageSize': 15,
+        'type[equals]': 'OPEN_SPACE',
       },
-    },
+    } as const,
   },
   {
     href: '/coworking-paris-6',
@@ -111,10 +108,10 @@ export const staticPageLinks: StaticPageLink[] = [
       propsQuery: {
         'arr': [6],
         'page': 1,
-        'pageSize': officeConfig.PAGE_SIZE_DEFAULT_VALUE,
-        'type[equals]': OfficeType.OPEN_SPACE,
+        'pageSize': 15,
+        'type[equals]': 'OPEN_SPACE',
       },
-    },
+    } as const,
   },
   {
     href: '/coworking-paris-7',
@@ -124,10 +121,10 @@ export const staticPageLinks: StaticPageLink[] = [
       propsQuery: {
         'arr': [7],
         'page': 1,
-        'pageSize': officeConfig.PAGE_SIZE_DEFAULT_VALUE,
-        'type[equals]': OfficeType.OPEN_SPACE,
+        'pageSize': 15,
+        'type[equals]': 'OPEN_SPACE',
       },
-    },
+    } as const,
   },
   {
     href: '/coworking-paris-8',
@@ -137,10 +134,10 @@ export const staticPageLinks: StaticPageLink[] = [
       propsQuery: {
         'arr': [8],
         'page': 1,
-        'pageSize': officeConfig.PAGE_SIZE_DEFAULT_VALUE,
-        'type[equals]': OfficeType.OPEN_SPACE,
+        'pageSize': 15,
+        'type[equals]': 'OPEN_SPACE',
       },
-    },
+    } as const,
   },
   {
     href: '/coworking-paris-9',
@@ -150,10 +147,10 @@ export const staticPageLinks: StaticPageLink[] = [
       propsQuery: {
         'arr': [9],
         'page': 1,
-        'pageSize': officeConfig.PAGE_SIZE_DEFAULT_VALUE,
-        'type[equals]': OfficeType.OPEN_SPACE,
+        'pageSize': 15,
+        'type[equals]': 'OPEN_SPACE',
       },
-    },
+    } as const,
   },
   {
     href: '/coworking-paris-10',
@@ -163,10 +160,10 @@ export const staticPageLinks: StaticPageLink[] = [
       propsQuery: {
         'arr': [10],
         'page': 1,
-        'pageSize': officeConfig.PAGE_SIZE_DEFAULT_VALUE,
-        'type[equals]': OfficeType.OPEN_SPACE,
+        'pageSize': 15,
+        'type[equals]': 'OPEN_SPACE',
       },
-    },
+    } as const,
   },
   {
     href: '/coworking-paris-11',
@@ -176,10 +173,10 @@ export const staticPageLinks: StaticPageLink[] = [
       propsQuery: {
         'arr': [11],
         'page': 1,
-        'pageSize': officeConfig.PAGE_SIZE_DEFAULT_VALUE,
-        'type[equals]': OfficeType.OPEN_SPACE,
+        'pageSize': 15,
+        'type[equals]': 'OPEN_SPACE',
       },
-    },
+    } as const,
   },
   {
     href: '/coworking-paris-12',
@@ -189,10 +186,10 @@ export const staticPageLinks: StaticPageLink[] = [
       propsQuery: {
         'arr': [12],
         'page': 1,
-        'pageSize': officeConfig.PAGE_SIZE_DEFAULT_VALUE,
-        'type[equals]': OfficeType.OPEN_SPACE,
+        'pageSize': 15,
+        'type[equals]': 'OPEN_SPACE',
       },
-    },
+    } as const,
   },
   {
     href: '/coworking-paris-13',
@@ -202,10 +199,10 @@ export const staticPageLinks: StaticPageLink[] = [
       propsQuery: {
         'arr': [13],
         'page': 1,
-        'pageSize': officeConfig.PAGE_SIZE_DEFAULT_VALUE,
-        'type[equals]': OfficeType.OPEN_SPACE,
+        'pageSize': 15,
+        'type[equals]': 'OPEN_SPACE',
       },
-    },
+    } as const,
   },
   {
     href: '/coworking-paris-14',
@@ -215,10 +212,10 @@ export const staticPageLinks: StaticPageLink[] = [
       propsQuery: {
         'arr': [14],
         'page': 1,
-        'pageSize': officeConfig.PAGE_SIZE_DEFAULT_VALUE,
-        'type[equals]': OfficeType.OPEN_SPACE,
+        'pageSize': 15,
+        'type[equals]': 'OPEN_SPACE',
       },
-    },
+    } as const,
   },
   {
     href: '/coworking-paris-15',
@@ -228,10 +225,10 @@ export const staticPageLinks: StaticPageLink[] = [
       propsQuery: {
         'arr': [15],
         'page': 1,
-        'pageSize': officeConfig.PAGE_SIZE_DEFAULT_VALUE,
-        'type[equals]': OfficeType.OPEN_SPACE,
+        'pageSize': 15,
+        'type[equals]': 'OPEN_SPACE',
       },
-    },
+    } as const,
   },
   {
     href: '/coworking-paris-16',
@@ -241,10 +238,10 @@ export const staticPageLinks: StaticPageLink[] = [
       propsQuery: {
         'arr': [16],
         'page': 1,
-        'pageSize': officeConfig.PAGE_SIZE_DEFAULT_VALUE,
-        'type[equals]': OfficeType.OPEN_SPACE,
+        'pageSize': 15,
+        'type[equals]': 'OPEN_SPACE',
       },
-    },
+    } as const,
   },
   {
     href: '/coworking-paris-17',
@@ -254,10 +251,10 @@ export const staticPageLinks: StaticPageLink[] = [
       propsQuery: {
         'arr': [17],
         'page': 1,
-        'pageSize': officeConfig.PAGE_SIZE_DEFAULT_VALUE,
-        'type[equals]': OfficeType.OPEN_SPACE,
+        'pageSize': 15,
+        'type[equals]': 'OPEN_SPACE',
       },
-    },
+    } as const,
   },
   {
     href: '/coworking-paris-18',
@@ -267,10 +264,10 @@ export const staticPageLinks: StaticPageLink[] = [
       propsQuery: {
         'arr': [18],
         'page': 1,
-        'pageSize': officeConfig.PAGE_SIZE_DEFAULT_VALUE,
-        'type[equals]': OfficeType.OPEN_SPACE,
+        'pageSize': 15,
+        'type[equals]': 'OPEN_SPACE',
       },
-    },
+    } as const,
   },
   {
     href: '/coworking-paris-19',
@@ -280,10 +277,10 @@ export const staticPageLinks: StaticPageLink[] = [
       propsQuery: {
         'arr': [19],
         'page': 1,
-        'pageSize': officeConfig.PAGE_SIZE_DEFAULT_VALUE,
-        'type[equals]': OfficeType.OPEN_SPACE,
+        'pageSize': 15,
+        'type[equals]': 'OPEN_SPACE',
       },
-    },
+    } as const,
   },
   {
     href: '/coworking-paris-20',
@@ -293,10 +290,10 @@ export const staticPageLinks: StaticPageLink[] = [
       propsQuery: {
         'arr': [20],
         'page': 1,
-        'pageSize': officeConfig.PAGE_SIZE_DEFAULT_VALUE,
-        'type[equals]': OfficeType.OPEN_SPACE,
+        'pageSize': 15,
+        'type[equals]': 'OPEN_SPACE',
       },
-    },
+    } as const,
   },
 ];
 

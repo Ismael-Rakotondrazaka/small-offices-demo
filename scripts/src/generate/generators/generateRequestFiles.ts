@@ -44,7 +44,7 @@ const createStoreRequest = async (
 
   sourceFile.addImportDeclaration({
     isTypeOnly: true,
-    moduleSpecifier: '#shared/requests/request',
+    moduleSpecifier: '~~/shared/requests/request',
     namedImports: ['Request'],
   });
 
@@ -114,12 +114,12 @@ const createUpdateRequest = async (
 
   sourceFile.addImportDeclaration({
     isTypeOnly: true,
-    moduleSpecifier: '#shared/requests/request',
+    moduleSpecifier: '~~/shared/requests/request',
     namedImports: ['Request'],
   });
 
   sourceFile.addImportDeclaration({
-    moduleSpecifier: '#shared/schemas/identifierSchema',
+    moduleSpecifier: '~~/shared/schemas/identifierSchema',
     namedImports: ['StringIdentifierSchema'],
   });
 
@@ -205,12 +205,12 @@ const createShowRequest = async (
 
   sourceFile.addImportDeclaration({
     isTypeOnly: true,
-    moduleSpecifier: '#shared/requests/request',
+    moduleSpecifier: '~~/shared/requests/request',
     namedImports: ['Request'],
   });
 
   sourceFile.addImportDeclaration({
-    moduleSpecifier: '#shared/schemas/identifierSchema',
+    moduleSpecifier: '~~/shared/schemas/identifierSchema',
     namedImports: ['StringIdentifierSchema'],
   });
 
@@ -285,12 +285,12 @@ const createDestroyRequest = async (
 
   sourceFile.addImportDeclaration({
     isTypeOnly: true,
-    moduleSpecifier: '#shared/requests/request',
+    moduleSpecifier: '~~/shared/requests/request',
     namedImports: ['Request'],
   });
 
   sourceFile.addImportDeclaration({
-    moduleSpecifier: '#shared/schemas/identifierSchema',
+    moduleSpecifier: '~~/shared/schemas/identifierSchema',
     namedImports: ['StringIdentifierSchema'],
   });
 
@@ -372,17 +372,17 @@ const createIndexRequest = async (
 
   sourceFile.addImportDeclaration({
     isTypeOnly: true,
-    moduleSpecifier: '#shared/requests/request',
+    moduleSpecifier: '~~/shared/requests/request',
     namedImports: ['Request'],
   });
 
   sourceFile.addImportDeclaration({
-    moduleSpecifier: '#shared/schemas/paginationSchema',
+    moduleSpecifier: '~~/shared/schemas/paginationSchema',
     namedImports: ['makePaginatedSchema'],
   });
 
   sourceFile.addImportDeclaration({
-    moduleSpecifier: '#shared/schemas/sortOrderSchema',
+    moduleSpecifier: '~~/shared/schemas/sortOrderSchema',
     namedImports: ['SortOrderSchema'],
   });
 
