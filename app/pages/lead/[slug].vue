@@ -1,90 +1,116 @@
 <template>
-  <div class="mx-auto w-full max-w-2xl p-3">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
     <n-h1>Demander une visite</n-h1>
 
-    <n-card
-      v-if="data"
-      class="mb-5"
-      :title="`${data.data.title} - Paris ${data.data.arr}`"
-    >
-      <div class="flex flex-col md:flex-row gap-5">
-        <div class="md:w-1/3 w-full">
-          <n-image
-            :src="data.data.photos[0]!.url"
-            object-fit="cover"
-            class="rounded-lg w-full h-full"
-            width="100%"
-            height="100%"
-            :preview-disabled="true"
-          />
-        </div>
-        <div class="md:w-2/3 w-full">
-          <n-p strong>
-            {{ data.data.posts }} postes
-            ·
-            <template v-if="data.data.services.length">
-              {{ data.data.services.length }} services
-            </template>
-          </n-p>
-          <p>
-            <i18n-n
-              scope="global"
-              tag="span"
-              :value="data.data.price"
-              format="currency"
-              class="font-bold"
-            /> par mois
-          </p>
+    <div class="flex flex-col md:flex-row gap-8">
+      <div class="md:w-1/2 w-full">
+        <n-form>
+          <n-form-item
+            label="Nom"
+            required
+            v-bind="nameProps"
+          >
+            <n-input
+              v-model:value="name"
+              type="text"
+              placeholder="Votre nom"
+            />
+          </n-form-item>
+
+          <n-form-item
+            label="Email"
+            required
+            v-bind="emailProps"
+          >
+            <n-input
+              v-model:value="email"
+              type="text"
+              placeholder="Votre email"
+            />
+          </n-form-item>
+
+          <n-form-item
+            label="Téléphone"
+            required
+            v-bind="phoneProps"
+          >
+            <n-input
+              v-model:value="phone"
+              type="text"
+              placeholder="06 12 34 56 78 ou +33 6 12 34 56 78"
+            />
+          </n-form-item>
+
+          <n-button
+            class="mt-5"
+            type="primary"
+            :pending="isStoreLeadPending"
+            @click="handleStoreLead"
+          >
+            Envoyer la demande
+          </n-button>
+        </n-form>
+      </div>
+      <div class="md:w-1/2 w-full flex flex-col gap-5">
+        <n-card
+          v-if="data"
+          class="mb-5"
+          :title="`${data.data.title} - Paris ${data.data.arr}`"
+        >
+          <div class="flex flex-col md:flex-row gap-5">
+            <div class="md:w-1/3 w-full">
+              <n-image
+                :src="data.data.photos[0]!.url"
+                object-fit="cover"
+                class="rounded-lg w-full h-full"
+                width="100%"
+                height="100%"
+                :preview-disabled="true"
+              />
+            </div>
+            <div class="md:w-2/3 w-full">
+              <n-p strong>
+                {{ data.data.posts }} postes
+                ·
+                <template v-if="data.data.services.length">
+                  {{ data.data.services.length }} services
+                </template>
+              </n-p>
+              <p>
+                <i18n-n
+                  scope="global"
+                  tag="span"
+                  :value="data.data.price"
+                  format="currency"
+                  class="font-bold"
+                /> par mois
+              </p>
+            </div>
+          </div>
+        </n-card>
+        <div v-if="data">
+          <LMap
+            :zoom="15"
+            :center="[data.data.lat, data.data.lng]"
+            :use-global-leaflet="false"
+            class="rounded-lg"
+            style="height: 300px"
+          >
+            <LTileLayer
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              attribution="&amp;copy; <a href=&quot;https://www.openstreetmap.org/&quot;>OpenStreetMap</a> contributors"
+              layer-type="base"
+              name="OpenStreetMap"
+            />
+            <LCircle
+              :radius="70"
+              color="red"
+              :lat-lng="[data.data.lat, data.data.lng]"
+            />
+          </LMap>
         </div>
       </div>
-    </n-card>
-
-    <n-form>
-      <n-form-item
-        label="Nom"
-        required
-        v-bind="nameProps"
-      >
-        <n-input
-          v-model:value="name"
-          type="text"
-          placeholder="Votre nom"
-        />
-      </n-form-item>
-
-      <n-form-item
-        label="Email"
-        required
-        v-bind="emailProps"
-      >
-        <n-input
-          v-model:value="email"
-          type="text"
-          placeholder="Votre email"
-        />
-      </n-form-item>
-
-      <n-form-item
-        label="Téléphone"
-        required
-        v-bind="phoneProps"
-      >
-        <n-input
-          v-model:value="phone"
-          type="text"
-          placeholder="06 12 34 56 78 ou +33 6 12 34 56 78"
-        />
-      </n-form-item>
-
-      <n-button
-        class="mt-5"
-        type="primary"
-        :pending="isStoreLeadPending"
-        @click="handleStoreLead"
-      >
-        Envoyer la demande
-      </n-button>
-    </n-form>
+    </div>
   </div>
 </template>
 
