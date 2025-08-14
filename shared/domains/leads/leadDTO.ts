@@ -1,3 +1,4 @@
+import { type OfficeDTO, OfficeDTOSchema } from '~~/shared/domains/offices/officeDTO';
 import { z } from 'zod';
 
 import { type LeadStatus, LeadStatusSchema } from './leadStatus';
@@ -7,10 +8,10 @@ export interface LeadDTO {
   email: string;
   id: string;
   name: string;
-  officeId: string;
+  office: OfficeDTO;
   phone: null | string;
   status: LeadStatus;
   updatedAt: Date;
 }
 
-export const LeadDTOSchema: z.ZodType<LeadDTO> = z.object({ createdAt: z.coerce.date(), email: z.string().email(), id: z.string(), name: z.string(), officeId: z.string(), phone: z.string(), status: LeadStatusSchema, updatedAt: z.coerce.date() });
+export const LeadDTOSchema: z.ZodType<LeadDTO> = z.object({ createdAt: z.coerce.date(), email: z.string().email(), id: z.string(), name: z.string(), office: OfficeDTOSchema, phone: z.string(), status: LeadStatusSchema, updatedAt: z.coerce.date() });

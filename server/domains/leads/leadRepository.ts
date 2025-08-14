@@ -2,7 +2,19 @@ import type { Prisma } from '~~/generated/prisma/client';
 import type { ExtendedPrismaClient } from '~~/server/services/prisma/prismaProvider';
 
 export class LeadRepository {
-  static readonly #includeArg = {} satisfies Prisma.LeadInclude;
+  static readonly #includeArg = {
+    office: {
+      include: {
+        officeServices: {
+          include: {
+            service: true,
+          },
+        },
+        photos: true,
+      },
+    },
+  } satisfies Prisma.LeadInclude;
+
   #prismaClient: ExtendedPrismaClient;
 
   constructor(prismaClient: ExtendedPrismaClient) {

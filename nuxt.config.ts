@@ -154,6 +154,12 @@ export default defineNuxtConfig({
   },
 
   supabase: {
+    cookieOptions: {
+      maxAge: 60 * 60 * 24 * 365 * 10,
+      sameSite: 'lax',
+      secure: true,
+    },
+
     redirect: false,
   },
 

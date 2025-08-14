@@ -1,3 +1,5 @@
+import { OfficeDTOMapper } from '~~/server/domains/offices';
+
 import type { LeadModel } from './leadModel';
 
 export abstract class LeadDTOMapper {
@@ -7,7 +9,7 @@ export abstract class LeadDTOMapper {
       email: model.email,
       id: model.id,
       name: model.name,
-      officeId: model.officeId,
+      office: OfficeDTOMapper.toDTO(model.office),
       phone: model.phone,
       status: model.status,
       updatedAt: model.updatedAt,
