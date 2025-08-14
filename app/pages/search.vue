@@ -17,8 +17,7 @@
               <SearchOfficePostsRangeInput
                 :max="postsLte"
                 :min="postsGte"
-                @update:max="onUpdatePostsLteHandler"
-                @update:min="onUpdatePostsGteHandler"
+                @update:range="onUpdatePostsRangeHandler"
               />
               <SearchOfficeTypeInput
                 :value="type"
@@ -27,8 +26,7 @@
               <SearchOfficePriceRangeInput
                 :max="priceLte"
                 :min="priceGte"
-                @update:max="onUpdatePriceLteHandler"
-                @update:min="onUpdatePriceGteHandler"
+                @update:range="onUpdatePriceRangeHandler"
               />
               <n-button
                 type="primary"
@@ -267,50 +265,28 @@ const onUpdateTypeHandler = (value: OfficeType | undefined) => {
   });
 };
 
-const onUpdatePriceGteHandler = (value: number | undefined) => {
+const onUpdatePriceRangeHandler = (min: number | undefined, max: number | undefined) => {
   return navigateTo({
     name: 'search',
     query: {
       ...query.value,
       'page': 1,
       'pageSize': officeConfig.PAGE_SIZE_DEFAULT_VALUE,
-      'price[gte]': value,
+      'price[gte]': min,
+      'price[lte]': max,
     },
   });
 };
 
-const onUpdatePriceLteHandler = (value: number | undefined) => {
+const onUpdatePostsRangeHandler = (min: number | undefined, max: number | undefined) => {
   return navigateTo({
     name: 'search',
     query: {
       ...query.value,
       'page': 1,
       'pageSize': officeConfig.PAGE_SIZE_DEFAULT_VALUE,
-      'price[lte]': value,
-    },
-  });
-};
-
-const onUpdatePostsGteHandler = (value: number | undefined) => {
-  return navigateTo({
-    name: 'search',
-    query: {
-      ...query.value,
-      'page': 1,
-      'pageSize': officeConfig.PAGE_SIZE_DEFAULT_VALUE,
-      'posts[gte]': value,
-    },
-  });
-};
-
-const onUpdatePostsLteHandler = (value: number | undefined) => {
-  return navigateTo({
-    name: 'search',
-    query: {
-      ...query.value,
-      'page': 1,
-      'pageSize': officeConfig.PAGE_SIZE_DEFAULT_VALUE,
-      'posts[lte]': value,
+      'posts[gte]': min,
+      'posts[lte]': max,
     },
   });
 };
