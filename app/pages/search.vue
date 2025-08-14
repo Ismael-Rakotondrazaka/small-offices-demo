@@ -1,98 +1,122 @@
 <template>
-  <div class="container mx-auto py-2 px-4 sm:px-6 lg:px-8">
-    <div class="">
-      <!-- Search Filters -->
-      <n-flex
-        class="mb-5"
-      >
-        <SearchOfficeArrInput
-          :value="arr"
-          @update:value="onUpdateArrHandler"
-        />
-
-        <SearchOfficePostsRangeInput
-          :max="postsLte"
-          :min="postsGte"
-          @update:max="onUpdatePostsLteHandler"
-          @update:min="onUpdatePostsGteHandler"
-        />
-
-        <SearchOfficeTypeInput
-          :value="type"
-          @update:value="onUpdateTypeHandler"
-        />
-
-        <SearchOfficePriceRangeInput
-          :max="priceLte"
-          :min="priceGte"
-          @update:max="onUpdatePriceLteHandler"
-          @update:min="onUpdatePriceGteHandler"
-        />
-
-        <n-button
-          type="primary"
-          secondary
-          @click="resetSearch"
+  <div class="h-[calc(100vh-64px)]">
+    <div class="relative h-full">
+      <div class="flex h-full">
+        <div
+          class="w-full lg:w-1/2 lg:max-w-[600px] flex flex-col"
+          :class="{ hidden: isMobile && !showList }"
         >
-          <template #icon>
-            <Icon
-              name="mdi:refresh"
+          <div class="flex-shrink-0 p-4 border-b border-gray-200">
+            <n-flex
+              class="flex-wrap gap-2"
+            >
+              <SearchOfficeArrInput
+                :value="arr"
+                @update:value="onUpdateArrHandler"
+              />
+              <SearchOfficePostsRangeInput
+                :max="postsLte"
+                :min="postsGte"
+                @update:range="onUpdatePostsRangeHandler"
+              />
+              <SearchOfficeTypeInput
+                :value="type"
+                @update:value="onUpdateTypeHandler"
+              />
+              <SearchOfficePriceRangeInput
+                :max="priceLte"
+                :min="priceGte"
+                @update:range="onUpdatePriceRangeHandler"
+              />
+              <n-button
+                type="primary"
+                secondary
+                @click="resetSearch"
+              >
+                <template #icon>
+                  <Icon
+                    name="mdi:refresh"
+                  />
+                </template>
+              </n-button>
+              <n-button
+                @click="toggleSortByPrice"
+              >
+                <template #icon>
+                  <Icon
+                    v-if="orderByPrice === 'asc'"
+                    name="mdi:sort-ascending"
+                  />
+                  <Icon
+                    v-else
+                    name="mdi:sort-descending"
+                  />
+                </template>
+              </n-button>
+            </n-flex>
+          </div>
+          <div class="flex-1 overflow-y-auto p-4">
+            <OfficePaginatedList
+              v-if="data !== undefined"
+              :page="page"
+              :page-size="pageSize"
+              :offices="data.data"
+              :total-count="data.pagination.totalCount"
+              :total-pages="data.pagination.totalPages"
+              :is-loading="isLoading"
+              @update:page="onUpdatePageHandler"
+              @update:page-size="onUpdatePageSizeHandler"
             />
-          </template>
-        </n-button>
-
-        <n-button
-          @click="toggleSortByPrice"
+            <div
+              v-else-if="data === undefined"
+              class="text-center"
+            >
+              <n-empty
+                size="huge"
+                description="Aucun bureau trouvé"
+                class="mb-5"
+              />
+              <n-button
+                type="primary"
+                @click="resetSearch"
+              >
+                Modifier la recherche
+              </n-button>
+            </div>
+          </div>
+        </div>
+        <div
+          class="w-full lg:w-1/2 flex-1"
+          :class="{ hidden: isMobile && showList }"
         >
-          <template #icon>
-            <Icon
-              v-if="orderByPrice === 'asc'"
-              name="mdi:sort-ascending"
-            />
-            <Icon
-              v-else
-              name="mdi:sort-descending"
-            />
-          </template>
-        </n-button>
-      </n-flex>
-
-      <!-- Search Results -->
-      <OfficePaginatedList
-        v-if="data !== undefined"
-        :page="page"
-        :page-size="pageSize"
-        :offices="data.data"
-        :total-count="data.pagination.totalCount"
-        :total-pages="data.pagination.totalPages"
-        :is-loading="isLoading"
-        @update:page="onUpdatePageHandler"
-        @update:page-size="onUpdatePageSizeHandler"
-      />
-
-      <div
-        v-else-if="data === undefined"
-        class="text-center"
-      >
-        <n-empty
-          size="huge"
-          description="Aucun bureau trouvé"
-          class="mb-5"
-        />
-
-        <n-button
-          type="primary"
-          @click="resetSearch"
-        >
-          Modifier la recherche
-        </n-button>
+          <SearchMap :offices="data ? data.data : []" />
+        </div>
       </div>
     </div>
+
+    <n-button
+      v-if="isMobile"
+      type="primary"
+      size="large"
+      class="fixed mr-4 z-50 shadow-lg"
+      @click="toggleView"
+    >
+      <template #icon>
+        <Icon
+          :name="showList ? 'mdi:map' : 'mdi:format-list-bulleted'"
+        />
+      </template>
+      {{ showList ? 'Voir la carte' : 'Voir la liste' }}
+    </n-button>
   </div>
 </template>
 
 <script lang="ts" setup>
 import type { OfficeType } from '#imports';
+
+definePageMeta({
+  layout: 'map',
+});
 
 interface Props {
   propsQuery?: {
@@ -103,6 +127,26 @@ interface Props {
 const props = defineProps<Props>();
 
 const route = useRoute('search');
+
+const isMobile = ref(false);
+const showList = ref(true);
+
+const updateMobileState = () => {
+  isMobile.value = window.innerWidth < 1024;
+};
+
+const toggleView = () => {
+  showList.value = !showList.value;
+};
+
+onMounted(() => {
+  updateMobileState();
+  window.addEventListener('resize', updateMobileState);
+});
+
+onUnmounted(() => {
+  window.removeEventListener('resize', updateMobileState);
+});
 
 const arr = computed<number[]>(() => {
   if (props.propsQuery?.['arr'] !== undefined) return props.propsQuery['arr'] ?? [];
@@ -221,50 +265,28 @@ const onUpdateTypeHandler = (value: OfficeType | undefined) => {
   });
 };
 
-const onUpdatePriceGteHandler = (value: number | undefined) => {
+const onUpdatePriceRangeHandler = (min: number | undefined, max: number | undefined) => {
   return navigateTo({
     name: 'search',
     query: {
       ...query.value,
       'page': 1,
       'pageSize': officeConfig.PAGE_SIZE_DEFAULT_VALUE,
-      'price[gte]': value,
+      'price[gte]': min,
+      'price[lte]': max,
     },
   });
 };
 
-const onUpdatePriceLteHandler = (value: number | undefined) => {
+const onUpdatePostsRangeHandler = (min: number | undefined, max: number | undefined) => {
   return navigateTo({
     name: 'search',
     query: {
       ...query.value,
       'page': 1,
       'pageSize': officeConfig.PAGE_SIZE_DEFAULT_VALUE,
-      'price[lte]': value,
-    },
-  });
-};
-
-const onUpdatePostsGteHandler = (value: number | undefined) => {
-  return navigateTo({
-    name: 'search',
-    query: {
-      ...query.value,
-      'page': 1,
-      'pageSize': officeConfig.PAGE_SIZE_DEFAULT_VALUE,
-      'posts[gte]': value,
-    },
-  });
-};
-
-const onUpdatePostsLteHandler = (value: number | undefined) => {
-  return navigateTo({
-    name: 'search',
-    query: {
-      ...query.value,
-      'page': 1,
-      'pageSize': officeConfig.PAGE_SIZE_DEFAULT_VALUE,
-      'posts[lte]': value,
+      'posts[gte]': min,
+      'posts[lte]': max,
     },
   });
 };

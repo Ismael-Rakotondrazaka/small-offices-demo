@@ -102,8 +102,7 @@ type Props = {
 const props = defineProps<Props>();
 
 type Emits = {
-  'update:max': [value: number | undefined];
-  'update:min': [value: number | undefined];
+  'update:range': [min: number | undefined, max: number | undefined];
 };
 
 const emit = defineEmits<Emits>();
@@ -134,8 +133,8 @@ watch(() => props.max, (newValue) => {
 });
 
 watch(localValue, (newValue) => {
-  const newMin = newValue[0] === 0 ? undefined : newValue[0];
-  const newMax = newValue[1] === 500 ? undefined : newValue[1];
+  const newMin = newValue[0] === DEFAULT_VALUES.min ? undefined : newValue[0];
+  const newMax = newValue[1] === DEFAULT_VALUES.max ? undefined : newValue[1];
 
   localMin.value = newMin;
   localMax.value = newMax;
@@ -150,11 +149,10 @@ watch(localMax, (newValue) => {
 });
 
 const apply = () => {
-  const newMin = localValue.value[0] === 0 ? undefined : localValue.value[0];
-  const newMax = localValue.value[1] === 500 ? undefined : localValue.value[1];
+  const newMin = localValue.value[0] === DEFAULT_VALUES.min ? undefined : localValue.value[0];
+  const newMax = localValue.value[1] === DEFAULT_VALUES.max ? undefined : localValue.value[1];
 
-  emit('update:min', newMin);
-  emit('update:max', newMax);
+  emit('update:range', newMin, newMax);
   showPopover.value = false;
 };
 
