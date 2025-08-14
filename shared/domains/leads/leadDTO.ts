@@ -13,4 +13,4 @@ export interface LeadDTO {
   updatedAt: Date;
 }
 
-export const LeadDTOSchema: z.ZodType<LeadDTO> = z.object({ createdAt: z.coerce.date(), email: z.string().email(), id: z.string(), name: z.string(), officeId: z.string(), phone: z.string().nullable(), status: LeadStatusSchema, updatedAt: z.coerce.date() });
+export const LeadDTOSchema: z.ZodType<LeadDTO> = z.object({ createdAt: z.coerce.date(), email: z.string().email(), id: z.string(), name: z.string(), officeId: z.string(), phone: z.string(), status: LeadStatusSchema, updatedAt: z.coerce.date() });

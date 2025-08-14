@@ -78,7 +78,7 @@ model Lead {
   office    Office     @relation(fields: [officeId], references: [id])
   name      String
   email     String
-  phone     String?
+  phone     String
   status    LeadStatus @default(PENDING)
   createdAt DateTime   @default(now())
   updatedAt DateTime   @updatedAt
