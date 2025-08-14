@@ -84,7 +84,8 @@ import type { DataTableColumns, PaginationProps, SelectOption } from 'naive-ui';
 import { useRouteQuery } from '@vueuse/router';
 import { Icon } from '#components';
 import { LeadStatus, LeadStatuses, LeadStatusLabel } from '~~/shared/domains/leads/leadStatus';
-import { NFlex, NSelect, NTag } from 'naive-ui';
+import { NCard, NFlex, NImage, NPopover, NSelect, NTag } from 'naive-ui';
+import { I18nN } from 'vue-i18n';
 
 definePageMeta({
   layout: 'admin',
@@ -406,6 +407,64 @@ const columns = computed<DataTableColumns<Serialize<LeadDTO>>>(() => [
     render: row => formatDate(new Date(row.createdAt)),
     sorter: false,
     title: 'Date',
+  },
+  {
+    key: 'office',
+    render: row => h(
+      NPopover,
+      {
+        placement: 'top',
+        trigger: 'hover',
+      },
+      {
+        default: () => h(
+          NCard,
+          {
+            bordered: false,
+            size: 'small',
+            style: {
+              maxWidth: '300px',
+            },
+          },
+          {
+            default: () => [
+              row.office.photos.length > 0 && h(
+                NImage,
+                {
+                  alt: row.office.title,
+                  class: 'rounded mb-2',
+                  height: '120px',
+                  objectFit: 'cover',
+                  src: row.office.photos[0]!.url,
+                  width: '100%',
+                },
+              ),
+              h('div', { class: 'font-medium mb-1' }, row.office.title),
+              h('div', { class: 'text-sm text-gray-600 mb-1' }, `Paris ${row.office.arr}`),
+              h('div', { class: 'text-sm text-gray-600' }, `${row.office.posts} postes`),
+            ],
+          },
+        ),
+        trigger: () => h('div', { class: 'font-medium cursor-pointer hover:text-blue-600' }, row.office.title),
+      },
+    ),
+    sorter: false,
+    title: 'Bureaux',
+  },
+  {
+    key: 'price',
+    render: row => h(
+      'div',
+      { class: 'font-medium' },
+      h(I18nN, {
+        format: 'currency',
+        scope: 'global',
+        tag: 'span',
+        value: row.office.price,
+      }),
+    ),
+    sorter: false,
+    title: 'Prix',
   },
   {
     key: 'actions',
