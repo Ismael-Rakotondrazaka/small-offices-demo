@@ -35,6 +35,16 @@
               {{ data.data.services.length }} services
             </template>
           </n-p>
+
+          <n-flex class="mb-4">
+            <n-tag
+              v-for="service in data.data.services"
+              :key="service.id"
+            >
+              {{ service.name }}
+            </n-tag>
+          </n-flex>
+
           <p class="mb-4">
             <i18n-n
               scope="global"
