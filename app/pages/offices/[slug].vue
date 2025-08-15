@@ -40,6 +40,7 @@
             <n-tag
               v-for="service in data.data.services"
               :key="service.id"
+              type="info"
             >
               {{ service.name }}
             </n-tag>

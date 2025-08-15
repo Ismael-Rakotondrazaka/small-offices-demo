@@ -5,12 +5,8 @@ export class LeadRepository {
   static readonly #includeArg = {
     office: {
       include: {
-        officeServices: {
-          include: {
-            service: true,
-          },
-        },
         photos: true,
+        services: true,
       },
     },
   } satisfies Prisma.LeadInclude;

@@ -93,7 +93,7 @@ import { useRouteQuery } from '@vueuse/router';
 import { Icon } from '#components';
 import { officeConfig } from '~~/shared/domains/offices/officeConfig';
 import { OfficeTypeLabel } from '~~/shared/domains/offices/officeType';
-import { NButton, NCard, NFlex, NImage, NPopover, NSelect, NTag } from 'naive-ui';
+import { NButton, NCarousel, NCarouselItem, NFlex, NPopover, NSelect, NTag } from 'naive-ui';
 import { I18nN } from 'vue-i18n';
 
 definePageMeta({
@@ -470,29 +470,35 @@ const columns = computed<DataTableColumns<Serialize<OfficeDTO>>>(() => [
       },
       {
         default: () => h(
-          NCard,
+          NCarousel,
           {
-            bordered: false,
-            size: 'small',
+            showArrow: true,
+            showDots: true,
             style: {
-              maxWidth: '300px',
+              height: '12rem',
+              maxWidth: '17rem',
             },
           },
           {
-            default: () => [
-              row.photos.length > 0 && h(
-                NImage,
+            default: () =>
+              row.photos.map(photo => h(
+                NCarouselItem,
+                null,
                 {
-                  alt: row.title,
-                  class: 'rounded mb-2',
-                  height: '120px',
-                  objectFit: 'cover',
-                  src: row.photos[0]!.url,
-                  width: '100%',
+                  default: () => h(
+                    'img',
+                    {
+                      alt: photo.alt ?? photo.id,
+                      src: photo.url,
+                      style: {
+                        height: '12rem',
+                        objectFit: 'cover',
+                        width: '17rem',
+                      },
+                    },
+                  ),
                 },
-              ),
-              h('div', { class: 'text-sm text-gray-600' }, `${row.photos.length} photo(s)`),
-            ],
+              )),
           },
         ),
         trigger: () => h('div', { class: 'font-medium cursor-pointer hover:text-blue-600' }, `${row.photos.length} photo(s)`),
@@ -511,18 +517,45 @@ const columns = computed<DataTableColumns<Serialize<OfficeDTO>>>(() => [
     key: 'actions',
     render: row => h(
       NFlex,
-      { gap: 'small' },
+      {
+        size: 'small',
+        wrap: false,
+      },
       {
         default: () => [
           h(
             NButton,
             {
-              onClick: () => navigateTo(`/admin/offices/${row.slug}/edit`),
+              onClick: () => navigateTo({
+                name: 'admin-offices-slug',
+                params: {
+                  slug: row.slug,
+                },
+              }),
+              secondary: true,
+              size: 'small',
+              type: 'default',
+            },
+            {
+              icon: () => h(Icon, { name: 'mdi:eye' }),
+            },
+          ),
+          h(
+            NButton,
+            {
+              onClick: () => navigateTo({
+                name: 'admin-offices-slug-modifier',
+                params: {
+                  slug: row.slug,
+                },
+              }),
               secondary: true,
               size: 'small',
               type: 'primary',
             },
-            { default: () => 'Modifier' },
+            {
+              icon: () => h(Icon, { name: 'mdi:pencil' }),
+            },
           ),
         ],
       },

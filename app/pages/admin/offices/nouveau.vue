@@ -2,7 +2,7 @@
   <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
     <n-h1>Créer un nouveau bureau</n-h1>
 
-    <n-form class="max-w-4xl">
+    <n-form>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
         <div>
           <n-form-item
