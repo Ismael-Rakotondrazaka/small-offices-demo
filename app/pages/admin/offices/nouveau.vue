@@ -194,7 +194,6 @@
 import type { SelectOption, UploadCustomRequestOptions, UploadOnRemove } from 'naive-ui';
 
 import slugify from 'slugify';
-import { v7 as uuidv7 } from 'uuid';
 
 definePageMeta({
   layout: 'admin',
@@ -234,9 +233,7 @@ const {
 });
 
 const [title, titleProps] = defineField('title', makeInputProps<StoreOfficeRequestBody['title']>);
-useNonEmptyString(title);
 const [slug, slugProps] = defineField('slug', makeInputProps<StoreOfficeRequestBody['slug']>);
-useNonEmptyString(slug);
 const [type, typeProps] = defineField('type', makeInputProps<StoreOfficeRequestBody['type']>);
 const [arr, arrProps] = defineField('arr', makeInputProps<StoreOfficeRequestBody['arr']>);
 const [posts, postsProps] = defineField('posts', makeInputProps<StoreOfficeRequestBody['posts']>);
@@ -249,6 +246,8 @@ const [isFake, isFakeProps] = defineField('isFake', makeInputProps<StoreOfficeRe
 
 const supabase = useSupabaseClient();
 
+const config = useRuntimeConfig();
+
 const customMediaUploadRequest = async ({
   file: _file,
   onError,
@@ -259,12 +258,10 @@ const customMediaUploadRequest = async ({
       return;
     }
 
-    const { data, error } = await supabase.storage.from('petits-bureaux').upload(`/offices/${slug.value}/${uuidv7()}__${slugify(_file.file.name, {
-      locale: 'fr',
-      lower: true,
-    })}`, _file.file, {
-      contentType: _file.file.type,
-    });
+    const { data, error } = await supabase.storage.from(config.public.fileStorageBucketName)
+      .upload(`/offices/${slug.value}/${formatFileName(_file.file.name)}`, _file.file, {
+        contentType: _file.file.type,
+      });
 
     if (error || !data) {
       onError();
@@ -272,7 +269,7 @@ const customMediaUploadRequest = async ({
       return;
     }
 
-    photoUrls.value.push(data.fullPath);
+    photoUrls.value.push(`${config.public.fileStorageBucketEntryPoint}/${data.path}`);
 
     onFinish();
     message.success(`Photo ${_file.file.name} ajoutée avec succès`);
