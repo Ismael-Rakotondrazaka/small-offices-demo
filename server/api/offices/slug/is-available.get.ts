@@ -1,0 +1,1 @@
+export default defineEventHandler(new EventHandlerBuilder<IsAvailableOfficeRequest>().query(IsAvailableOfficeRequestQuerySchema).handle(IsAvailableOfficeEventHandlerFn));

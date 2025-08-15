@@ -19,6 +19,7 @@ export abstract class OfficeDTOMapper {
       services: ServiceDTOMapper.toDTOs(model.officeServices.map(officeService => officeService.service)),
       slug: model.slug,
       title: model.title,
+      type: model.type,
       updatedAt: model.updatedAt,
     };
   }

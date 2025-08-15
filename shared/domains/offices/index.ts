@@ -1,5 +1,6 @@
 export * from './destroyOfficeRequest';
 export * from './indexOfficeRequest';
+export * from './isAvailableOfficeRequest';
 export * from './officeConfig';
 export * from './officeDTO';
 export * from './officeType';

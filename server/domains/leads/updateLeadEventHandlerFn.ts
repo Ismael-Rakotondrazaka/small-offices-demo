@@ -2,7 +2,9 @@ import { RepositoryProvider } from '~~/server/services/repositories/repositoryPr
 
 import { LeadDTOMapper } from './leadDTOMapper';
 
-export const UpdateLeadEventHandlerFn: EventHandlerFn<UpdateLeadRequest> = async ({ body, params }) => {
+export const UpdateLeadEventHandlerFn: EventHandlerFn<UpdateLeadRequest> = async ({ body, params, userSession }) => {
+  await userSession.require();
+
   const lead = await RepositoryProvider.leadRepository.findOne({
     where: {
       id: params.id,
@@ -17,10 +19,7 @@ export const UpdateLeadEventHandlerFn: EventHandlerFn<UpdateLeadRequest> = async
 
   const updatedLead = await RepositoryProvider.leadRepository.updateOne({
     data: {
-      email: body.email,
-      name: body.name,
-      officeId: body.officeId,
-      phone: body.phone,
+      status: body.status,
     },
     where: {
       id: params.id,

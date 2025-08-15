@@ -69,7 +69,6 @@ enum LeadStatus {
   CONTACTED // Lead has been contacted
   CONVERTED // Lead has been converted to a client
   LOST // Lead has been lost
-  DELETED // Lead has been deleted
 }
 
 model Lead {

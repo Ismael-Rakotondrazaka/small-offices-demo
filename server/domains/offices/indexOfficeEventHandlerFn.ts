@@ -15,6 +15,7 @@ export const IndexOfficeEventHandlerFn: EventHandlerFn<IndexOfficeRequest> = asy
     'price[gte]',
     'price[lte]',
     'type[equals]',
+    'search',
   ]);
   const where: Prisma.OfficeWhereInput = {
     AND: haveWhereQueries
@@ -26,6 +27,14 @@ export const IndexOfficeEventHandlerFn: EventHandlerFn<IndexOfficeRequest> = asy
           query['price[gte]'] ? { price: { gte: query['price[gte]'] } } : {},
           query['price[lte]'] ? { price: { lte: query['price[lte]'] } } : {},
           query['type[equals]'] ? { type: query['type[equals]'] } : {},
+          query['search']
+            ? {
+                OR: [
+                  { title: { contains: query['search'], mode: 'insensitive' } },
+                  { slug: { contains: query['search'], mode: 'insensitive' } },
+                ],
+              }
+            : {},
         ]
       : undefined,
   };
