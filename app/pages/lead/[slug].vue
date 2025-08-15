@@ -89,25 +89,12 @@
           </div>
         </n-card>
         <div v-if="data">
-          <LMap
-            :zoom="15"
-            :center="[data.data.lat, data.data.lng]"
-            :use-global-leaflet="false"
+          <LocationPreview
+            :lat="data.data.lat"
+            :lng="data.data.lng"
             class="rounded-lg"
             style="height: 300px"
-          >
-            <LTileLayer
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-              attribution="&amp;copy; <a href=&quot;https://www.openstreetmap.org/&quot;>OpenStreetMap</a> contributors"
-              layer-type="base"
-              name="OpenStreetMap"
-            />
-            <LCircle
-              :radius="70"
-              color="red"
-              :lat-lng="[data.data.lat, data.data.lng]"
-            />
-          </LMap>
+          />
         </div>
       </div>
     </div>

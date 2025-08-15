@@ -142,22 +142,6 @@ const createPhotos = (
   };
 };
 
-const createOfficeServices = (
-  arg: {
-    createdAt?: Date;
-    services: Service[];
-  },
-): Prisma.OfficeServiceCreateManyOfficeInputEnvelope => {
-  return {
-    data: faker.helpers.arrayElements(arg.services).map(service => ({
-      createdAt: faker.date.soon({
-        refDate: arg.createdAt,
-      }),
-      serviceId: service.id,
-    })),
-  };
-};
-
 const createOfficeData = (arg: {
   arr?: number;
   isFake?: boolean;
@@ -183,14 +167,14 @@ const createOfficeData = (arg: {
     isFake,
     lat,
     lng,
-    officeServices: {
-      createMany: createOfficeServices({ createdAt, services: arg.services }),
-    },
     photos: {
       createMany: createPhotos({ createdAt }),
     },
     posts,
     price,
+    services: {
+      connect: arg.services.map(service => ({ id: service.id })),
+    },
     slug: faker.helpers.slugify(title).toLowerCase(),
     title,
     type,

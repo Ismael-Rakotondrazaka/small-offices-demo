@@ -37,22 +37,22 @@ enum OfficeType {
 }
 
 model Office {
-  id             String          @id @default(uuid())
-  title          String
-  slug           String          @unique
-  price          Float
-  arr            Int
-  posts          Int
-  type           OfficeType
-  isFake         Boolean         @default(false)
-  lat            Float
-  lng            Float
-  createdAt      DateTime        @default(now())
-  updatedAt      DateTime        @updatedAt
-  deletedAt      DateTime?
-  photos         Photo[]
-  leads          Lead[]
-  officeServices OfficeService[]
+  id        String     @id @default(uuid())
+  title     String
+  slug      String     @unique
+  price     Float
+  arr       Int
+  posts     Int
+  type      OfficeType
+  isFake    Boolean    @default(false)
+  lat       Float
+  lng       Float
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  deletedAt DateTime?
+  photos    Photo[]
+  leads     Lead[]
+  services  Service[]
 }
 
 model Photo {
@@ -84,20 +84,9 @@ model Lead {
 }
 
 model Service {
-  id             String          @id @default(uuid())
-  name           String
-  icon           String?
-  createdAt      DateTime        @default(now())
-  officeServices OfficeService[]
-}
-
-model OfficeService {
   id        String   @id @default(uuid())
-  officeId  String
-  office    Office   @relation(fields: [officeId], references: [id])
-  serviceId String
-  service   Service  @relation(fields: [serviceId], references: [id])
+  name      String
+  icon      String?
   createdAt DateTime @default(now())
-
-  @@unique([officeId, serviceId])
+  offices   Office[]
 }
