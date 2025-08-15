@@ -361,7 +361,7 @@ const handleStoreOffice = handleSubmit(async (values) => {
     resetForm();
 
     return navigateTo({
-      name: 'admin-offices-id',
+      name: 'admin-offices',
       params: {
         id: officeData.data.id,
       },
