@@ -3,12 +3,8 @@ import type { ExtendedPrismaClient } from '~~/server/services/prisma/prismaProvi
 
 export class OfficeRepository {
   static readonly #includeArg = {
-    officeServices: {
-      include: {
-        service: true,
-      },
-    },
     photos: true,
+    services: true,
   } satisfies Prisma.OfficeInclude;
 
   #prismaClient: ExtendedPrismaClient;

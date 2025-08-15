@@ -37,23 +37,22 @@ enum OfficeType {
 }
 
 model Office {
-  id             String          @id @default(uuid())
-  title          String
-  description    String          @db.Text
-  slug           String          @unique
-  price          Float
-  arr            Int
-  posts          Int
-  type           OfficeType
-  isFake         Boolean         @default(false)
-  lat            Float
-  lng            Float
-  createdAt      DateTime        @default(now())
-  updatedAt      DateTime        @updatedAt
-  deletedAt      DateTime?
-  photos         Photo[]
-  leads          Lead[]
-  officeServices OfficeService[]
+  id        String     @id @default(uuid())
+  title     String
+  slug      String     @unique
+  price     Float
+  arr       Int
+  posts     Int
+  type      OfficeType
+  isFake    Boolean    @default(false)
+  lat       Float
+  lng       Float
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  deletedAt DateTime?
+  photos    Photo[]
+  leads     Lead[]
+  services  Service[]
 }
 
 model Photo {
@@ -70,7 +69,6 @@ enum LeadStatus {
   CONTACTED // Lead has been contacted
   CONVERTED // Lead has been converted to a client
   LOST // Lead has been lost
-  DELETED // Lead has been deleted
 }
 
 model Lead {
@@ -79,27 +77,16 @@ model Lead {
   office    Office     @relation(fields: [officeId], references: [id])
   name      String
   email     String
-  phone     String?
+  phone     String
   status    LeadStatus @default(PENDING)
   createdAt DateTime   @default(now())
   updatedAt DateTime   @updatedAt
 }
 
 model Service {
-  id             String          @id @default(uuid())
-  name           String
-  icon           String?
-  createdAt      DateTime        @default(now())
-  officeServices OfficeService[]
-}
-
-model OfficeService {
   id        String   @id @default(uuid())
-  officeId  String
-  office    Office   @relation(fields: [officeId], references: [id])
-  serviceId String
-  service   Service  @relation(fields: [serviceId], references: [id])
+  name      String
+  icon      String?
   createdAt DateTime @default(now())
-
-  @@unique([officeId, serviceId])
+  offices   Office[]
 }

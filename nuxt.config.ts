@@ -2,6 +2,8 @@
 import { generateAntdColorThemes } from '@bg-dev/nuxt-naiveui/utils';
 import tailwindcss from '@tailwindcss/vite';
 
+import { staticPageLinks } from './static-pages';
+
 const makeLocaleFiles = (locale: string) =>
   [
     'dates',
@@ -99,6 +101,7 @@ export default defineNuxtConfig({
     '@nuxt/test-utils/module',
     '@nuxtjs/supabase',
     '@nuxt/scripts',
+    '@nuxtjs/leaflet',
   ],
 
   naiveui: {
@@ -109,6 +112,12 @@ export default defineNuxtConfig({
     },
   },
 
+  nitro: {
+    prerender: {
+      routes: staticPageLinks.map(link => link.href),
+    },
+  },
+
   robots: {
     disallow: [],
   },
@@ -116,23 +125,21 @@ export default defineNuxtConfig({
   routeRules: {},
 
   runtimeConfig: {
-    /* ------------------------------ File Storage ------------------------------ */
-    fileStorageBucketEntryPoint: '',
-    fileStorageBucketName: '',
-    fileStorageServiceAccountName: '',
-    fileStorageSignedUrlExpiration: 60 * 60 * 24, // 1 day,
-
     informationEmail: '',
+
     public: {
       appUrl: 'http://localhost:3000',
       appVersion: '1.0.0',
+
+      /* ------------------------------ File Storage ------------------------------ */
+      fileStorageBucketEntryPoint: '',
+      fileStorageBucketName: '',
     },
+
     /* ---------------------------------- SMTP ---------------------------------- */
     smtpHost: '',
     smtpPassword: '',
-
     smtpPort: '',
-
     smtpUser: '',
   },
 
@@ -145,6 +152,12 @@ export default defineNuxtConfig({
   },
 
   supabase: {
+    cookieOptions: {
+      maxAge: 60 * 60 * 24 * 365 * 10,
+      sameSite: 'lax',
+      secure: true,
+    },
+
     redirect: false,
   },
 

@@ -14,12 +14,17 @@ export const StoreOfficeEventHandlerFn: EventHandlerFn<StoreOfficeRequest> = asy
   const office = await RepositoryProvider.officeRepository.addOne({
     data: {
       arr: body.arr,
-      description: body.description,
       isFake: body.isFake,
       lat: body.lat,
       lng: body.lng,
+      photos: {
+        create: [...new Set(body.photoUrls)].map(url => ({ url })),
+      },
       posts: body.posts,
       price: body.price,
+      services: {
+        connect: [...new Set(body.serviceIds)].map(id => ({ id })),
+      },
       slug: uniqueSlug,
       title: body.title,
       type: body.type,

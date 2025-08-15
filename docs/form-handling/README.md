@@ -485,7 +485,7 @@ const handleReset = () => {
 
 ```typescript
 // Import generated types
-import type { StorePostRequestBody } from '#shared/domains/posts/storePostRequest';
+import type { StorePostRequestBody } from '~~/shared/domains/posts/storePostRequest';
 
 // Use in form
 const initialValues: StorePostRequestBody = {
@@ -498,7 +498,7 @@ const initialValues: StorePostRequestBody = {
 
 ```typescript
 // Import generated schema
-import { StorePostRequestBodySchema } from '#shared/domains/posts/storePostRequest';
+import { StorePostRequestBodySchema } from '~~/shared/domains/posts/storePostRequest';
 
 // Use for validation
 validationSchema: toTypedSchema(StorePostRequestBodySchema)

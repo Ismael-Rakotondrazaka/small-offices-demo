@@ -1,10 +1,16 @@
-import type { Request } from '#shared/requests/request';
+import type { Request } from '~~/shared/requests/request';
 
 import { z } from 'zod';
 
 import type { LeadDTO } from './leadDTO';
+import { PhoneNumberSchema } from '~~/shared/schemas';
 
-export const StoreLeadRequestBodySchema = z.object({ email: z.string(), name: z.string(), officeId: z.string(), phone: z.string().nullable() });
+export const StoreLeadRequestBodySchema = z.object({
+  email: z.string().email(),
+  name: z.string(),
+  officeSlug: z.string(),
+  phone: PhoneNumberSchema,
+});
 
 export type StoreLeadRequest = Request<StoreLeadRequestData, StoreLeadRequestBody>;
 export type StoreLeadRequestBody = z.infer<typeof StoreLeadRequestBodySchema>;

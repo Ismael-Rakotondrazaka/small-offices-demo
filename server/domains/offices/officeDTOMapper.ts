@@ -9,7 +9,6 @@ export abstract class OfficeDTOMapper {
       arr: model.arr,
       createdAt: model.createdAt,
       deletedAt: model.deletedAt,
-      description: model.description,
       id: model.id,
       isFake: model.isFake,
       lat: model.lat,
@@ -17,9 +16,10 @@ export abstract class OfficeDTOMapper {
       photos: PhotoDTOMapper.toDTOs(model.photos),
       posts: model.posts,
       price: model.price,
-      services: ServiceDTOMapper.toDTOs(model.officeServices.map(officeService => officeService.service)),
+      services: ServiceDTOMapper.toDTOs(model.services),
       slug: model.slug,
       title: model.title,
+      type: model.type,
       updatedAt: model.updatedAt,
     };
   }

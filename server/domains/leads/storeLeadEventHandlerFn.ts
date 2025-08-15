@@ -3,11 +3,26 @@ import { RepositoryProvider } from '~~/server/services/repositories/repositoryPr
 import { LeadDTOMapper } from './leadDTOMapper';
 
 export const StoreLeadEventHandlerFn: EventHandlerFn<StoreLeadRequest> = async ({ body }) => {
+  const office = await RepositoryProvider.officeRepository.findOne({
+    where: {
+      slug: body.officeSlug,
+    },
+  });
+
+  if (!office) {
+    throw Exception.badRequest({
+      data: {
+        officeSlug: body.officeSlug,
+      },
+      message: 'Bureau non trouvé',
+    });
+  }
+
   const lead = await RepositoryProvider.leadRepository.addOne({
     data: {
       email: body.email,
       name: body.name,
-      officeId: body.officeId,
+      officeId: office.id,
       phone: body.phone,
     },
   });

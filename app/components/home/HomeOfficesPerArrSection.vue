@@ -14,8 +14,8 @@
         <n-grid-item span="3 m:2 l:1 xl:1 2xl:1">
           <NuxtLink
             v-for="link in links1"
-            :key="link.text"
-            :to="link.link"
+            :key="link.name"
+            :to="link.href"
             class="w-full mb-2 inline-block"
           >
             <n-button
@@ -24,7 +24,7 @@
               primary
               text
             >
-              {{ link.text }}
+              {{ getLinkText(link) }}
             </n-button>
           </NuxtLink>
         </n-grid-item>
@@ -32,8 +32,8 @@
         <n-grid-item span="3 m:2 l:1 xl:1 2xl:1">
           <NuxtLink
             v-for="link in links2"
-            :key="link.text"
-            :to="link.link"
+            :key="link.name"
+            :to="link.href"
             class="w-full mb-2 inline-block"
           >
             <n-button
@@ -42,7 +42,7 @@
               primary
               text
             >
-              {{ link.text }}
+              {{ getLinkText(link) }}
             </n-button>
           </NuxtLink>
         </n-grid-item>
@@ -50,8 +50,8 @@
         <n-grid-item span="3 m:2 l:1 xl:1 2xl:1">
           <NuxtLink
             v-for="link in links3"
-            :key="link.text"
-            :to="link.link"
+            :key="link.name"
+            :to="link.href"
             class="w-full mb-2 inline-block"
           >
             <n-button
@@ -60,7 +60,7 @@
               primary
               text
             >
-              {{ link.text }}
+              {{ getLinkText(link) }}
             </n-button>
           </NuxtLink>
         </n-grid-item>
@@ -70,102 +70,24 @@
 </template>
 
 <script lang="ts" setup>
-const links1 = [
-  {
-    link: '#',
-    text: 'Espaces de coworking à Paris',
-  },
-  {
-    link: '#',
-    text: 'Location de bureaux à Paris',
-  },
-  {
-    link: '#',
-    text: 'Espaces de coworking à Paris 1',
-  },
-  {
-    link: '#',
-    text: 'Espaces de coworking à Paris 2',
-  },
-  {
-    link: '#',
-    text: 'Espaces de coworking à Paris 3',
-  },
-  {
-    link: '#',
-    text: 'Espaces de coworking à Paris 4',
-  },
-  {
-    link: '#',
-    text: 'Espaces de coworking à Paris 5',
-  },
-  {
-    link: '#',
-    text: 'Espaces de coworking à Paris 6',
-  },
-  {
-    link: '#',
-    text: 'Espaces de coworking à Paris 7',
-  },
-] as const;
+import type { StaticPageLink } from '~~/static-pages';
 
-const links2 = [
-  {
-    link: '#',
-    text: 'Espaces de coworking à Paris 8',
-  },
-  {
-    link: '#',
-    text: 'Espaces de coworking à Paris 9',
-  },
-  {
-    link: '#',
-    text: 'Espaces de coworking à Paris 10',
-  },
-  {
-    link: '#',
-    text: 'Espaces de coworking à Paris 11',
-  },
-  {
-    link: '#',
-    text: 'Espaces de coworking à Paris 12',
-  },
-  {
-    link: '#',
-    text: 'Espaces de coworking à Paris 13',
-  },
-  {
-    link: '#',
-    text: 'Espaces de coworking à Paris 14',
-  },
-  {
-    link: '#',
-    text: 'Espaces de coworking à Paris 15',
-  },
-  {
-    link: '#',
-    text: 'Espaces de coworking à Paris 16',
-  },
-];
+import { getStaticPageLinksByGroup } from '~~/static-pages';
 
-const links3 = [
-  {
-    link: '#',
-    text: 'Espaces de coworking à Paris 17',
-  },
-  {
-    link: '#',
-    text: 'Espaces de coworking à Paris 18',
-  },
-  {
-    link: '#',
-    text: 'Espaces de coworking à Paris 19',
-  },
-  {
-    link: '#',
-    text: 'Espaces de coworking à Paris 20',
-  },
-];
+const { links1, links2, links3 } = getStaticPageLinksByGroup();
+
+const getLinkText = (link: StaticPageLink): string => {
+  if (link.name === 'coworking-paris') {
+    return 'Espaces de coworking à Paris';
+  }
+
+  if (link.name === 'bureaux-paris') {
+    return 'Location de bureaux à Paris';
+  }
+
+  const arrondissement = link.name.replace('coworking-paris-', '');
+  return `Espaces de coworking à Paris ${arrondissement}`;
+};
 </script>
 
 <style>

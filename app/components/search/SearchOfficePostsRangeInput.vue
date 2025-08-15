@@ -1,11 +1,14 @@
 <template>
   <n-popover
+    v-model:show="showPopover"
     trigger="click"
     placement="bottom-start"
     :show-arrow="false"
   >
     <template #trigger>
-      <n-button>
+      <n-button
+        :type="isInitialValue ? 'default' : 'primary'"
+      >
         <template #icon>
           <Icon
             name="mdi:account-group"
@@ -19,7 +22,7 @@
     <template #default>
       <div class="p-2">
         <n-slider
-          v-model:value="value"
+          v-model:value="localValue"
           range
           :step="DEFAULT_VALUES.step"
           :min="DEFAULT_VALUES.min"
@@ -33,8 +36,8 @@
               Min
             </n-text>
             <n-input-number
-              v-model:value="min"
-              :max="value[1] ?? DEFAULT_VALUES.max"
+              v-model:value="localMin"
+              :max="localValue[1] ?? DEFAULT_VALUES.max"
               :min="0"
               :step="DEFAULT_VALUES.step"
               size="small"
@@ -45,23 +48,38 @@
               Max
             </n-text>
             <n-input-number
-              v-model:value="max"
+              v-model:value="localMax"
               :max="DEFAULT_VALUES.max"
-              :min="value[0] ?? DEFAULT_VALUES.min"
+              :min="localValue[0] ?? DEFAULT_VALUES.min"
               :step="DEFAULT_VALUES.step"
               size="small"
             />
           </div>
         </n-space>
-        <n-button
-          type="primary"
-          @click="value = [DEFAULT_VALUES.min, DEFAULT_VALUES.max]"
-        >
-          <template #icon>
-            <icon name="mdi:refresh" />
-          </template>
-          Réinitialiser
-        </n-button>
+
+        <n-flex justify="space-between">
+          <n-button
+            type="primary"
+            secondary
+            @click="reset"
+          >
+            <template #icon>
+              <icon name="mdi:refresh" />
+            </template>
+            Réinitialiser
+          </n-button>
+
+          <n-button
+            type="primary"
+            primary
+            @click="apply"
+          >
+            <template #icon>
+              <icon name="mdi:check" />
+            </template>
+            Appliquer
+          </n-button>
+        </n-flex>
       </div>
     </template>
   </n-popover>
@@ -76,36 +94,76 @@ const DEFAULT_VALUES = {
   step: 5,
 };
 
-const min = defineModel<number | undefined>('min', {
-  default: undefined,
-  required: false,
-});
+type Props = {
+  max?: number;
+  min?: number;
+};
 
-const max = defineModel<number | undefined>('max', {
-  default: undefined,
-  required: false,
-});
+const props = defineProps<Props>();
+
+type Emits = {
+  'update:range': [min: number | undefined, max: number | undefined];
+};
+
+const emit = defineEmits<Emits>();
+
+const showPopover = ref(false);
 
 const marks = computed(() => ({
   [DEFAULT_VALUES.max]: `${DEFAULT_VALUES.max}+`,
   [DEFAULT_VALUES.min]: `${DEFAULT_VALUES.min}`,
 }));
 
-const value = ref<[number, number]>([
-  min.value ?? DEFAULT_VALUES.min,
-  max.value ?? DEFAULT_VALUES.max,
+const localValue = ref<[number, number]>([
+  props.min ?? DEFAULT_VALUES.min,
+  props.max ?? DEFAULT_VALUES.max,
 ]);
 
-watch(value, (newValue) => {
-  min.value = newValue[0] === 0 ? undefined : newValue[0];
-  max.value = newValue[1] === 100 ? undefined : newValue[1];
+const localMin = ref<number | undefined>(props.min);
+const localMax = ref<number | undefined>(props.max);
+
+watch(() => props.min, (newValue) => {
+  localMin.value = newValue;
+  localValue.value[0] = newValue ?? DEFAULT_VALUES.min;
 });
 
-watch(min, (newValue) => {
-  value.value[0] = newValue ?? DEFAULT_VALUES.min;
+watch(() => props.max, (newValue) => {
+  localMax.value = newValue;
+  localValue.value[1] = newValue ?? DEFAULT_VALUES.max;
 });
 
-watch(max, (newValue) => {
-  value.value[1] = newValue ?? DEFAULT_VALUES.max;
+watch(localValue, (newValue) => {
+  const newMin = newValue[0] === DEFAULT_VALUES.min ? undefined : newValue[0];
+  const newMax = newValue[1] === DEFAULT_VALUES.max ? undefined : newValue[1];
+
+  localMin.value = newMin;
+  localMax.value = newMax;
+});
+
+watch(localMin, (newValue) => {
+  localValue.value[0] = newValue ?? DEFAULT_VALUES.min;
+});
+
+watch(localMax, (newValue) => {
+  localValue.value[1] = newValue ?? DEFAULT_VALUES.max;
+});
+
+const apply = () => {
+  const newMin = localValue.value[0] === DEFAULT_VALUES.min ? undefined : localValue.value[0];
+  const newMax = localValue.value[1] === DEFAULT_VALUES.max ? undefined : localValue.value[1];
+
+  emit('update:range', newMin, newMax);
+  showPopover.value = false;
+};
+
+const reset = () => {
+  localValue.value = [DEFAULT_VALUES.min, DEFAULT_VALUES.max];
+  localMin.value = undefined;
+  localMax.value = undefined;
+  apply();
+};
+
+const isInitialValue = computed(() => {
+  return localMin.value === undefined && localMax.value === undefined;
 });
 </script>

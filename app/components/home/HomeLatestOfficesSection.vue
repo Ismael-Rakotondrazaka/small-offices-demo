@@ -24,7 +24,7 @@
       </n-grid>
 
       <div class="flex justify-end">
-        <NuxtLinkLocale :to="{ name: 'search' }">
+        <NuxtLink :to="{ name: 'search' }">
           <n-button
             type="primary"
             size="large"
@@ -32,7 +32,7 @@
           >
             Explorer les bureaux
           </n-button>
-        </NuxtLinkLocale>
+        </NuxtLink>
       </div>
     </div>
   </section>

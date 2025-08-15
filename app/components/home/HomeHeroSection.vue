@@ -42,7 +42,7 @@
               Excellent 4.9 sur 5 <Icon name="mdi:star" /> <span class="font-bold">Trustpilot</span>
             </n-p>
             <n-flex :wrap="true">
-              <NuxtLinkLocale to="search">
+              <NuxtLink to="search">
                 <n-button
                   type="primary"
                   size="large"
@@ -53,7 +53,7 @@
                   </template>
                   Voir 8 283 annonces
                 </n-button>
-              </NuxtLinkLocale>
+              </NuxtLink>
               <n-button
                 size="large"
                 @click="scrollToContact"

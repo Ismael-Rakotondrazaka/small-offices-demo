@@ -1,6 +1,5 @@
 import { LeadRepository } from '~~/server/domains/leads/leadRepository';
 import { OfficeRepository } from '~~/server/domains/offices/officeRepository';
-import { OfficeServiceRepository } from '~~/server/domains/officeServices/officeServiceRepository';
 import { PhotoRepository } from '~~/server/domains/photos/photoRepository';
 import { ServiceRepository } from '~~/server/domains/services/serviceRepository';
 import {
@@ -23,14 +22,6 @@ export class RepositoryProvider {
     }
 
     return this.#officeRepository;
-  }
-
-  public static get officeServiceRepository(): OfficeServiceRepository {
-    if (!this.#officeServiceRepository) {
-      this.#officeServiceRepository = new OfficeServiceRepository(PrismaProvider.instance);
-    }
-
-    return this.#officeServiceRepository;
   }
 
   public static get photoRepository(): PhotoRepository {
@@ -60,8 +51,6 @@ export class RepositoryProvider {
   static #leadRepository: LeadRepository;
 
   static #officeRepository: OfficeRepository;
-
-  static #officeServiceRepository: OfficeServiceRepository;
 
   static #photoRepository: PhotoRepository;
 

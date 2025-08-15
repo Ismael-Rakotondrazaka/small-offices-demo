@@ -1,8 +1,8 @@
-import type { Request } from '#shared/requests/request';
 import type {
   EventHandlerFn,
   RequestToEventHandler,
 } from '~~/server/core/requests/requestToEventHandler';
+import type { Request } from '~~/shared/requests/request';
 import type { z } from 'zod';
 
 import { allows as _allows, denies as _denies } from '#imports';
@@ -80,15 +80,22 @@ export class EventHandlerBuilder<
               return await serverSupabaseUser(event);
             },
             require: async () => {
-              const user = await serverSupabaseUser(event);
+              try {
+                const user = await serverSupabaseUser(event);
 
-              if (!user) {
+                if (!user) {
+                  throw Exception.unauthorized({
+                    data: {},
+                  });
+                }
+
+                return user;
+              }
+              catch {
                 throw Exception.unauthorized({
                   data: {},
                 });
               }
-
-              return user;
             },
           },
         });
