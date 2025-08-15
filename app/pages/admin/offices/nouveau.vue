@@ -233,9 +233,7 @@ const {
 });
 
 const [title, titleProps] = defineField('title', makeInputProps<StoreOfficeRequestBody['title']>);
-useNonEmptyString(title);
 const [slug, slugProps] = defineField('slug', makeInputProps<StoreOfficeRequestBody['slug']>);
-useNonEmptyString(slug);
 const [type, typeProps] = defineField('type', makeInputProps<StoreOfficeRequestBody['type']>);
 const [arr, arrProps] = defineField('arr', makeInputProps<StoreOfficeRequestBody['arr']>);
 const [posts, postsProps] = defineField('posts', makeInputProps<StoreOfficeRequestBody['posts']>);
