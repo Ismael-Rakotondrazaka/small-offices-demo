@@ -125,23 +125,21 @@ export default defineNuxtConfig({
   routeRules: {},
 
   runtimeConfig: {
-    /* ------------------------------ File Storage ------------------------------ */
-    fileStorageBucketEntryPoint: '',
-    fileStorageBucketName: '',
-    fileStorageServiceAccountName: '',
-    fileStorageSignedUrlExpiration: 60 * 60 * 24, // 1 day,
-
     informationEmail: '',
+
     public: {
       appUrl: 'http://localhost:3000',
       appVersion: '1.0.0',
+
+      /* ------------------------------ File Storage ------------------------------ */
+      fileStorageBucketEntryPoint: '',
+      fileStorageBucketName: '',
     },
+
     /* ---------------------------------- SMTP ---------------------------------- */
     smtpHost: '',
     smtpPassword: '',
-
     smtpPort: '',
-
     smtpUser: '',
   },
 

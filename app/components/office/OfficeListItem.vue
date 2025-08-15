@@ -29,6 +29,10 @@
               loading="lazy"
               preview-disabled
             />
+
+            <p class="sr-only">
+              {{ photo.alt ?? photo.id }}
+            </p>
           </NuxtLink>
         </n-carousel-item>
       </n-carousel>
