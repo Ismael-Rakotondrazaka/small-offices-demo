@@ -1,5 +1,6 @@
 export * from './destroyOfficeEventHandlerFn';
 export * from './indexOfficeEventHandlerFn';
+export * from './isAvailableOfficeEventHandlerFn';
 export * from './officeDTOMapper';
 export * from './officeModel';
 export * from './officeRepository';

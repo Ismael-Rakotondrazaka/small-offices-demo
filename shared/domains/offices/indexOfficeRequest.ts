@@ -11,14 +11,15 @@ import { z } from 'zod';
 export type IndexOfficeRequestData = { data: OfficeDTO[]; pagination: PaginationDTO };
 
 export const IndexOfficeRequestQuerySchema = z.object({
-  'arr[equals]': z.coerce.number().min(1).max(20),
-  'arr[in]': z.array(z.coerce.number().min(1).max(20)),
+  'arr[equals]': z.coerce.number().max(20),
+  'arr[in]': z.array(z.coerce.number().max(20)),
   'orderBy[createdAt]': SortOrderSchema,
   'orderBy[price]': SortOrderSchema,
   'posts[gte]': z.coerce.number().min(0),
   'posts[lte]': z.coerce.number().min(0),
   'price[gte]': z.coerce.number().min(0),
   'price[lte]': z.coerce.number().min(0),
+  'search': z.string(),
   'type[equals]': OfficeTypeSchema,
 }).partial().merge(makePaginatedSchema({ defaultPageSize: officeConfig.PAGE_SIZE_DEFAULT_VALUE }));
 

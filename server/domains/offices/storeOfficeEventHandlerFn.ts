@@ -17,6 +17,14 @@ export const StoreOfficeEventHandlerFn: EventHandlerFn<StoreOfficeRequest> = asy
       isFake: body.isFake,
       lat: body.lat,
       lng: body.lng,
+      officeServices: {
+        create: [...new Set(body.serviceIds)].map(id => ({
+          serviceId: id,
+        })),
+      },
+      photos: {
+        create: [...new Set(body.photoUrls)].map(url => ({ url })),
+      },
       posts: body.posts,
       price: body.price,
       slug: uniqueSlug,
