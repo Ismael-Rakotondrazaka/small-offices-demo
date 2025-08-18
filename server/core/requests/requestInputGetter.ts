@@ -1,5 +1,5 @@
-import type { Request } from '~~/shared/requests/request';
 import type { Validator } from '~~/server/core/validations/validator';
+import type { Request } from '~~/shared/requests/request';
 import type { H3Event } from 'h3';
 import type { QueryObject } from 'ufo';
 import type { z } from 'zod';

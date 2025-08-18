@@ -1,3 +1,4 @@
+export * from './bulkStoreOfficeRequest';
 export * from './countOfficesRequest';
 export * from './destroyOfficeRequest';
 export * from './indexOfficeRequest';

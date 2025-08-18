@@ -59,25 +59,41 @@
     </div>
 
     <div class="mb-5">
-      <NuxtLink
-        :to="{
-          name: 'admin-offices-nouveau',
-        }"
-      >
+      <n-space>
+        <NuxtLink
+          :to="{
+            name: 'admin-offices-nouveau',
+          }"
+        >
+          <n-button
+            type="primary"
+            tag="span"
+            primary
+          >
+            <template #icon>
+              <Icon
+                name="mdi:office-building-plus"
+                class="h-6 w-6"
+              />
+            </template>
+            Nouveau Bureau
+          </n-button>
+        </NuxtLink>
+
         <n-button
-          type="primary"
-          tag="span"
+          type="info"
           primary
+          @click="showBulkCreateModal = true"
         >
           <template #icon>
             <Icon
-              name="mdi:office-building-plus"
+              name="mdi:file-upload"
               class="h-6 w-6"
             />
           </template>
-          Nouveau Bureau
+          Création en Masse
         </n-button>
-      </NuxtLink>
+      </n-space>
     </div>
 
     <n-space
@@ -113,6 +129,16 @@
       @update:page="handlePageChange"
       @update:page-size="handlePageSizeChange"
     />
+
+    <n-modal
+      v-model:show="showBulkCreateModal"
+      :mask-closable="false"
+      preset="card"
+      title="Création en Masse de Bureaux"
+      class="w-full max-w-2xl"
+    >
+      <OfficeBulkCreateForm />
+    </n-modal>
   </div>
 </template>
 
@@ -124,7 +150,7 @@ import { useRouteQuery } from '@vueuse/router';
 import { Icon } from '#components';
 import { officeConfig } from '~~/shared/domains/offices/officeConfig';
 import { OfficeTypeLabel } from '~~/shared/domains/offices/officeType';
-import { NButton, NCarousel, NCarouselItem, NFlex, NPopover, NSelect, NTag } from 'naive-ui';
+import { NButton, NCarousel, NCarouselItem, NFlex, NModal, NPopover, NSelect, NSpace, NTag } from 'naive-ui';
 import { I18nN } from 'vue-i18n';
 
 definePageMeta({
@@ -320,6 +346,8 @@ const search = useRouteQuery<null | string | string[] | undefined, IndexOfficeRe
   },
 );
 const searchDebounced = debouncedRef(search, 1_500);
+
+const showBulkCreateModal = ref(false);
 
 const orderByCreatedAt = computed(() => {
   if (orderBy.value === OrderOption.createdAtAsc) return 'asc';

@@ -1,0 +1,6 @@
+title,type,arr,posts,price,lat,lng,isFake
+Bureau Moderne Paris 1,PRIVATE_OFFICE,1,4,1200,48.8566,2.3522,false
+Espace Collaboratif Marais,OPEN_SPACE,3,12,800,48.8606,2.3376,false
+Studio Indépendant Montmartre,INDEPENDENT_SPACE,18,2,600,48.8867,2.3431,false
+Bureau Premium Champs-Élysées,PRIVATE_OFFICE,8,6,1500,48.8698,2.3077,false
+Open Space République,OPEN_SPACE,10,20,900,48.8674,2.3636,false
