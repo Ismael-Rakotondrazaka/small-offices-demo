@@ -6,7 +6,7 @@ export default {
   routes(_routes) {
     const staticRoutes = staticPageLinks.map(link => ({
       component: () => import('~/pages/search.vue'),
-      name: link.name,
+      name: link.pathName,
       path: link.path,
       props: link.props,
     }));
