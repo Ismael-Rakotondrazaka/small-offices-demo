@@ -3,7 +3,8 @@ import { RepositoryProvider } from '~~/server/services/repositories/repositoryPr
 
 import { OfficeDTOMapper } from './officeDTOMapper';
 
-export const UpdateOfficeEventHandlerFn: EventHandlerFn<UpdateOfficeRequest> = async ({ body, params }) => {
+export const UpdateOfficeEventHandlerFn: EventHandlerFn<UpdateOfficeRequest> = async ({ body, params, userSession }) => {
+  await userSession.require();
   const office = await RepositoryProvider.officeRepository.findOne({
     where: {
       slug: params.slug,

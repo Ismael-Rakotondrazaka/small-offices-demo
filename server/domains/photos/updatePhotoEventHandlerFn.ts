@@ -2,7 +2,8 @@ import { RepositoryProvider } from '~~/server/services/repositories/repositoryPr
 
 import { PhotoDTOMapper } from './photoDTOMapper';
 
-export const UpdatePhotoEventHandlerFn: EventHandlerFn<UpdatePhotoRequest> = async ({ body, params }) => {
+export const UpdatePhotoEventHandlerFn: EventHandlerFn<UpdatePhotoRequest> = async ({ body, params, userSession }) => {
+  await userSession.require();
   const photo = await RepositoryProvider.photoRepository.findOne({
     where: {
       id: params.id,

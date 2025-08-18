@@ -2,7 +2,8 @@ import { RepositoryProvider } from '~~/server/services/repositories/repositoryPr
 
 import { ServiceDTOMapper } from './serviceDTOMapper';
 
-export const StoreServiceEventHandlerFn: EventHandlerFn<StoreServiceRequest> = async ({ body }) => {
+export const StoreServiceEventHandlerFn: EventHandlerFn<StoreServiceRequest> = async ({ body, userSession }) => {
+  await userSession.require();
   const service = await RepositoryProvider.serviceRepository.addOne({
     data: {
       icon: body.icon,

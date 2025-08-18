@@ -3,7 +3,8 @@ import { RepositoryProvider } from '~~/server/services/repositories/repositoryPr
 
 import { OfficeDTOMapper } from './officeDTOMapper';
 
-export const StoreOfficeEventHandlerFn: EventHandlerFn<StoreOfficeRequest> = async ({ body }) => {
+export const StoreOfficeEventHandlerFn: EventHandlerFn<StoreOfficeRequest> = async ({ body, userSession }) => {
+  await userSession.require();
   const baseSlug = body.slug || Slugifier.slugify(body.title);
 
   const uniqueSlug = await Slugifier.generateUniqueSlug(

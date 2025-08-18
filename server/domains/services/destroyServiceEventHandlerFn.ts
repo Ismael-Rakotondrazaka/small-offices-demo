@@ -2,7 +2,8 @@ import { RepositoryProvider } from '~~/server/services/repositories/repositoryPr
 
 import { ServiceDTOMapper } from './serviceDTOMapper';
 
-export const DestroyServiceEventHandlerFn: EventHandlerFn<DestroyServiceRequest> = async ({ params }) => {
+export const DestroyServiceEventHandlerFn: EventHandlerFn<DestroyServiceRequest> = async ({ params, userSession }) => {
+  await userSession.require();
   const service = await RepositoryProvider.serviceRepository.findOne({
     where: {
       id: params.id,
