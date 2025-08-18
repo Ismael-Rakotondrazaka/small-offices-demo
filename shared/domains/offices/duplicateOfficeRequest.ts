@@ -8,9 +8,10 @@ export const DuplicateOfficeParamsSchema = z.object({
   slug: z.string().min(1),
 });
 
-export const DuplicateOfficeRequestBodySchema = z.object({});
+export type DuplicateOfficeRequest = Request<DuplicateOfficeRequestData, Record<string, never>, DuplicateOfficeRequestParams>;
 
-export type DuplicateOfficeRequestData = z.infer<typeof DuplicateOfficeParamsSchema>;
-export type DuplicateOfficeRequestBody = z.infer<typeof DuplicateOfficeRequestBodySchema>;
+export type DuplicateOfficeRequestData = {
+  data: OfficeDTO;
+};
 
-export type DuplicateOfficeRequest = Request<DuplicateOfficeRequestData, DuplicateOfficeRequestBody, OfficeDTO>; 
+export type DuplicateOfficeRequestParams = z.infer<typeof DuplicateOfficeParamsSchema>;
