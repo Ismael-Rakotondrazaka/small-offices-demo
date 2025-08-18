@@ -8,6 +8,7 @@ import type { z } from 'zod';
 import { allows as _allows, denies as _denies } from '#imports';
 import { serverSupabaseUser } from '#supabase/server';
 import { Exception } from '~~/server/core';
+import { setHeaders as _setHeaders } from 'h3';
 
 export class EventHandlerBuilder<
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -75,6 +76,9 @@ export class EventHandlerBuilder<
           params,
           path: event.path,
           query,
+          setHeaders: (headers) => {
+            _setHeaders(event, headers);
+          },
           userSession: {
             get: async () => {
               return await serverSupabaseUser(event);

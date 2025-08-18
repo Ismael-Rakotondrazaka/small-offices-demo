@@ -64,7 +64,7 @@
     <n-space
       justify="space-between"
       align="center"
-      class="mb-5"
+      class="mb-3"
     >
       <p>
         <span class="font-bold">
@@ -82,6 +82,12 @@
         @update:value="onUpdateOrderByHandler"
       />
     </n-space>
+
+    <div class="mb-5">
+      <LeadDownloadCSV
+        :query="downloadQuery"
+      />
+    </div>
 
     <n-data-table
       :columns="columns"
@@ -324,6 +330,32 @@ const computeRequestQuery = (): IndexLeadRequestQuery => {
 };
 
 const requestQuery = computed<IndexLeadRequestQuery>(computeRequestQuery);
+
+const downloadQuery = computed<DownloadLeadsRequestQuery>(() => {
+  let createdAtGteValue: string | undefined;
+  let createdAtLteValue: string | undefined;
+
+  if (createdAtGte.value !== undefined && createdAtLte.value !== undefined && createdAtGte.value === createdAtLte.value) {
+    const range = getDayRange(createdAtGte.value);
+    createdAtGteValue = new Date(range[0]).toISOString();
+    createdAtLteValue = new Date(range[1]).toISOString();
+  }
+  else {
+    createdAtGteValue = createdAtGte.value ? new Date(createdAtGte.value).toISOString() : undefined;
+    createdAtLteValue = createdAtLte.value ? new Date(createdAtLte.value).toISOString() : undefined;
+  }
+
+  return {
+    'createdAt[gte]': createdAtGteValue,
+    'createdAt[lte]': createdAtLteValue,
+    'orderBy[createdAt]': orderByCreatedAt.value,
+    'orderBy[price]': orderByPrice.value,
+    'price[gte]': priceGte.value,
+    'price[lte]': priceLte.value,
+    'search': searchDebounced.value || undefined,
+    'status[equals]': statusEquals.value,
+  };
+});
 
 const { data: leadsData, pending: isLoading, refresh } = await useFetch('/api/leads', {
   query: requestQuery,

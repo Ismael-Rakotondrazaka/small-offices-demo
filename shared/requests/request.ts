@@ -1,3 +1,15 @@
+import type { Simplify } from 'type-fest';
+
+export type NotPaginated<T extends Record<number | string | symbol, unknown>>
+  = Omit<T, 'page' | 'pageSize' | 'pagination'>;
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type NotPaginatedRequest<TRequest extends Request<any, any, any, any>>
+  = {
+    input: TRequest['input'];
+    output: Promise<Simplify<Omit<Awaited<TRequest['output']>, 'pagination'>>>;
+  };
+
 export interface Request<
   TData = Record<string, never>,
   TBody = Record<string, never>,
