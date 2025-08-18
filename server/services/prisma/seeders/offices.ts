@@ -176,7 +176,10 @@ const createOfficeData = (arg: {
     services: {
       connect: arg.services.map(service => ({ id: service.id })),
     },
-    slug: faker.helpers.slugify(title).toLowerCase(),
+    slug: faker.helpers.slugify(`${title} ${faker.number.int({
+      max: 100,
+      min: 1,
+    })}`).toLowerCase(),
     title,
     type,
     updatedAt: createdAt,
