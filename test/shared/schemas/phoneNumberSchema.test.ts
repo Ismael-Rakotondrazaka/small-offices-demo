@@ -1,5 +1,6 @@
-import { PhoneNumberSchema } from '~~/shared/schemas';
 import { describe, expect, it } from 'vitest';
+
+import { PhoneNumberSchema } from '../../../shared/schemas/phoneNumberSchema';
 
 describe('PhoneNumberSchema', () => {
   it('should validate and format French mobile numbers', () => {
@@ -63,7 +64,7 @@ describe('PhoneNumberSchema', () => {
 
   it('should handle international numbers', () => {
     const internationalNumbers = [
-      '+1 555 123 4567',
+      '+1 202 456 1111',
       '+44 20 7946 0958',
       '+49 30 12345678',
     ];

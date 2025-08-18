@@ -39,4 +39,4 @@ describe('Office Slug Generation', () => {
     const uniqueSlug = await Slugifier.generateUniqueSlug(baseSlug, checkExists);
     expect(uniqueSlug).toBe('unique-office');
   });
-});
+}); 

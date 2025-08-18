@@ -22,7 +22,9 @@
     "prepare": "nuxt prepare",
     "test": "vitest --run",
     "test:coverage": "vitest --run --coverage",
-    "test:components": "vitest --run components/",
+    "test:app": "vitest --run --project app",
+    "test:server": "vitest --run --project server",
+    "test:shared": "vitest --run --project shared",
     "test:watch": "vitest",
     "test:ui": "vitest --ui --open"
   },
