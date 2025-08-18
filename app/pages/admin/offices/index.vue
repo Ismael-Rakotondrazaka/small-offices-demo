@@ -10,10 +10,11 @@
 
     <div class="mb-4">
       <n-input
-        v-model:value="search"
-        placeholder="Rechercher par titre..."
+        :value="search"
+        placeholder="Rechercher par titre ou slug..."
         class="mb-3"
         clearable
+        @update:value="onUpdateSearchHandler"
       >
         <template #prefix>
           <Icon name="mdi:magnify" />
@@ -57,18 +58,48 @@
       </n-flex>
     </div>
 
+    <div class="mb-5">
+      <NuxtLink
+        :to="{
+          name: 'admin-offices-nouveau',
+        }"
+      >
+        <n-button
+          type="primary"
+          tag="span"
+          primary
+        >
+          <template #icon>
+            <Icon
+              name="mdi:office-building-plus"
+              class="h-6 w-6"
+            />
+          </template>
+          Nouveau Bureau
+        </n-button>
+      </NuxtLink>
+    </div>
+
     <n-space
       justify="space-between"
       align="center"
       class="mb-5"
     >
-      <n-p>{{ officesData ? officesData.pagination.totalCount : 0 }} résultats</n-p>
+      <p>
+        <span class="font-bold">
+          {{ officesData ? officesData.pagination.totalCount : 0 }}
+        </span>
+        résultats
+      </p>
 
       <n-select
-        v-model:value="orderBy"
+        :value="orderBy"
         :options="orderByOptions"
         :render-label="renderLabel"
         class="min-w-48"
+        clearable
+        placeholder="Trier par"
+        @update:value="onUpdateOrderByHandler"
       />
     </n-space>
 
@@ -250,35 +281,29 @@ const typeEquals = useRouteQuery<null | string | string[] | undefined, IndexOffi
   },
 );
 
-const page = useRouteQuery<number | string | string[], number>('page', '1', {
+const page = useRouteQuery<null | string | string[] | undefined, number | undefined>('page', undefined, {
   transform: (value) => {
-    if (value === null || value === undefined) return 1;
-
-    if (typeof value === 'number') {
-      return value;
-    }
-
-    const parsedValue = parseInt(Array.isArray(value) ? value[0]! : value, 10);
-    return Number.isNaN(parsedValue) ? 1 : parsedValue;
+    if (value === null || value === undefined || Array.isArray(value)) return undefined;
+    return Number(value);
   },
 });
 
-const pageSize = useRouteQuery<null | string | string[] | undefined, number>(
+const pageSize = useRouteQuery<null | string | string[] | undefined, number | undefined>(
   'pageSize',
-  `${officeConfig.PAGE_SIZE_DEFAULT_VALUE}`,
+  undefined,
   {
     transform: (value) => {
-      if (value === null || value === undefined || Array.isArray(value)) return officeConfig.PAGE_SIZE_DEFAULT_VALUE;
+      if (value === null || value === undefined || Array.isArray(value)) return undefined;
       return Number(value);
     },
   },
 );
 
-const orderBy = useRouteQuery<null | string | string[] | undefined, OrderOption>('orderBy',
+const orderBy = useRouteQuery<null | string | string[] | undefined, OrderOption | undefined>('orderBy',
   undefined,
   {
     transform: (value) => {
-      if (value === null || value === undefined || Array.isArray(value)) return OrderOption.createdAtAsc;
+      if (value === null || value === undefined || Array.isArray(value)) return undefined;
       return value as OrderOption;
     },
   },
@@ -320,8 +345,8 @@ const requestQuery = computed<IndexOfficeRequestQuery>(() => ({
   'orderBy[createdAt]': orderByCreatedAt.value,
   'orderBy[price]': orderByPrice.value,
   'orderBy[title]': orderByTitle.value,
-  'page': page.value,
-  'pageSize': pageSize.value,
+  'page': page.value || 1,
+  'pageSize': pageSize.value || officeConfig.PAGE_SIZE_DEFAULT_VALUE,
   'posts[gte]': postsGte.value,
   'posts[lte]': postsLte.value,
   'price[gte]': priceGte.value,
@@ -342,6 +367,14 @@ const onUpdatePriceRangeHandler = (min: number | undefined, max: number | undefi
 const onUpdatePostsRangeHandler = (min: number | undefined, max: number | undefined) => {
   postsGte.value = min;
   postsLte.value = max;
+};
+
+const onUpdateSearchHandler = (value: null | string) => {
+  search.value = value || undefined;
+};
+
+const onUpdateOrderByHandler = (value: null | OrderOption) => {
+  orderBy.value = value || undefined;
 };
 
 const onUpdateArrHandler = (value: number[]) => {
@@ -390,8 +423,9 @@ const resetSearch = async () => {
   arr.value = [];
   typeEquals.value = undefined;
   search.value = undefined;
-  page.value = 1;
-  pageSize.value = officeConfig.PAGE_SIZE_DEFAULT_VALUE;
+  page.value = undefined;
+  pageSize.value = undefined;
+  orderBy.value = undefined;
 };
 
 const columns = computed<DataTableColumns<Serialize<OfficeDTO>>>(() => [
