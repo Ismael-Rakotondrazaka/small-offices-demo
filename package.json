@@ -25,6 +25,7 @@
     "test:app": "vitest --run --project app",
     "test:server": "vitest --run --project server",
     "test:shared": "vitest --run --project shared",
+    "test:server-core": "vitest --run --project server-core",
     "test:watch": "vitest",
     "test:ui": "vitest --ui --open"
   },

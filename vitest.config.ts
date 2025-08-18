@@ -21,6 +21,13 @@ export default defineConfig({
           name: 'shared',
         },
       },
+      {
+        test: {
+          environment: 'node',
+          include: ['test/server/core/**/*.{test,spec}.ts'],
+          name: 'server-core',
+        },
+      },
       await defineVitestProject({
         test: {
           environment: 'nuxt',
