@@ -9,16 +9,27 @@
     </n-p>
 
     <div class="mb-4">
-      <n-input
-        v-model:value="search"
-        placeholder="Rechercher par nom, email ou téléphone..."
-        class="mb-3"
-        clearable
+      <div
+        class="grid gap-3 md:grid-cols-2 md:gap-4 mb-3"
       >
-        <template #prefix>
-          <Icon name="mdi:magnify" />
-        </template>
-      </n-input>
+        <n-input
+          :value="search"
+          placeholder="Rechercher par nom, email ou téléphone..."
+          class="w-full"
+          clearable
+          @update:value="onUpdateSearchHandler"
+        >
+          <template #prefix>
+            <Icon name="mdi:magnify" />
+          </template>
+        </n-input>
+
+        <SearchDateRangeInput
+          :max="createdAtLte"
+          :min="createdAtGte"
+          @update:range="onUpdateDateRangeHandler"
+        />
+      </div>
 
       <n-flex align="center">
         <SearchOfficePriceRangeInput
@@ -28,7 +39,7 @@
         />
 
         <n-select
-          v-model:value="statusEquals"
+          :value="statusEquals"
           :options="statusOptions"
           placeholder="Filtrer par statut"
           class="!w-48"
@@ -55,13 +66,20 @@
       align="center"
       class="mb-5"
     >
-      <n-p>{{ leadsData ? leadsData.pagination.totalCount : 0 }} résultats</n-p>
+      <p>
+        <span class="font-bold">
+          {{ leadsData ? leadsData.pagination.totalCount : 0 }}
+        </span> résultats
+      </p>
 
       <n-select
-        v-model:value="orderBy"
+        :value="orderBy"
         :options="orderByOptions"
         :render-label="renderLabel"
+        clearable
         class="min-w-48"
+        placeholder="Trier par"
+        @update:value="onUpdateOrderByHandler"
       />
     </n-space>
 
@@ -194,49 +212,60 @@ const priceLte = useRouteQuery<null | string | string[] | undefined, IndexLeadRe
   },
 );
 
-const page = useRouteQuery<number | string | string[], number>('page', '1', {
-  transform: (value) => {
-    if (value === null || value === undefined) return 1;
-
-    if (typeof value === 'number') {
-      return value;
-    }
-
-    const parsedValue = parseInt(Array.isArray(value) ? value[0]! : value, 10);
-    return Number.isNaN(parsedValue) ? 1 : parsedValue;
-  },
-});
-
-const pageSize = useRouteQuery<null | string | string[] | undefined, number>(
-  'pageSize',
-  `${leadConfig.PAGE_SIZE_DEFAULT_VALUE}`,
+const createdAtGte = useRouteQuery<null | string | string[] | undefined, number | undefined>(
+  'createdAt[gte]',
+  undefined,
   {
     transform: (value) => {
-      if (value === null || value === undefined || Array.isArray(value)) return leadConfig.PAGE_SIZE_DEFAULT_VALUE;
+      if (value === null || value === undefined || Array.isArray(value)) return undefined;
       return Number(value);
     },
   },
 );
 
-const orderBy = useRouteQuery<null | string | string[] | undefined, OrderOption>('orderBy',
+const createdAtLte = useRouteQuery<null | string | string[] | undefined, number | undefined>(
+  'createdAt[lte]',
   undefined,
   {
     transform: (value) => {
-      if (value === null || value === undefined || Array.isArray(value)) return OrderOption.createdAtAsc;
-      return value as OrderOption;
+      if (value === null || value === undefined || Array.isArray(value)) return undefined;
+      return Number(value);
     },
   },
 );
 
-/* const sortOrder = useRouteQuery<null | string | string[] | undefined, 'asc' | 'desc'>('sortOrder',
-  'desc',
+const onUpdateDateRangeHandler = (min: number | undefined, max: number | undefined) => {
+  createdAtGte.value = min;
+  createdAtLte.value = max;
+};
+
+const page = useRouteQuery<null | string | string[] | undefined, number | undefined>('page', undefined, {
+  transform: (value) => {
+    if (value === null || value === undefined || Array.isArray(value)) return undefined;
+    return Number(value);
+  },
+});
+
+const pageSize = useRouteQuery<null | string | string[] | undefined, number | undefined>(
+  'pageSize',
+  undefined,
   {
     transform: (value) => {
-      if (value === null || value === undefined || Array.isArray(value)) return 'desc';
-      return value as 'asc' | 'desc';
+      if (value === null || value === undefined || Array.isArray(value)) return undefined;
+      return Number(value);
     },
   },
-); */
+);
+
+const orderBy = useRouteQuery<null | string | string[] | undefined, OrderOption | undefined>('orderBy',
+  undefined,
+  {
+    transform: (value) => {
+      if (value === null || value === undefined || Array.isArray(value)) return undefined;
+      return value as OrderOption;
+    },
+  },
+);
 
 const search = useRouteQuery<null | string | string[] | undefined, IndexLeadRequestQuery['search']>('search',
   undefined,
@@ -266,16 +295,35 @@ const orderByPrice = computed(() => {
   return undefined;
 });
 
-const requestQuery = computed<IndexLeadRequestQuery>(() => ({
-  'orderBy[createdAt]': orderByCreatedAt.value,
-  'orderBy[price]': orderByPrice.value,
-  'page': page.value,
-  'pageSize': pageSize.value,
-  'price[gte]': priceGte.value,
-  'price[lte]': priceLte.value,
-  'search': searchDebounced.value || undefined,
-  'status[equals]': statusEquals.value,
-}));
+const computeRequestQuery = (): IndexLeadRequestQuery => {
+  let createdAtGteValue: string | undefined;
+  let createdAtLteValue: string | undefined;
+
+  if (createdAtGte.value !== undefined && createdAtLte.value !== undefined && createdAtGte.value === createdAtLte.value) {
+    const range = getDayRange(createdAtGte.value);
+    createdAtGteValue = new Date(range[0]).toISOString();
+    createdAtLteValue = new Date(range[1]).toISOString();
+  }
+  else {
+    createdAtGteValue = createdAtGte.value ? new Date(createdAtGte.value).toISOString() : undefined;
+    createdAtLteValue = createdAtLte.value ? new Date(createdAtLte.value).toISOString() : undefined;
+  }
+
+  return {
+    'createdAt[gte]': createdAtGteValue,
+    'createdAt[lte]': createdAtLteValue,
+    'orderBy[createdAt]': orderByCreatedAt.value,
+    'orderBy[price]': orderByPrice.value,
+    'page': page.value || 1,
+    'pageSize': pageSize.value || leadConfig.PAGE_SIZE_DEFAULT_VALUE,
+    'price[gte]': priceGte.value,
+    'price[lte]': priceLte.value,
+    'search': searchDebounced.value || undefined,
+    'status[equals]': statusEquals.value,
+  };
+};
+
+const requestQuery = computed<IndexLeadRequestQuery>(computeRequestQuery);
 
 const { data: leadsData, pending: isLoading, refresh } = await useFetch('/api/leads', {
   query: requestQuery,
@@ -361,13 +409,24 @@ const onUpdateStatusHandler = (value: LeadStatus | null) => {
   statusEquals.value = value || undefined;
 };
 
+const onUpdateSearchHandler = (value: null | string) => {
+  search.value = value || undefined;
+};
+
+const onUpdateOrderByHandler = (value: null | OrderOption) => {
+  orderBy.value = value || undefined;
+};
+
 const resetSearch = async () => {
   priceGte.value = undefined;
   priceLte.value = undefined;
   statusEquals.value = undefined;
   search.value = undefined;
-  page.value = 1;
-  pageSize.value = leadConfig.PAGE_SIZE_DEFAULT_VALUE;
+  page.value = undefined;
+  pageSize.value = undefined;
+  createdAtGte.value = undefined;
+  createdAtLte.value = undefined;
+  orderBy.value = undefined;
 };
 
 const columns = computed<DataTableColumns<Serialize<LeadDTO>>>(() => [
@@ -428,17 +487,19 @@ const columns = computed<DataTableColumns<Serialize<LeadDTO>>>(() => [
           },
           {
             default: () => [
-              row.office.photos.length > 0 && h(
-                NImage,
-                {
-                  alt: row.office.title,
-                  class: 'rounded mb-2',
-                  height: '120px',
-                  objectFit: 'cover',
-                  src: row.office.photos[0]!.url,
-                  width: '100%',
-                },
-              ),
+              row.office.photos.length > 0
+                ? h(
+                    NImage,
+                    {
+                      alt: row.office.title,
+                      class: 'rounded mb-2',
+                      height: '120px',
+                      objectFit: 'cover',
+                      src: row.office.photos[0]!.url,
+                      width: '100%',
+                    },
+                  )
+                : null,
               h('div', { class: 'font-medium mb-1' }, row.office.title),
               h('div', { class: 'text-sm text-gray-600 mb-1' }, `Paris ${row.office.arr}`),
               h('div', { class: 'text-sm text-gray-600' }, `${row.office.posts} postes`),
