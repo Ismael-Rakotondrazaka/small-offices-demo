@@ -109,7 +109,7 @@ defineOgImageComponent('DefaultOgImage');
 
 const route = useRoute('lead-slug');
 
-const { data } = await useFetch(`/api/offices/${route.params.slug}`);
+const { data }: Awaited<RequestToAsyncData<ShowOfficeRequest>> = await useFetch(`/api/offices/${route.params.slug}`);
 
 const message = useMessage();
 
@@ -141,6 +141,8 @@ const headers = computed(() => ({
   'accept-language': locale.value,
 }));
 
+const { gtag } = useGtag();
+
 const handleStoreLead = handleSubmit(async (values) => {
   try {
     await $fetch('/api/leads', {
@@ -151,6 +153,11 @@ const handleStoreLead = handleSubmit(async (values) => {
 
     message.success('Demande de visite envoyée avec succès !');
     resetForm();
+
+    gtag('event', 'lead_submit', {
+      office_id: data.value?.data?.id,
+      office_slug: route.params.slug,
+    });
   }
   catch (error) {
     handleFetchError<StoreLeadRequest>(error, t, message, setErrors);
