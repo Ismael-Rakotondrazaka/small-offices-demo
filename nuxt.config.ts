@@ -83,6 +83,7 @@ export default defineNuxtConfig({
   },
 
   modules: [
+    'nuxt-api-shield',
     '@nuxt/eslint',
     '@nuxtjs/seo',
     '@nuxt/fonts',
@@ -114,7 +115,22 @@ export default defineNuxtConfig({
 
   nitro: {
     prerender: {
-      routes: staticPageLinks.map(link => link.href),
+      routes: staticPageLinks.map(link => link.path),
+    },
+  },
+
+  // @see https://github.com/rrd108/nuxt-api-shield
+  nuxtApiShield: {
+    delayOnBan: true,
+    errorMessage: 'Trop de requêtes',
+    limit: {
+      ban: 3_600, // 1 hour
+      duration: 3_600, // 1 hour
+      max: 100, // 100 requests per duration
+    },
+    log: {
+      attempts: 0, // disable logging
+      path: '', // disable logging
     },
   },
 

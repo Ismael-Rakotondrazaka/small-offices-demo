@@ -1,7 +1,6 @@
-import type { Request } from '~~/shared/requests/request';
-
 import { z } from 'zod';
 
+import type { Request } from '../../../shared/requests/request';
 import type { OfficeDTO } from './officeDTO';
 
 export const ShowOfficeRequestParamsSchema = z.object({ slug: z.string() }); ;

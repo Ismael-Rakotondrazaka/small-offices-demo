@@ -1,9 +1,9 @@
-import type { Request } from '~~/shared/requests/request';
-
-import { StringIdentifierSchema } from '~~/shared/schemas/identifierSchema';
 import { z } from 'zod';
 
+import type { Request } from '../../../shared/requests/request';
 import type { ServiceDTO } from './serviceDTO';
+
+import { StringIdentifierSchema } from '../../../shared/schemas/identifierSchema';
 
 export const DestroyServiceRequestParamsSchema = z.object({ id: StringIdentifierSchema }); ;
 

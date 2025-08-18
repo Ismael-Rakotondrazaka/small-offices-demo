@@ -1,6 +1,7 @@
 export * from './bulkStoreOfficeEventHandlerFn';
 export * from './countOfficesEventHandlerFn';
 export * from './destroyOfficeEventHandlerFn';
+export * from './duplicateOfficeEventHandlerFn';
 export * from './indexOfficeEventHandlerFn';
 export * from './isAvailableOfficeEventHandlerFn';
 export * from './officeDTOMapper';

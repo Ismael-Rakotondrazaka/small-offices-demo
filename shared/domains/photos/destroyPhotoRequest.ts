@@ -1,8 +1,9 @@
-import type { PhotoDTO } from '~~/shared/domains/photos/photoDTO';
-import type { Request } from '~~/shared/requests/request';
-
-import { StringIdentifierSchema } from '~~/shared/schemas/identifierSchema';
 import { z } from 'zod';
+
+import type { PhotoDTO } from '../../../shared/domains/photos/photoDTO';
+import type { Request } from '../../../shared/requests/request';
+
+import { StringIdentifierSchema } from '../../../shared/schemas/identifierSchema';
 
 export const DestroyPhotoRequestParamsSchema = z.object({ id: StringIdentifierSchema }); ;
 

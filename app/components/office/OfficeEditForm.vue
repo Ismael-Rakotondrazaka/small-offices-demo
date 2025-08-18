@@ -179,7 +179,7 @@
     <n-button
       class="mt-6"
       type="primary"
-      :pending="isStoreOfficePending"
+      :loading="isStoreOfficePending"
       @click="handleStoreOffice"
     >
       <template #icon>
@@ -397,7 +397,7 @@ const serviceOptions = computed(() =>
 
 const handleStoreOffice = handleSubmit(async (values) => {
   try {
-    const officeData = await $fetch(`/api/offices/${slug.value}`, {
+    const officeData = await $fetch<Serialize<UpdateOfficeRequestData>>(`/api/offices/${slug.value}`, {
       body: values,
       method: 'PUT',
     });

@@ -60,6 +60,7 @@
     "mustache": "^4.2.0",
     "nodemailer": "7.0.5",
     "nuxt": "^4.0.1",
+    "nuxt-api-shield": "^0.8.2",
     "nuxt-authorization": "^0.3.5",
     "nuxt-gtag": "^3.0.3",
     "nuxt-zod-i18n": "1.11.5",

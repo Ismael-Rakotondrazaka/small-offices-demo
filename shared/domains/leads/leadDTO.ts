@@ -1,6 +1,6 @@
-import { type OfficeDTO, OfficeDTOSchema } from '~~/shared/domains/offices/officeDTO';
 import { z } from 'zod';
 
+import { type OfficeDTO, OfficeDTOSchema } from '../../../shared/domains/offices/officeDTO';
 import { type LeadStatus, LeadStatusSchema } from './leadStatus';
 
 export interface LeadDTO {

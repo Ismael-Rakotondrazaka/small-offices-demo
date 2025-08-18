@@ -1,6 +1,6 @@
-import type { Request } from '~~/shared/requests/request';
-
 import { z } from 'zod';
+
+import type { Request } from '../../../shared/requests/request';
 
 export const HelloRequestQuerySchema = z.object({
   name: z.string().min(3).optional(),

@@ -1,6 +1,7 @@
 export * from './bulkStoreOfficeRequest';
 export * from './countOfficesRequest';
 export * from './destroyOfficeRequest';
+export * from './duplicateOfficeRequest';
 export * from './indexOfficeRequest';
 export * from './isAvailableOfficeRequest';
 export * from './officeConfig';

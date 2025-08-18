@@ -1,10 +1,10 @@
-import type { Request } from '~~/shared/requests/request';
-
-import { RoleSchema } from '~~/shared/domains/roles/role';
-import { StringIdentifierSchema } from '~~/shared/schemas/identifierSchema';
 import { z } from 'zod';
 
+import type { Request } from '../../../shared/requests/request';
 import type { UserRoleDTO } from './userRoleDTO';
+
+import { RoleSchema } from '../../../shared/domains/roles/role';
+import { StringIdentifierSchema } from '../../../shared/schemas/identifierSchema';
 
 export const UpdateUserRoleRequestParamsSchema = z.object({ id: StringIdentifierSchema }); ;
 

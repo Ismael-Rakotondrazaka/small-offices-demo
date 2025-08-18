@@ -1,7 +1,8 @@
-import type { Request } from '~~/shared/requests/request';
-import type { FlattenedPath } from '~~/shared/types/flatten';
 import type { ReasonPhrases, StatusCodes } from 'http-status-codes';
 import type { Simplify } from 'type-fest';
+
+import type { Request } from '../requests/request';
+import type { FlattenedPath } from '../types/flatten';
 
 export interface ResponseError<
   TRequest extends Request<

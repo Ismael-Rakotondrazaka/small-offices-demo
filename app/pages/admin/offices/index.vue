@@ -347,7 +347,9 @@ const search = useRouteQuery<null | string | string[] | undefined, IndexOfficeRe
 );
 const searchDebounced = debouncedRef(search, 1_500);
 
+const message = useMessage();
 const showBulkCreateModal = ref(false);
+const isDuplicatingOffice = ref<null | string>(null);
 
 const orderByCreatedAt = computed(() => {
   if (orderBy.value === OrderOption.createdAtAsc) return 'asc';
@@ -383,7 +385,7 @@ const requestQuery = computed<IndexOfficeRequestQuery>(() => ({
   'type[equals]': typeEquals.value,
 }));
 
-const { data: officesData, pending: isLoading } = await useFetch('/api/offices', {
+const { data: officesData, pending: isLoading, refresh } = await useFetch('/api/offices', {
   query: requestQuery,
 });
 
@@ -619,6 +621,19 @@ const columns = computed<DataTableColumns<Serialize<OfficeDTO>>>(() => [
               icon: () => h(Icon, { name: 'mdi:pencil' }),
             },
           ),
+          h(
+            NButton,
+            {
+              loading: isDuplicatingOffice.value === row.slug,
+              onClick: () => handleDuplicateOffice(row.slug),
+              secondary: true,
+              size: 'small',
+              type: 'info',
+            },
+            {
+              icon: () => h(Icon, { name: 'mdi:content-copy' }),
+            },
+          ),
         ],
       },
     ),
@@ -634,6 +649,26 @@ const handlePageChange = (newValue: number) => {
 const handlePageSizeChange = (size: number) => {
   pageSize.value = size;
   page.value = 1;
+};
+
+const handleDuplicateOffice = async (officeSlug: string) => {
+  try {
+    isDuplicatingOffice.value = officeSlug;
+
+    await $fetch(`/api/offices/${officeSlug}/duplicate`, {
+      method: 'POST',
+    });
+
+    message.success('Bureau dupliqué avec succès !');
+
+    await refresh();
+  }
+  catch {
+    message.error('Erreur lors de la duplication du bureau');
+  }
+  finally {
+    isDuplicatingOffice.value = null;
+  }
 };
 </script>
 
