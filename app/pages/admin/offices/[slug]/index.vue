@@ -109,6 +109,11 @@
 </template>
 
 <script lang="ts" setup>
+definePageMeta({
+  layout: 'admin',
+  middleware: 'admin-auth',
+});
+
 const route = useRoute();
 
 const { data }: Awaited<RequestToAsyncData<ShowOfficeRequest>> = await useFetch(`/api/offices/${route.params.slug}`);
