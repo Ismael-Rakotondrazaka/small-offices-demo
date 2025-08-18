@@ -182,6 +182,10 @@
       :pending="isStoreOfficePending"
       @click="handleStoreOffice"
     >
+      <template #icon>
+        <Icon name="mdi:content-save" />
+      </template>
+
       Enregistrer
     </n-button>
   </n-form>

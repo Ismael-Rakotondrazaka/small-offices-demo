@@ -5,7 +5,7 @@ definePageMeta({
 </script>
 
 <template>
-  <div class="container mx-auto">
+  <div class="container mx-auto min-h-screen flex items-center justify-center">
     <n-card
       title="Se connecter"
       size="small"
