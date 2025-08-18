@@ -58,7 +58,10 @@
           :title="`${data.data.title} - Paris ${data.data.arr}`"
         >
           <div class="flex flex-col md:flex-row gap-5">
-            <div class="md:w-1/3 w-full">
+            <div
+              v-if="data.data.photos.length"
+              class="md:w-1/3 w-full"
+            >
               <n-image
                 :src="data.data.photos[0]!.url"
                 object-fit="cover"

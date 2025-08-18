@@ -29,11 +29,16 @@
             }"
           >
             <img
+              v-if="office.photos.length"
               :alt="office.title"
               :src="office.photos[0]!.url"
               class="w-full h-full object-cover max-h-24"
             >
-            <span class="sr-only">
+            <span
+              :class="{
+                'sr-only': !office.photos.length,
+              }"
+            >
               {{ office.title }}
             </span>
           </NuxtLink>
