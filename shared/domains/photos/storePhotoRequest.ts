@@ -1,7 +1,6 @@
-import type { Request } from '~~/shared/requests/request';
-
 import { z } from 'zod';
 
+import type { Request } from '../../../shared/requests/request';
 import type { PhotoDTO } from './photoDTO';
 
 export const StorePhotoRequestBodySchema = z.object({ alt: z.string().nullable(), officeId: z.string(), url: z.string() });

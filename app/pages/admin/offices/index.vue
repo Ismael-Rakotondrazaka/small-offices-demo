@@ -349,7 +349,7 @@ const searchDebounced = debouncedRef(search, 1_500);
 
 const message = useMessage();
 const showBulkCreateModal = ref(false);
-const isDuplicatingOffice = ref<string | null>(null);
+const isDuplicatingOffice = ref<null | string>(null);
 
 const orderByCreatedAt = computed(() => {
   if (orderBy.value === OrderOption.createdAtAsc) return 'asc';
@@ -624,11 +624,11 @@ const columns = computed<DataTableColumns<Serialize<OfficeDTO>>>(() => [
           h(
             NButton,
             {
+              loading: isDuplicatingOffice.value === row.slug,
               onClick: () => handleDuplicateOffice(row.slug),
               secondary: true,
               size: 'small',
               type: 'info',
-              loading: isDuplicatingOffice.value === row.slug,
             },
             {
               icon: () => h(Icon, { name: 'mdi:content-copy' }),
@@ -654,17 +654,19 @@ const handlePageSizeChange = (size: number) => {
 const handleDuplicateOffice = async (officeSlug: string) => {
   try {
     isDuplicatingOffice.value = officeSlug;
-    
-    const duplicatedOffice = await $fetch(`/api/offices/${officeSlug}/duplicate`, {
+
+    await $fetch(`/api/offices/${officeSlug}/duplicate`, {
       method: 'POST',
     });
 
     message.success('Bureau dupliqué avec succès !');
-    
+
     await refresh();
-  } catch (error) {
+  }
+  catch {
     message.error('Erreur lors de la duplication du bureau');
-  } finally {
+  }
+  finally {
     isDuplicatingOffice.value = null;
   }
 };

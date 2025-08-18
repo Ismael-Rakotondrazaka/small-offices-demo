@@ -1,7 +1,6 @@
-import type { Request } from '~~/shared/requests/request';
-
 import { z } from 'zod';
 
+import type { Request } from '../../../shared/requests/request';
 import type { ServiceDTO } from './serviceDTO';
 
 export const StoreServiceRequestBodySchema = z.object({ icon: z.string().nullable(), name: z.string() });

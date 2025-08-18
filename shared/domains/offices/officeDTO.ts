@@ -1,7 +1,7 @@
-import { type PhotoDTO, PhotoDTOSchema } from '~~/shared/domains/photos/photoDTO';
-import { type ServiceDTO, ServiceDTOSchema } from '~~/shared/domains/services/serviceDTO';
 import { z } from 'zod';
 
+import { type PhotoDTO, PhotoDTOSchema } from '../../../shared/domains/photos/photoDTO';
+import { type ServiceDTO, ServiceDTOSchema } from '../../../shared/domains/services/serviceDTO';
 import { type OfficeType, OfficeTypeSchema } from './officeType';
 
 export interface OfficeDTO {

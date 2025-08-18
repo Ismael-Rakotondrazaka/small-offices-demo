@@ -1,10 +1,9 @@
-import type { Request } from '~~/shared/requests/request';
-
-import { StringIdentifierSchema } from '~~/shared/schemas/identifierSchema';
 import { z } from 'zod';
 
+import type { Request } from '../../../shared/requests/request';
 import type { LeadDTO } from './leadDTO';
 
+import { StringIdentifierSchema } from '../../../shared/schemas/identifierSchema';
 import { LeadStatusSchema } from './leadStatus';
 
 export const UpdateLeadRequestParamsSchema = z.object({ id: StringIdentifierSchema });

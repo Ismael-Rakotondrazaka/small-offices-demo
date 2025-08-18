@@ -1,12 +1,13 @@
-import type { OfficeDTO } from '~~/shared/domains/offices/officeDTO';
-import type { PaginationDTO } from '~~/shared/domains/paginations/paginationDTO';
-import type { Request } from '~~/shared/requests/request';
-
-import { officeConfig } from '~~/shared/domains/offices/officeConfig';
-import { OfficeTypeSchema } from '~~/shared/domains/offices/officeType';
-import { makePaginatedSchema } from '~~/shared/schemas/paginationSchema';
-import { SortOrderSchema } from '~~/shared/schemas/sortOrderSchema';
 import { z } from 'zod';
+
+import type { OfficeDTO } from '../../../shared/domains/offices/officeDTO';
+import type { PaginationDTO } from '../../../shared/domains/paginations/paginationDTO';
+import type { Request } from '../../../shared/requests/request';
+
+import { officeConfig } from '../../../shared/domains/offices/officeConfig';
+import { OfficeTypeSchema } from '../../../shared/domains/offices/officeType';
+import { makePaginatedSchema } from '../../../shared/schemas/paginationSchema';
+import { SortOrderSchema } from '../../../shared/schemas/sortOrderSchema';
 
 export type IndexOfficeRequestData = { data: OfficeDTO[]; pagination: PaginationDTO };
 
