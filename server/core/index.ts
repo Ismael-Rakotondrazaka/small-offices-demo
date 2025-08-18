@@ -1,5 +1,4 @@
 export * from './exceptions';
-export * from './files';
 export * from './identifiers';
 export * from './loggers';
 export * from './paginations';
