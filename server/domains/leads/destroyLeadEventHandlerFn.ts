@@ -2,7 +2,8 @@ import { RepositoryProvider } from '~~/server/services/repositories/repositoryPr
 
 import { LeadDTOMapper } from './leadDTOMapper';
 
-export const DestroyLeadEventHandlerFn: EventHandlerFn<DestroyLeadRequest> = async ({ params }) => {
+export const DestroyLeadEventHandlerFn: EventHandlerFn<DestroyLeadRequest> = async ({ params, userSession }) => {
+  await userSession.require();
   const lead = await RepositoryProvider.leadRepository.findOne({
     where: {
       id: params.id,

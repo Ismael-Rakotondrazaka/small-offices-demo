@@ -2,7 +2,8 @@ import { RepositoryProvider } from '~~/server/services/repositories/repositoryPr
 
 import { UserRoleDTOMapper } from './userRoleDTOMapper';
 
-export const UpdateUserRoleEventHandlerFn: EventHandlerFn<UpdateUserRoleRequest> = async ({ body, params }) => {
+export const UpdateUserRoleEventHandlerFn: EventHandlerFn<UpdateUserRoleRequest> = async ({ body, params, userSession }) => {
+  await userSession.require();
   const userRole = await RepositoryProvider.userRoleRepository.findOne({
     where: {
       id: params.id,

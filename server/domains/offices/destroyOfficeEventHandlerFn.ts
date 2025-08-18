@@ -2,7 +2,8 @@ import { RepositoryProvider } from '~~/server/services/repositories/repositoryPr
 
 import { OfficeDTOMapper } from './officeDTOMapper';
 
-export const DestroyOfficeEventHandlerFn: EventHandlerFn<DestroyOfficeRequest> = async ({ params }) => {
+export const DestroyOfficeEventHandlerFn: EventHandlerFn<DestroyOfficeRequest> = async ({ params, userSession }) => {
+  await userSession.require();
   const office = await RepositoryProvider.officeRepository.findOne({
     where: {
       slug: params.slug,

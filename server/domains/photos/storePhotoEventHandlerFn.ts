@@ -2,7 +2,8 @@ import { RepositoryProvider } from '~~/server/services/repositories/repositoryPr
 
 import { PhotoDTOMapper } from './photoDTOMapper';
 
-export const StorePhotoEventHandlerFn: EventHandlerFn<StorePhotoRequest> = async ({ body }) => {
+export const StorePhotoEventHandlerFn: EventHandlerFn<StorePhotoRequest> = async ({ body, userSession }) => {
+  await userSession.require();
   const photo = await RepositoryProvider.photoRepository.addOne({
     data: {
       alt: body.alt,

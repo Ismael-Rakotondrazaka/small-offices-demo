@@ -1,8 +1,7 @@
 <template>
   <n-result
     :status="status"
-    :title="error.message"
-    :description="description"
+    :title="title"
   >
     <template #footer>
       <ErrorPageClearButton />
@@ -22,7 +21,7 @@ const { t } = useI18n({
 
 const props = defineProps<Props>();
 
-const description = computed(() => {
+const title = computed(() => {
   const map: Record<number, string> = {
     400: 'errors.requests.defaults.badRequest',
     401: 'errors.requests.defaults.unauthorized',

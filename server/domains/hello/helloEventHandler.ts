@@ -1,9 +1,9 @@
 import type { EventHandlerFn } from '~~/server/core/requests/requestToEventHandler';
 
 export const helloEventHandlerFn: EventHandlerFn<HelloRequest> = async ({
-  body,
+  query,
 }) => {
   return {
-    message: `Hello ${body.name ?? ''}, it's ${new Date()}`,
+    message: `Hello ${query.name ?? ''}, it's ${new Date()}`,
   };
 };
