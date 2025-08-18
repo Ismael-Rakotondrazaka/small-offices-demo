@@ -5,5 +5,4 @@ export * from './paginations';
 export * from './requests';
 export * from './sanitizer';
 export * from './slugifier';
-export * from './translations';
 export * from './validations';
