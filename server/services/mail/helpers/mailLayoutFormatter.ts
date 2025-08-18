@@ -27,7 +27,7 @@ export abstract class MailLayoutFormatter {
             color: #fff;
           "
         >
-          Nuxt Fusion
+          Petits Bureaux
         </h1>
         <p
           style="
@@ -37,7 +37,7 @@ export abstract class MailLayoutFormatter {
             color: #fff;
           "
         >
-          The complete solution for secure, high-performance, feature-rich web apps, powered by Nuxt.
+          Accédez à tous les bureaux du marché. Votre conseiller vous accompagne en visite et vous aide à négocier. Le tout gratuitement.
         </p>
       </div>
       <div
@@ -52,14 +52,9 @@ export abstract class MailLayoutFormatter {
 
         <div style="max-width: 900px">
           <p style="font-size: 11pt; font-family: sans-serif; color: #000">
-            <strong style="color: #000">Nuxt Fusion</strong><br /><span
+            <strong style="color: #000">Petits Bureaux</strong><br /><span
               style="font-size: 9pt; color: gray"
-              >Github&nbsp;:
-              <a
-                href="https://github.com/Ismael-Rakotondrazaka/nuxt-fusion"
-                style="color: #0563c1"
-                >https://github.com/Ismael-Rakotondrazaka/nuxt-fusion</a
-              ></span
+              >Votre partenaire pour trouver le bureau idéal</span
             >
           </p>
         </div>
@@ -73,7 +68,7 @@ export abstract class MailLayoutFormatter {
           padding: 10px;
         "
       >
-        &copy; {{year}} Nuxt Fusion
+        &copy; {{year}} Petits Bureaux
       </footer>
     </div>
   </body>

@@ -1,3 +1,4 @@
+import { LeadNotificationMailSender } from '~~/server/services/mail/lead/leadNotificationMailSender';
 import { RepositoryProvider } from '~~/server/services/repositories/repositoryProvider';
 
 import { LeadDTOMapper } from './leadDTOMapper';
@@ -25,6 +26,15 @@ export const StoreLeadEventHandlerFn: EventHandlerFn<StoreLeadRequest> = async (
       officeId: office.id,
       phone: body.phone,
     },
+  });
+
+  LeadNotificationMailSender.send({
+    leadEmail: body.email,
+    leadName: body.name,
+    leadPhone: body.phone,
+    officeArr: office.arr.toString(),
+    officePrice: office.price,
+    officeTitle: office.title,
   });
 
   return {
