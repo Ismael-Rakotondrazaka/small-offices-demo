@@ -1,4 +1,5 @@
 <template>
+  <NuxtLoadingIndicator color="#302aa7" />
   <naive-config
     :breakpoints="breakPoints"
     :locale="frFR"

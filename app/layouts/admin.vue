@@ -71,13 +71,6 @@ const drawerRoutes: MenuLinkRoute[] = [
       name: 'admin-leads',
     },
   },
-  {
-    icon: 'mdi:chart-line',
-    label: 'Analytiques',
-    to: {
-      name: 'admin-analytiques',
-    },
-  },
 ];
 
 const routes = computed<MenuLinkRoute[]>(() =>

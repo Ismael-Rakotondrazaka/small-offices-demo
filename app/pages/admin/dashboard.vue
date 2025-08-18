@@ -1,5 +1,5 @@
 <template>
-  <div class="mx-auto w-full max-w-7xl p-6">
+  <div class="px-4 py-8">
     <n-h1>
       Dashboard
     </n-h1>
@@ -20,7 +20,7 @@
             />
           </template>
           <n-statistic>
-            {{ metrics.totalOffices }}
+            {{ totalOffices }}
           </n-statistic>
         </n-card>
       </n-grid-item>
@@ -34,13 +34,13 @@
             />
           </template>
           <n-statistic>
-            {{ metrics.totalLeads }}
+            {{ totalLeads }}
           </n-statistic>
         </n-card>
       </n-grid-item>
 
       <n-grid-item>
-        <n-card title="Pending Leads">
+        <n-card title="Leads en attente">
           <template #header-extra>
             <Icon
               name="mdi:clock-outline"
@@ -48,7 +48,7 @@
             />
           </template>
           <n-statistic>
-            {{ metrics.pendingLeads }}
+            {{ pendingLeads }}
           </n-statistic>
         </n-card>
       </n-grid-item>
@@ -79,10 +79,26 @@
     <n-h2>
       Recent Leads
     </n-h2>
+
+    <n-data-table
+      :columns="columns"
+      :data="leads"
+      :loading="isLoading"
+      :pagination="false"
+      :row-key="rowKey"
+      remote
+    />
   </div>
 </template>
 
 <script lang="ts" setup>
+import type { DataTableColumns } from 'naive-ui';
+
+import { Icon } from '#components';
+import { LeadStatus, LeadStatuses, LeadStatusLabel } from '~~/shared/domains/leads/leadStatus';
+import { NCard, NFlex, NImage, NPopover, NSelect, NTag } from 'naive-ui';
+import { I18nN } from 'vue-i18n';
+
 definePageMeta({
   layout: 'admin',
   middleware: 'admin-auth',
@@ -90,9 +106,199 @@ definePageMeta({
 
 defineOgImageComponent('DefaultOgImage');
 
-const metrics = ref({
-  pendingLeads: 0,
-  totalLeads: 0,
-  totalOffices: 0,
+const { data: pendingLeads } = await useFetch('/api/leads/count', {
+  query: {
+    'status[equals]': 'PENDING',
+  },
 });
+
+const { data: totalLeads } = await useFetch('/api/leads/count');
+const { data: totalOffices } = await useFetch('/api/offices/count');
+
+const requestQuery: IndexLeadRequestQuery = {
+  'orderBy[createdAt]': 'desc',
+  'page': 1,
+  'pageSize': 10,
+};
+
+const { data: recentLeadsData, pending: isLoading, refresh } = await useFetch('/api/leads', {
+  query: requestQuery,
+});
+const leads = computed<Serialize<LeadDTO>[]>(() => recentLeadsData.value?.data ?? []);
+
+const rowKey = (row: Serialize<LeadDTO>) => row.id;
+
+const formatDate = (date: Date) => {
+  return new Intl.DateTimeFormat('fr-FR', {
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+  }).format(new Date(date));
+};
+
+const getStatusTagType = (status: LeadStatus) => {
+  switch (status) {
+    case LeadStatus.CONTACTED:
+      return 'info';
+    case LeadStatus.CONVERTED:
+      return 'success';
+    case LeadStatus.LOST:
+      return 'error';
+    case LeadStatus.PENDING:
+      return 'warning';
+    default:
+      return 'default';
+  }
+};
+
+const message = useMessage();
+
+const handleStatusChange = async (lead: Serialize<LeadDTO>, newStatus: LeadStatus) => {
+  if (lead.status === newStatus) {
+    return;
+  }
+
+  try {
+    const body: UpdateLeadRequestBody = {
+      status: newStatus,
+    };
+
+    await $fetch(`/api/leads/${lead.id}`, {
+      body,
+      method: 'PUT',
+    });
+
+    await refresh();
+
+    message.success('Statut mis à jour avec succès');
+  }
+  catch {
+    message.error('Erreur lors de la mise à jour du statut');
+  }
+};
+
+const columns = computed<DataTableColumns<Serialize<LeadDTO>>>(() => [
+  {
+    key: 'name',
+    render: row => h('div', { class: 'font-medium' }, row.name),
+    sorter: false,
+    title: 'Nom',
+  },
+  {
+    key: 'email',
+    render: row => h('a', { class: 'text-blue-600 hover:underline', href: `mailto:${row.email}` }, row.email),
+    sorter: false,
+    title: 'Email',
+  },
+  {
+    key: 'phone',
+    render: row => row.phone ? h('a', { class: 'text-blue-600 hover:underline', href: `tel:${row.phone}` }, row.phone) : '-',
+    sorter: false,
+    title: 'Téléphone',
+  },
+  {
+    key: 'status',
+    render: row => h(
+      NTag,
+      {
+        size: 'small',
+        type: getStatusTagType(row.status),
+      },
+      { default: () => LeadStatusLabel[row.status] },
+    ),
+    sorter: false,
+    title: 'Statut',
+  },
+  {
+    key: 'createdAt',
+    render: row => formatDate(new Date(row.createdAt)),
+    sorter: false,
+    title: 'Date',
+  },
+  {
+    key: 'office',
+    render: row => h(
+      NPopover,
+      {
+        placement: 'top',
+        trigger: 'hover',
+      },
+      {
+        default: () => h(
+          NCard,
+          {
+            bordered: false,
+            size: 'small',
+            style: {
+              maxWidth: '300px',
+            },
+          },
+          {
+            default: () => [
+              row.office.photos.length > 0 && h(
+                NImage,
+                {
+                  alt: row.office.title,
+                  class: 'rounded mb-2',
+                  height: '120px',
+                  objectFit: 'cover',
+                  src: row.office.photos[0]!.url,
+                  width: '100%',
+                },
+              ),
+              h('div', { class: 'font-medium mb-1' }, row.office.title),
+              h('div', { class: 'text-sm text-gray-600 mb-1' }, `Paris ${row.office.arr}`),
+              h('div', { class: 'text-sm text-gray-600' }, `${row.office.posts} postes`),
+            ],
+          },
+        ),
+        trigger: () => h('div', { class: 'font-medium cursor-pointer hover:text-blue-600' }, row.office.title),
+      },
+    ),
+    sorter: false,
+    title: 'Bureaux',
+  },
+  {
+    key: 'price',
+    render: row => h(
+      'div',
+      { class: 'font-medium' },
+      h(I18nN, {
+        format: 'currency',
+        scope: 'global',
+        tag: 'span',
+        value: row.office.price,
+      }),
+    ),
+    sorter: false,
+    title: 'Prix',
+  },
+  {
+    key: 'actions',
+    render: row => h(
+      NFlex,
+      { gap: 'small' },
+      {
+        default: () => [
+          h(
+            NSelect,
+            {
+              onUpdateValue: (value: LeadStatus) => handleStatusChange(row, value),
+              options: LeadStatuses.map(status => ({
+                label: LeadStatusLabel[status],
+                value: status,
+              })),
+              value: row.status,
+            },
+            { default: () => 'Modifier' },
+          ),
+        ],
+      },
+    ),
+    sorter: false,
+    title: 'Actions',
+  },
+]);
 </script>

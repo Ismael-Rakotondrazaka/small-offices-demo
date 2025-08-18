@@ -1,3 +1,4 @@
+export * from './countLeadsRequest';
 export * from './destroyLeadRequest';
 export * from './indexLeadRequest';
 export * from './leadConfig';

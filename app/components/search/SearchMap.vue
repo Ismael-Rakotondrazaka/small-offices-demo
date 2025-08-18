@@ -1,7 +1,7 @@
 <template>
   <LMap
     :zoom="13"
-    :center="[48.8534, 2.4288]"
+    :center="[48.8596, 2.3429]"
     :use-global-leaflet="false"
   >
     <LTileLayer

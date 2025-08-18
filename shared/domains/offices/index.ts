@@ -1,3 +1,4 @@
+export * from './countOfficesRequest';
 export * from './destroyOfficeRequest';
 export * from './indexOfficeRequest';
 export * from './isAvailableOfficeRequest';

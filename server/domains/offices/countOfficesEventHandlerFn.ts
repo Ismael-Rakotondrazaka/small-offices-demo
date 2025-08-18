@@ -1,13 +1,11 @@
 import type { Prisma } from '~~/generated/prisma/client';
+import type { CountOfficesRequest } from '~~/shared/domains/offices/countOfficesRequest';
 
 import { RequestInputHelper } from '~~/server/core/requests/requestInputGetter';
-import { PaginationDTOMapper } from '~~/server/domains/paginations/paginationDTOMapper';
 import { RepositoryProvider } from '~~/server/services/repositories/repositoryProvider';
 
-import { OfficeDTOMapper } from './officeDTOMapper';
-
-export const IndexOfficeEventHandlerFn: EventHandlerFn<IndexOfficeRequest> = async ({ path, query }) => {
-  const haveWhereQueries = RequestInputHelper.haveWhereQueries<IndexOfficeRequest>(query, [
+export const CountOfficesEventHandlerFn: EventHandlerFn<CountOfficesRequest> = async ({ query }) => {
+  const haveWhereQueries = RequestInputHelper.haveWhereQueries(query, [
     'arr[equals]',
     'arr[in]',
     'posts[gte]',
@@ -38,12 +36,6 @@ export const IndexOfficeEventHandlerFn: EventHandlerFn<IndexOfficeRequest> = asy
         ]
       : undefined,
   };
-  const totalCount = await RepositoryProvider.officeRepository.count({ where });
-  const pagination = new Pagination({ page: query.page, pageSize: query.pageSize, path, totalCount });
-  const offices = await RepositoryProvider.officeRepository.findMany({ orderBy: [{ price: query['orderBy[price]'] }, { createdAt: query['orderBy[createdAt]'] }], skip: pagination.offset, take: pagination.pageSize, where });
-
-  return {
-    data: OfficeDTOMapper.toDTOs(offices),
-    pagination: PaginationDTOMapper.toDTO(pagination, offices.length),
-  };
+  const count = await RepositoryProvider.officeRepository.count({ where });
+  return count;
 };

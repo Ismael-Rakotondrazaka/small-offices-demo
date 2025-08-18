@@ -13,13 +13,15 @@ import { LeadStatusSchema } from './leadStatus';
 export type IndexLeadRequestData = { data: LeadDTO[]; pagination: PaginationDTO };
 
 export const IndexLeadRequestQuerySchema = z.object({
+  'createdAt[gte]': z.union([z.date(), z.string()]).optional(),
+  'createdAt[lte]': z.union([z.date(), z.string()]).optional(),
   'orderBy[createdAt]': SortOrderSchema,
   'orderBy[price]': SortOrderSchema,
   'price[gte]': z.coerce.number().optional(),
   'price[lte]': z.coerce.number().optional(),
   'search': z.string().optional(),
   'status[equals]': LeadStatusSchema,
-}).partial().merge(makePaginatedSchema({ defaultPageSize: leadConfig.PAGE_SIZE_DEFAULT_VALUE })); ;
+}).partial().merge(makePaginatedSchema({ defaultPageSize: leadConfig.PAGE_SIZE_DEFAULT_VALUE }));
 
 export type IndexLeadRequest = Request<IndexLeadRequestData, Record<string, never>, Record<string, never>, IndexLeadRequestQuery>;
 export type IndexLeadRequestQuery = z.infer<typeof IndexLeadRequestQuerySchema>;

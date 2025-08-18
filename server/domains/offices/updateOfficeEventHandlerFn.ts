@@ -67,7 +67,7 @@ export const UpdateOfficeEventHandlerFn: EventHandlerFn<UpdateOfficeRequest> = a
   // Photos check
   const previousPhotoUrls = new Set<string>(office.photos.map(e => e.url));
   const newPhotoUrls: string[] = [];
-  const photoIdsToDisconnect = new Set<string>();
+  const photoIdsToDelete = new Set<string>();
 
   if (body.photoUrls !== undefined) {
     for (const url of body.photoUrls) {
@@ -76,9 +76,9 @@ export const UpdateOfficeEventHandlerFn: EventHandlerFn<UpdateOfficeRequest> = a
       }
     }
 
-    for (const url of previousPhotoUrls) {
-      if (!body.photoUrls.includes(url)) {
-        photoIdsToDisconnect.add(url);
+    for (const photos of office.photos) {
+      if (!body.photoUrls.includes(photos.url)) {
+        photoIdsToDelete.add(photos.id);
       }
     }
   }
@@ -91,7 +91,7 @@ export const UpdateOfficeEventHandlerFn: EventHandlerFn<UpdateOfficeRequest> = a
       lng: body.lng,
       photos: {
         create: newPhotoUrls.map(url => ({ url })),
-        disconnect: Array.from(photoIdsToDisconnect).map(id => ({ id })),
+        delete: Array.from(photoIdsToDelete).map(id => ({ id })),
       },
       posts: body.posts,
       price: body.price,
