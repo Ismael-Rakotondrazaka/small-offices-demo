@@ -19,6 +19,7 @@ export abstract class Slugifier {
 
   static slugify(raw: string) {
     return _slugify(raw, {
+      locale: 'fr',
       lower: true,
     });
   }
