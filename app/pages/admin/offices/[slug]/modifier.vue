@@ -20,7 +20,7 @@ const route = useRoute('admin-offices-slug-modifier');
 
 const router = useRouter();
 
-const { data } = await useFetch(`/api/offices/${route.params.slug}`);
+const { data }: Awaited<RequestToAsyncData<ShowOfficeRequest>> = await useFetch(`/api/offices/${route.params.slug}`);
 
 const handleUpdateOffice = (office: Serialize<OfficeDTO>) => {
   if (data.value) {

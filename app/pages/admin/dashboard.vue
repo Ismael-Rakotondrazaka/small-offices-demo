@@ -165,7 +165,7 @@ const handleStatusChange = async (lead: Serialize<LeadDTO>, newStatus: LeadStatu
       status: newStatus,
     };
 
-    await $fetch(`/api/leads/${lead.id}`, {
+    await $fetch<Serialize<UpdateLeadRequestData>>(`/api/leads/${lead.id}`, {
       body,
       method: 'PUT',
     });

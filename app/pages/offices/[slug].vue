@@ -107,5 +107,5 @@
 <script lang="ts" setup>
 const route = useRoute();
 
-const { data } = await useFetch(`/api/offices/${route.params.slug}`);
+const { data }: Awaited<RequestToAsyncData<ShowOfficeRequest>> = await useFetch(`/api/offices/${route.params.slug}`);
 </script>
