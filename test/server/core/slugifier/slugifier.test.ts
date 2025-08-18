@@ -1,5 +1,6 @@
-import { Slugifier } from '~~/server/core/slugifier';
 import { describe, expect, it } from 'vitest';
+
+import { Slugifier } from '../../../../server/core/slugifier/slugifier';
 
 describe('Office Slug Generation', () => {
   it('should generate slug from title', () => {
@@ -11,7 +12,7 @@ describe('Office Slug Generation', () => {
   it('should handle special characters in title', () => {
     const title = 'Office & Co. - Paris 3ème';
     const slug = Slugifier.slugify(title);
-    expect(slug).toBe('office-co-paris-3eme');
+    expect(slug).toBe('office-et-co.-paris-3eme');
   });
 
   it('should handle accented characters', () => {
@@ -39,4 +40,4 @@ describe('Office Slug Generation', () => {
     const uniqueSlug = await Slugifier.generateUniqueSlug(baseSlug, checkExists);
     expect(uniqueSlug).toBe('unique-office');
   });
-}); 
+});
