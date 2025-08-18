@@ -44,7 +44,7 @@
           <n-button
             class="mt-5"
             type="primary"
-            :pending="isStoreLeadPending"
+            :loading="isStoreLeadPending"
             @click="handleStoreLead"
           >
             Envoyer la demande

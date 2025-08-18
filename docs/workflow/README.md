@@ -165,7 +165,7 @@ export const storePostEventHandlerFn: EventHandlerFn<
 
       <n-button
         type="primary"
-        :pending="isStorePostPending"
+        :loading="isStorePostPending"
         @click="handleStorePost"
       >
         Publish
@@ -317,7 +317,7 @@ const handleSubmit = handleSubmit(async (values) => {
 ```vue
 <template>
   <n-button 
-    :pending="isSubmitting" 
+    :loading="isSubmitting" 
     :disabled="isUploading"
     @click="handleSubmit"
   >

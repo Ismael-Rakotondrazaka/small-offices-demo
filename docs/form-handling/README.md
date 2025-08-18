@@ -179,7 +179,7 @@ Let's examine the complete post creation form from `app/pages/posts/create.vue`:
         class="mt-5"
         type="primary"
         :disabled="isStoreMediaStatusPending"
-        :pending="isStorePostPending"
+        :loading="isStorePostPending"
         @click="handleStorePost"
       >
         Publish

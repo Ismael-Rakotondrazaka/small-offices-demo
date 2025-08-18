@@ -179,7 +179,7 @@
     <n-button
       class="mt-6"
       type="primary"
-      :pending="isStoreOfficePending"
+      :loading="isStoreOfficePending"
       @click="handleStoreOffice"
     >
       <template #icon>
