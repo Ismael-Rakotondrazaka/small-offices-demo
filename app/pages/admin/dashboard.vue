@@ -5,13 +5,14 @@
     </n-h1>
 
     <n-grid
-      cols="3"
+      cols="4"
       responsive="screen"
-      :x-gap="8"
-      :y-gap="8"
+      item-responsive
+      x-gap="8"
+      y-gap="8"
       class="mb-5"
     >
-      <n-grid-item>
+      <n-grid-item span="4 m:2 l:1 xl:1 2xl:1">
         <n-card title="Bureaux">
           <template #header-extra>
             <Icon
@@ -25,7 +26,7 @@
         </n-card>
       </n-grid-item>
 
-      <n-grid-item>
+      <n-grid-item span="4 m:2 l:1 xl:1 2xl:1">
         <n-card title="Leads Totals">
           <template #header-extra>
             <Icon
@@ -39,7 +40,7 @@
         </n-card>
       </n-grid-item>
 
-      <n-grid-item>
+      <n-grid-item span="4 m:2 l:1 xl:1 2xl:1">
         <n-card title="Leads en attente">
           <template #header-extra>
             <Icon
@@ -49,6 +50,20 @@
           </template>
           <n-statistic>
             {{ pendingLeads }}
+          </n-statistic>
+        </n-card>
+      </n-grid-item>
+
+      <n-grid-item span="4 m:2 l:1 xl:1 2xl:1">
+        <n-card title="Taux de conversion">
+          <template #header-extra>
+            <Icon
+              name="mdi:trending-up"
+              size="1.5rem"
+            />
+          </template>
+          <n-statistic>
+            {{ conversionRate }}%
           </n-statistic>
         </n-card>
       </n-grid-item>
@@ -112,8 +127,21 @@ const { data: pendingLeads } = await useFetch('/api/leads/count', {
   },
 });
 
+const { data: convertedLeads } = await useFetch('/api/leads/count', {
+  query: {
+    'status[equals]': 'CONVERTED',
+  },
+});
+
 const { data: totalLeads } = await useFetch('/api/leads/count');
 const { data: totalOffices } = await useFetch('/api/offices/count');
+
+const conversionRate = computed(() => {
+  if (!totalLeads.value || !convertedLeads.value || totalLeads.value === 0) {
+    return 0;
+  }
+  return Math.round((convertedLeads.value / totalLeads.value) * 100);
+});
 
 const requestQuery: IndexLeadRequestQuery = {
   'orderBy[createdAt]': 'desc',
