@@ -80,7 +80,7 @@ describe('formatFileName', () => {
   it('should generate unique filenames for same input', () => {
     const result1 = formatFileName('test.txt');
     const result2 = formatFileName('test.txt');
-    
+
     expect(result1).not.toBe(result2);
     expect(result1).toMatch(/^test__[a-f0-9-]+\.txt$/);
     expect(result2).toMatch(/^test__[a-f0-9-]+\.txt$/);
@@ -113,4 +113,4 @@ describe('formatFileName', () => {
     expect(result).toContain('spaced-file');
     expect(result).toContain('.txt');
   });
-}); 
+});

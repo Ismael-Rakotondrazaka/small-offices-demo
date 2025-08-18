@@ -9,7 +9,7 @@ export interface LeadDTO {
   id: string;
   name: string;
   office: OfficeDTO;
-  phone: null | string;
+  phone: string;
   status: LeadStatus;
   updatedAt: Date;
 }

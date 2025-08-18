@@ -1,5 +1,6 @@
 export * from './hello';
 export * from './leads';
+export * from './media';
 export * from './offices';
 export * from './paginations';
 export * from './photos';

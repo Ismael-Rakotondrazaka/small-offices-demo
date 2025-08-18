@@ -1,3 +1,4 @@
+export * from './bulkStoreOfficeEventHandlerFn';
 export * from './countOfficesEventHandlerFn';
 export * from './destroyOfficeEventHandlerFn';
 export * from './indexOfficeEventHandlerFn';

@@ -20,4 +20,3 @@ describe('SortOrderSchema', () => {
     expect(SortOrderSchema.safeParse('').success).toBe(false);
   });
 });
-

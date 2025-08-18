@@ -1,8 +1,8 @@
-import type { Request, RequestToWSMessage } from '~~/shared/requests/request';
 import type {
   BouncerAbility,
   BouncerArgs,
 } from '~~/node_modules/nuxt-authorization/dist/utils/index.mjs';
+import type { Request, RequestToWSMessage } from '~~/shared/requests/request';
 import type { Peer } from 'crossws';
 import type { EventHandler } from 'h3';
 
@@ -31,6 +31,7 @@ export type EventHandlerFn<R extends Request<any, any, any, any>> = (inputs: {
   params: R['input']['params'];
   path: string;
   query: R['input']['query'];
+  setHeaders: (headers: Record<string, string>) => void;
   userSession: {
     get: () => Promise<null | UserSession>;
     require: () => Promise<UserSession>;

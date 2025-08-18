@@ -1,5 +1,6 @@
 export * from './countLeadsEventHandlerFn';
 export * from './destroyLeadEventHandlerFn';
+export * from './downloadLeadsEventHandlerFn';
 export * from './indexLeadEventHandlerFn';
 export * from './leadDTOMapper';
 export * from './leadModel';

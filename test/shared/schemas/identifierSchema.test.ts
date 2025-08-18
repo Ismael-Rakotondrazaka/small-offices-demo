@@ -25,4 +25,3 @@ describe('StringIdentifierSchema', () => {
     expect(StringIdentifierSchema.safeParse('not-a-uuid').success).toBe(false);
   });
 });
-

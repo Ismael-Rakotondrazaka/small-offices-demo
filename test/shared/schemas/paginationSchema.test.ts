@@ -33,4 +33,3 @@ describe('makePaginatedSchema', () => {
     expect(schema.safeParse({ pageSize: 10.1 }).success).toBe(false);
   });
 });
-
