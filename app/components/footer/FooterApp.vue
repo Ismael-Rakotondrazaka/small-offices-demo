@@ -186,27 +186,27 @@
 import { ref } from 'vue';
 
 const bureauxLinks = ref([
-  { href: '#', name: 'Location de bureaux à Paris' },
-  { href: '#', name: 'Location de bureaux à Lyon' },
-  { href: '#', name: 'Location de bureaux à Marseille' },
-  { href: '#', name: 'Location de bureaux à Bordeaux' },
+  { href: '/', name: 'Location de bureaux à Paris' },
+  { href: '/', name: 'Location de bureaux à Lyon' },
+  { href: '/', name: 'Location de bureaux à Marseille' },
+  { href: '/', name: 'Location de bureaux à Bordeaux' },
 ]);
 
 const coworkingLinks = ref([
-  { href: '#', name: 'À propos du coworking' },
-  { href: '#', name: 'Coworking à Paris' },
-  { href: '#', name: 'Coworking à Lyon' },
-  { href: '#', name: 'Coworking à Marseille' },
-  { href: '#', name: 'Coworking à Bordeaux' },
+  { href: '/', name: 'À propos du coworking' },
+  { href: '/', name: 'Coworking à Paris' },
+  { href: '/', name: 'Coworking à Lyon' },
+  { href: '/', name: 'Coworking à Marseille' },
+  { href: '/', name: 'Coworking à Bordeaux' },
 ]);
 
 const aboutLinks = ref([
-  { href: '#', name: 'L’emplacement idéal pour vos bureaux' },
-  { href: '#', name: 'Comparateur de contrats' },
-  { href: '#', name: 'À propos' },
-  { href: '#', name: 'Louer un bureau : comment ça marche ?' },
-  { href: '#', name: 'Chercher un bureau : comment ça marche ?' },
-  { href: '#', name: 'Média' },
-  { href: '#', name: 'Nous rejoindre' },
+  { href: '/', name: 'L’emplacement idéal pour vos bureaux' },
+  { href: '/', name: 'Comparateur de contrats' },
+  { href: '/', name: 'À propos' },
+  { href: '/', name: 'Louer un bureau : comment ça marche ?' },
+  { href: '/', name: 'Chercher un bureau : comment ça marche ?' },
+  { href: '/', name: 'Média' },
+  { href: '/', name: 'Nous rejoindre' },
 ]);
 </script>
