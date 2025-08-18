@@ -1,299 +1,267 @@
 import type { IndexOfficeRequestQuery } from './shared/domains/offices/indexOfficeRequest';
 
 export type StaticPageLink = {
-  href: string;
-  name: string;
   path: string;
+  pathName: string;
   props: {
     propsQuery: {
       arr?: number[];
     } & IndexOfficeRequestQuery;
   };
+  textContent: string;
 };
 
 export const staticPageLinks: StaticPageLink[] = [
   {
-    href: '/coworking-paris',
-    name: 'coworking-paris',
-    path: '/coworking-paris',
-    props: {
-      propsQuery: {
-        'page': 1,
-        'pageSize': 15,
-        'type[equals]': 'OPEN_SPACE',
-      },
-    } as const,
-  },
-  {
-    href: '/bureaux-paris',
-    name: 'bureaux-paris',
     path: '/bureaux-paris',
+    pathName: 'bureaux-paris',
     props: {
       propsQuery: {
         page: 1,
         pageSize: 15,
       },
     },
+    textContent: 'Location de bureaux à Paris',
   },
   {
-    href: '/coworking-paris-1',
-    name: 'coworking-paris-1',
-    path: '/coworking-paris-1',
+    path: '/bureaux-paris-1',
+    pathName: 'bureaux-paris-1',
     props: {
       propsQuery: {
-        'arr': [1],
-        'page': 1,
-        'pageSize': 15,
-        'type[equals]': 'OPEN_SPACE',
+        arr: [1],
+        page: 1,
+        pageSize: 15,
       },
     } as const,
+    textContent: 'Location de bureaux à Paris 1',
   },
   {
-    href: '/coworking-paris-2',
-    name: 'coworking-paris-2',
-    path: '/coworking-paris-2',
+    path: '/bureaux-paris-2',
+    pathName: 'bureaux-paris-2',
     props: {
       propsQuery: {
-        'arr': [2],
-        'page': 1,
-        'pageSize': 15,
-        'type[equals]': 'OPEN_SPACE',
+        arr: [2],
+        page: 1,
+        pageSize: 15,
       },
     } as const,
+    textContent: 'Location de bureaux à Paris 2',
   },
   {
-    href: '/coworking-paris-3',
-    name: 'coworking-paris-3',
-    path: '/coworking-paris-3',
+    path: '/bureaux-paris-3',
+    pathName: 'bureaux-paris-3',
     props: {
       propsQuery: {
-        'arr': [3],
-        'page': 1,
-        'pageSize': 15,
-        'type[equals]': 'OPEN_SPACE',
+        arr: [3],
+        page: 1,
+        pageSize: 15,
       },
     } as const,
+    textContent: 'Location de bureaux à Paris 3',
   },
   {
-    href: '/coworking-paris-4',
-    name: 'coworking-paris-4',
-    path: '/coworking-paris-4',
+    path: '/bureaux-paris-4',
+    pathName: 'bureaux-paris-4',
     props: {
       propsQuery: {
-        'arr': [4],
-        'page': 1,
-        'pageSize': 15,
-        'type[equals]': 'OPEN_SPACE',
+        arr: [4],
+        page: 1,
+        pageSize: 15,
       },
     } as const,
+    textContent: 'Location de bureaux à Paris 4',
   },
   {
-    href: '/coworking-paris-5',
-    name: 'coworking-paris-5',
-    path: '/coworking-paris-5',
+    path: '/bureaux-paris-5',
+    pathName: 'bureaux-paris-5',
     props: {
       propsQuery: {
-        'arr': [5],
-        'page': 1,
-        'pageSize': 15,
-        'type[equals]': 'OPEN_SPACE',
+        arr: [5],
+        page: 1,
+        pageSize: 15,
       },
     } as const,
+    textContent: 'Location de bureaux à Paris 5',
   },
   {
-    href: '/coworking-paris-6',
-    name: 'coworking-paris-6',
-    path: '/coworking-paris-6',
+    path: '/bureaux-paris-6',
+    pathName: 'bureaux-paris-6',
     props: {
       propsQuery: {
-        'arr': [6],
-        'page': 1,
-        'pageSize': 15,
-        'type[equals]': 'OPEN_SPACE',
+        arr: [6],
+        page: 1,
+        pageSize: 15,
       },
     } as const,
+    textContent: 'Location de bureaux à Paris 6',
   },
   {
-    href: '/coworking-paris-7',
-    name: 'coworking-paris-7',
-    path: '/coworking-paris-7',
+    path: '/bureaux-paris-7',
+    pathName: 'bureaux-paris-7',
     props: {
       propsQuery: {
-        'arr': [7],
-        'page': 1,
-        'pageSize': 15,
-        'type[equals]': 'OPEN_SPACE',
+        arr: [7],
+        page: 1,
+        pageSize: 15,
       },
     } as const,
+    textContent: 'Location de bureaux à Paris 7',
   },
   {
-    href: '/coworking-paris-8',
-    name: 'coworking-paris-8',
-    path: '/coworking-paris-8',
+    path: '/bureaux-paris-8',
+    pathName: 'bureaux-paris-8',
     props: {
       propsQuery: {
-        'arr': [8],
-        'page': 1,
-        'pageSize': 15,
-        'type[equals]': 'OPEN_SPACE',
+        arr: [8],
+        page: 1,
+        pageSize: 15,
       },
     } as const,
+    textContent: 'Location de bureaux à Paris 8',
   },
   {
-    href: '/coworking-paris-9',
-    name: 'coworking-paris-9',
-    path: '/coworking-paris-9',
+    path: '/bureaux-paris-9',
+    pathName: 'bureaux-paris-9',
     props: {
       propsQuery: {
-        'arr': [9],
-        'page': 1,
-        'pageSize': 15,
-        'type[equals]': 'OPEN_SPACE',
+        arr: [9],
+        page: 1,
+        pageSize: 15,
       },
     } as const,
+    textContent: 'Location de bureaux à Paris 9',
   },
   {
-    href: '/coworking-paris-10',
-    name: 'coworking-paris-10',
-    path: '/coworking-paris-10',
+    path: '/bureaux-paris-10',
+    pathName: 'bureaux-paris-10',
     props: {
       propsQuery: {
-        'arr': [10],
-        'page': 1,
-        'pageSize': 15,
-        'type[equals]': 'OPEN_SPACE',
+        arr: [10],
+        page: 1,
+        pageSize: 15,
       },
     } as const,
+    textContent: 'Location de bureaux à Paris 10',
   },
   {
-    href: '/coworking-paris-11',
-    name: 'coworking-paris-11',
-    path: '/coworking-paris-11',
+    path: '/bureaux-paris-11',
+    pathName: 'bureaux-paris-11',
     props: {
       propsQuery: {
-        'arr': [11],
-        'page': 1,
-        'pageSize': 15,
-        'type[equals]': 'OPEN_SPACE',
+        arr: [11],
+        page: 1,
+        pageSize: 15,
       },
     } as const,
+    textContent: 'Location de bureaux à Paris 11',
   },
   {
-    href: '/coworking-paris-12',
-    name: 'coworking-paris-12',
-    path: '/coworking-paris-12',
+    path: '/bureaux-paris-12',
+    pathName: 'bureaux-paris-12',
     props: {
       propsQuery: {
-        'arr': [12],
-        'page': 1,
-        'pageSize': 15,
-        'type[equals]': 'OPEN_SPACE',
+        arr: [12],
+        page: 1,
+        pageSize: 15,
       },
     } as const,
+    textContent: 'Location de bureaux à Paris 12',
   },
   {
-    href: '/coworking-paris-13',
-    name: 'coworking-paris-13',
-    path: '/coworking-paris-13',
+    path: '/bureaux-paris-13',
+    pathName: 'bureaux-paris-13',
     props: {
       propsQuery: {
-        'arr': [13],
-        'page': 1,
-        'pageSize': 15,
-        'type[equals]': 'OPEN_SPACE',
+        arr: [13],
+        page: 1,
+        pageSize: 15,
       },
     } as const,
+    textContent: 'Location de bureaux à Paris 13',
   },
   {
-    href: '/coworking-paris-14',
-    name: 'coworking-paris-14',
-    path: '/coworking-paris-14',
+    path: '/bureaux-paris-14',
+    pathName: 'bureaux-paris-14',
     props: {
       propsQuery: {
-        'arr': [14],
-        'page': 1,
-        'pageSize': 15,
-        'type[equals]': 'OPEN_SPACE',
+        arr: [14],
+        page: 1,
+        pageSize: 15,
       },
     } as const,
+    textContent: 'Location de bureaux à Paris 14',
   },
   {
-    href: '/coworking-paris-15',
-    name: 'coworking-paris-15',
-    path: '/coworking-paris-15',
+    path: '/bureaux-paris-15',
+    pathName: 'bureaux-paris-15',
     props: {
       propsQuery: {
-        'arr': [15],
-        'page': 1,
-        'pageSize': 15,
-        'type[equals]': 'OPEN_SPACE',
+        arr: [15],
+        page: 1,
+        pageSize: 15,
       },
     } as const,
+    textContent: 'Location de bureaux à Paris 15',
   },
   {
-    href: '/coworking-paris-16',
-    name: 'coworking-paris-16',
-    path: '/coworking-paris-16',
+    path: '/bureaux-paris-16',
+    pathName: 'bureaux-paris-16',
     props: {
       propsQuery: {
-        'arr': [16],
-        'page': 1,
-        'pageSize': 15,
-        'type[equals]': 'OPEN_SPACE',
+        arr: [16],
+        page: 1,
+        pageSize: 15,
       },
     } as const,
+    textContent: 'Location de bureaux à Paris 16',
   },
   {
-    href: '/coworking-paris-17',
-    name: 'coworking-paris-17',
-    path: '/coworking-paris-17',
+    path: '/bureaux-paris-17',
+    pathName: 'bureaux-paris-17',
     props: {
       propsQuery: {
-        'arr': [17],
-        'page': 1,
-        'pageSize': 15,
-        'type[equals]': 'OPEN_SPACE',
+        arr: [17],
+        page: 1,
+        pageSize: 15,
       },
     } as const,
+    textContent: 'Location de bureaux à Paris 17',
   },
   {
-    href: '/coworking-paris-18',
-    name: 'coworking-paris-18',
-    path: '/coworking-paris-18',
+    path: '/bureaux-paris-18',
+    pathName: 'bureaux-paris-18',
     props: {
       propsQuery: {
-        'arr': [18],
-        'page': 1,
-        'pageSize': 15,
-        'type[equals]': 'OPEN_SPACE',
+        arr: [18],
+        page: 1,
+        pageSize: 15,
       },
     } as const,
+    textContent: 'Location de bureaux à Paris 18',
   },
   {
-    href: '/coworking-paris-19',
-    name: 'coworking-paris-19',
-    path: '/coworking-paris-19',
+    path: '/bureaux-paris-19',
+    pathName: 'bureaux-paris-19',
     props: {
       propsQuery: {
-        'arr': [19],
-        'page': 1,
-        'pageSize': 15,
-        'type[equals]': 'OPEN_SPACE',
+        arr: [19],
+        page: 1,
+        pageSize: 15,
       },
     } as const,
+    textContent: 'Location de bureaux à Paris 19',
   },
   {
-    href: '/coworking-paris-20',
-    name: 'coworking-paris-20',
-    path: '/coworking-paris-20',
+    path: '/bureaux-paris-20',
+    pathName: 'bureaux-paris-20',
     props: {
       propsQuery: {
-        'arr': [20],
-        'page': 1,
-        'pageSize': 15,
-        'type[equals]': 'OPEN_SPACE',
+        arr: [20],
+        page: 1,
+        pageSize: 15,
       },
     } as const,
+    textContent: 'Location de bureaux à Paris 20',
   },
 ];
 
