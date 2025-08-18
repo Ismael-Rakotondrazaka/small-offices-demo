@@ -1,3 +1,4 @@
+export * from './countOfficesEventHandlerFn';
 export * from './destroyOfficeEventHandlerFn';
 export * from './indexOfficeEventHandlerFn';
 export * from './isAvailableOfficeEventHandlerFn';

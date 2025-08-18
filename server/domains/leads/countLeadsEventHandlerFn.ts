@@ -1,13 +1,11 @@
 import type { Prisma } from '~~/generated/prisma/client';
+import type { CountLeadsRequest } from '~~/shared/domains/leads/countLeadsRequest';
 
 import { RequestInputHelper } from '~~/server/core/requests/requestInputGetter';
-import { PaginationDTOMapper } from '~~/server/domains/paginations/paginationDTOMapper';
 import { RepositoryProvider } from '~~/server/services/repositories/repositoryProvider';
 
-import { LeadDTOMapper } from './leadDTOMapper';
-
-export const IndexLeadEventHandlerFn: EventHandlerFn<IndexLeadRequest> = async ({ path, query }) => {
-  const haveWhereQueries = RequestInputHelper.haveWhereQueries<IndexLeadRequest>(query, [
+export const CountLeadsEventHandlerFn: EventHandlerFn<CountLeadsRequest> = async ({ query }) => {
+  const haveWhereQueries = RequestInputHelper.haveWhereQueries(query, [
     'createdAt[gte]',
     'createdAt[lte]',
     'price[gte]',
@@ -36,23 +34,6 @@ export const IndexLeadEventHandlerFn: EventHandlerFn<IndexLeadRequest> = async (
       : undefined,
   };
 
-  const totalCount = await RepositoryProvider.leadRepository.count({ where });
-  const pagination = new Pagination({ page: query.page, pageSize: query.pageSize, path, totalCount });
-  const leads = await RepositoryProvider.leadRepository.findMany({ orderBy: [
-    {
-      createdAt: query['orderBy[createdAt]'],
-    },
-    query['orderBy[price]']
-      ? {
-          office: {
-            price: query['orderBy[price]'],
-          },
-        }
-      : {},
-  ], skip: pagination.offset, take: pagination.pageSize, where });
-
-  return {
-    data: LeadDTOMapper.toDTOs(leads),
-    pagination: PaginationDTOMapper.toDTO(pagination, leads.length),
-  };
+  const count = await RepositoryProvider.leadRepository.count({ where });
+  return count;
 };
