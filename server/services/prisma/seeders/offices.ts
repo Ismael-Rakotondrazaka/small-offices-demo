@@ -146,16 +146,17 @@ const createOfficeData = (arg: {
   arr?: number;
   isFake?: boolean;
   services: Service[];
+  type?: $Enums.OfficeType;
   years?: number;
 }): Prisma.OfficeCreateInput => {
-  const title = faker.company.name();
+  const title = faker.company.buzzPhrase();
   const arrondissement = arg.arr
     ? PARIS_ARRONDISSEMENTS.find(a => a.arr === arg.arr) || faker.helpers.arrayElement(PARIS_ARRONDISSEMENTS)
     : faker.helpers.arrayElement(PARIS_ARRONDISSEMENTS);
   const arr = arrondissement.arr;
   const { lat, lng } = getRandomLocationInArrondissement(arr);
   const price = faker.number.float({ max: 150000, min: 500, multipleOf: 100 });
-  const type = faker.helpers.enumValue($Enums.OfficeType);
+  const type = arg.type ?? faker.helpers.enumValue($Enums.OfficeType);
   const posts = faker.number.int({ max: 50, min: 1 });
   const createdAt = faker.date.past({ years: arg.years || 1 });
   const isFake = arg.isFake ?? faker.datatype.boolean({ probability: 0.2 });
@@ -187,23 +188,29 @@ export const createOffices = async (arg: {
   services: Service[];
   years: number;
 }): Promise<Office[]> => {
-  const totalOffices = faker.number.int({ max: 50, min: 20 });
-  const officesPerArrondissement = Math.ceil(totalOffices / PARIS_ARRONDISSEMENTS.length);
-
   const officesData: Prisma.OfficeCreateInput[] = [];
 
   PARIS_ARRONDISSEMENTS.forEach((arrondissement) => {
-    const arrOfficesCount = faker.number.int({
-      max: officesPerArrondissement + 2,
-      min: Math.max(1, officesPerArrondissement - 2),
-    });
+    for (const type of Object.values($Enums.OfficeType)) {
+      if (type === $Enums.OfficeType.INDEPENDENT_SPACE) continue;
 
-    for (let i = 0; i < arrOfficesCount; i++) {
-      officesData.push(createOfficeData({
-        arr: arrondissement.arr,
-        services: arg.services,
-        years: arg.years,
-      }));
+      officesData.push(
+        ...faker.helpers.multiple(
+          () => createOfficeData(
+            {
+              arr: arrondissement.arr,
+              services: arg.services,
+              type,
+              years: arg.years,
+            },
+          ),
+          {
+            count: {
+              max: 20,
+              min: 5,
+            },
+          }),
+      );
     }
   });
 
