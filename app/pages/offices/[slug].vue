@@ -109,15 +109,19 @@ const route = useRoute();
 
 const { data }: Awaited<RequestToAsyncData<ShowOfficeRequest>> = await useFetch(`/api/offices/${route.params.slug}`);
 
-defineOgImageComponent('OfficeOgImage', {
-  officeArr: data.value?.data?.arr,
-  officePhoto: data.value?.data?.photos?.[0]?.url,
-  officePosts: data.value?.data?.posts,
-  officePrice: data.value?.data?.price,
-  officeTitle: data.value?.data?.title,
-});
+const runtimeConfig = useRuntimeConfig();
 
 useSeoMeta({
+  ogDescription: () => data.value ? `${data.value.data.title} - Paris ${data.value.data.arr}` : route.params.slug as string,
+  ogImage: () => data.value ? data.value.data.photos?.[0]?.url : null,
+  ogImageUrl: () => data.value ? data.value.data.photos?.[0]?.url : null,
+  ogTitle: () => data.value ? `${data.value.data.title} - Paris ${data.value.data.arr}` : route.params.slug as string,
   title: () => data.value ? `${data.value.data.title} - Paris ${data.value.data.arr}` : route.params.slug as string,
+  twitterCard: 'summary_large_image',
+  twitterCreator: () => runtimeConfig.public.appUrl,
+  twitterDescription: () => data.value ? `${data.value.data.title} - Paris ${data.value.data.arr}` : route.params.slug as string,
+  twitterImage: () => data.value ? data.value.data.photos?.[0]?.url : null,
+  twitterSite: () => runtimeConfig.public.appUrl,
+  twitterTitle: () => data.value ? `${data.value.data.title} - Paris ${data.value.data.arr}` : route.params.slug as string,
 });
 </script>

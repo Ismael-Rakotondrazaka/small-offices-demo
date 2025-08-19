@@ -130,7 +130,7 @@ export default defineNuxtConfig({
     limit: {
       ban: 3_600, // 1 hour
       duration: 3_600, // 1 hour
-      max: 100, // 100 requests per duration
+      max: process.env.NUXT_API_SHIELD_MAX_REQUESTS ? Number(process.env.NUXT_API_SHIELD_MAX_REQUESTS) : 100, // 100 requests per duration
     },
     log: {
       attempts: 0, // disable logging
@@ -156,6 +156,9 @@ export default defineNuxtConfig({
   },
 
   runtimeConfig: {
+    /* ---------------------------------- Security ---------------------------------- */
+    apiShieldMaxRequests: 100,
+
     informationEmail: '',
 
     public: {
@@ -166,11 +169,11 @@ export default defineNuxtConfig({
       fileStorageBucketEntryPoint: '',
       fileStorageBucketName: '',
     },
-
     /* ---------------------------------- SMTP ---------------------------------- */
     smtpHost: '',
     smtpPassword: '',
     smtpPort: '',
+
     smtpUser: '',
   },
 

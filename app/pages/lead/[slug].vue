@@ -116,6 +116,11 @@ defineOgImageComponent('LeadOgImage', {
   officeTitle: data.value?.data?.title,
 });
 
+useSeoMeta({
+  ogTitle: () => data.value?.data?.title || 'Détail du bureau',
+  title: () => data.value?.data?.title || 'Détail du bureau',
+});
+
 const message = useMessage();
 
 const {

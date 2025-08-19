@@ -6,6 +6,11 @@ definePageMeta({
 defineOgImageComponent('AdminOgImage', {
   pageTitle: 'Connexion',
 });
+
+useSeoMeta({
+  ogTitle: () => 'Connexion',
+  title: () => 'Connexion',
+});
 </script>
 
 <template>

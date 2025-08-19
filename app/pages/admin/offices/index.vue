@@ -162,6 +162,11 @@ defineOgImageComponent('AdminOgImage', {
   pageTitle: 'Gestion des bureaux',
 });
 
+useSeoMeta({
+  ogTitle: () => 'Gestion des bureaux',
+  title: () => 'Gestion des bureaux',
+});
+
 const OrderOption = {
   createdAtAsc: 'createdAtAsc',
   createdAtDesc: 'createdAtDesc',

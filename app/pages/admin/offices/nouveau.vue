@@ -204,6 +204,11 @@ defineOgImageComponent('AdminOgImage', {
   pageTitle: 'Nouveau bureau',
 });
 
+useSeoMeta({
+  ogTitle: () => 'Nouveau bureau',
+  title: () => 'Nouveau bureau',
+});
+
 const runtimeConfig = useRuntimeConfig();
 
 const message = useMessage();

@@ -123,6 +123,11 @@ defineOgImageComponent('AdminOgImage', {
   pageTitle: 'Tableau de bord',
 });
 
+useSeoMeta({
+  ogTitle: () => 'Tableau de bord',
+  title: () => 'Tableau de bord',
+});
+
 const { data: pendingLeads } = await useFetch('/api/leads/count', {
   query: {
     'status[equals]': 'PENDING',

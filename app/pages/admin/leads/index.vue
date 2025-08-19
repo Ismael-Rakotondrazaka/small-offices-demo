@@ -120,6 +120,11 @@ defineOgImageComponent('AdminOgImage', {
   pageTitle: 'Gestion des leads',
 });
 
+useSeoMeta({
+  ogTitle: () => 'Gestion des leads',
+  title: () => 'Gestion des leads',
+});
+
 const OrderOption = {
   createdAtAsc: 'createdAtAsc',
   createdAtDesc: 'createdAtDesc',
