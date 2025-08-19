@@ -72,6 +72,13 @@ const drawerRoutes: MenuLinkRoute[] = [
       name: 'admin-leads',
     },
   },
+  {
+    icon: 'mdi:file-search',
+    label: 'Journaux d\'audit',
+    to: {
+      name: 'admin-audit-logs',
+    },
+  },
 ];
 
 const routes = computed<MenuLinkRoute[]>(() =>

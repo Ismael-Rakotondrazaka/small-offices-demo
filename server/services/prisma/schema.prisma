@@ -90,3 +90,13 @@ model Service {
   createdAt DateTime @default(now())
   offices   Office[]
 }
+
+model AuditLog {
+  id          String   @id @default(uuid())
+  action      String
+  actorId     String
+  targetTable String
+  targetId    String
+  createdAt   DateTime @default(now())
+  meta        Json?
+}

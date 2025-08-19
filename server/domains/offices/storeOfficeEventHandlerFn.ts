@@ -1,10 +1,11 @@
 import { Slugifier } from '~~/server/core/slugifier';
 import { RepositoryProvider } from '~~/server/services/repositories/repositoryProvider';
+import { AuditLogService } from '~~/server/services/auditLog/auditLogService';
 
 import { OfficeDTOMapper } from './officeDTOMapper';
 
 export const StoreOfficeEventHandlerFn: EventHandlerFn<StoreOfficeRequest> = async ({ body, userSession }) => {
-  await userSession.require();
+  const user = await userSession.require();
   const baseSlug = body.slug || Slugifier.slugify(body.title);
 
   const uniqueSlug = await Slugifier.generateUniqueSlug(
@@ -29,6 +30,18 @@ export const StoreOfficeEventHandlerFn: EventHandlerFn<StoreOfficeRequest> = asy
       slug: uniqueSlug,
       title: body.title,
       type: body.type,
+    },
+  });
+
+  await AuditLogService.logCreate({
+    userSession: user,
+    targetTable: 'Office',
+    targetId: office.id,
+    meta: {
+      title: office.title,
+      slug: office.slug,
+      price: office.price,
+      type: office.type,
     },
   });
 

@@ -1,10 +1,11 @@
 import { Slugifier } from '~~/server/core/slugifier';
 import { RepositoryProvider } from '~~/server/services/repositories/repositoryProvider';
+import { AuditLogService } from '~~/server/services/auditLog/auditLogService';
 
 import { OfficeDTOMapper } from './officeDTOMapper';
 
 export const UpdateOfficeEventHandlerFn: EventHandlerFn<UpdateOfficeRequest> = async ({ body, params, userSession }) => {
-  await userSession.require();
+  const user = await userSession.require();
   const office = await RepositoryProvider.officeRepository.findOne({
     where: {
       slug: params.slug,
@@ -106,6 +107,24 @@ export const UpdateOfficeEventHandlerFn: EventHandlerFn<UpdateOfficeRequest> = a
     },
     where: {
       slug: params.slug,
+    },
+  });
+
+  await AuditLogService.logUpdate({
+    userSession: user,
+    targetTable: 'Office',
+    targetId: updatedOffice.id,
+    meta: {
+      title: updatedOffice.title,
+      slug: updatedOffice.slug,
+      price: updatedOffice.price,
+      type: updatedOffice.type,
+      changes: {
+        servicesAdded: Array.from(serviceIdsToConnect),
+        servicesRemoved: Array.from(serviceIdsToDisconnect),
+        photosAdded: newPhotoUrls,
+        photosRemoved: Array.from(photoIdsToDelete),
+      },
     },
   });
 

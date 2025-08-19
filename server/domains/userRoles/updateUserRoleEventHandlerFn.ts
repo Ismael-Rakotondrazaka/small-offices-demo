@@ -1,9 +1,10 @@
 import { RepositoryProvider } from '~~/server/services/repositories/repositoryProvider';
+import { AuditLogService } from '~~/server/services/auditLog/auditLogService';
 
 import { UserRoleDTOMapper } from './userRoleDTOMapper';
 
 export const UpdateUserRoleEventHandlerFn: EventHandlerFn<UpdateUserRoleRequest> = async ({ body, params, userSession }) => {
-  await userSession.require();
+  const user = await userSession.require();
   const userRole = await RepositoryProvider.userRoleRepository.findOne({
     where: {
       id: params.id,
@@ -22,6 +23,16 @@ export const UpdateUserRoleEventHandlerFn: EventHandlerFn<UpdateUserRoleRequest>
     },
     where: {
       id: params.id,
+    },
+  });
+
+  await AuditLogService.logUpdate({
+    userSession: user,
+    targetTable: 'UserRole',
+    targetId: updatedUserRole.id,
+    meta: {
+      role: updatedUserRole.role,
+      previousRole: userRole.role,
     },
   });
 

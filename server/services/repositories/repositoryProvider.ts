@@ -1,3 +1,4 @@
+import { AuditLogRepository } from '~~/server/domains/auditLogs/auditLogRepository';
 import { LeadRepository } from '~~/server/domains/leads/leadRepository';
 import { OfficeRepository } from '~~/server/domains/offices/officeRepository';
 import { PhotoRepository } from '~~/server/domains/photos/photoRepository';
@@ -8,6 +9,14 @@ import {
 import { PrismaProvider } from '~~/server/services/prisma/prismaProvider';
 
 export class RepositoryProvider {
+  public static get auditLogRepository(): AuditLogRepository {
+    if (!this.#auditLogRepository) {
+      this.#auditLogRepository = new AuditLogRepository(PrismaProvider.instance);
+    }
+
+    return this.#auditLogRepository;
+  }
+
   public static get leadRepository(): LeadRepository {
     if (!this.#leadRepository) {
       this.#leadRepository = new LeadRepository(PrismaProvider.instance);
@@ -47,6 +56,8 @@ export class RepositoryProvider {
 
     return this.#userRoleRepository;
   }
+
+  static #auditLogRepository: AuditLogRepository;
 
   static #leadRepository: LeadRepository;
 
