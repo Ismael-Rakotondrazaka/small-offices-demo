@@ -334,6 +334,11 @@ const resetSearch = async () => {
 };
 
 defineOgImageComponent('SearchOgImage');
+
+useSeoMeta({
+  ogTitle: () => `Recherche`,
+  title: () => `Recherche`,
+});
 </script>
 
 <style scoped>

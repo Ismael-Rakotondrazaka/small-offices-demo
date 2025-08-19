@@ -22,6 +22,15 @@ const router = useRouter();
 
 const { data }: Awaited<RequestToAsyncData<ShowOfficeRequest>> = await useFetch(`/api/offices/${route.params.slug}`);
 
+defineOgImageComponent('AdminOgImage', {
+  pageTitle: `Modifier ${data.value?.data?.title || 'le bureau'}`,
+});
+
+useSeoMeta({
+  ogTitle: () => `Modifier ${data.value?.data?.title || 'le bureau'}`,
+  title: () => `Modifier ${data.value?.data?.title || 'le bureau'}`,
+});
+
 const handleUpdateOffice = (office: Serialize<OfficeDTO>) => {
   if (data.value) {
     data.value.data = office;
