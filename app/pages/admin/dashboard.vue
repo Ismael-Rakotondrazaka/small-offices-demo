@@ -119,7 +119,9 @@ definePageMeta({
   middleware: 'admin-auth',
 });
 
-defineOgImageComponent('DefaultOgImage');
+defineOgImageComponent('AdminOgImage', {
+  pageTitle: 'Tableau de bord',
+});
 
 const { data: pendingLeads } = await useFetch('/api/leads/count', {
   query: {

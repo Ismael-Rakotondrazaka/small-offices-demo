@@ -2,6 +2,10 @@
 definePageMeta({
   middleware: 'admin-guest',
 });
+
+defineOgImageComponent('AdminOgImage', {
+  pageTitle: 'Connexion',
+});
 </script>
 
 <template>

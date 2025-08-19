@@ -116,6 +116,10 @@ definePageMeta({
   middleware: 'admin-auth',
 });
 
+defineOgImageComponent('AdminOgImage', {
+  pageTitle: 'Gestion des leads',
+});
+
 const OrderOption = {
   createdAtAsc: 'createdAtAsc',
   createdAtDesc: 'createdAtDesc',

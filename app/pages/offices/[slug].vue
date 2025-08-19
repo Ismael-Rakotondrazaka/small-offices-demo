@@ -108,4 +108,16 @@
 const route = useRoute();
 
 const { data }: Awaited<RequestToAsyncData<ShowOfficeRequest>> = await useFetch(`/api/offices/${route.params.slug}`);
+
+defineOgImageComponent('OfficeOgImage', {
+  officeArr: data.value?.data?.arr,
+  officePhoto: data.value?.data?.photos?.[0]?.url,
+  officePosts: data.value?.data?.posts,
+  officePrice: data.value?.data?.price,
+  officeTitle: data.value?.data?.title,
+});
+
+useSeoMeta({
+  title: () => data.value ? `${data.value.data.title} - Paris ${data.value.data.arr}` : route.params.slug as string,
+});
 </script>

@@ -17,6 +17,7 @@
           height="32"
           alt="Petits Bureaux"
         >
+        <span class="sr-only">Petits Bureaux</span>
       </NuxtLink>
     </template>
 

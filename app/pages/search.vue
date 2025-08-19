@@ -1,5 +1,5 @@
 <template>
-  <div class="h-[calc(100vh-64px)]">
+  <main class="h-[calc(100vh-64px)]">
     <div class="relative h-full">
       <div class="flex h-full">
         <div
@@ -108,7 +108,7 @@
       </template>
       {{ showList ? 'Voir la carte' : 'Voir la liste' }}
     </n-button>
-  </div>
+  </main>
 </template>
 
 <script lang="ts" setup>
@@ -332,6 +332,8 @@ const resetSearch = async () => {
     name: 'search',
   });
 };
+
+defineOgImageComponent('SearchOgImage');
 </script>
 
 <style scoped>
