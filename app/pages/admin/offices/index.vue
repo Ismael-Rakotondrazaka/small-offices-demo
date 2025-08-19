@@ -158,6 +158,10 @@ definePageMeta({
   middleware: 'admin-auth',
 });
 
+defineOgImageComponent('AdminOgImage', {
+  pageTitle: 'Gestion des bureaux',
+});
+
 const OrderOption = {
   createdAtAsc: 'createdAtAsc',
   createdAtDesc: 'createdAtDesc',

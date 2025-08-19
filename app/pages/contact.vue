@@ -164,6 +164,8 @@
 </template>
 
 <script lang="ts" setup>
+defineOgImageComponent('ContactOgImage');
+
 type FormData = {
   budget: string;
   capacity: null | number;

@@ -105,11 +105,16 @@
 </template>
 
 <script setup lang="ts">
-defineOgImageComponent('DefaultOgImage');
-
 const route = useRoute('lead-slug');
 
 const { data }: Awaited<RequestToAsyncData<ShowOfficeRequest>> = await useFetch(`/api/offices/${route.params.slug}`);
+
+defineOgImageComponent('LeadOgImage', {
+  officeArr: data.value?.data?.arr,
+  officePosts: data.value?.data?.posts,
+  officePrice: data.value?.data?.price,
+  officeTitle: data.value?.data?.title,
+});
 
 const message = useMessage();
 

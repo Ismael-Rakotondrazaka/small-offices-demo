@@ -106,7 +106,7 @@
 import type { DataTableColumns, PaginationProps, SelectOption } from 'naive-ui';
 
 import { useRouteQuery } from '@vueuse/router';
-import { Icon } from '#components';
+import { Icon, NuxtLink } from '#components';
 import { LeadStatus, LeadStatuses, LeadStatusLabel } from '~~/shared/domains/leads/leadStatus';
 import { NCard, NFlex, NImage, NPopover, NSelect, NTag } from 'naive-ui';
 import { I18nN } from 'vue-i18n';
@@ -114,6 +114,10 @@ import { I18nN } from 'vue-i18n';
 definePageMeta({
   layout: 'admin',
   middleware: 'admin-auth',
+});
+
+defineOgImageComponent('AdminOgImage', {
+  pageTitle: 'Gestion des leads',
 });
 
 const OrderOption = {
@@ -521,14 +525,31 @@ const columns = computed<DataTableColumns<Serialize<LeadDTO>>>(() => [
             default: () => [
               row.office.photos.length > 0
                 ? h(
-                    NImage,
+                    NuxtLink,
                     {
-                      alt: row.office.title,
-                      class: 'rounded mb-2',
-                      height: '120px',
-                      objectFit: 'cover',
-                      src: row.office.photos[0]!.url,
-                      width: '100%',
+                      to: {
+                        name: 'admin-offices-slug',
+                        params: {
+                          slug: row.office.slug,
+                        },
+                      },
+                    },
+                    {
+                      default: () => [
+                        h(
+                          NImage,
+                          {
+                            alt: row.office.title,
+                            class: 'rounded mb-2',
+                            height: '120px',
+                            objectFit: 'cover',
+                            previewDisabled: true,
+                            src: row.office.photos[0]!.url,
+                            width: '100%',
+                          },
+                        ),
+                        h('div', { class: 'sr-only' }, { default: () => row.office.title }),
+                      ],
                     },
                   )
                 : null,

@@ -28,7 +28,7 @@ export default defineNuxtConfig({
     classSuffix: '',
     componentName: 'ColorScheme',
     fallback: 'light', // fallback value if not system preference found
-    preference: 'system', // default value of $colorMode.preference
+    preference: 'light', // default value of $colorMode.preference
   },
 
   compatibilityDate: '2025-07-15',
@@ -80,6 +80,10 @@ export default defineNuxtConfig({
     image: {
       domains: ['localhost', 'picsum.photos'],
     },
+  },
+
+  linkChecker: {
+    enabled: true,
   },
 
   modules: [
@@ -134,11 +138,22 @@ export default defineNuxtConfig({
     },
   },
 
-  robots: {
-    disallow: [],
+  ogImage: {
+
   },
 
-  routeRules: {},
+  robots: {
+    disallow: [
+      '/admin/**',
+    ],
+  },
+
+  routeRules: {
+    '/api/__sitemap__/offices': {
+      // isr: 86_400, Use to cache on CDN
+      swr: 86_400, // 1 day
+    },
+  },
 
   runtimeConfig: {
     informationEmail: '',
@@ -159,12 +174,39 @@ export default defineNuxtConfig({
     smtpUser: '',
   },
 
+  schemaOrg: {
+  },
+
   site: {
     defaultLocale: 'fr',
     description:
       'Accédez à tous les bureaux du marché. Votre conseiller vous accompagne en visite et vous aide à négocier. Le tout gratuitement.',
     indexable: true,
     name: 'Petits Bureaux',
+  },
+
+  sitemap: {
+    sitemaps: {
+      offices: {
+        sources: [
+          '/api/__sitemap__/offices',
+        ],
+      },
+      pages: {
+        include: [
+          '/',
+          '/contact',
+          '/search',
+        ],
+        includeAppSources: true,
+      },
+      prerender: {
+        include: [
+          '/bureaux-*',
+        ],
+        includeAppSources: true,
+      },
+    },
   },
 
   supabase: {

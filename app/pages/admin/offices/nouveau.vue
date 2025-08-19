@@ -200,6 +200,10 @@ definePageMeta({
   middleware: 'admin-auth',
 });
 
+defineOgImageComponent('AdminOgImage', {
+  pageTitle: 'Nouveau bureau',
+});
+
 const runtimeConfig = useRuntimeConfig();
 
 const message = useMessage();

@@ -5,13 +5,14 @@
     </n-h1>
 
     <n-grid
-      cols="3"
+      cols="4"
       responsive="screen"
-      :x-gap="8"
-      :y-gap="8"
+      item-responsive
+      x-gap="8"
+      y-gap="8"
       class="mb-5"
     >
-      <n-grid-item>
+      <n-grid-item span="4 m:2 l:1 xl:1 2xl:1">
         <n-card title="Bureaux">
           <template #header-extra>
             <Icon
@@ -25,7 +26,7 @@
         </n-card>
       </n-grid-item>
 
-      <n-grid-item>
+      <n-grid-item span="4 m:2 l:1 xl:1 2xl:1">
         <n-card title="Leads Totals">
           <template #header-extra>
             <Icon
@@ -39,7 +40,7 @@
         </n-card>
       </n-grid-item>
 
-      <n-grid-item>
+      <n-grid-item span="4 m:2 l:1 xl:1 2xl:1">
         <n-card title="Leads en attente">
           <template #header-extra>
             <Icon
@@ -49,6 +50,20 @@
           </template>
           <n-statistic>
             {{ pendingLeads }}
+          </n-statistic>
+        </n-card>
+      </n-grid-item>
+
+      <n-grid-item span="4 m:2 l:1 xl:1 2xl:1">
+        <n-card title="Taux de conversion">
+          <template #header-extra>
+            <Icon
+              name="mdi:trending-up"
+              size="1.5rem"
+            />
+          </template>
+          <n-statistic>
+            {{ conversionRate }}%
           </n-statistic>
         </n-card>
       </n-grid-item>
@@ -94,7 +109,7 @@
 <script lang="ts" setup>
 import type { DataTableColumns } from 'naive-ui';
 
-import { Icon } from '#components';
+import { Icon, NuxtLink } from '#components';
 import { LeadStatus, LeadStatuses, LeadStatusLabel } from '~~/shared/domains/leads/leadStatus';
 import { NCard, NFlex, NImage, NPopover, NSelect, NTag } from 'naive-ui';
 import { I18nN } from 'vue-i18n';
@@ -104,7 +119,9 @@ definePageMeta({
   middleware: 'admin-auth',
 });
 
-defineOgImageComponent('DefaultOgImage');
+defineOgImageComponent('AdminOgImage', {
+  pageTitle: 'Tableau de bord',
+});
 
 const { data: pendingLeads } = await useFetch('/api/leads/count', {
   query: {
@@ -112,8 +129,21 @@ const { data: pendingLeads } = await useFetch('/api/leads/count', {
   },
 });
 
+const { data: convertedLeads } = await useFetch('/api/leads/count', {
+  query: {
+    'status[equals]': 'CONVERTED',
+  },
+});
+
 const { data: totalLeads } = await useFetch('/api/leads/count');
 const { data: totalOffices } = await useFetch('/api/offices/count');
+
+const conversionRate = computed(() => {
+  if (!totalLeads.value || !convertedLeads.value || totalLeads.value === 0) {
+    return 0;
+  }
+  return Math.round((convertedLeads.value / totalLeads.value) * 100);
+});
 
 const requestQuery: IndexLeadRequestQuery = {
   'orderBy[createdAt]': 'desc',
@@ -237,17 +267,36 @@ const columns = computed<DataTableColumns<Serialize<LeadDTO>>>(() => [
           },
           {
             default: () => [
-              row.office.photos.length > 0 && h(
-                NImage,
-                {
-                  alt: row.office.title,
-                  class: 'rounded mb-2',
-                  height: '120px',
-                  objectFit: 'cover',
-                  src: row.office.photos[0]!.url,
-                  width: '100%',
-                },
-              ),
+              row.office.photos.length > 0
+                ? h(
+                    NuxtLink,
+                    {
+                      to: {
+                        name: 'admin-offices-slug',
+                        params: {
+                          slug: row.office.slug,
+                        },
+                      },
+                    },
+                    {
+                      default: () => [
+                        h(
+                          NImage,
+                          {
+                            alt: row.office.title,
+                            class: 'rounded mb-2',
+                            height: '120px',
+                            objectFit: 'cover',
+                            previewDisabled: true,
+                            src: row.office.photos[0]!.url,
+                            width: '100%',
+                          },
+                        ),
+                        h('div', { class: 'sr-only' }, { default: () => row.office.title }),
+                      ],
+                    },
+                  )
+                : null,
               h('div', { class: 'font-medium mb-1' }, row.office.title),
               h('div', { class: 'text-sm text-gray-600 mb-1' }, `Paris ${row.office.arr}`),
               h('div', { class: 'text-sm text-gray-600' }, `${row.office.posts} postes`),
