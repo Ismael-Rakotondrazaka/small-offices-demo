@@ -1,9 +1,10 @@
 import { RepositoryProvider } from '~~/server/services/repositories/repositoryProvider';
+import { AuditLogService } from '~~/server/services/auditLog/auditLogService';
 
 import { LeadDTOMapper } from './leadDTOMapper';
 
 export const DestroyLeadEventHandlerFn: EventHandlerFn<DestroyLeadRequest> = async ({ params, userSession }) => {
-  await userSession.require();
+  const user = await userSession.require();
   const lead = await RepositoryProvider.leadRepository.findOne({
     where: {
       id: params.id,
@@ -19,6 +20,17 @@ export const DestroyLeadEventHandlerFn: EventHandlerFn<DestroyLeadRequest> = asy
   await RepositoryProvider.leadRepository.deleteOne({
     where: {
       id: params.id,
+    },
+  });
+
+  await AuditLogService.logDelete({
+    userSession: user,
+    targetTable: 'Lead',
+    targetId: lead.id,
+    meta: {
+      name: lead.name,
+      email: lead.email,
+      status: lead.status,
     },
   });
 

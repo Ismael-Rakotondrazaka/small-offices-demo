@@ -1,9 +1,10 @@
 import { RepositoryProvider } from '~~/server/services/repositories/repositoryProvider';
+import { AuditLogService } from '~~/server/services/auditLog/auditLogService';
 
 import { PhotoDTOMapper } from './photoDTOMapper';
 
 export const UpdatePhotoEventHandlerFn: EventHandlerFn<UpdatePhotoRequest> = async ({ body, params, userSession }) => {
-  await userSession.require();
+  const user = await userSession.require();
   const photo = await RepositoryProvider.photoRepository.findOne({
     where: {
       id: params.id,
@@ -24,6 +25,20 @@ export const UpdatePhotoEventHandlerFn: EventHandlerFn<UpdatePhotoRequest> = asy
     },
     where: {
       id: params.id,
+    },
+  });
+
+  await AuditLogService.logUpdate({
+    userSession: user,
+    targetTable: 'Photo',
+    targetId: updatedPhoto.id,
+    meta: {
+      url: updatedPhoto.url,
+      alt: updatedPhoto.alt,
+      officeId: updatedPhoto.officeId,
+      previousUrl: photo.url,
+      previousAlt: photo.alt,
+      previousOfficeId: photo.officeId,
     },
   });
 
