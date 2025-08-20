@@ -8,5 +8,4 @@ export * from './photos';
 export * from './roles';
 export * from './services';
 export * from './signIns';
-export * from './userRoles';
 export * from './users';

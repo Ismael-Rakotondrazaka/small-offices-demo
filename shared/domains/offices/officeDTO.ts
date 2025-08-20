@@ -1,8 +1,6 @@
-import { z } from 'zod';
-
-import { type PhotoDTO, PhotoDTOSchema } from '../../../shared/domains/photos/photoDTO';
-import { type ServiceDTO, ServiceDTOSchema } from '../../../shared/domains/services/serviceDTO';
-import { type OfficeType, OfficeTypeSchema } from './officeType';
+import type { PhotoDTO } from '../photos/photoDTO';
+import type { ServiceDTO } from '../services/serviceDTO';
+import type { OfficeType } from './officeType';
 
 export interface OfficeDTO {
   arr: number;
@@ -21,5 +19,3 @@ export interface OfficeDTO {
   type: OfficeType;
   updatedAt: Date;
 }
-
-export const OfficeDTOSchema: z.ZodType<OfficeDTO> = z.object({ arr: z.number(), createdAt: z.coerce.date(), deletedAt: z.coerce.date().nullable(), id: z.string(), isFake: z.boolean(), lat: z.number(), lng: z.number(), photos: z.array(PhotoDTOSchema), posts: z.number(), price: z.number(), services: z.array(ServiceDTOSchema), slug: z.string(), title: z.string(), type: OfficeTypeSchema, updatedAt: z.coerce.date() });

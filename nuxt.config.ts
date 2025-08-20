@@ -40,8 +40,6 @@ export default defineNuxtConfig({
     typedPages: true,
   },
 
-  fonts: {},
-
   gtag: {
     config: {
       send_page_view: true,
