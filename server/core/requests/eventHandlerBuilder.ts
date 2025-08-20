@@ -5,7 +5,6 @@ import type {
 import type { Request } from '~~/shared/requests/request';
 import type { z } from 'zod';
 
-import { allows as _allows, denies as _denies } from '#imports';
 import { serverSupabaseUser } from '#supabase/server';
 import { Exception } from '~~/server/core';
 import { setHeaders as _setHeaders } from 'h3';
@@ -38,40 +37,6 @@ export class EventHandlerBuilder<
         ]);
 
         return await handler({
-          ability: {
-            allows: (ability, ...args) => {
-              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-              // @ts-ignore
-              return _allows(event, ability, ...args);
-            },
-            authorize: async (ability, ...args) => {
-              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-              // @ts-ignore
-              if (await _allows(event, ability, ...args)) {
-                return Promise.resolve();
-              }
-
-              throw Exception.forbidden({
-                data: {},
-              });
-            },
-            authorizeAndReturnUserSession: async (ability, ...args) => {
-              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-              // @ts-ignore
-              if (await _allows(event, ability, ...args)) {
-                return await serverSupabaseUser(event);
-              }
-
-              throw Exception.forbidden({
-                data: {},
-              });
-            },
-            denies: (ability, ...args) => {
-              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-              // @ts-ignore
-              return _denies(event, ability, ...args);
-            },
-          },
           body,
           params,
           path: event.path,
