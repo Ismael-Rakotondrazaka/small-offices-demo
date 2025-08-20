@@ -23,6 +23,8 @@
     "test": "vitest --run",
     "test:coverage": "vitest --run --coverage",
     "test:app": "vitest --run --project app",
+    "test:app-components": "vitest --run --project app-components",
+    "test:app-pages": "vitest --run --project app-pages",
     "test:server": "vitest --run --project server",
     "test:shared": "vitest --run --project shared",
     "test:server-core": "vitest --run --project server-core",

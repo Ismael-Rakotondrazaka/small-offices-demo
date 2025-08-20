@@ -66,6 +66,27 @@ export default defineConfig({
           name: 'nuxt',
         },
       }),
+      await defineVitestProject({
+        test: {
+          environment: 'nuxt',
+          include: ['test/app/components/**/*.{test,spec}.ts'],
+          name: 'app-components',
+        },
+      }),
+      await defineVitestProject({
+        test: {
+          environment: 'nuxt',
+          include: ['test/app/pages/**/*.{test,spec}.ts'],
+          name: 'app-pages',
+        },
+      }),
+      await defineVitestProject({
+        test: {
+          environment: 'nuxt',
+          include: ['test/app/components/button/**/*.{test,spec}.ts'],
+          name: 'app-components-button',
+        },
+      }),
     ],
   },
 });
