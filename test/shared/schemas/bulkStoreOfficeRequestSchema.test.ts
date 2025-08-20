@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { BulkStoreOfficeRequestBodySchema } from '../../../../shared/domains/offices';
+import { BulkStoreOfficeRequestBodySchema } from '../../../shared/domains/offices';
 
 describe('Bulk Store Office Request Schema', () => {
   it('should validate valid bulk office data', () => {
