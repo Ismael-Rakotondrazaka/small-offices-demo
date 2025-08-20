@@ -31,34 +31,34 @@ export default defineConfig({
       provider: 'v8',
     },
     projects: [
-      {
+      await defineVitestProject({
         test: {
           environment: 'node',
           include: ['test/server/**/*.{test,spec}.ts'],
           name: 'unit',
         },
-      },
-      {
+      }),
+      await defineVitestProject({
         test: {
           environment: 'node',
           include: ['test/shared/**/*.{test,spec}.ts'],
           name: 'shared',
         },
-      },
-      {
+      }),
+      await defineVitestProject({
         test: {
           environment: 'node',
           include: ['test/server/core/**/*.{test,spec}.ts'],
           name: 'server-core',
         },
-      },
-      {
+      }),
+      await defineVitestProject({
         test: {
           environment: 'node',
           include: ['test/server/api/**/*.{test,spec}.ts'],
           name: 'server-api',
         },
-      },
+      }),
       await defineVitestProject({
         test: {
           environment: 'nuxt',
