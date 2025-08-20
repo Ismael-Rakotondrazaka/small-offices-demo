@@ -13,7 +13,7 @@ export const resetDatabase = (databaseUrl: string) => {
   if (process.platform === 'win32') {
     // For Windows, set the environment variable separately
     execSync(
-      `cd ${process.cwd()} && set DATABASE_URL=${databaseUrl} && npm run db:reset`,
+      `cd ${process.cwd()} && set DATABASE_URL=${databaseUrl} && pnpm run db:reset`,
       {
         stdio: 'inherit',
       },
@@ -22,7 +22,7 @@ export const resetDatabase = (databaseUrl: string) => {
   else {
     // For Unix-based systems
     execSync(
-      `cd ${process.cwd()} && DATABASE_URL=${databaseUrl} npm run db:reset`,
+      `cd ${process.cwd()} && DATABASE_URL=${databaseUrl} pnpm run db:reset`,
       {
         stdio: 'inherit',
       },
@@ -31,10 +31,7 @@ export const resetDatabase = (databaseUrl: string) => {
 };
 
 export const seedDatabase = (databaseUrl: string) => {
-  const url
-    = databaseUrl || process.env.DATABASE_URL || import.meta.env.DATABASE_URL;
-
-  if (!url) {
+  if (!databaseUrl) {
     throw new Error(
       'Cannot reset database - connection string could not be inferred.',
     );
@@ -43,7 +40,7 @@ export const seedDatabase = (databaseUrl: string) => {
   if (process.platform === 'win32') {
     // For Windows, set the environment variable separately
     execSync(
-      `cd ${process.cwd()} && set DATABASE_URL=${url} && npm run db:seed`,
+      `cd ${process.cwd()} && set DATABASE_URL=${databaseUrl} && pnpm run db:seed`,
       {
         stdio: 'inherit',
       },
@@ -51,7 +48,7 @@ export const seedDatabase = (databaseUrl: string) => {
   }
   else {
     // For Unix-based systems
-    execSync(`cd ${process.cwd()} && DATABASE_URL=${url} npm run db:reset`, {
+    execSync(`cd ${process.cwd()} && DATABASE_URL=${databaseUrl} pnpm run db:seed`, {
       stdio: 'inherit',
     });
   }
