@@ -2,7 +2,7 @@ import { $fetch, setup } from '@nuxt/test-utils/e2e';
 import { describe, expect, it } from 'vitest';
 
 await setup({
-  host: import.meta.env.VITE_PUBLIC_APP_URL,
+  host: import.meta.env.NUXT_PUBLIC_APP_URL,
 });
 
 describe('GET /api/healthz', async () => {
