@@ -2,7 +2,7 @@ import type {
   Photo,
   Prisma,
   PrismaClient,
-} from '~~/generated/prisma/client';
+} from '../../../../generated/prisma/client';
 
 import { faker } from '@faker-js/faker';
 

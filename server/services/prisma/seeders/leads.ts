@@ -1,11 +1,11 @@
 import { faker } from '@faker-js/faker';
+
 import {
   $Enums,
   type Lead,
   type Prisma,
   type PrismaClient,
-} from '~~/generated/prisma/client';
-
+} from '../../../../generated/prisma/client';
 import { createStringIdentifier } from './identifiers';
 
 const createLeadData = (arg: {

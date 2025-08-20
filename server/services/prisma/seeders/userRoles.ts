@@ -4,7 +4,7 @@ import {
   type Prisma,
   type PrismaClient,
   type UserRole,
-} from '~~/generated/prisma/client';
+} from '../../../../generated/prisma/client';
 
 import { createStringIdentifier } from './identifiers';
 
