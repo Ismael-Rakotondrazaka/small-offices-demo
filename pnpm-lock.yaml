@@ -56,6 +56,9 @@ importers:
       '@vueuse/router':
         specifier: ^13.6.0
         version: 13.6.0(vue-router@4.5.1(vue@3.5.18(typescript@5.9.2)))(vue@3.5.18(typescript@5.9.2))
+      consola:
+        specifier: ^3.4.2
+        version: 3.4.2
       crossws:
         specifier: ^0.4.1
         version: 0.4.1
@@ -186,9 +189,6 @@ importers:
       commander:
         specifier: ^14.0.0
         version: 14.0.0
-      consola:
-        specifier: ^3.4.2
-        version: 3.4.2
       dotenv-cli:
         specifier: ^10.0.0
         version: 10.0.0
