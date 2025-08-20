@@ -7,7 +7,7 @@ export class AuditLogDTOMapper {
       actorId: auditLog.actorId,
       createdAt: auditLog.createdAt.toISOString(),
       id: auditLog.id,
-      meta: auditLog.meta,
+      meta: auditLog.meta as null | Record<string, unknown>,
       targetId: auditLog.targetId,
       targetTable: auditLog.targetTable,
     };
