@@ -81,7 +81,6 @@ export default defineNuxtConfig({
     'nuxt-api-shield',
     '@nuxt/eslint',
     '@nuxtjs/seo',
-    '@nuxt/fonts',
     '@vee-validate/nuxt',
     '@nuxt/image',
     '@nuxt/icon',

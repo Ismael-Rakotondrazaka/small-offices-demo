@@ -33,7 +33,6 @@
     "test:ui": "vitest --ui --open"
   },
   "dependencies": {
-    "@nuxt/fonts": "^0.11.4",
     "@nuxt/image": "^1.11.0",
     "@nuxt/scripts": "0.11.10",
     "@nuxtjs/i18n": "^10.0.3",
