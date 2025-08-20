@@ -15,6 +15,7 @@ export class AuditLogService {
     await RepositoryProvider.auditLogRepository.addOne({
       action: params.action,
       actorId: params.actorId,
+      // @ts-expect-error - Prisma doesn't support null for JSON fields
       meta: params.meta,
       targetId: params.targetId,
       targetTable: params.targetTable,

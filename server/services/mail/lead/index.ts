@@ -1,1 +1,1 @@
-export * from './leadNotificationMailSender'; 
+export * from './leadNotificationMailSender';

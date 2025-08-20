@@ -1,1 +1,1 @@
-export * from './auditLogService'; 
+export * from './auditLogService';

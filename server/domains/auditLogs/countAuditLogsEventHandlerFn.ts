@@ -30,7 +30,5 @@ export const CountAuditLogsEventHandlerFn: EventHandlerFn<CountAuditLogsRequest>
     where,
   });
 
-  return {
-    data: count,
-  };
-}; 
+  return count;
+};

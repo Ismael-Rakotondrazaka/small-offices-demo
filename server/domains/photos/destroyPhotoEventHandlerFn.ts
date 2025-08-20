@@ -1,5 +1,5 @@
-import { RepositoryProvider } from '~~/server/services/repositories/repositoryProvider';
 import { AuditLogService } from '~~/server/services/auditLog/auditLogService';
+import { RepositoryProvider } from '~~/server/services/repositories/repositoryProvider';
 
 import { PhotoDTOMapper } from './photoDTOMapper';
 
@@ -24,14 +24,14 @@ export const DestroyPhotoEventHandlerFn: EventHandlerFn<DestroyPhotoRequest> = a
   });
 
   await AuditLogService.logDelete({
-    userSession: user,
-    targetTable: 'Photo',
-    targetId: photo.id,
     meta: {
-      url: photo.url,
       alt: photo.alt,
       officeId: photo.officeId,
+      url: photo.url,
     },
+    targetId: photo.id,
+    targetTable: 'Photo',
+    userSession: user,
   });
 
   return {

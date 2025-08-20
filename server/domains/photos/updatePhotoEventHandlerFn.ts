@@ -1,5 +1,5 @@
-import { RepositoryProvider } from '~~/server/services/repositories/repositoryProvider';
 import { AuditLogService } from '~~/server/services/auditLog/auditLogService';
+import { RepositoryProvider } from '~~/server/services/repositories/repositoryProvider';
 
 import { PhotoDTOMapper } from './photoDTOMapper';
 
@@ -29,17 +29,17 @@ export const UpdatePhotoEventHandlerFn: EventHandlerFn<UpdatePhotoRequest> = asy
   });
 
   await AuditLogService.logUpdate({
-    userSession: user,
-    targetTable: 'Photo',
-    targetId: updatedPhoto.id,
     meta: {
-      url: updatedPhoto.url,
       alt: updatedPhoto.alt,
       officeId: updatedPhoto.officeId,
-      previousUrl: photo.url,
       previousAlt: photo.alt,
       previousOfficeId: photo.officeId,
+      previousUrl: photo.url,
+      url: updatedPhoto.url,
     },
+    targetId: updatedPhoto.id,
+    targetTable: 'Photo',
+    userSession: user,
   });
 
   return {

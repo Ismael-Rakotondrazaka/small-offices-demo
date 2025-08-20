@@ -1,5 +1,5 @@
-import { RepositoryProvider } from '~~/server/services/repositories/repositoryProvider';
 import { AuditLogService } from '~~/server/services/auditLog/auditLogService';
+import { RepositoryProvider } from '~~/server/services/repositories/repositoryProvider';
 
 import { ServiceDTOMapper } from './serviceDTOMapper';
 
@@ -24,13 +24,13 @@ export const DestroyServiceEventHandlerFn: EventHandlerFn<DestroyServiceRequest>
   });
 
   await AuditLogService.logDelete({
-    userSession: user,
-    targetTable: 'Service',
-    targetId: service.id,
     meta: {
-      name: service.name,
       icon: service.icon,
+      name: service.name,
     },
+    targetId: service.id,
+    targetTable: 'Service',
+    userSession: user,
   });
 
   return {

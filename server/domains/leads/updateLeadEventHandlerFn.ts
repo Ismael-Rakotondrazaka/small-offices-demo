@@ -1,5 +1,5 @@
-import { RepositoryProvider } from '~~/server/services/repositories/repositoryProvider';
 import { AuditLogService } from '~~/server/services/auditLog/auditLogService';
+import { RepositoryProvider } from '~~/server/services/repositories/repositoryProvider';
 
 import { LeadDTOMapper } from './leadDTOMapper';
 
@@ -28,15 +28,15 @@ export const UpdateLeadEventHandlerFn: EventHandlerFn<UpdateLeadRequest> = async
   });
 
   await AuditLogService.logUpdate({
-    userSession: user,
-    targetTable: 'Lead',
-    targetId: updatedLead.id,
     meta: {
-      name: updatedLead.name,
       email: updatedLead.email,
-      status: updatedLead.status,
+      name: updatedLead.name,
       previousStatus: lead.status,
+      status: updatedLead.status,
     },
+    targetId: updatedLead.id,
+    targetTable: 'Lead',
+    userSession: user,
   });
 
   return {

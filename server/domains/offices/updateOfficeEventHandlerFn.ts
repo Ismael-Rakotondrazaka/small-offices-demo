@@ -1,6 +1,6 @@
 import { Slugifier } from '~~/server/core/slugifier';
-import { RepositoryProvider } from '~~/server/services/repositories/repositoryProvider';
 import { AuditLogService } from '~~/server/services/auditLog/auditLogService';
+import { RepositoryProvider } from '~~/server/services/repositories/repositoryProvider';
 
 import { OfficeDTOMapper } from './officeDTOMapper';
 
@@ -111,21 +111,21 @@ export const UpdateOfficeEventHandlerFn: EventHandlerFn<UpdateOfficeRequest> = a
   });
 
   await AuditLogService.logUpdate({
-    userSession: user,
-    targetTable: 'Office',
-    targetId: updatedOffice.id,
     meta: {
-      title: updatedOffice.title,
-      slug: updatedOffice.slug,
-      price: updatedOffice.price,
-      type: updatedOffice.type,
       changes: {
-        servicesAdded: Array.from(serviceIdsToConnect),
-        servicesRemoved: Array.from(serviceIdsToDisconnect),
         photosAdded: newPhotoUrls,
         photosRemoved: Array.from(photoIdsToDelete),
+        servicesAdded: Array.from(serviceIdsToConnect),
+        servicesRemoved: Array.from(serviceIdsToDisconnect),
       },
+      price: updatedOffice.price,
+      slug: updatedOffice.slug,
+      title: updatedOffice.title,
+      type: updatedOffice.type,
     },
+    targetId: updatedOffice.id,
+    targetTable: 'Office',
+    userSession: user,
   });
 
   return {

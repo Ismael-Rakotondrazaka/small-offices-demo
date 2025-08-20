@@ -1,5 +1,5 @@
-import { RepositoryProvider } from '~~/server/services/repositories/repositoryProvider';
 import { AuditLogService } from '~~/server/services/auditLog/auditLogService';
+import { RepositoryProvider } from '~~/server/services/repositories/repositoryProvider';
 
 import { ServiceDTOMapper } from './serviceDTOMapper';
 
@@ -28,15 +28,15 @@ export const UpdateServiceEventHandlerFn: EventHandlerFn<UpdateServiceRequest> =
   });
 
   await AuditLogService.logUpdate({
-    userSession: user,
-    targetTable: 'Service',
-    targetId: updatedService.id,
     meta: {
-      name: updatedService.name,
       icon: updatedService.icon,
-      previousName: service.name,
+      name: updatedService.name,
       previousIcon: service.icon,
+      previousName: service.name,
     },
+    targetId: updatedService.id,
+    targetTable: 'Service',
+    userSession: user,
   });
 
   return {

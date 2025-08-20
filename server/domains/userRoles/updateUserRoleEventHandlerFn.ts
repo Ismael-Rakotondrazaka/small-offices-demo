@@ -1,5 +1,5 @@
-import { RepositoryProvider } from '~~/server/services/repositories/repositoryProvider';
 import { AuditLogService } from '~~/server/services/auditLog/auditLogService';
+import { RepositoryProvider } from '~~/server/services/repositories/repositoryProvider';
 
 import { UserRoleDTOMapper } from './userRoleDTOMapper';
 
@@ -27,13 +27,13 @@ export const UpdateUserRoleEventHandlerFn: EventHandlerFn<UpdateUserRoleRequest>
   });
 
   await AuditLogService.logUpdate({
-    userSession: user,
-    targetTable: 'UserRole',
-    targetId: updatedUserRole.id,
     meta: {
-      role: updatedUserRole.role,
       previousRole: userRole.role,
+      role: updatedUserRole.role,
     },
+    targetId: updatedUserRole.id,
+    targetTable: 'UserRole',
+    userSession: user,
   });
 
   return {
