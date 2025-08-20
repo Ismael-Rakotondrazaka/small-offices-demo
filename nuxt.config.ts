@@ -93,8 +93,6 @@ export default defineNuxtConfig({
     '@nuxt/fonts',
     '@vee-validate/nuxt',
     '@nuxt/image',
-    '@pinia/nuxt',
-    'pinia-plugin-persistedstate/nuxt',
     '@nuxtjs/color-mode',
     '@nuxt/icon',
     '@vueuse/nuxt',
