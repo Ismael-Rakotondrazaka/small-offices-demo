@@ -28,6 +28,13 @@ export default defineConfig({
           name: 'server-core',
         },
       },
+      {
+        test: {
+          environment: 'node',
+          include: ['test/server/api/**/*.{test,spec}.ts'],
+          name: 'server-api',
+        },
+      },
       await defineVitestProject({
         test: {
           environment: 'nuxt',
