@@ -2,7 +2,6 @@ import type { SentMessageInfo, Transporter } from 'nodemailer';
 import type Mail from 'nodemailer/lib/mailer';
 import type SMTPTransport from 'nodemailer/lib/smtp-transport';
 
-import { MailConfig } from '~~/server/configs';
 import { createTransport } from 'nodemailer';
 
 export abstract class MailSender {
@@ -35,14 +34,16 @@ export abstract class MailSender {
 
   static #getTransporter(): Transporter<SentMessageInfo> {
     if (!this.#transporter) {
+      const config = useRuntimeConfig();
+
       this.#transporter = createTransport({
         // @ts-expect-error @types/nodemailer package is not in sync with nodemailer package
         auth: {
-          pass: MailConfig.SMTP_PASSWORD,
-          user: MailConfig.SMTP_USER,
+          pass: config.smtpPassword,
+          user: config.smtpUser,
         },
-        host: MailConfig.SMTP_HOST,
-        port: MailConfig.SMTP_PORT,
+        host: config.smtpHost,
+        port: config.smtpPort,
         secure: true,
         tls: {
           rejectUnauthorized: false,
