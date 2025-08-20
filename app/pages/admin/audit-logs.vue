@@ -12,7 +12,7 @@
       <n-flex align="center">
         <n-select
           v-model:value="actionEquals"
-          placeholder="Filter by action"
+          placeholder="Filtrer par action"
           :options="actionOptions"
           clearable
           class="min-w-48"
@@ -20,7 +20,7 @@
 
         <n-select
           v-model:value="targetTableEquals"
-          placeholder="Filter by table"
+          placeholder="Filtrer par table"
           :options="tableOptions"
           clearable
           class="min-w-48"
@@ -53,7 +53,7 @@
     >
       <p>
         <span class="font-bold">
-          {{ auditLogs.length }}
+          {{ auditLogsData ? auditLogsData.pagination.totalCount : 0 }}
         </span>
         Résultats
       </p>
@@ -63,9 +63,11 @@
       :columns="columns"
       :data="auditLogs"
       :loading="isLoading"
-      :pagination="false"
+      :pagination="paginationProps"
       :row-key="rowKey"
       remote
+      @update:page="handlePageChange"
+      @update:page-size="handlePageSizeChange"
     />
 
     <n-modal
@@ -94,7 +96,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { DataTableColumns } from 'naive-ui';
+import type { DataTableColumns, PaginationProps } from 'naive-ui';
 
 import { useRouteQuery } from '@vueuse/router';
 import { Icon } from '#components';
@@ -212,36 +214,34 @@ const computeRequestQuery = (): IndexAuditLogsRequestQuery => {
     'createdAt[gte]': createdAtGteValue,
     'createdAt[lte]': createdAtLteValue,
     'page': page.value || 1,
-    'pageSize': pageSize.value || leadConfig.PAGE_SIZE_DEFAULT_VALUE,
+    'pageSize': pageSize.value || auditLogConfig.PAGE_SIZE_DEFAULT_VALUE,
     'targetTable[equals]': targetTableEquals.value,
   };
 };
 
 const requestQuery = computed<IndexAuditLogsRequestQuery>(computeRequestQuery);
 
-const auditLogs = ref<Serialize<AuditLogDTO>[]>([]);
-
-const isLoading = ref(false);
-
-const fetchAuditLogs = async (query: IndexAuditLogsRequestQuery): Promise<Serialize<AuditLogDTO>[]> => {
-  try {
-    isLoading.value = true;
-    const { data } = await $fetch<Serialize<IndexAuditLogsRequestData>>('/api/auditLogs', {
-      query,
-    });
-    return data;
-  }
-  catch {
-    return [];
-  }
-  finally {
-    isLoading.value = false;
-  }
-};
-
-onMounted(async () => {
-  auditLogs.value = await fetchAuditLogs(requestQuery.value);
+const { data: auditLogsData, pending: isLoading } = await useFetch('/api/auditLogs', {
+  query: requestQuery,
 });
+
+const auditLogs = computed(() => auditLogsData.value?.data || []);
+const paginationData = computed(() => auditLogsData.value?.pagination || { count: 0, links: { current: '', first: '', last: '', next: null, previous: null }, page: 1, pageSize: auditLogConfig.PAGE_SIZE_DEFAULT_VALUE, totalCount: 0, totalPages: 0 });
+
+const paginationProps = computed<PaginationProps>(() => ({
+  itemCount: paginationData.value.totalCount,
+  onChange: (newValue: number) => {
+    page.value = newValue;
+  },
+  onUpdatePageSize: (size: number) => {
+    pageSize.value = size;
+    page.value = 1;
+  },
+  page: paginationData.value.page,
+  pageSize: paginationData.value.pageSize,
+  pageSizes: generatePageSizes(paginationData.value.pageSize),
+  showSizePicker: true,
+}));
 
 const rowKey = (row: Serialize<AuditLogDTO>) => row.id;
 
@@ -336,6 +336,15 @@ const modalContent = ref('');
 const showMetaDetails = (meta: Record<string, unknown>) => {
   modalContent.value = JSON.stringify(meta, null, 2);
   showModal.value = true;
+};
+
+const handlePageChange = (newValue: number) => {
+  page.value = newValue;
+};
+
+const handlePageSizeChange = (size: number) => {
+  pageSize.value = size;
+  page.value = 1;
 };
 </script>
 

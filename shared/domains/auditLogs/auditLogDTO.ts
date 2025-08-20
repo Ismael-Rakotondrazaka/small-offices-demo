@@ -1,9 +1,9 @@
 export type AuditLogDTO = {
-  id: string;
   action: string;
   actorId: string;
-  targetTable: string;
-  targetId: string;
   createdAt: string;
-  meta: Record<string, unknown> | null;
-}; 
+  id: string;
+  meta: null | Record<string, unknown>;
+  targetId: string;
+  targetTable: string;
+};
