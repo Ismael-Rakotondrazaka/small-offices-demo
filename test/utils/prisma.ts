@@ -13,7 +13,7 @@ export const resetDatabase = (databaseUrl: string) => {
   if (process.platform === 'win32') {
     // For Windows, set the environment variable separately
     execSync(
-      `cd ${process.cwd()} && set DATABASE_URL=${databaseUrl} && pnpm run db:reset`,
+      `cd ${process.cwd()} && set DATABASE_URL=${databaseUrl} && pnpm prisma migrate reset --force`,
       {
         stdio: 'inherit',
       },
@@ -22,7 +22,7 @@ export const resetDatabase = (databaseUrl: string) => {
   else {
     // For Unix-based systems
     execSync(
-      `cd ${process.cwd()} && DATABASE_URL=${databaseUrl} pnpm run db:reset`,
+      `cd ${process.cwd()} && DATABASE_URL=${databaseUrl} pnpm prisma migrate reset --force`,
       {
         stdio: 'inherit',
       },
@@ -40,7 +40,7 @@ export const seedDatabase = (databaseUrl: string) => {
   if (process.platform === 'win32') {
     // For Windows, set the environment variable separately
     execSync(
-      `cd ${process.cwd()} && set DATABASE_URL=${databaseUrl} && pnpm run db:seed`,
+      `cd ${process.cwd()} && set DATABASE_URL=${databaseUrl} && pnpm tsx server/services/prisma/seeders/index.ts`,
       {
         stdio: 'inherit',
       },
@@ -48,7 +48,7 @@ export const seedDatabase = (databaseUrl: string) => {
   }
   else {
     // For Unix-based systems
-    execSync(`cd ${process.cwd()} && DATABASE_URL=${databaseUrl} pnpm run db:seed`, {
+    execSync(`cd ${process.cwd()} && DATABASE_URL=${databaseUrl} pnpm tsx server/services/prisma/seeders/index.ts`, {
       stdio: 'inherit',
     });
   }
