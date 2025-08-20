@@ -1,7 +1,8 @@
 import { $fetch, setup } from '@nuxt/test-utils/e2e';
-import { resetDatabase, seedDatabase } from '~~/tests/utils';
 import { withQuery } from 'ufo';
 import { beforeEach, describe, expect, it } from 'vitest';
+
+import { resetDatabase, seedDatabase } from '../../../../test/utils/prisma';
 
 await setup({
   host: import.meta.env.VITE_PUBLIC_APP_URL,
