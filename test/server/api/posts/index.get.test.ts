@@ -43,7 +43,12 @@ describe('GET /api/posts', () => {
 
     const pageSize = 3;
 
-    const page1 = await $fetch(`/api/posts?pageSize=${pageSize}&page=1`);
+    const page1 = await $fetch('/api/posts', {
+      query: {
+        page: 1,
+        pageSize,
+      },
+    });
 
     expect(page1.posts.length).toStrictEqual(pageSize);
     expect(page1.pagination.count).toStrictEqual(pageSize);
