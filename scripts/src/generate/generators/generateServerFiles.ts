@@ -1,6 +1,6 @@
 import type { Project } from 'ts-morph';
 
-import { camelCase, pascalCase } from 'change-case';
+import { camelCase, pascalCase } from 'es-toolkit';
 import path from 'path';
 import pluralize from 'pluralize';
 

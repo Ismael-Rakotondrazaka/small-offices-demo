@@ -186,9 +186,6 @@ importers:
       '@vue/test-utils':
         specifier: ^2.4.6
         version: 2.4.6
-      change-case:
-        specifier: ^5.4.4
-        version: 5.4.4
       commander:
         specifier: ^14.0.0
         version: 14.0.0
