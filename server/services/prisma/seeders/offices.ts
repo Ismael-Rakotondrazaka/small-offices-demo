@@ -157,7 +157,7 @@ const createOfficeData = (arg: {
   const { lat, lng } = getRandomLocationInArrondissement(arr);
   const price = faker.number.float({ max: 150000, min: 500, multipleOf: 100 });
   const type = arg.type ?? faker.helpers.enumValue($Enums.OfficeType);
-  const posts = faker.number.int({ max: 50, min: 1 });
+  const posts = faker.number.int({ max: 500, min: 1 });
   const createdAt = faker.date.past({ years: arg.years || 1 });
   const isFake = arg.isFake ?? faker.datatype.boolean({ probability: 0.2 });
 
