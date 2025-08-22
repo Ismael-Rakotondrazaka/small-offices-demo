@@ -4,7 +4,7 @@ import type { EventHandler } from 'h3';
 
 /* eslint-disable no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-export type EventHandlerFn<R extends Request<any, any, any, any>> = (inputs: {
+export type EventHandlerArg<R extends Request<any, any, any, any>> = {
   body: R['input']['body'];
   params: R['input']['params'];
   path: string;
@@ -14,7 +14,9 @@ export type EventHandlerFn<R extends Request<any, any, any, any>> = (inputs: {
     get: () => Promise<null | UserSession>;
     require: () => Promise<UserSession>;
   };
-}) => R['output'];
+};
+
+export type EventHandlerFn<R extends Request<any, any, any, any>> = (inputs: EventHandlerArg<R>) => R['output'];
 
 export type RequestToEventHandler<R extends Request<any, any, any, any>>
   = EventHandler<
