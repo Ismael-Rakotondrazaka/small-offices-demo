@@ -178,7 +178,7 @@ describe('IndexServiceEventHandlerFn', () => {
     };
 
     const result = await IndexServiceEventHandlerFn(request);
-    console.log(result);
+
     expect(result.data).toHaveLength(2);
     expect(result.data[0].name).toBe('First Service');
     expect(result.data[1].name).toBe('Second Service');

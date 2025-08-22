@@ -1,12 +1,11 @@
-import type { Prisma } from '~~/generated/prisma/client';
-import type { ExtendedPrismaClient } from '~~/server/services/prisma/prismaProvider';
+import type { Prisma, PrismaClient } from '~~/generated/prisma/client';
 
 import type { AuditLogModel } from './auditLogModel';
 
 export class AuditLogRepository {
-  #prismaClient: ExtendedPrismaClient;
+  #prismaClient: PrismaClient;
 
-  constructor(prismaClient: ExtendedPrismaClient) {
+  constructor(prismaClient: PrismaClient) {
     this.#prismaClient = prismaClient;
   }
 

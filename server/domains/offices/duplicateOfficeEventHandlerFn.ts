@@ -1,3 +1,4 @@
+import { Exception } from '~~/server/core/exceptions/exception';
 import { Slugifier } from '~~/server/core/slugifier';
 import { RepositoryProvider } from '~~/server/services/repositories/repositoryProvider';
 

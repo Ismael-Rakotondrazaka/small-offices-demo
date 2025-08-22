@@ -1,3 +1,4 @@
+import { Exception } from '~~/server/core/exceptions/exception';
 import { AuditLogService } from '~~/server/services/auditLog/auditLogService';
 import { RepositoryProvider } from '~~/server/services/repositories/repositoryProvider';
 
