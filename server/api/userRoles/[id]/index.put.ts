@@ -1,1 +1,0 @@
-export default defineEventHandler(new EventHandlerBuilder<UpdateUserRoleRequest>().body(UpdateUserRoleRequestBodySchema).params(UpdateUserRoleRequestParamsSchema).handle(UpdateUserRoleEventHandlerFn));

@@ -1,6 +1,5 @@
-import { createTestingPinia } from '@pinia/testing';
 import { mount } from '@vue/test-utils';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 
 describe('Search Page', () => {
   it('should handle posts[gte] parameter correctly', async () => {
@@ -20,7 +19,6 @@ describe('Search Page', () => {
           $route: mockRoute,
           $router: mockRouter,
         },
-        plugins: [createTestingPinia()],
       },
     });
 
@@ -46,7 +44,6 @@ describe('Search Page', () => {
           $route: mockRoute,
           $router: mockRouter,
         },
-        plugins: [createTestingPinia()],
       },
     });
 
@@ -70,7 +67,6 @@ describe('Search Page', () => {
           $route: mockRoute,
           $router: mockRouter,
         },
-        plugins: [createTestingPinia()],
       },
     });
 

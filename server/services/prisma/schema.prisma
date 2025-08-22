@@ -10,6 +10,7 @@ generator client {
   runtime                = "nodejs"
   moduleFormat           = "esm"
   generatedFileExtension = "ts"
+  previewFeatures        = ["driverAdapters"]
 }
 
 datasource db {
@@ -58,7 +59,7 @@ model Office {
 model Photo {
   id        String   @id @default(uuid())
   officeId  String
-  office    Office   @relation(fields: [officeId], references: [id])
+  office    Office   @relation(fields: [officeId], references: [id], onDelete: Cascade)
   url       String
   alt       String?
   createdAt DateTime @default(now())
@@ -74,7 +75,7 @@ enum LeadStatus {
 model Lead {
   id        String     @id @default(uuid())
   officeId  String
-  office    Office     @relation(fields: [officeId], references: [id])
+  office    Office     @relation(fields: [officeId], references: [id], onDelete: Cascade)
   name      String
   email     String
   phone     String

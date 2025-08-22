@@ -1,3 +1,4 @@
+import { Exception } from '~~/server/core/exceptions/exception';
 import { RepositoryProvider } from '~~/server/services/repositories/repositoryProvider';
 
 import { OfficeDTOMapper } from './officeDTOMapper';

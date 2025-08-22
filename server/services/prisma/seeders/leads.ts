@@ -1,17 +1,17 @@
 import { faker } from '@faker-js/faker';
+
 import {
   $Enums,
   type Lead,
   type Prisma,
   type PrismaClient,
-} from '~~/generated/prisma/client';
-
+} from '../../../../generated/prisma/client';
 import { createStringIdentifier } from './identifiers';
 
 const createLeadData = (arg: {
   officeId: string;
   years?: number;
-}): Prisma.LeadCreateInput => {
+}): Prisma.LeadCreateManyInput => {
   const firstName = faker.person.firstName();
   const lastName = faker.person.lastName();
   const email = faker.internet.email({ firstName, lastName }).toLowerCase();
@@ -24,7 +24,7 @@ const createLeadData = (arg: {
     email,
     id: createStringIdentifier(),
     name: `${firstName} ${lastName}`,
-    office: { connect: { id: arg.officeId } },
+    officeId: arg.officeId,
     phone,
     status,
     updatedAt: createdAt,
@@ -36,7 +36,7 @@ export const createLeads = async (arg: {
   prisma: PrismaClient;
   years: number;
 }): Promise<Lead[]> => {
-  const leadsData: Prisma.LeadCreateInput[] = [];
+  const leadsData: Prisma.LeadCreateManyInput[] = [];
 
   for (const office of arg.offices) {
     const leadCount = faker.number.int({ max: 5, min: 0 });
@@ -49,11 +49,14 @@ export const createLeads = async (arg: {
     }
   }
 
-  return Promise.all(
-    leadsData.map(leadData =>
-      arg.prisma.lead.create({
-        data: leadData,
-      }),
-    ),
-  );
+  await arg.prisma.lead.createMany({
+    data: leadsData,
+    skipDuplicates: true,
+  });
+
+  return arg.prisma.lead.findMany({
+    where: {
+      id: { in: leadsData.map(lead => lead.id!) },
+    },
+  });
 };

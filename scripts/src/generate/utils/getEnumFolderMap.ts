@@ -1,4 +1,4 @@
-import { camelCase } from 'change-case';
+import { camelCase } from 'es-toolkit';
 import pluralize from 'pluralize';
 
 export const getEnumFolderMap = (

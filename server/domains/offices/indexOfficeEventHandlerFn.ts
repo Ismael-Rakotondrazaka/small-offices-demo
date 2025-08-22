@@ -1,5 +1,6 @@
 import type { Prisma } from '~~/generated/prisma/client';
 
+import { Pagination } from '~~/server/core/paginations';
 import { RequestInputHelper } from '~~/server/core/requests/requestInputGetter';
 import { PaginationDTOMapper } from '~~/server/domains/paginations/paginationDTOMapper';
 import { RepositoryProvider } from '~~/server/services/repositories/repositoryProvider';

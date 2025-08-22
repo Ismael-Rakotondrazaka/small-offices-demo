@@ -1,32 +1,10 @@
-import type {
-  BouncerAbility,
-  BouncerArgs,
-} from '~~/node_modules/nuxt-authorization/dist/utils/index.mjs';
 import type { Request, RequestToWSMessage } from '~~/shared/requests/request';
 import type { Peer } from 'crossws';
 import type { EventHandler } from 'h3';
 
 /* eslint-disable no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-export type EventHandlerFn<R extends Request<any, any, any, any>> = (inputs: {
-  ability: {
-    allows: <Ability extends BouncerAbility<any>>(
-      ability: Ability,
-      ...args: BouncerArgs<Ability>
-    ) => Promise<boolean>;
-    authorize: <Ability extends BouncerAbility<any>>(
-      ability: Ability,
-      ...args: BouncerArgs<Ability>
-    ) => Promise<void>;
-    authorizeAndReturnUserSession: <Ability extends BouncerAbility<any>>(
-      ability: Ability,
-      ...args: BouncerArgs<Ability>
-    ) => Promise<null | UserSession>;
-    denies: <Ability extends BouncerAbility<any>>(
-      ability: Ability,
-      ...args: BouncerArgs<Ability>
-    ) => Promise<boolean>;
-  };
+export type EventHandlerArg<R extends Request<any, any, any, any>> = {
   body: R['input']['body'];
   params: R['input']['params'];
   path: string;
@@ -36,7 +14,9 @@ export type EventHandlerFn<R extends Request<any, any, any, any>> = (inputs: {
     get: () => Promise<null | UserSession>;
     require: () => Promise<UserSession>;
   };
-}) => R['output'];
+};
+
+export type EventHandlerFn<R extends Request<any, any, any, any>> = (inputs: EventHandlerArg<R>) => R['output'];
 
 export type RequestToEventHandler<R extends Request<any, any, any, any>>
   = EventHandler<

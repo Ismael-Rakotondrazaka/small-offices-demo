@@ -1,4 +1,4 @@
-import { camelCase, pascalCase } from 'change-case';
+import { camelCase, pascalCase } from 'es-toolkit';
 import fs from 'fs-extra';
 import path from 'path';
 import { Project, VariableDeclarationKind } from 'ts-morph';

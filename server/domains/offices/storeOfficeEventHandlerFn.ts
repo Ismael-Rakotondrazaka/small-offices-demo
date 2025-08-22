@@ -1,6 +1,6 @@
 import { Slugifier } from '~~/server/core/slugifier';
-import { RepositoryProvider } from '~~/server/services/repositories/repositoryProvider';
 import { AuditLogService } from '~~/server/services/auditLog/auditLogService';
+import { RepositoryProvider } from '~~/server/services/repositories/repositoryProvider';
 
 import { OfficeDTOMapper } from './officeDTOMapper';
 
@@ -34,15 +34,15 @@ export const StoreOfficeEventHandlerFn: EventHandlerFn<StoreOfficeRequest> = asy
   });
 
   await AuditLogService.logCreate({
-    userSession: user,
-    targetTable: 'Office',
-    targetId: office.id,
     meta: {
-      title: office.title,
-      slug: office.slug,
       price: office.price,
+      slug: office.slug,
+      title: office.title,
       type: office.type,
     },
+    targetId: office.id,
+    targetTable: 'Office',
+    userSession: user,
   });
 
   return {

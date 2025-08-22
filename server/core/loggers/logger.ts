@@ -1,15 +1,4 @@
-import type { Logger as WinstonLogger } from 'winston';
-
-import { createLogger, format, transports } from 'winston';
-
-const { colorize, combine, printf, timestamp } = format;
-
-/**
- * Custom log format
- */
-const logFormat = printf(({ level, message, path, timestamp }) => {
-  return `timestamp=${timestamp} level=${level} path="${path}" message="${message}"`;
-});
+import { type ConsolaInstance, createConsola } from 'consola';
 
 export interface LogEntry {
   level: 'debug' | 'error' | 'info' | 'warn';
@@ -18,7 +7,7 @@ export interface LogEntry {
 }
 
 export interface LogMetadata {
-  [key: string]: unknown; // Allow additional metadata
+  [key: string]: unknown;
   path: string;
 }
 
@@ -31,24 +20,20 @@ export class Logger {
   }
 
   static #instance: Logger;
-  #logger: WinstonLogger;
+
+  #logger: ConsolaInstance;
+
   private get isDev() {
     return process.env.NODE_ENV !== 'production';
   }
 
   private constructor() {
-    const transportList = [
-      // Console transport for all logs
-      new transports.Console({
-        format: combine(colorize(), timestamp(), logFormat),
-        level: this.isDev ? 'debug' : 'info',
-      }),
-    ];
-
-    this.#logger = createLogger({
-      format: combine(timestamp(), logFormat),
-      level: this.isDev ? 'debug' : 'info',
-      transports: transportList,
+    this.#logger = createConsola({
+      formatOptions: {
+        colors: true,
+        date: true,
+      },
+      level: this.isDev ? 4 : 3,
     });
   }
 
@@ -58,7 +43,6 @@ export class Logger {
 
   dev(message: string, metadata: LogMetadata = { path: 'unknown' }): void {
     if (this.isDev) {
-      // Use debug level for dev logs to make them easily filterable
       this.log({ level: 'debug', message, metadata });
     }
   }
@@ -72,10 +56,25 @@ export class Logger {
   }
 
   log({ level, message, metadata }: LogEntry): void {
-    this.#logger.log(level, message, {
+    const logData = {
       ...metadata,
       path: metadata.path || 'unknown',
-    });
+    };
+
+    switch (level) {
+      case 'debug':
+        this.#logger.debug(message, logData);
+        break;
+      case 'error':
+        this.#logger.error(message, logData);
+        break;
+      case 'info':
+        this.#logger.info(message, logData);
+        break;
+      case 'warn':
+        this.#logger.warn(message, logData);
+        break;
+    }
   }
 
   warn(message: string, metadata: LogMetadata): void {

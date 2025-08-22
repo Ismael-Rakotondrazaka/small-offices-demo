@@ -1,3 +1,4 @@
+import { Exception } from '~~/server/core/exceptions/exception';
 import { LeadNotificationMailSender } from '~~/server/services/mail/lead/leadNotificationMailSender';
 import { RepositoryProvider } from '~~/server/services/repositories/repositoryProvider';
 

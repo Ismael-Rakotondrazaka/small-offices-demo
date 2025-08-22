@@ -1,6 +1,5 @@
 import type SMTPTransport from 'nodemailer/lib/smtp-transport';
 
-import { MailConfig } from '~~/server/configs';
 import { MailHTMLFormatter } from '~~/server/services/mail/helpers/mailHTMLFormatter';
 import { MailLayoutFormatter } from '~~/server/services/mail/helpers/mailLayoutFormatter';
 import { MailSender } from '~~/server/services/mail/helpers/mailSender';
@@ -72,8 +71,10 @@ export abstract class LeadNotificationMailSender {
       title: 'Confirmation de votre demande de visite - Petits Bureaux',
     });
 
+    const config = useRuntimeConfig();
+
     return MailSender.send({
-      from: MailConfig.INFORMATION_EMAIL,
+      from: config.informationEmail,
       html,
       subject: `Confirmation de votre demande de visite - ${officeTitle}`,
       to: leadEmail,

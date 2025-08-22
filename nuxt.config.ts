@@ -22,15 +22,6 @@ export default defineNuxtConfig({
     },
   },
 
-  colorMode: {
-    // * Without prefix nor suffix to meet tailwindcss color mode
-    classPrefix: '',
-    classSuffix: '',
-    componentName: 'ColorScheme',
-    fallback: 'light', // fallback value if not system preference found
-    preference: 'light', // default value of $colorMode.preference
-  },
-
   compatibilityDate: '2025-07-15',
 
   css: ['~/assets/styles/main.css', '~/assets/styles/tailwind.css'],
@@ -48,8 +39,6 @@ export default defineNuxtConfig({
   experimental: {
     typedPages: true,
   },
-
-  fonts: {},
 
   gtag: {
     config: {
@@ -90,18 +79,13 @@ export default defineNuxtConfig({
     'nuxt-api-shield',
     '@nuxt/eslint',
     '@nuxtjs/seo',
-    '@nuxt/fonts',
     '@vee-validate/nuxt',
     '@nuxt/image',
-    '@pinia/nuxt',
-    'pinia-plugin-persistedstate/nuxt',
-    '@nuxtjs/color-mode',
     '@nuxt/icon',
     '@vueuse/nuxt',
     '@bg-dev/nuxt-naiveui',
     'nuxt-zod-i18n',
     '@nuxtjs/i18n',
-    'nuxt-authorization',
     'nuxt-gtag',
     '@nuxt/test-utils/module',
     '@nuxtjs/supabase',
