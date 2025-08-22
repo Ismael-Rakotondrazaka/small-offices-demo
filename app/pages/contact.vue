@@ -164,7 +164,7 @@
 </template>
 
 <script lang="ts" setup>
-defineOgImageComponent('ContactOgImage');
+defineOgImageComponent('OgImageContact');
 
 type FormData = {
   budget: string;
@@ -263,4 +263,25 @@ const handleSubmit = async () => {
     isSubmitting.value = false;
   }
 };
+
+const runtimeConfig = useRuntimeConfig();
+
+useSeoMeta({
+  author: 'Petits Bureaux',
+  description: 'Contactez nos experts en immobilier d\'entreprise. Accédez à tous les bureaux du marché. Votre conseiller vous accompagne en visite et vous aide à négocier. Le tout gratuitement.',
+  keywords: 'contact, conseiller immobilier, bureau, location bureaux, immobilier d\'entreprise, Paris',
+  ogDescription: 'Contactez nos experts en immobilier d\'entreprise. Accédez à tous les bureaux du marché. Votre conseiller vous accompagne en visite et vous aide à négocier. Le tout gratuitement.',
+  ogLocale: 'fr_FR',
+  ogSiteName: 'Petits Bureaux',
+  ogTitle: 'Contact - Petits Bureaux',
+  ogType: 'website',
+  ogUrl: () => `${runtimeConfig.public.appUrl}/contact`,
+
+  title: 'Contact - Petits Bureaux',
+  twitterCard: 'summary_large_image',
+  twitterCreator: () => runtimeConfig.public.appUrl,
+  twitterDescription: 'Contactez nos experts en immobilier d\'entreprise. Accédez à tous les bureaux du marché. Votre conseiller vous accompagne en visite et vous aide à négocier. Le tout gratuitement.',
+  twitterSite: () => runtimeConfig.public.appUrl,
+  twitterTitle: 'Contact - Petits Bureaux',
+});
 </script>

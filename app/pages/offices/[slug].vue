@@ -112,16 +112,23 @@ const { data }: Awaited<RequestToAsyncData<ShowOfficeRequest>> = await useFetch(
 const runtimeConfig = useRuntimeConfig();
 
 useSeoMeta({
-  ogDescription: () => data.value ? `${data.value.data.title} - Paris ${data.value.data.arr}` : route.params.slug as string,
+  author: 'Petits Bureaux',
+  description: () => data.value ? `${data.value.data.title} - Paris ${data.value.data.arr}. ${data.value.data.posts} postes disponibles. Accédez à tous les bureaux du marché. Votre conseiller vous accompagne en visite et vous aide à négocier. Le tout gratuitement.` : 'Découvrez nos bureaux disponibles - Petits Bureaux',
+  keywords: () => data.value ? `bureau ${data.value.data.title}, location bureau Paris ${data.value.data.arr}, ${data.value.data.posts} postes, immobilier d'entreprise, conseiller immobilier` : 'bureau, location bureaux, immobilier d\'entreprise',
+  ogDescription: () => data.value ? `${data.value.data.title} - Paris ${data.value.data.arr}. ${data.value.data.posts} postes disponibles. Accédez à tous les bureaux du marché. Votre conseiller vous accompagne en visite et vous aide à négocier. Le tout gratuitement.` : 'Découvrez nos bureaux disponibles - Petits Bureaux',
   ogImage: () => data.value ? data.value.data.photos?.[0]?.url : null,
   ogImageUrl: () => data.value ? data.value.data.photos?.[0]?.url : null,
-  ogTitle: () => data.value ? `${data.value.data.title} - Paris ${data.value.data.arr}` : route.params.slug as string,
-  title: () => data.value ? `${data.value.data.title} - Paris ${data.value.data.arr}` : route.params.slug as string,
+  ogLocale: 'fr_FR',
+  ogSiteName: 'Petits Bureaux',
+  ogTitle: () => data.value ? `${data.value.data.title} | Paris ${data.value.data.arr} | Petits Bureaux` : 'Découvrez nos bureaux | Petits Bureaux',
+  ogType: 'website',
+  ogUrl: () => data.value ? `${runtimeConfig.public.appUrl}/offices/${data.value.data.slug}` : `${runtimeConfig.public.appUrl}/offices/${route.params.slug}`,
+  title: () => data.value ? `${data.value.data.title} | Paris ${data.value.data.arr} | Petits Bureaux` : 'Découvrez nos bureaux | Petits Bureaux',
   twitterCard: 'summary_large_image',
   twitterCreator: () => runtimeConfig.public.appUrl,
-  twitterDescription: () => data.value ? `${data.value.data.title} - Paris ${data.value.data.arr}` : route.params.slug as string,
+  twitterDescription: () => data.value ? `${data.value.data.title} - Paris ${data.value.data.arr}. ${data.value.data.posts} postes disponibles. Accédez à tous les bureaux du marché. Votre conseiller vous accompagne en visite et vous aide à négocier. Le tout gratuitement.` : 'Découvrez nos bureaux disponibles - Petits Bureaux',
   twitterImage: () => data.value ? data.value.data.photos?.[0]?.url : null,
   twitterSite: () => runtimeConfig.public.appUrl,
-  twitterTitle: () => data.value ? `${data.value.data.title} - Paris ${data.value.data.arr}` : route.params.slug as string,
+  twitterTitle: () => data.value ? `${data.value.data.title} | Paris ${data.value.data.arr} | Petits Bureaux` : 'Découvrez nos bureaux | Petits Bureaux',
 });
 </script>

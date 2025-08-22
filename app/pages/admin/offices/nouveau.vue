@@ -200,7 +200,7 @@ definePageMeta({
   middleware: 'admin-auth',
 });
 
-defineOgImageComponent('AdminOgImage', {
+defineOgImageComponent('OgImageAdmin', {
   pageTitle: 'Nouveau bureau',
 });
 

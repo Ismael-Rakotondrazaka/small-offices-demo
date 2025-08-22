@@ -107,13 +107,27 @@ definePageMeta({
   middleware: 'admin-auth',
 });
 
-defineOgImageComponent('AdminOgImage', {
+defineOgImageComponent('OgImageAdmin', {
   pageTitle: 'Audit Logs',
 });
 
 useSeoMeta({
-  ogTitle: () => 'Audit Logs',
-  title: () => 'Audit Logs',
+  author: 'Petits Bureaux',
+  description: 'Journaux d\'audit - Administration Petits Bureaux',
+  keywords: 'administration, audit logs, sécurité, traçabilité, back-office',
+  ogDescription: 'Journaux d\'audit - Administration Petits Bureaux',
+  ogLocale: 'fr_FR',
+  ogSiteName: 'Petits Bureaux',
+  ogTitle: 'Journaux d\'audit - Administration Petits Bureaux',
+  ogType: 'website',
+  ogUrl: () => `${runtimeConfig.public.appUrl}/admin/audit-logs`,
+  robots: 'noindex, nofollow',
+  title: 'Journaux d\'audit - Administration Petits Bureaux',
+  twitterCard: 'summary_large_image',
+  twitterCreator: () => runtimeConfig.public.appUrl,
+  twitterDescription: 'Journaux d\'audit - Administration Petits Bureaux',
+  twitterSite: () => runtimeConfig.public.appUrl,
+  twitterTitle: 'Journaux d\'audit - Administration Petits Bureaux',
 });
 
 const actionEquals = useRouteQuery<null | string | string[] | undefined, string | undefined>('action[equals]',

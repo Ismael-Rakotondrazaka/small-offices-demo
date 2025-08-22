@@ -109,16 +109,32 @@ const route = useRoute('lead-slug');
 
 const { data }: Awaited<RequestToAsyncData<ShowOfficeRequest>> = await useFetch(`/api/offices/${route.params.slug}`);
 
-defineOgImageComponent('LeadOgImage', {
+defineOgImageComponent('OgImageLead', {
   officeArr: data.value?.data?.arr,
   officePosts: data.value?.data?.posts,
   officePrice: data.value?.data?.price,
   officeTitle: data.value?.data?.title,
 });
 
+const runtimeConfig = useRuntimeConfig();
+
 useSeoMeta({
-  ogTitle: () => data.value?.data?.title || 'Détail du bureau',
-  title: () => data.value?.data?.title || 'Détail du bureau',
+  author: 'Petits Bureaux',
+  description: () => data.value?.data?.title ? `Demander une visite pour ${data.value.data.title} - Paris ${data.value.data.arr}. Accédez à tous les bureaux du marché. Votre conseiller vous accompagne en visite et vous aide à négocier. Le tout gratuitement.` : 'Demander une visite | Petits Bureaux',
+  keywords: () => data.value?.data?.title ? `visite bureau ${data.value.data.title}, location bureau Paris ${data.value.data.arr}, conseiller immobilier, immobilier d'entreprise` : 'visite bureau, location bureaux, conseiller immobilier',
+  ogDescription: () => data.value?.data?.title ? `Demander une visite pour ${data.value.data.title} - Paris ${data.value.data.arr}. Accédez à tous les bureaux du marché. Votre conseiller vous accompagne en visite et vous aide à négocier. Le tout gratuitement.` : 'Demander une visite | Petits Bureaux',
+  ogLocale: 'fr_FR',
+  ogSiteName: 'Petits Bureaux',
+  ogTitle: () => data.value?.data?.title ? `Visite ${data.value.data.title} | Paris ${data.value.data.arr} | Petits Bureaux` : 'Demander une visite | Petits Bureaux',
+  ogType: 'website',
+  ogUrl: () => data.value?.data?.slug ? `${runtimeConfig.public.appUrl}/lead/${data.value.data.slug}` : `${runtimeConfig.public.appUrl}/lead/${route.params.slug}`,
+ 
+  title: () => data.value?.data?.title ? `Visite ${data.value.data.title} | Paris ${data.value.data.arr} | Petits Bureaux` : 'Demander une visite | Petits Bureaux',
+  twitterCard: 'summary_large_image',
+  twitterCreator: () => runtimeConfig.public.appUrl,
+  twitterDescription: () => data.value?.data?.title ? `Demander une visite pour ${data.value.data.title} - Paris ${data.value.data.arr}. Accédez à tous les bureaux du marché. Votre conseiller vous accompagne en visite et vous aide à négocier. Le tout gratuitement.` : 'Demander une visite | Petits Bureaux',
+  twitterSite: () => runtimeConfig.public.appUrl,
+  twitterTitle: () => data.value?.data?.title ? `Visite ${data.value.data.title} | Paris ${data.value.data.arr} | Petits Bureaux` : 'Demander une visite | Petits Bureaux',
 });
 
 const message = useMessage();

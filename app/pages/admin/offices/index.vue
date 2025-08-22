@@ -158,7 +158,7 @@ definePageMeta({
   middleware: 'admin-auth',
 });
 
-defineOgImageComponent('AdminOgImage', {
+defineOgImageComponent('OgImageAdmin', {
   pageTitle: 'Gestion des bureaux',
 });
 
@@ -679,6 +679,27 @@ const handleDuplicateOffice = async (officeSlug: string) => {
     isDuplicatingOffice.value = null;
   }
 };
+
+const runtimeConfig = useRuntimeConfig();
+
+useSeoMeta({
+  author: 'Petits Bureaux',
+  description: 'Gestion des bureaux - Administration Petits Bureaux',
+  keywords: 'administration, gestion bureaux, immobilier d\'entreprise, back-office',
+  ogDescription: 'Gestion des bureaux - Administration Petits Bureaux',
+  ogLocale: 'fr_FR',
+  ogSiteName: 'Petits Bureaux',
+  ogTitle: 'Gestion des bureaux - Administration Petits Bureaux',
+  ogType: 'website',
+  ogUrl: () => `${runtimeConfig.public.appUrl}/admin/offices`,
+  robots: 'noindex, nofollow',
+  title: 'Gestion des bureaux - Administration Petits Bureaux',
+  twitterCard: 'summary_large_image',
+  twitterCreator: () => runtimeConfig.public.appUrl,
+  twitterDescription: 'Gestion des bureaux - Administration Petits Bureaux',
+  twitterSite: () => runtimeConfig.public.appUrl,
+  twitterTitle: 'Gestion des bureaux - Administration Petits Bureaux',
+});
 </script>
 
 <style>

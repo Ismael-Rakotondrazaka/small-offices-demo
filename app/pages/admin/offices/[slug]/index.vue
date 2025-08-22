@@ -118,7 +118,7 @@ const route = useRoute();
 
 const { data }: Awaited<RequestToAsyncData<ShowOfficeRequest>> = await useFetch(`/api/offices/${route.params.slug}`);
 
-defineOgImageComponent('AdminOgImage', {
+defineOgImageComponent('OgImageAdmin', {
   pageTitle: data.value?.data?.title || 'Détail du bureau',
 });
 
