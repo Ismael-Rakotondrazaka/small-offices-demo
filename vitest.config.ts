@@ -1,7 +1,6 @@
-import { defineVitestProject } from '@nuxt/test-utils/config';
-import { defineConfig } from 'vitest/config';
+import { defineVitestConfig } from '@nuxt/test-utils/config';
 
-export default defineConfig({
+export default defineVitestConfig({
   test: {
     coverage: {
       exclude: [
@@ -30,63 +29,8 @@ export default defineConfig({
 
       provider: 'v8',
     },
-    projects: [
-      await defineVitestProject({
-        test: {
-          environment: 'node',
-          include: ['test/server/**/*.{test,spec}.ts'],
-          name: 'unit',
-        },
-      }),
-      await defineVitestProject({
-        test: {
-          environment: 'node',
-          include: ['test/shared/**/*.{test,spec}.ts'],
-          name: 'shared',
-        },
-      }),
-      await defineVitestProject({
-        test: {
-          environment: 'node',
-          include: ['test/server/core/**/*.{test,spec}.ts'],
-          name: 'server-core',
-        },
-      }),
-      await defineVitestProject({
-        test: {
-          environment: 'node',
-          include: ['test/server/api/**/*.{test,spec}.ts'],
-          name: 'server-api',
-        },
-      }),
-      await defineVitestProject({
-        test: {
-          environment: 'nuxt',
-          include: ['test/app/**/*.{test,spec}.ts'],
-          name: 'nuxt',
-        },
-      }),
-      await defineVitestProject({
-        test: {
-          environment: 'nuxt',
-          include: ['test/app/components/**/*.{test,spec}.ts'],
-          name: 'app-components',
-        },
-      }),
-      await defineVitestProject({
-        test: {
-          environment: 'nuxt',
-          include: ['test/app/pages/**/*.{test,spec}.ts'],
-          name: 'app-pages',
-        },
-      }),
-      await defineVitestProject({
-        test: {
-          environment: 'nuxt',
-          include: ['test/app/components/button/**/*.{test,spec}.ts'],
-          name: 'app-components-button',
-        },
-      }),
-    ],
+    environment: 'nuxt',
+    globalSetup: ['./test/setup/global/dbInitSQLSetup.ts'],
+    setupFiles: ['./test/setup/dbMemorySetup.ts'],
   },
 });
