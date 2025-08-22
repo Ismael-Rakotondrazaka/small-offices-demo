@@ -1,14 +1,9 @@
-import { PrismaClient as _PrismaClient } from '~~/generated/prisma/client';
+import { PrismaClient } from '~~/generated/prisma/client';
 
-const prismaClientFactory = () =>
-  new _PrismaClient().$extends({
-    result: {},
-  });
-
-export type ExtendedPrismaClient = ReturnType<typeof prismaClientFactory>;
+const prismaClientFactory = () => new PrismaClient();
 
 export abstract class PrismaProvider {
-  public static get instance(): ExtendedPrismaClient {
+  public static get instance(): PrismaClient {
     if (!this.#instance) {
       this.#instance = prismaClientFactory();
     }
@@ -16,5 +11,5 @@ export abstract class PrismaProvider {
     return this.#instance;
   }
 
-  static #instance: ExtendedPrismaClient;
+  static #instance: PrismaClient;
 }
