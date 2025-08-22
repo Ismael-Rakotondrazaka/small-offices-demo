@@ -116,13 +116,29 @@ definePageMeta({
   middleware: 'admin-auth',
 });
 
-defineOgImageComponent('AdminOgImage', {
+defineOgImageComponent('OgImageAdmin', {
   pageTitle: 'Gestion des leads',
 });
 
+const runtimeConfig = useRuntimeConfig();
+
 useSeoMeta({
-  ogTitle: () => 'Gestion des leads',
-  title: () => 'Gestion des leads',
+  author: 'Petits Bureaux',
+  description: 'Gestion des leads - Administration Petits Bureaux',
+  keywords: 'administration, gestion leads, prospects, immobilier d\'entreprise, back-office',
+  ogDescription: 'Gestion des leads - Administration Petits Bureaux',
+  ogLocale: 'fr_FR',
+  ogSiteName: 'Petits Bureaux',
+  ogTitle: 'Gestion des leads - Administration Petits Bureaux',
+  ogType: 'website',
+  ogUrl: () => `${runtimeConfig.public.appUrl}/admin/leads`,
+  robots: 'noindex, nofollow',
+  title: 'Gestion des leads - Administration Petits Bureaux',
+  twitterCard: 'summary_large_image',
+  twitterCreator: () => runtimeConfig.public.appUrl,
+  twitterDescription: 'Gestion des leads - Administration Petits Bureaux',
+  twitterSite: () => runtimeConfig.public.appUrl,
+  twitterTitle: 'Gestion des leads - Administration Petits Bureaux',
 });
 
 const OrderOption = {

@@ -333,11 +333,26 @@ const resetSearch = async () => {
   });
 };
 
-defineOgImageComponent('SearchOgImage');
+defineOgImageComponent('OgImageSearch');
+
+const runtimeConfig = useRuntimeConfig();
 
 useSeoMeta({
-  ogTitle: () => `Recherche`,
-  title: () => `Recherche`,
+  author: 'Petits Bureaux',
+  description: 'Recherchez et trouvez le bureau idéal pour votre entreprise. Accédez à tous les bureaux du marché. Votre conseiller vous accompagne en visite et vous aide à négocier. Le tout gratuitement.',
+  keywords: 'recherche bureaux, location bureaux Paris, coworking, immobilier d\'entreprise, conseiller immobilier',
+  ogDescription: 'Recherchez et trouvez le bureau idéal pour votre entreprise. Accédez à tous les bureaux du marché. Votre conseiller vous accompagne en visite et vous aide à négocier. Le tout gratuitement.',
+  ogLocale: 'fr_FR',
+  ogSiteName: 'Petits Bureaux',
+  ogTitle: 'Recherche de bureaux - Petits Bureaux',
+  ogType: 'website',
+  ogUrl: () => `${runtimeConfig.public.appUrl}/search`,
+  title: 'Recherche de bureaux - Petits Bureaux',
+  twitterCard: 'summary_large_image',
+  twitterCreator: () => runtimeConfig.public.appUrl,
+  twitterDescription: 'Recherchez et trouvez le bureau idéal pour votre entreprise. Accédez à tous les bureaux du marché. Votre conseiller vous accompagne en visite et vous aide à négocier. Le tout gratuitement.',
+  twitterSite: () => runtimeConfig.public.appUrl,
+  twitterTitle: 'Recherche de bureaux - Petits Bureaux',
 });
 </script>
 

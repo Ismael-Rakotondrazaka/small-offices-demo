@@ -119,13 +119,27 @@ definePageMeta({
   middleware: 'admin-auth',
 });
 
-defineOgImageComponent('AdminOgImage', {
+defineOgImageComponent('OgImageAdmin', {
   pageTitle: 'Tableau de bord',
 });
 
 useSeoMeta({
-  ogTitle: () => 'Tableau de bord',
-  title: () => 'Tableau de bord',
+  author: 'Petits Bureaux',
+  description: 'Tableau de bord d\'administration - Gestion des bureaux et des leads Petits Bureaux',
+  keywords: 'administration, tableau de bord, gestion bureaux, gestion leads, back-office',
+  ogDescription: 'Tableau de bord d\'administration - Gestion des bureaux et des leads Petits Bureaux',
+  ogLocale: 'fr_FR',
+  ogSiteName: 'Petits Bureaux',
+  ogTitle: 'Tableau de bord - Administration Petits Bureaux',
+  ogType: 'website',
+  ogUrl: () => `${runtimeConfig.public.appUrl}/admin/dashboard`,
+  robots: 'noindex, nofollow',
+  title: 'Tableau de bord - Administration Petits Bureaux',
+  twitterCard: 'summary_large_image',
+  twitterCreator: () => runtimeConfig.public.appUrl,
+  twitterDescription: 'Tableau de bord d\'administration - Gestion des bureaux et des leads Petits Bureaux',
+  twitterSite: () => runtimeConfig.public.appUrl,
+  twitterTitle: 'Tableau de bord - Administration Petits Bureaux',
 });
 
 const { data: pendingLeads } = await useFetch('/api/leads/count', {
@@ -355,4 +369,25 @@ const columns = computed<DataTableColumns<Serialize<LeadDTO>>>(() => [
     title: 'Actions',
   },
 ]);
+
+const runtimeConfig = useRuntimeConfig();
+
+useSeoMeta({
+  author: 'Petits Bureaux',
+  description: 'Tableau de bord d\'administration - Gestion des bureaux et des leads Petits Bureaux',
+  keywords: 'administration, tableau de bord, gestion bureaux, gestion leads, back-office',
+  ogDescription: 'Tableau de bord d\'administration - Gestion des bureaux et des leads Petits Bureaux',
+  ogLocale: 'fr_FR',
+  ogSiteName: 'Petits Bureaux',
+  ogTitle: 'Tableau de bord - Administration Petits Bureaux',
+  ogType: 'website',
+  ogUrl: () => `${runtimeConfig.public.appUrl}/admin/dashboard`,
+  robots: 'noindex, nofollow',
+  title: 'Tableau de bord - Administration Petits Bureaux',
+  twitterCard: 'summary_large_image',
+  twitterCreator: () => runtimeConfig.public.appUrl,
+  twitterDescription: 'Tableau de bord d\'administration - Gestion des bureaux et des leads Petits Bureaux',
+  twitterSite: () => runtimeConfig.public.appUrl,
+  twitterTitle: 'Tableau de bord - Administration Petits Bureaux',
+});
 </script>

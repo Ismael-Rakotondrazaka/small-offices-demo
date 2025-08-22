@@ -22,7 +22,7 @@ const router = useRouter();
 
 const { data }: Awaited<RequestToAsyncData<ShowOfficeRequest>> = await useFetch(`/api/offices/${route.params.slug}`);
 
-defineOgImageComponent('AdminOgImage', {
+defineOgImageComponent('OgImageAdmin', {
   pageTitle: `Modifier ${data.value?.data?.title || 'le bureau'}`,
 });
 
