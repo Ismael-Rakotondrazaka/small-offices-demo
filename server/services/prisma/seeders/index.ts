@@ -13,50 +13,44 @@ const main = async () => {
 
   console.time('=> Total seed duration');
 
-  /* --------------------------------- User Roles -------------------------------- */
-  console.time('User Roles seed duration');
+  console.time('User Roles & Services seed duration');
+  const [userRoles, services] = await Promise.all([
+    createUserRoles({
+      count: 5,
+      prisma: prismaClient,
+    }),
+    createServices({
+      prisma: prismaClient,
+      years: simulationYears,
+    }),
+  ]);
+  console.timeEnd('User Roles & Services seed duration');
 
-  const userRoles = await createUserRoles({
-    count: 5,
-    prisma: prismaClient,
-  });
-
-  console.timeEnd('User Roles seed duration');
-
-  /* --------------------------------- Services -------------------------------- */
-  console.time('Services seed duration');
-
-  const services = await createServices({
-    prisma: prismaClient,
-    years: simulationYears,
-  });
-
-  console.timeEnd('Services seed duration');
-
-  /* --------------------------------- Offices --------------------------------- */
   console.time('Offices seed duration');
-
   const offices = await createOffices({
     prisma: prismaClient,
     services,
     years: simulationYears,
   });
-
   console.timeEnd('Offices seed duration');
 
-  /* ---------------------------------- Leads ---------------------------------- */
-  console.time('Leads seed duration');
-
-  const leads = await createLeads({
-    offices,
-    prisma: prismaClient,
-    years: simulationYears,
-  });
-
-  console.timeEnd('Leads seed duration');
-
-  /* --------------------------------- Audit Logs -------------------------------- */
-  console.time('Audit Logs seed duration');
+  console.time('Leads & Audit Logs seed duration');
+  const [leads] = await Promise.all([
+    createLeads({
+      offices,
+      prisma: prismaClient,
+      years: simulationYears,
+    }),
+    createAuditLogs({
+      auditLogsPerEntity: 3,
+      leads: [],
+      offices,
+      prisma: prismaClient,
+      services,
+      userRoles,
+      years: simulationYears,
+    }),
+  ]);
 
   await createAuditLogs({
     auditLogsPerEntity: 3,
@@ -67,8 +61,7 @@ const main = async () => {
     userRoles,
     years: simulationYears,
   });
-
-  console.timeEnd('Audit Logs seed duration');
+  console.timeEnd('Leads & Audit Logs seed duration');
 
   console.timeEnd('=> Total seed duration');
 };

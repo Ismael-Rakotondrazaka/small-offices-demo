@@ -1,10 +1,10 @@
+import { faker } from '@faker-js/faker';
+
 import type {
   AuditLog,
   Prisma,
   PrismaClient,
 } from '../../../../generated/prisma/client';
-
-import { faker } from '@faker-js/faker';
 
 import { createStringIdentifier } from './identifiers';
 
@@ -17,7 +17,7 @@ const createAuditLogData = (arg: {
   actorId: string;
   target: AuditLogTarget;
   years?: number;
-}): Prisma.AuditLogCreateInput => {
+}): Prisma.AuditLogCreateManyInput => {
   const actions = ['CREATE', 'UPDATE', 'DELETE'] as const;
   const action = faker.helpers.arrayElement(actions);
   const createdAt = faker.date.past({ years: arg.years || 1 });
@@ -80,10 +80,9 @@ export const createAuditLogs = async (arg: {
   userRoles: { id: string }[];
   years?: number;
 }): Promise<AuditLog[]> => {
-  const auditLogsData: Prisma.AuditLogCreateInput[] = [];
-  const auditLogsPerEntity = arg.auditLogsPerEntity || 3; // Default to 3 audit logs per entity
+  const auditLogsData: Prisma.AuditLogCreateManyInput[] = [];
+  const auditLogsPerEntity = arg.auditLogsPerEntity || 3;
 
-  // Create audit logs for offices
   for (const office of arg.offices) {
     for (let i = 0; i < auditLogsPerEntity; i++) {
       const actorId = faker.helpers.arrayElement(arg.userRoles).id;
@@ -95,7 +94,6 @@ export const createAuditLogs = async (arg: {
     }
   }
 
-  // Create audit logs for leads
   for (const lead of arg.leads) {
     for (let i = 0; i < auditLogsPerEntity; i++) {
       const actorId = faker.helpers.arrayElement(arg.userRoles).id;
@@ -107,7 +105,6 @@ export const createAuditLogs = async (arg: {
     }
   }
 
-  // Create audit logs for services
   for (const service of arg.services) {
     for (let i = 0; i < auditLogsPerEntity; i++) {
       const actorId = faker.helpers.arrayElement(arg.userRoles).id;
@@ -119,7 +116,6 @@ export const createAuditLogs = async (arg: {
     }
   }
 
-  // Create audit logs for user roles (fewer since there are fewer user roles)
   for (const userRole of arg.userRoles) {
     for (let i = 0; i < Math.min(auditLogsPerEntity, 2); i++) {
       const actorId = faker.helpers.arrayElement(arg.userRoles).id;
@@ -131,11 +127,14 @@ export const createAuditLogs = async (arg: {
     }
   }
 
-  return Promise.all(
-    auditLogsData.map(auditLogData =>
-      arg.prisma.auditLog.create({
-        data: auditLogData,
-      }),
-    ),
-  );
+  await arg.prisma.auditLog.createMany({
+    data: auditLogsData,
+    skipDuplicates: true,
+  });
+
+  return arg.prisma.auditLog.findMany({
+    where: {
+      id: { in: auditLogsData.map(auditLog => auditLog.id!) },
+    },
+  });
 };

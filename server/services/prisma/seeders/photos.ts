@@ -1,10 +1,10 @@
+import { faker } from '@faker-js/faker';
+
 import type {
   Photo,
   Prisma,
   PrismaClient,
 } from '../../../../generated/prisma/client';
-
-import { faker } from '@faker-js/faker';
 
 import { createStringIdentifier } from './identifiers';
 
@@ -29,7 +29,7 @@ const PHOTO_DESCRIPTIONS = [
 const createPhotoData = (arg: {
   officeId: string;
   years?: number;
-}): Prisma.PhotoCreateInput => {
+}): Prisma.PhotoCreateManyInput => {
   const description = faker.helpers.arrayElement(PHOTO_DESCRIPTIONS);
   const createdAt = faker.date.past({ years: arg.years || 1 });
 
@@ -37,11 +37,7 @@ const createPhotoData = (arg: {
     alt: description,
     createdAt,
     id: createStringIdentifier(),
-    office: {
-      connect: {
-        id: arg.officeId,
-      },
-    },
+    officeId: arg.officeId,
     url: faker.image.urlPicsumPhotos({ height: 667, width: 1000 }),
   };
 };
@@ -51,7 +47,7 @@ export const createPhotos = async (arg: {
   prisma: PrismaClient;
   years: number;
 }): Promise<Photo[]> => {
-  const photosData: Prisma.PhotoCreateInput[] = [];
+  const photosData: Prisma.PhotoCreateManyInput[] = [];
 
   for (const office of arg.offices) {
     const photoCount = faker.number.int({ max: 8, min: 3 });
@@ -64,11 +60,14 @@ export const createPhotos = async (arg: {
     }
   }
 
-  return Promise.all(
-    photosData.map(photoData =>
-      arg.prisma.photo.create({
-        data: photoData,
-      }),
-    ),
-  );
+  await arg.prisma.photo.createMany({
+    data: photosData,
+    skipDuplicates: true,
+  });
+
+  return arg.prisma.photo.findMany({
+    where: {
+      id: { in: photosData.map(photo => photo.id!) },
+    },
+  });
 };

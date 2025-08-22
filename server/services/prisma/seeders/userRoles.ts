@@ -1,14 +1,14 @@
 import { faker } from '@faker-js/faker';
+
 import {
   $Enums,
   type Prisma,
   type PrismaClient,
   type UserRole,
 } from '../../../../generated/prisma/client';
-
 import { createStringIdentifier } from './identifiers';
 
-const createUserRoleData = (): Prisma.UserRoleCreateInput => {
+const createUserRoleData = (): Prisma.UserRoleCreateManyInput => {
   const role = faker.helpers.enumValue($Enums.Role);
 
   return {
@@ -21,18 +21,21 @@ export const createUserRoles = async (arg: {
   count?: number;
   prisma: PrismaClient;
 }): Promise<UserRole[]> => {
-  const userRolesData: Prisma.UserRoleCreateInput[] = [];
-  const count = arg.count || 5; // Default to 5 user roles
+  const userRolesData: Prisma.UserRoleCreateManyInput[] = [];
+  const count = arg.count || 5;
 
   for (let i = 0; i < count; i++) {
     userRolesData.push(createUserRoleData());
   }
 
-  return Promise.all(
-    userRolesData.map(userRoleData =>
-      arg.prisma.userRole.create({
-        data: userRoleData,
-      }),
-    ),
-  );
+  await arg.prisma.userRole.createMany({
+    data: userRolesData,
+    skipDuplicates: true,
+  });
+
+  return arg.prisma.userRole.findMany({
+    where: {
+      id: { in: userRolesData.map(userRole => userRole.id!) },
+    },
+  });
 };

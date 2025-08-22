@@ -1,10 +1,10 @@
+import { faker } from '@faker-js/faker';
+
 import type {
   Prisma,
   PrismaClient,
   Service,
 } from '../../../../generated/prisma/client';
-
-import { faker } from '@faker-js/faker';
 
 import { createStringIdentifier } from './identifiers';
 
@@ -35,18 +35,21 @@ export const createServices = async (arg: {
   prisma: PrismaClient;
   years: number;
 }): Promise<Service[]> => {
-  const servicesData: Prisma.ServiceCreateInput[] = SERVICES_DATA.map(service => ({
+  const servicesData: Prisma.ServiceCreateManyInput[] = SERVICES_DATA.map(service => ({
     createdAt: faker.date.future({ years: arg.years }),
     icon: service.icon,
     id: createStringIdentifier(),
     name: service.name,
   }));
 
-  return Promise.all(
-    servicesData.map(serviceData =>
-      arg.prisma.service.create({
-        data: serviceData,
-      }),
-    ),
-  );
+  await arg.prisma.service.createMany({
+    data: servicesData,
+    skipDuplicates: true,
+  });
+
+  return arg.prisma.service.findMany({
+    where: {
+      id: { in: servicesData.map(service => service.id!) },
+    },
+  });
 };
