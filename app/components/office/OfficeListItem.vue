@@ -24,7 +24,7 @@
             <n-image
               :alt="office.title"
               :src="photo.url"
-              class="w-full h-full object-cover max-h-56"
+              class="w-full object-cover h-56"
               fallback-src="/images/loaders/placeholder-square.svg"
               loading="lazy"
               preview-disabled
