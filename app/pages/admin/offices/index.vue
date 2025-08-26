@@ -135,9 +135,9 @@
       :mask-closable="false"
       preset="card"
       title="Création en Masse de Bureaux"
-      class="w-full max-w-2xl"
+      class="w-full max-w-5xl"
     >
-      <OfficeBulkCreateForm />
+      <OfficeBulkCreateForm @office:bulk-created="onOfficeBulkCreatedHandler" />
     </n-modal>
   </div>
 </template>
@@ -358,6 +358,10 @@ const searchDebounced = debouncedRef(search, 1_500);
 
 const message = useMessage();
 const showBulkCreateModal = ref(false);
+const onOfficeBulkCreatedHandler = async () => {
+  showBulkCreateModal.value = false;
+  await refresh();
+};
 const isDuplicatingOffice = ref<null | string>(null);
 
 const orderByCreatedAt = computed(() => {

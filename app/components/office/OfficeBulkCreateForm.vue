@@ -134,6 +134,11 @@ import type { DataTableColumns, UploadCustomRequestOptions } from 'naive-ui';
 import { OfficeTypeLabel } from '~~/shared/domains/offices';
 import Papa from 'papaparse';
 
+type Emits = {
+  'office:bulk-created': [number];
+};
+const emit = defineEmits<Emits>();
+
 interface BulkCreateResults {
   count: number;
 }
@@ -263,6 +268,8 @@ const handleBulkCreate = async () => {
     results.value = response;
 
     if (response.count > 0) {
+      emit('office:bulk-created', response.count);
+
       message.success(`${response.count} bureaux créés avec succès`);
     }
   }
