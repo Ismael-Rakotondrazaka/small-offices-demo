@@ -266,8 +266,6 @@ const [isFake, isFakeProps] = defineField('isFake', makeInputProps<StoreOfficeRe
 
 const supabase = useSupabaseClient();
 
-const config = useRuntimeConfig();
-
 const defaultUploadFileList = computed<UploadFileInfo[]>(() => {
   return props.office.photos.map(photo => ({
     id: photo.id,
@@ -288,7 +286,7 @@ const customMediaUploadRequest = async ({
       return;
     }
 
-    const { data, error } = await supabase.storage.from(config.public.fileStorageBucketName)
+    const { data, error } = await supabase.storage.from(runtimeConfig.public.fileStorageBucketName)
       .upload(`/offices/${slug.value}/${formatFileName(_file.file.name)}`, _file.file, {
         contentType: _file.file.type,
       });
@@ -299,7 +297,7 @@ const customMediaUploadRequest = async ({
       return;
     }
 
-    photoUrls.value.push(`${config.public.fileStorageBucketEntryPoint}/${data.path}`);
+    photoUrls.value.push(`${runtimeConfig.public.fileStorageBucketEntryPoint}/${data.path}`);
 
     onFinish();
     message.success(`Photo ${_file.file.name} ajoutée avec succès`);

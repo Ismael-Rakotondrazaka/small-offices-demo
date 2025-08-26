@@ -114,6 +114,8 @@ import { LeadStatus, LeadStatuses, LeadStatusLabel } from '~~/shared/domains/lea
 import { NCard, NFlex, NImage, NPopover, NSelect, NTag } from 'naive-ui';
 import { I18nN } from 'vue-i18n';
 
+const runtimeConfig = useRuntimeConfig();
+
 definePageMeta({
   layout: 'admin',
   middleware: 'admin-auth',
@@ -231,19 +233,19 @@ const handleStatusChange = async (lead: Serialize<LeadDTO>, newStatus: LeadStatu
 const columns = computed<DataTableColumns<Serialize<LeadDTO>>>(() => [
   {
     key: 'name',
-    render: row => h('div', { class: 'font-medium' }, row.name),
+    render: row => h('div', { class: 'font-medium' }, { default: () => row.name }),
     sorter: false,
     title: 'Nom',
   },
   {
     key: 'email',
-    render: row => h('a', { class: 'text-blue-600 hover:underline', href: `mailto:${row.email}` }, row.email),
+    render: row => h('a', { class: 'text-blue-600 hover:underline', href: `mailto:${row.email}` }, { default: () => row.email }),
     sorter: false,
     title: 'Email',
   },
   {
     key: 'phone',
-    render: row => row.phone ? h('a', { class: 'text-blue-600 hover:underline', href: `tel:${row.phone}` }, row.phone) : '-',
+    render: row => row.phone ? h('a', { class: 'text-blue-600 hover:underline', href: `tel:${row.phone}` }, { default: () => row.phone }) : '-',
     sorter: false,
     title: 'Téléphone',
   },
@@ -316,13 +318,13 @@ const columns = computed<DataTableColumns<Serialize<LeadDTO>>>(() => [
                     },
                   )
                 : null,
-              h('div', { class: 'font-medium mb-1' }, row.office.title),
-              h('div', { class: 'text-sm text-gray-600 mb-1' }, `Paris ${row.office.arr}`),
-              h('div', { class: 'text-sm text-gray-600' }, `${row.office.posts} postes`),
+              h('div', { class: 'font-medium mb-1' }, { default: () => row.office.title }),
+              h('div', { class: 'text-sm text-gray-600 mb-1' }, { default: () => `Paris ${row.office.arr}` }),
+              h('div', { class: 'text-sm text-gray-600' }, { default: () => `${row.office.posts} postes` }),
             ],
           },
         ),
-        trigger: () => h('div', { class: 'font-medium cursor-pointer hover:text-blue-600' }, row.office.title),
+        trigger: () => h('div', { class: 'font-medium cursor-pointer hover:text-blue-600' }, { default: () => row.office.title }),
       },
     ),
     sorter: false,
@@ -369,25 +371,4 @@ const columns = computed<DataTableColumns<Serialize<LeadDTO>>>(() => [
     title: 'Actions',
   },
 ]);
-
-const runtimeConfig = useRuntimeConfig();
-
-useSeoMeta({
-  author: 'Petits Bureaux',
-  description: 'Tableau de bord d\'administration - Gestion des bureaux et des leads Petits Bureaux',
-  keywords: 'administration, tableau de bord, gestion bureaux, gestion leads, back-office',
-  ogDescription: 'Tableau de bord d\'administration - Gestion des bureaux et des leads Petits Bureaux',
-  ogLocale: 'fr_FR',
-  ogSiteName: 'Petits Bureaux',
-  ogTitle: 'Tableau de bord - Administration Petits Bureaux',
-  ogType: 'website',
-  ogUrl: () => `${runtimeConfig.public.appUrl}/admin/dashboard`,
-  robots: 'noindex, nofollow',
-  title: 'Tableau de bord - Administration Petits Bureaux',
-  twitterCard: 'summary_large_image',
-  twitterCreator: () => runtimeConfig.public.appUrl,
-  twitterDescription: 'Tableau de bord d\'administration - Gestion des bureaux et des leads Petits Bureaux',
-  twitterSite: () => runtimeConfig.public.appUrl,
-  twitterTitle: 'Tableau de bord - Administration Petits Bureaux',
-});
 </script>
