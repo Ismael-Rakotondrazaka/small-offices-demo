@@ -14,6 +14,8 @@
         <n-dialog-provider>
           <nuxt-layout>
             <nuxt-page />
+
+            <CookiesAcceptModal v-model:show="show" />
           </nuxt-layout>
         </n-dialog-provider>
       </n-message-provider>
@@ -47,6 +49,27 @@ const breakPoints = {
   xs: 0,
   xxl: 1536, // matches Tailwind's '2xl'
 };
+
+const show = ref(false);
+const openModal = () => {
+  show.value = true;
+};
+
+const { isAccepted } = useCookiesAcceptStore();
+
+const ELAPSED_TIME = 10 * 1000; // 10 seconds
+
+useTimeoutFn(
+  () => {
+    if (!isAccepted) {
+      openModal();
+    }
+  },
+  ELAPSED_TIME,
+  {
+    immediate: true,
+  },
+);
 </script>
 
 <style scoped></style>

@@ -176,7 +176,11 @@
         depth="3"
         class="text-xs text-gray-500"
       >
-        Copyright © 2010-{{ new Date().getFullYear() }} Petits Bureaux. Tous droits réservés. À propos – CGU & mentions légales – Politique de confidentialité – Guide location de bureaux – Guide du coworking à Paris
+        Copyright © 2010-{{ new Date().getFullYear() }} Petits Bureaux. Tous droits réservés. À propos – CGU & mentions légales – <NuxtLink
+          :to="{
+            name: 'politique-de-confidentialite',
+          }"
+        >Politique de confidentialité</NuxtLink> – Guide location de bureaux – Guide du coworking à Paris
       </n-p>
     </div>
   </footer>

@@ -42,7 +42,7 @@ export default defineNuxtConfig({
 
   gtag: {
     config: {
-      send_page_view: true,
+      send_page_view: false,
     },
   },
 
@@ -91,6 +91,7 @@ export default defineNuxtConfig({
     '@nuxtjs/supabase',
     '@nuxt/scripts',
     '@nuxtjs/leaflet',
+    '@pinia/nuxt',
   ],
 
   naiveui: {
