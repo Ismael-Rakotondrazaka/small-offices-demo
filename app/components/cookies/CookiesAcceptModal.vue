@@ -27,7 +27,7 @@
       >
         <NuxtLink
           :to="{
-            name: 'politique-de-cookies',
+            name: 'politique-de-confidentialite',
           }"
           target="_blank"
         >
