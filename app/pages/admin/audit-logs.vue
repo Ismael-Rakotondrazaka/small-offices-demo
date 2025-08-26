@@ -111,6 +111,8 @@ defineOgImageComponent('OgImageAdmin', {
   pageTitle: 'Audit Logs',
 });
 
+const runtimeConfig = useRuntimeConfig();
+
 useSeoMeta({
   author: 'Petits Bureaux',
   description: 'Journaux d\'audit - Administration Petits Bureaux',
