@@ -1,6 +1,501 @@
 title,type,arr,posts,price,lat,lng,isFake
-Bureau Moderne Paris 1,PRIVATE_OFFICE,1,4,1200,48.8566,2.3522,false
-Espace Collaboratif Marais,OPEN_SPACE,3,12,800,48.8606,2.3376,false
-Studio Indépendant Montmartre,INDEPENDENT_SPACE,18,2,600,48.8867,2.3431,false
-Bureau Premium Champs-Élysées,PRIVATE_OFFICE,8,6,1500,48.8698,2.3077,false
-Open Space République,OPEN_SPACE,10,20,900,48.8674,2.3636,false
+optimize strategic technologies Paris 4,PRIVATE_OFFICE,4,3,1250,48.858421,2.356984,false
+whiteboard best-of-breed platforms Paris 5,INDEPENDENT_SPACE,5,4,800,48.850783,2.338944,true
+grow strategic initiatives Paris 11,INDEPENDENT_SPACE,11,3,600,48.863639,2.381728,false
+enable robust convergence Paris 16,OPEN_SPACE,16,11,900,48.861892,2.278637,false
+incubate bleeding-edge technologies Paris 14,INDEPENDENT_SPACE,14,2,850,48.832058,2.325495,false
+gamify integrated functionalities Paris 16,PRIVATE_OFFICE,16,7,1600,48.867987,2.275046,true
+enhance cross-platform deliverables Paris 13,INDEPENDENT_SPACE,13,5,850,48.835344,2.354310,false
+harness quantum blockchains Paris 4,PRIVATE_OFFICE,4,8,1050,48.858708,2.347910,false
+iterate user-centric blockchains Paris 18,OPEN_SPACE,18,49,950,48.891687,2.349018,false
+repurpose real-time partnerships Paris 1,INDEPENDENT_SPACE,1,5,750,48.857681,2.354980,false
+engage B2B blockchains Paris 17,INDEPENDENT_SPACE,17,2,700,48.885884,2.317240,false
+facilitate cutting-edge infrastructures Paris 20,OPEN_SPACE,20,47,950,48.869735,2.402245,false
+revolutionize smart convergence Paris 18,INDEPENDENT_SPACE,18,4,550,48.892682,2.341803,true
+embrace mission-critical applications Paris 12,INDEPENDENT_SPACE,12,1,550,48.839324,2.392237,false
+facilitate innovative models Paris 10,INDEPENDENT_SPACE,10,3,450,48.876683,2.354980,false
+visualize turn-key experiences Paris 17,PRIVATE_OFFICE,17,6,1400,48.886991,2.317140,false
+harness sticky content Paris 2,OPEN_SPACE,2,43,1050,48.868966,2.336557,true
+generate intuitive paradigms Paris 12,OPEN_SPACE,12,35,700,48.836880,2.396393,false
+syndicate robust supply-chains Paris 16,INDEPENDENT_SPACE,16,4,950,48.867742,2.279545,false
+simplify turn-key users Paris 19,INDEPENDENT_SPACE,19,3,450,48.878109,2.380144,true
+reinvent generative mindshare Paris 16,INDEPENDENT_SPACE,16,5,400,48.864604,2.275306,true
+revolutionize vertical solutions Paris 13,OPEN_SPACE,13,16,850,48.828999,2.359209,false
+enhance front-end methodologies Paris 6,INDEPENDENT_SPACE,6,5,650,48.849018,2.331180,false
+strategize global users Paris 15,PRIVATE_OFFICE,15,8,850,48.839285,2.294820,false
+iterate scalable smart contracts Paris 18,INDEPENDENT_SPACE,18,4,950,48.888229,2.345290,false
+orchestrate ubiquitous initiatives Paris 18,OPEN_SPACE,18,28,550,48.887942,2.342047,false
+facilitate plug-and-play interfaces Paris 9,OPEN_SPACE,9,17,750,48.876163,2.340482,false
+incentivize one-to-one schemas Paris 6,PRIVATE_OFFICE,6,10,1100,48.851295,2.334555,false
+evolve transparent models Paris 11,PRIVATE_OFFICE,11,7,1850,48.861383,2.383588,false
+facilitate B2C markets Paris 1,PRIVATE_OFFICE,1,2,1850,48.859080,2.354157,false
+engage customized users Paris 12,OPEN_SPACE,12,40,1050,48.835414,2.396701,true
+expedite sticky content Paris 7,PRIVATE_OFFICE,7,7,1650,48.860229,2.313661,false
+streamline open-source solutions Paris 14,OPEN_SPACE,14,28,1100,48.832525,2.328704,false
+revolutionize synergistic interfaces Paris 19,OPEN_SPACE,19,14,500,48.884091,2.378146,false
+disintermediate plug-and-play communities Paris 4,INDEPENDENT_SPACE,4,3,600,48.854056,2.347822,false
+scale granular partnerships Paris 3,INDEPENDENT_SPACE,3,4,850,48.864615,2.359656,false
+harness rich networks Paris 18,PRIVATE_OFFICE,18,4,1350,48.890623,2.345291,false
+enhance dynamic architectures Paris 3,OPEN_SPACE,3,28,900,48.866150,2.357040,true
+simplify dynamic smart contracts Paris 13,PRIVATE_OFFICE,13,2,2000,48.832233,2.357484,true
+utilize generative web services Paris 12,INDEPENDENT_SPACE,12,5,550,48.844572,2.398194,false
+disintermediate robust methodologies Paris 16,OPEN_SPACE,16,38,950,48.858820,2.274640,false
+facilitate plug-and-play models Paris 1,PRIVATE_OFFICE,1,6,1750,48.859975,2.349760,false
+transition B2C convergence Paris 1,INDEPENDENT_SPACE,1,3,800,48.854521,2.350578,false
+drive holistic networks Paris 17,PRIVATE_OFFICE,17,5,1050,48.888694,2.320345,false
+scale distributed technologies Paris 15,OPEN_SPACE,15,21,500,48.843465,2.299055,false
+reinvent revolutionary systems Paris 9,INDEPENDENT_SPACE,9,5,700,48.882542,2.332845,false
+synthesize leading-edge users Paris 16,OPEN_SPACE,16,12,650,48.864622,2.281359,false
+incentivize user-centric platforms Paris 11,OPEN_SPACE,11,18,800,48.867173,2.377845,false
+integrate virtual e-commerce Paris 10,INDEPENDENT_SPACE,10,1,600,48.878298,2.354822,true
+harness seamless users Paris 19,OPEN_SPACE,19,33,950,48.885296,2.387432,false
+deploy one-to-one channels Paris 9,PRIVATE_OFFICE,9,3,800,48.875693,2.337084,false
+gamify collaborative networks Paris 13,PRIVATE_OFFICE,13,9,1650,48.835253,2.354308,false
+incubate open-source deliverables Paris 3,OPEN_SPACE,3,25,850,48.866389,2.362309,false
+empower robust networks Paris 12,PRIVATE_OFFICE,12,7,1600,48.841671,2.398232,false
+generate real-time AI Paris 16,INDEPENDENT_SPACE,16,3,700,48.864121,2.276906,true
+engage enterprise supply-chains Paris 13,INDEPENDENT_SPACE,13,1,600,48.829864,2.355615,true
+revolutionize sustainable AI Paris 9,OPEN_SPACE,9,13,800,48.878508,2.336718,false
+repurpose synergistic blockchains Paris 12,INDEPENDENT_SPACE,12,1,550,48.839122,2.393722,true
+streamline cross-media interfaces Paris 3,PRIVATE_OFFICE,3,1,1700,48.869434,2.358358,false
+embrace smart partnerships Paris 8,PRIVATE_OFFICE,8,5,1950,48.875018,2.290590,true
+brand sticky architectures Paris 1,OPEN_SPACE,1,45,750,48.856644,2.352312,true
+strategize cross-media web services Paris 11,OPEN_SPACE,11,44,800,48.863202,2.377681,true
+implement rich infrastructures Paris 14,INDEPENDENT_SPACE,14,5,800,48.836030,2.324168,true
+simplify virtual channels Paris 15,PRIVATE_OFFICE,15,6,1500,48.842209,2.301394,false
+aggregate next-generation methodologies Paris 20,INDEPENDENT_SPACE,20,1,700,48.864219,2.395175,false
+monetize cross-platform web services Paris 14,OPEN_SPACE,14,19,800,48.829033,2.324434,true
+revolutionize frictionless synergies Paris 7,PRIVATE_OFFICE,7,3,1250,48.857403,2.318291,true
+generate plug-and-play synergies Paris 7,PRIVATE_OFFICE,7,8,1850,48.855168,2.314102,false
+utilize back-end applications Paris 6,INDEPENDENT_SPACE,6,3,800,48.856746,2.336306,false
+monetize granular relationships Paris 1,OPEN_SPACE,1,40,500,48.858678,2.355776,false
+iterate compelling architectures Paris 4,PRIVATE_OFFICE,4,1,1600,48.860020,2.352143,false
+drive turn-key partnerships Paris 1,PRIVATE_OFFICE,1,3,950,48.851784,2.352306,false
+incubate end-to-end users Paris 11,OPEN_SPACE,11,34,1150,48.867507,2.378584,false
+brand compelling convergence Paris 13,INDEPENDENT_SPACE,13,3,450,48.830353,2.359307,false
+whiteboard next-generation experiences Paris 11,INDEPENDENT_SPACE,11,2,550,48.863646,2.374193,false
+enable granular smart contracts Paris 20,INDEPENDENT_SPACE,20,1,550,48.868504,2.401335,false
+synthesize cross-media infrastructures Paris 3,INDEPENDENT_SPACE,3,4,450,48.869332,2.362878,false
+embrace turn-key schemas Paris 4,OPEN_SPACE,4,28,750,48.852845,2.355890,false
+optimize back-end supply-chains Paris 12,INDEPENDENT_SPACE,12,5,650,48.838628,2.399775,false
+productize 24/7 platforms Paris 17,OPEN_SPACE,17,24,900,48.879622,2.319231,false
+drive dynamic architectures Paris 18,INDEPENDENT_SPACE,18,4,750,48.892563,2.347321,false
+mesh out-of-the-box systems Paris 4,INDEPENDENT_SPACE,4,4,950,48.857395,2.353145,true
+aggregate intuitive relationships Paris 13,INDEPENDENT_SPACE,13,5,950,48.834025,2.351454,true
+productize revolutionary relationships Paris 9,PRIVATE_OFFICE,9,3,950,48.875626,2.339094,false
+orchestrate sustainable partnerships Paris 4,OPEN_SPACE,4,43,850,48.853895,2.347332,false
+visualize open-source content Paris 1,OPEN_SPACE,1,10,550,48.858114,2.353878,false
+utilize impactful large language models Paris 4,INDEPENDENT_SPACE,4,3,750,48.853498,2.354106,false
+engineer cross-media experiences Paris 20,INDEPENDENT_SPACE,20,1,650,48.867387,2.394695,false
+integrate real-time initiatives Paris 17,OPEN_SPACE,17,39,1000,48.881788,2.323732,false
+exploit magnetic systems Paris 19,PRIVATE_OFFICE,19,8,1900,48.875898,2.380391,false
+productize impactful methodologies Paris 10,OPEN_SPACE,10,15,600,48.875381,2.363439,false
+iterate strategic systems Paris 14,INDEPENDENT_SPACE,14,5,800,48.828661,2.327540,false
+collaborate open-source ROI Paris 9,INDEPENDENT_SPACE,9,3,700,48.875992,2.341232,true
+streamline impactful synergies Paris 12,PRIVATE_OFFICE,12,5,1300,48.839519,2.400465,false
+unleash end-to-end metrics Paris 20,OPEN_SPACE,20,25,1050,48.864222,2.401695,false
+grow cross-platform technologies Paris 4,OPEN_SPACE,4,43,550,48.858515,2.350377,false
+enable best-of-breed web services Paris 19,OPEN_SPACE,19,16,650,48.877480,2.383476,false
+collaborate leading-edge web services Paris 8,INDEPENDENT_SPACE,8,2,400,48.874332,2.296015,false
+collaborate scalable large language models Paris 15,INDEPENDENT_SPACE,15,5,500,48.841100,2.297397,false
+embrace B2C architectures Paris 10,INDEPENDENT_SPACE,10,5,400,48.878594,2.358378,false
+incubate proactive networks Paris 4,PRIVATE_OFFICE,4,9,1150,48.852200,2.354334,false
+maximize viral architectures Paris 17,INDEPENDENT_SPACE,17,1,1000,48.885795,2.320964,true
+transition compelling AI Paris 16,PRIVATE_OFFICE,16,3,1500,48.864123,2.279721,false
+cultivate robust communities Paris 14,PRIVATE_OFFICE,14,9,1650,48.830372,2.326891,false
+incentivize intuitive synergies Paris 11,INDEPENDENT_SPACE,11,4,500,48.865116,2.383465,false
+generate B2B users Paris 10,INDEPENDENT_SPACE,10,1,950,48.878819,2.362334,false
+synthesize customized schemas Paris 12,INDEPENDENT_SPACE,12,5,650,48.836955,2.391907,false
+integrate ubiquitous niches Paris 12,INDEPENDENT_SPACE,12,5,400,48.837346,2.393570,false
+revolutionize open-source large language models Paris 10,PRIVATE_OFFICE,10,3,1800,48.878945,2.364540,true
+mesh killer deliverables Paris 20,INDEPENDENT_SPACE,20,5,550,48.863786,2.401926,false
+empower efficient convergence Paris 10,OPEN_SPACE,10,16,1050,48.872009,2.355575,false
+utilize customized metrics Paris 9,PRIVATE_OFFICE,9,8,950,48.877763,2.340686,false
+brand seamless paradigms Paris 9,INDEPENDENT_SPACE,9,5,800,48.878954,2.340438,false
+whiteboard extensible e-commerce Paris 2,OPEN_SPACE,2,27,1200,48.867305,2.337439,false
+iterate cross-platform experiences Paris 10,PRIVATE_OFFICE,10,3,1200,48.872529,2.359775,false
+collaborate cross-platform partnerships Paris 12,INDEPENDENT_SPACE,12,4,800,48.841209,2.390504,true
+orchestrate revolutionary technologies Paris 17,OPEN_SPACE,17,21,850,48.879681,2.319149,true
+transition best-of-breed schemas Paris 3,PRIVATE_OFFICE,3,7,1300,48.869068,2.360275,true
+deploy magnetic lifetime value Paris 7,PRIVATE_OFFICE,7,5,1300,48.853525,2.314666,false
+orchestrate compelling mindshare Paris 18,INDEPENDENT_SPACE,18,2,800,48.891120,2.347929,false
+grow cross-platform niches Paris 8,PRIVATE_OFFICE,8,10,1000,48.872615,2.299156,false
+evolve distributed initiatives Paris 17,OPEN_SPACE,17,30,500,48.882078,2.318682,true
+repurpose granular smart contracts Paris 12,OPEN_SPACE,12,34,700,48.840801,2.396851,false
+scale sticky applications Paris 3,PRIVATE_OFFICE,3,5,1400,48.867100,2.358770,false
+engage enterprise lifetime value Paris 15,INDEPENDENT_SPACE,15,3,800,48.844299,2.295040,false
+engage immersive deliverables Paris 8,INDEPENDENT_SPACE,8,1,450,48.878510,2.295854,false
+integrate viral interfaces Paris 1,PRIVATE_OFFICE,1,5,2000,48.852116,2.347593,false
+whiteboard robust deliverables Paris 19,INDEPENDENT_SPACE,19,4,450,48.878854,2.382176,false
+orchestrate customized architectures Paris 14,INDEPENDENT_SPACE,14,5,950,48.837393,2.323408,false
+embrace world-class large language models Paris 18,OPEN_SPACE,18,23,550,48.890127,2.340093,false
+simplify strategic mindshare Paris 4,PRIVATE_OFFICE,4,1,1750,48.856193,2.356569,false
+simplify impactful experiences Paris 7,INDEPENDENT_SPACE,7,5,850,48.861512,2.316359,true
+strategize B2C interfaces Paris 18,INDEPENDENT_SPACE,18,3,900,48.896531,2.346878,false
+redefine global architectures Paris 8,OPEN_SPACE,8,37,600,48.872817,2.290841,false
+whiteboard best-of-breed mindshare Paris 20,PRIVATE_OFFICE,20,6,800,48.859887,2.394937,false
+facilitate magnetic users Paris 13,OPEN_SPACE,13,33,700,48.829580,2.357811,false
+reinvent front-end synergies Paris 14,OPEN_SPACE,14,12,800,48.828111,2.323543,false
+maximize plug-and-play relationships Paris 1,INDEPENDENT_SPACE,1,2,450,48.861316,2.347544,false
+brand B2B channels Paris 13,OPEN_SPACE,13,40,1050,48.834181,2.353113,false
+expedite compelling markets Paris 5,OPEN_SPACE,5,14,750,48.841815,2.343945,false
+mesh compelling ROI Paris 7,INDEPENDENT_SPACE,7,5,1000,48.858358,2.320161,false
+target revolutionary convergence Paris 1,PRIVATE_OFFICE,1,4,1300,48.851656,2.348561,false
+revolutionize holistic systems Paris 8,PRIVATE_OFFICE,8,1,1850,48.876997,2.295002,false
+benchmark decentralized interfaces Paris 12,INDEPENDENT_SPACE,12,5,400,48.841187,2.395258,false
+transform next-generation metrics Paris 6,INDEPENDENT_SPACE,6,1,550,48.848666,2.329651,false
+whiteboard B2B functionalities Paris 18,INDEPENDENT_SPACE,18,5,400,48.895175,2.348808,false
+brand customized experiences Paris 3,PRIVATE_OFFICE,3,1,2000,48.864254,2.361172,false
+synthesize B2C channels Paris 12,INDEPENDENT_SPACE,12,4,450,48.843546,2.392191,true
+iterate open-source content Paris 16,OPEN_SPACE,16,42,700,48.866886,2.281736,false
+empower sustainable platforms Paris 17,INDEPENDENT_SPACE,17,2,600,48.882476,2.326395,false
+utilize extensible supply-chains Paris 20,OPEN_SPACE,20,28,750,48.867118,2.402051,false
+unleash extensible platforms Paris 16,PRIVATE_OFFICE,16,7,1250,48.862556,2.281583,false
+transform B2B content Paris 3,PRIVATE_OFFICE,3,1,1800,48.869662,2.361379,false
+mesh vertical large language models Paris 2,OPEN_SPACE,2,18,900,48.866979,2.338832,false
+utilize quantum content Paris 15,OPEN_SPACE,15,41,950,48.841676,2.300240,false
+enhance immersive applications Paris 9,OPEN_SPACE,9,32,550,48.884173,2.333253,false
+cultivate strategic architectures Paris 1,PRIVATE_OFFICE,1,8,1200,48.859980,2.349987,false
+maximize one-to-one users Paris 4,INDEPENDENT_SPACE,4,3,800,48.856074,2.350063,true
+enhance customized e-commerce Paris 5,PRIVATE_OFFICE,5,4,1100,48.850320,2.347144,false
+transform open-source large language models Paris 7,OPEN_SPACE,7,26,950,48.860829,2.317571,true
+brand extensible platforms Paris 5,INDEPENDENT_SPACE,5,5,900,48.846326,2.344134,false
+redefine seamless methodologies Paris 15,OPEN_SPACE,15,47,700,48.839262,2.299653,false
+engineer real-time systems Paris 12,OPEN_SPACE,12,46,900,48.838761,2.399221,false
+revolutionize enterprise lifetime value Paris 3,PRIVATE_OFFICE,3,2,1000,48.865243,2.360409,false
+cultivate virtual functionalities Paris 19,OPEN_SPACE,19,23,950,48.878520,2.387355,false
+deploy efficient synergies Paris 5,OPEN_SPACE,5,35,600,48.842337,2.340662,false
+empower compelling relationships Paris 20,OPEN_SPACE,20,49,700,48.860269,2.401177,false
+whiteboard quantum systems Paris 2,PRIVATE_OFFICE,2,3,1900,48.865059,2.346183,false
+visualize cross-platform solutions Paris 11,INDEPENDENT_SPACE,11,1,750,48.862133,2.380149,false
+iterate cutting-edge technologies Paris 9,PRIVATE_OFFICE,9,7,850,48.877538,2.338032,true
+implement revolutionary users Paris 11,OPEN_SPACE,11,42,1050,48.865354,2.382619,true
+productize user-centric systems Paris 18,INDEPENDENT_SPACE,18,1,650,48.896468,2.347937,false
+seize mission-critical smart contracts Paris 3,OPEN_SPACE,3,20,1100,48.859984,2.360646,false
+transform frictionless markets Paris 5,INDEPENDENT_SPACE,5,4,500,48.850306,2.342854,true
+collaborate out-of-the-box schemas Paris 14,INDEPENDENT_SPACE,14,4,900,48.837988,2.326736,false
+cultivate magnetic technologies Paris 11,PRIVATE_OFFICE,11,8,2000,48.867719,2.376112,false
+benchmark B2B AI Paris 9,INDEPENDENT_SPACE,9,1,450,48.882884,2.335441,false
+evolve impactful lifetime value Paris 3,PRIVATE_OFFICE,3,4,1400,48.869450,2.366196,false
+evolve out-of-the-box architectures Paris 2,INDEPENDENT_SPACE,2,1,550,48.868987,2.344931,false
+leverage user-centric lifetime value Paris 14,OPEN_SPACE,14,34,1150,48.834417,2.326249,false
+engage global ROI Paris 10,PRIVATE_OFFICE,10,10,1800,48.874413,2.360511,false
+expedite smart content Paris 15,PRIVATE_OFFICE,15,1,1250,48.846022,2.294168,false
+drive transparent architectures Paris 15,OPEN_SPACE,15,16,1150,48.842351,2.298270,false
+visualize end-to-end convergence Paris 6,INDEPENDENT_SPACE,6,2,600,48.848456,2.334523,false
+deliver end-to-end convergence Paris 10,PRIVATE_OFFICE,10,5,900,48.878223,2.358672,true
+incubate next-generation schemas Paris 13,INDEPENDENT_SPACE,13,1,900,48.829626,2.352383,false
+brand out-of-the-box solutions Paris 12,PRIVATE_OFFICE,12,3,1050,48.840301,2.397729,true
+iterate turn-key content Paris 6,OPEN_SPACE,6,26,1200,48.850091,2.336891,true
+generate best-of-breed e-commerce Paris 12,OPEN_SPACE,12,16,900,48.836182,2.393570,false
+strategize transparent content Paris 16,OPEN_SPACE,16,20,600,48.862992,2.274415,true
+productize strategic architectures Paris 6,INDEPENDENT_SPACE,6,4,900,48.856542,2.335334,false
+incentivize bleeding-edge convergence Paris 16,PRIVATE_OFFICE,16,5,1150,48.862491,2.274102,false
+syndicate visionary e-commerce Paris 2,PRIVATE_OFFICE,2,7,1400,48.863292,2.340588,false
+facilitate collaborative channels Paris 4,OPEN_SPACE,4,25,850,48.861459,2.348239,true
+target one-to-one infrastructures Paris 12,PRIVATE_OFFICE,12,1,1100,48.835738,2.398513,false
+enable cutting-edge relationships Paris 18,PRIVATE_OFFICE,18,3,1450,48.894616,2.340953,true
+iterate frictionless architectures Paris 19,INDEPENDENT_SPACE,19,3,950,48.885299,2.383568,false
+revolutionize AI-driven users Paris 6,PRIVATE_OFFICE,6,7,900,48.852989,2.335187,false
+syndicate transparent architectures Paris 16,PRIVATE_OFFICE,16,8,1500,48.862240,2.272103,false
+monetize quantum channels Paris 11,PRIVATE_OFFICE,11,10,1100,48.862300,2.381763,false
+generate ubiquitous content Paris 7,INDEPENDENT_SPACE,7,5,500,48.861130,2.323078,false
+benchmark bleeding-edge networks Paris 8,OPEN_SPACE,8,24,1200,48.871237,2.295128,false
+incentivize efficient ROI Paris 4,PRIVATE_OFFICE,4,9,800,48.854803,2.351426,false
+collaborate AI-driven platforms Paris 11,OPEN_SPACE,11,19,800,48.860907,2.377108,false
+embrace leading-edge ROI Paris 18,PRIVATE_OFFICE,18,1,1100,48.895914,2.344659,false
+benchmark smart synergies Paris 15,PRIVATE_OFFICE,15,5,1350,48.841953,2.293622,false
+cultivate enterprise networks Paris 18,PRIVATE_OFFICE,18,1,1100,48.889405,2.342206,false
+extend viral methodologies Paris 15,OPEN_SPACE,15,21,1150,48.846142,2.292891,true
+evolve intuitive models Paris 4,INDEPENDENT_SPACE,4,2,1000,48.855028,2.355495,false
+seize killer e-commerce Paris 18,PRIVATE_OFFICE,18,3,1950,48.895484,2.346862,true
+expedite innovative synergies Paris 20,PRIVATE_OFFICE,20,9,1700,48.867910,2.400155,false
+deploy scalable communities Paris 18,INDEPENDENT_SPACE,18,5,900,48.895194,2.339449,false
+visualize B2C convergence Paris 7,OPEN_SPACE,7,45,550,48.858894,2.321328,false
+mesh back-end blockchains Paris 16,INDEPENDENT_SPACE,16,5,550,48.866802,2.274844,false
+whiteboard plug-and-play technologies Paris 1,OPEN_SPACE,1,10,700,48.856833,2.350632,false
+engage leading-edge mindshare Paris 13,PRIVATE_OFFICE,13,9,1650,48.827924,2.352581,false
+engineer viral lifetime value Paris 7,INDEPENDENT_SPACE,7,4,850,48.860673,2.322464,false
+facilitate extensible blockchains Paris 13,OPEN_SPACE,13,40,1050,48.834824,2.351371,false
+harness customized smart contracts Paris 10,OPEN_SPACE,10,18,1050,48.880786,2.359260,false
+brand B2C partnerships Paris 8,INDEPENDENT_SPACE,8,4,700,48.868944,2.293995,true
+strategize scalable technologies Paris 7,PRIVATE_OFFICE,7,7,1000,48.860393,2.314273,false
+deploy seamless AI Paris 15,OPEN_SPACE,15,50,1100,48.844904,2.293794,false
+engage bleeding-edge solutions Paris 5,INDEPENDENT_SPACE,5,2,750,48.849703,2.339300,false
+deliver dynamic technologies Paris 10,OPEN_SPACE,10,21,700,48.876848,2.361388,false
+productize holistic ROI Paris 5,PRIVATE_OFFICE,5,1,1450,48.842507,2.339938,false
+cultivate intuitive large language models Paris 4,PRIVATE_OFFICE,4,10,1600,48.855633,2.349468,false
+benchmark cross-media networks Paris 12,OPEN_SPACE,12,48,750,48.836765,2.394011,false
+reinvent virtual systems Paris 4,PRIVATE_OFFICE,4,9,1800,48.858852,2.347745,false
+expedite extensible supply-chains Paris 8,PRIVATE_OFFICE,8,6,1550,48.873909,2.290175,true
+evolve AI-driven communities Paris 9,OPEN_SPACE,9,36,600,48.884482,2.337348,true
+unleash impactful infrastructures Paris 7,PRIVATE_OFFICE,7,2,1250,48.856768,2.315259,true
+incentivize smart mindshare Paris 18,PRIVATE_OFFICE,18,4,1850,48.897142,2.346705,false
+disintermediate generative ROI Paris 19,OPEN_SPACE,19,38,1000,48.880826,2.379025,false
+collaborate scalable web services Paris 17,PRIVATE_OFFICE,17,8,1000,48.881412,2.319237,true
+maximize quantum web services Paris 12,OPEN_SPACE,12,26,750,48.837111,2.399339,false
+transition scalable synergies Paris 20,INDEPENDENT_SPACE,20,3,650,48.867376,2.398297,false
+enhance integrated infrastructures Paris 20,INDEPENDENT_SPACE,20,3,850,48.861504,2.394179,false
+engage impactful e-commerce Paris 9,PRIVATE_OFFICE,9,6,800,48.875564,2.338280,false
+monetize sustainable e-commerce Paris 1,PRIVATE_OFFICE,1,6,1650,48.854810,2.354101,false
+redefine impactful communities Paris 1,PRIVATE_OFFICE,1,3,1150,48.855156,2.348176,false
+orchestrate viral initiatives Paris 20,PRIVATE_OFFICE,20,7,1150,48.867683,2.401274,true
+iterate revolutionary metrics Paris 2,OPEN_SPACE,2,15,500,48.872056,2.344674,false
+harness front-end users Paris 14,INDEPENDENT_SPACE,14,3,1000,48.833887,2.330326,false
+grow plug-and-play metrics Paris 13,OPEN_SPACE,13,34,500,48.828542,2.351362,false
+collaborate AI-driven systems Paris 17,OPEN_SPACE,17,45,1050,48.881529,2.322965,false
+monetize out-of-the-box ROI Paris 11,OPEN_SPACE,11,14,1150,48.866604,2.381586,false
+monetize cutting-edge relationships Paris 11,PRIVATE_OFFICE,11,9,1050,48.864990,2.378993,false
+redefine revolutionary metrics Paris 15,OPEN_SPACE,15,33,1200,48.841044,2.294115,false
+whiteboard extensible initiatives Paris 6,PRIVATE_OFFICE,6,9,1600,48.850291,2.337386,false
+cultivate one-to-one systems Paris 16,PRIVATE_OFFICE,16,8,1850,48.863012,2.272203,false
+deploy cutting-edge networks Paris 2,INDEPENDENT_SPACE,2,4,800,48.864993,2.338692,false
+collaborate granular AI Paris 4,PRIVATE_OFFICE,4,9,850,48.858316,2.351792,true
+incubate front-end experiences Paris 2,PRIVATE_OFFICE,2,4,900,48.870763,2.339995,true
+unleash virtual paradigms Paris 16,PRIVATE_OFFICE,16,2,1150,48.868342,2.272860,true
+syndicate scalable functionalities Paris 12,PRIVATE_OFFICE,12,9,1450,48.837520,2.397438,false
+orchestrate AI-driven methodologies Paris 13,INDEPENDENT_SPACE,13,5,400,48.830929,2.360116,false
+visualize B2C e-commerce Paris 4,INDEPENDENT_SPACE,4,2,550,48.854330,2.356953,false
+disintermediate holistic platforms Paris 4,PRIVATE_OFFICE,4,5,800,48.854427,2.352813,false
+incentivize generative schemas Paris 13,INDEPENDENT_SPACE,13,3,550,48.829973,2.354524,false
+engineer B2B users Paris 6,INDEPENDENT_SPACE,6,3,450,48.854567,2.332101,false
+transition granular web services Paris 16,PRIVATE_OFFICE,16,6,1550,48.863484,2.274189,false
+empower turn-key niches Paris 16,INDEPENDENT_SPACE,16,3,950,48.867041,2.276245,false
+grow plug-and-play infrastructures Paris 15,INDEPENDENT_SPACE,15,2,700,48.837600,2.300819,false
+engineer global ROI Paris 11,OPEN_SPACE,11,32,750,48.860916,2.377862,false
+deliver innovative relationships Paris 5,OPEN_SPACE,5,21,600,48.850162,2.348694,false
+leverage collaborative large language models Paris 5,INDEPENDENT_SPACE,5,2,650,48.845390,2.345311,true
+revolutionize bleeding-edge platforms Paris 18,INDEPENDENT_SPACE,18,1,500,48.895626,2.341674,false
+synthesize leading-edge infrastructures Paris 7,OPEN_SPACE,7,45,550,48.854969,2.313788,false
+implement world-class schemas Paris 4,OPEN_SPACE,4,39,950,48.858633,2.356145,false
+expedite AI-driven models Paris 2,OPEN_SPACE,2,46,500,48.872374,2.340999,false
+synthesize real-time lifetime value Paris 7,INDEPENDENT_SPACE,7,5,950,48.858670,2.322558,true
+gamify virtual mindshare Paris 16,PRIVATE_OFFICE,16,3,1100,48.859631,2.274167,false
+cultivate smart smart contracts Paris 17,OPEN_SPACE,17,22,850,48.888409,2.322665,false
+seize out-of-the-box channels Paris 2,INDEPENDENT_SPACE,2,4,800,48.868984,2.344101,false
+aggregate out-of-the-box interfaces Paris 9,OPEN_SPACE,9,13,550,48.879383,2.342432,false
+evolve impactful architectures Paris 14,INDEPENDENT_SPACE,14,2,400,48.835362,2.327912,false
+integrate compelling experiences Paris 2,PRIVATE_OFFICE,2,2,800,48.870226,2.345160,false
+benchmark compelling ROI Paris 6,PRIVATE_OFFICE,6,4,1850,48.855586,2.333798,false
+expedite revolutionary communities Paris 12,OPEN_SPACE,12,21,500,48.844816,2.392932,false
+redefine scalable lifetime value Paris 7,INDEPENDENT_SPACE,7,4,950,48.852846,2.318213,false
+redefine vertical initiatives Paris 17,INDEPENDENT_SPACE,17,4,500,48.885109,2.325629,true
+mesh end-to-end communities Paris 19,INDEPENDENT_SPACE,19,2,1000,48.877831,2.380742,false
+reinvent quantum markets Paris 6,PRIVATE_OFFICE,6,3,1000,48.854911,2.334185,true
+collaborate sticky infrastructures Paris 7,OPEN_SPACE,7,35,900,48.858723,2.318890,true
+evolve scalable infrastructures Paris 1,INDEPENDENT_SPACE,1,3,800,48.860711,2.355981,false
+visualize viral applications Paris 6,PRIVATE_OFFICE,6,5,1850,48.854262,2.333038,false
+maximize transparent partnerships Paris 16,PRIVATE_OFFICE,16,6,1600,48.865505,2.278101,false
+empower robust relationships Paris 9,PRIVATE_OFFICE,9,3,1550,48.880533,2.340779,true
+incentivize revolutionary synergies Paris 10,INDEPENDENT_SPACE,10,5,700,48.877962,2.356733,false
+benchmark sustainable AI Paris 3,INDEPENDENT_SPACE,3,4,900,48.865252,2.361028,false
+simplify world-class models Paris 2,INDEPENDENT_SPACE,2,1,950,48.865813,2.341531,false
+transition bleeding-edge supply-chains Paris 12,INDEPENDENT_SPACE,12,1,450,48.839828,2.399784,true
+embrace robust initiatives Paris 3,PRIVATE_OFFICE,3,6,1000,48.862949,2.358189,false
+aggregate bleeding-edge synergies Paris 8,PRIVATE_OFFICE,8,5,1550,48.870870,2.290326,false
+optimize one-to-one systems Paris 8,PRIVATE_OFFICE,8,1,1550,48.873008,2.290615,false
+engineer synergistic channels Paris 7,INDEPENDENT_SPACE,7,5,700,48.858028,2.315902,false
+unleash seamless applications Paris 7,PRIVATE_OFFICE,7,8,1200,48.856003,2.320331,false
+enable customized architectures Paris 15,INDEPENDENT_SPACE,15,1,400,48.844153,2.293252,false
+brand scalable markets Paris 12,OPEN_SPACE,12,45,750,48.842782,2.393133,true
+repurpose strategic supply-chains Paris 1,PRIVATE_OFFICE,1,4,1800,48.858702,2.348744,false
+empower user-centric technologies Paris 7,INDEPENDENT_SPACE,7,1,900,48.858645,2.315105,false
+enable immersive markets Paris 14,INDEPENDENT_SPACE,14,4,700,48.836285,2.329674,false
+aggregate leading-edge methodologies Paris 19,PRIVATE_OFFICE,19,7,1550,48.876003,2.381654,true
+grow vertical communities Paris 11,INDEPENDENT_SPACE,11,1,550,48.867801,2.374251,false
+enable synergistic functionalities Paris 10,OPEN_SPACE,10,35,1150,48.879583,2.359253,false
+architect virtual solutions Paris 5,OPEN_SPACE,5,12,1000,48.849969,2.346007,false
+integrate ubiquitous relationships Paris 7,OPEN_SPACE,7,22,750,48.852817,2.316063,false
+simplify turn-key niches Paris 12,INDEPENDENT_SPACE,12,2,400,48.845181,2.397337,false
+reinvent smart ROI Paris 16,INDEPENDENT_SPACE,16,2,650,48.861179,2.277721,false
+generate smart AI Paris 15,PRIVATE_OFFICE,15,9,1600,48.837151,2.294504,true
+transform intuitive channels Paris 1,OPEN_SPACE,1,41,500,48.853156,2.356530,false
+architect enterprise metrics Paris 1,OPEN_SPACE,1,38,550,48.856794,2.351480,false
+leverage plug-and-play communities Paris 19,PRIVATE_OFFICE,19,10,900,48.883017,2.384190,true
+optimize sustainable mindshare Paris 11,OPEN_SPACE,11,13,850,48.862500,2.380667,false
+deploy compelling interfaces Paris 4,PRIVATE_OFFICE,4,8,1300,48.857623,2.352976,true
+incentivize frictionless partnerships Paris 12,PRIVATE_OFFICE,12,5,1700,48.842621,2.391939,true
+enhance collaborative functionalities Paris 1,INDEPENDENT_SPACE,1,1,1000,48.854728,2.356672,false
+facilitate magnetic niches Paris 2,PRIVATE_OFFICE,2,2,1700,48.865722,2.338752,false
+simplify vertical models Paris 12,OPEN_SPACE,12,44,500,48.836597,2.394865,false
+whiteboard killer models Paris 6,OPEN_SPACE,6,43,1150,48.853773,2.328776,false
+utilize proactive niches Paris 4,OPEN_SPACE,4,19,650,48.852580,2.351715,true
+streamline robust convergence Paris 15,PRIVATE_OFFICE,15,4,900,48.842008,2.302537,true
+strategize visionary ROI Paris 13,PRIVATE_OFFICE,13,3,1450,48.832326,2.358097,false
+engage smart synergies Paris 9,INDEPENDENT_SPACE,9,4,500,48.884403,2.337770,true
+revolutionize interactive platforms Paris 4,OPEN_SPACE,4,39,950,48.854799,2.354926,false
+integrate world-class models Paris 20,PRIVATE_OFFICE,20,4,850,48.869530,2.401901,false
+disintermediate B2B lifetime value Paris 1,OPEN_SPACE,1,35,600,48.860122,2.353828,false
+scale synergistic supply-chains Paris 14,INDEPENDENT_SPACE,14,1,900,48.832994,2.328403,false
+enhance enterprise platforms Paris 5,PRIVATE_OFFICE,5,6,950,48.850353,2.342769,false
+facilitate proactive deliverables Paris 13,OPEN_SPACE,13,38,850,48.835629,2.359261,true
+exploit generative technologies Paris 3,INDEPENDENT_SPACE,3,5,950,48.862690,2.358409,true
+synthesize value-added synergies Paris 5,INDEPENDENT_SPACE,5,2,400,48.849653,2.340107,false
+maximize best-of-breed paradigms Paris 19,INDEPENDENT_SPACE,19,5,600,48.883139,2.383449,false
+generate enterprise paradigms Paris 6,PRIVATE_OFFICE,6,7,950,48.856618,2.334634,true
+maximize intuitive smart contracts Paris 12,INDEPENDENT_SPACE,12,1,850,48.838567,2.398298,false
+syndicate plug-and-play paradigms Paris 7,OPEN_SPACE,7,14,1100,48.854032,2.319583,false
+harness killer models Paris 15,PRIVATE_OFFICE,15,1,1400,48.842448,2.299585,false
+streamline vertical methodologies Paris 15,OPEN_SPACE,15,26,1100,48.842946,2.299216,true
+transition impactful synergies Paris 15,INDEPENDENT_SPACE,15,5,1000,48.837479,2.302276,true
+grow turn-key systems Paris 13,OPEN_SPACE,13,43,750,48.831234,2.355325,false
+evolve 24/7 synergies Paris 11,OPEN_SPACE,11,20,1150,48.859157,2.377120,true
+gamify cross-platform mindshare Paris 18,OPEN_SPACE,18,20,650,48.889800,2.342083,false
+visualize magnetic AI Paris 9,INDEPENDENT_SPACE,9,2,750,48.877655,2.336673,false
+seize holistic experiences Paris 8,PRIVATE_OFFICE,8,7,1700,48.878443,2.298282,false
+unleash out-of-the-box content Paris 9,INDEPENDENT_SPACE,9,2,700,48.875231,2.342021,false
+extend global web services Paris 6,OPEN_SPACE,6,48,1200,48.856186,2.331422,false
+deploy B2B functionalities Paris 6,OPEN_SPACE,6,48,650,48.855186,2.328512,true
+revolutionize dynamic ROI Paris 9,INDEPENDENT_SPACE,9,3,750,48.876249,2.338173,false
+orchestrate revolutionary interfaces Paris 19,OPEN_SPACE,19,26,550,48.884961,2.381401,true
+benchmark cross-platform markets Paris 2,PRIVATE_OFFICE,2,9,1950,48.863089,2.345499,false
+transition sustainable channels Paris 11,PRIVATE_OFFICE,11,3,1800,48.862740,2.382147,false
+strategize end-to-end technologies Paris 9,OPEN_SPACE,9,15,500,48.877635,2.336456,false
+architect quantum ROI Paris 9,INDEPENDENT_SPACE,9,5,750,48.882839,2.333486,false
+visualize scalable AI Paris 4,OPEN_SPACE,4,37,950,48.859044,2.349762,false
+deploy front-end convergence Paris 2,PRIVATE_OFFICE,2,1,1650,48.871792,2.343863,false
+transform value-added supply-chains Paris 20,PRIVATE_OFFICE,20,2,1050,48.867379,2.393466,false
+orchestrate sticky large language models Paris 7,PRIVATE_OFFICE,7,9,1100,48.852328,2.318040,false
+aggregate B2C supply-chains Paris 10,INDEPENDENT_SPACE,10,5,800,48.876588,2.360987,false
+transition end-to-end functionalities Paris 15,PRIVATE_OFFICE,15,1,1650,48.837454,2.294002,false
+utilize world-class content Paris 4,PRIVATE_OFFICE,4,10,1350,48.855276,2.350749,true
+mesh intuitive interfaces Paris 14,PRIVATE_OFFICE,14,3,1450,48.831318,2.324784,false
+reinvent vertical paradigms Paris 17,PRIVATE_OFFICE,17,1,1100,48.886935,2.326153,false
+revolutionize granular paradigms Paris 2,INDEPENDENT_SPACE,2,5,1000,48.864802,2.344416,false
+drive seamless synergies Paris 4,PRIVATE_OFFICE,4,1,900,48.860562,2.350581,false
+revolutionize end-to-end interfaces Paris 5,INDEPENDENT_SPACE,5,2,850,48.847392,2.348549,false
+synthesize quantum convergence Paris 9,INDEPENDENT_SPACE,9,1,650,48.882329,2.336320,false
+engineer intuitive paradigms Paris 9,PRIVATE_OFFICE,9,10,1900,48.875739,2.335406,true
+cultivate strategic synergies Paris 4,OPEN_SPACE,4,22,800,48.855135,2.348265,false
+monetize cross-platform infrastructures Paris 5,INDEPENDENT_SPACE,5,3,700,48.848020,2.345318,false
+mesh robust supply-chains Paris 8,PRIVATE_OFFICE,8,7,1000,48.874639,2.290587,false
+revolutionize robust initiatives Paris 3,INDEPENDENT_SPACE,3,4,550,48.864540,2.357904,true
+optimize quantum functionalities Paris 4,OPEN_SPACE,4,19,1200,48.852183,2.357071,false
+extend world-class mindshare Paris 17,PRIVATE_OFFICE,17,6,1550,48.884939,2.316529,false
+gamify killer methodologies Paris 9,INDEPENDENT_SPACE,9,2,950,48.882435,2.340116,true
+generate transparent content Paris 17,OPEN_SPACE,17,27,750,48.885574,2.319396,false
+transform innovative large language models Paris 17,PRIVATE_OFFICE,17,2,1800,48.881788,2.316779,false
+expedite enterprise AI Paris 11,INDEPENDENT_SPACE,11,2,400,48.866777,2.381587,true
+innovate vertical applications Paris 7,INDEPENDENT_SPACE,7,4,800,48.853882,2.317121,false
+orchestrate front-end deliverables Paris 6,OPEN_SPACE,6,12,850,48.853188,2.334192,false
+optimize bleeding-edge niches Paris 11,OPEN_SPACE,11,11,550,48.862808,2.383699,false
+disintermediate magnetic ROI Paris 3,OPEN_SPACE,3,48,700,48.861287,2.364048,false
+collaborate bleeding-edge markets Paris 17,INDEPENDENT_SPACE,17,4,700,48.885172,2.320813,false
+facilitate AI-driven lifetime value Paris 6,INDEPENDENT_SPACE,6,4,850,48.858242,2.333662,false
+transition cross-media supply-chains Paris 11,INDEPENDENT_SPACE,11,1,1000,48.866346,2.374454,true
+simplify seamless niches Paris 9,OPEN_SPACE,9,27,950,48.882130,2.336416,false
+orchestrate global blockchains Paris 14,OPEN_SPACE,14,32,1200,48.830684,2.326841,false
+utilize leading-edge AI Paris 16,OPEN_SPACE,16,43,750,48.865317,2.276118,false
+incubate vertical niches Paris 6,OPEN_SPACE,6,17,1000,48.855368,2.331069,true
+cultivate cross-platform experiences Paris 4,INDEPENDENT_SPACE,4,2,1000,48.854329,2.349434,false
+enable robust convergence Paris 13,OPEN_SPACE,13,31,1200,48.831154,2.353421,false
+repurpose generative channels Paris 20,INDEPENDENT_SPACE,20,1,900,48.867068,2.394763,false
+embrace frictionless systems Paris 19,OPEN_SPACE,19,23,1100,48.883544,2.386367,false
+optimize dynamic models Paris 8,OPEN_SPACE,8,17,1100,48.877316,2.296243,true
+strategize value-added e-commerce Paris 8,PRIVATE_OFFICE,8,9,1750,48.875249,2.295215,false
+grow innovative models Paris 19,INDEPENDENT_SPACE,19,1,550,48.880770,2.384228,false
+orchestrate interactive web services Paris 3,INDEPENDENT_SPACE,3,5,550,48.863012,2.357363,false
+harness 24/7 systems Paris 20,OPEN_SPACE,20,12,850,48.862926,2.398286,false
+streamline intuitive e-commerce Paris 15,OPEN_SPACE,15,12,1150,48.838592,2.294551,false
+harness sustainable platforms Paris 12,PRIVATE_OFFICE,12,1,1850,48.840919,2.396178,true
+engineer plug-and-play metrics Paris 8,INDEPENDENT_SPACE,8,3,400,48.876680,2.292297,false
+implement sustainable large language models Paris 4,PRIVATE_OFFICE,4,7,1200,48.852961,2.356127,true
+repurpose world-class experiences Paris 8,PRIVATE_OFFICE,8,4,1200,48.870284,2.290554,false
+monetize generative communities Paris 12,OPEN_SPACE,12,36,900,48.839616,2.390733,false
+deploy 24/7 deliverables Paris 13,PRIVATE_OFFICE,13,10,1900,48.831112,2.359878,false
+mesh front-end infrastructures Paris 1,PRIVATE_OFFICE,1,8,1900,48.857250,2.350631,false
+synthesize viral content Paris 6,OPEN_SPACE,6,25,1150,48.851244,2.332858,false
+harness innovative schemas Paris 15,PRIVATE_OFFICE,15,9,1750,48.840638,2.299169,true
+exploit decentralized functionalities Paris 19,INDEPENDENT_SPACE,19,2,600,48.877354,2.380258,false
+simplify impactful partnerships Paris 3,OPEN_SPACE,3,28,900,48.862856,2.364352,false
+mesh visionary platforms Paris 19,PRIVATE_OFFICE,19,6,1350,48.881972,2.383938,false
+seize virtual relationships Paris 7,INDEPENDENT_SPACE,7,2,900,48.858068,2.320129,false
+disintermediate vertical large language models Paris 7,INDEPENDENT_SPACE,7,3,450,48.861301,2.320373,false
+strategize visionary e-commerce Paris 7,OPEN_SPACE,7,11,850,48.853479,2.319188,false
+productize synergistic communities Paris 6,OPEN_SPACE,6,36,1100,48.853154,2.333559,false
+aggregate magnetic smart contracts Paris 5,INDEPENDENT_SPACE,5,1,400,48.845650,2.347100,false
+orchestrate intuitive methodologies Paris 2,PRIVATE_OFFICE,2,4,900,48.869012,2.341035,false
+syndicate world-class models Paris 18,INDEPENDENT_SPACE,18,1,950,48.888496,2.348292,false
+embrace end-to-end blockchains Paris 15,PRIVATE_OFFICE,15,9,1150,48.842070,2.296002,false
+repurpose out-of-the-box networks Paris 14,INDEPENDENT_SPACE,14,4,700,48.837988,2.324647,false
+gamify end-to-end channels Paris 4,OPEN_SPACE,4,14,850,48.857124,2.352369,false
+engage AI-driven paradigms Paris 2,OPEN_SPACE,2,19,600,48.867935,2.340384,false
+orchestrate best-of-breed smart contracts Paris 12,PRIVATE_OFFICE,12,4,1150,48.841957,2.391461,true
+harness one-to-one synergies Paris 17,PRIVATE_OFFICE,17,2,1250,48.880482,2.317886,true
+collaborate strategic interfaces Paris 12,OPEN_SPACE,12,25,750,48.841939,2.399038,false
+integrate open-source technologies Paris 3,INDEPENDENT_SPACE,3,2,600,48.865480,2.357354,true
+disintermediate leading-edge networks Paris 20,PRIVATE_OFFICE,20,4,1500,48.863176,2.394447,false
+repurpose distributed smart contracts Paris 6,INDEPENDENT_SPACE,6,2,700,48.850794,2.327533,false
+utilize interactive convergence Paris 5,PRIVATE_OFFICE,5,8,1250,48.850853,2.341448,false
+streamline quantum AI Paris 1,PRIVATE_OFFICE,1,5,1100,48.853642,2.351933,false
+incubate dynamic systems Paris 1,INDEPENDENT_SPACE,1,3,600,48.858649,2.349045,true
+revolutionize granular paradigms Paris 4,PRIVATE_OFFICE,4,10,1350,48.859910,2.353565,true
+seize collaborative technologies Paris 14,INDEPENDENT_SPACE,14,3,500,48.836423,2.326344,false
+enhance out-of-the-box supply-chains Paris 1,PRIVATE_OFFICE,1,3,1150,48.857386,2.356127,false
+revolutionize extensible schemas Paris 15,PRIVATE_OFFICE,15,10,1950,48.837093,2.301316,false
+transition impactful lifetime value Paris 20,OPEN_SPACE,20,16,650,48.864940,2.394875,false
+transition global lifetime value Paris 19,OPEN_SPACE,19,40,1200,48.876183,2.380109,false
+disintermediate global architectures Paris 4,OPEN_SPACE,4,13,900,48.853096,2.355719,false
+redefine cross-media channels Paris 6,PRIVATE_OFFICE,6,10,850,48.855981,2.335393,false
+deliver AI-driven web services Paris 4,OPEN_SPACE,4,40,850,48.858006,2.350104,false
+integrate distributed large language models Paris 20,OPEN_SPACE,20,37,650,48.863475,2.400058,false
+extend leading-edge infrastructures Paris 12,OPEN_SPACE,12,26,850,48.841658,2.393807,false
+reinvent revolutionary networks Paris 9,INDEPENDENT_SPACE,9,3,800,48.876305,2.332707,true
+transform customized applications Paris 13,OPEN_SPACE,13,45,650,48.834533,2.354782,false
+evolve end-to-end mindshare Paris 13,OPEN_SPACE,13,20,550,48.833948,2.353758,false
+engineer viral metrics Paris 12,INDEPENDENT_SPACE,12,1,700,48.838454,2.395518,false
+repurpose world-class schemas Paris 20,PRIVATE_OFFICE,20,1,950,48.868802,2.400576,false
+repurpose enterprise interfaces Paris 19,OPEN_SPACE,19,16,850,48.877356,2.380360,false
+productize impactful models Paris 1,INDEPENDENT_SPACE,1,1,450,48.860931,2.353050,true
+iterate AI-driven ROI Paris 14,OPEN_SPACE,14,46,1200,48.836785,2.330570,false
+gamify real-time platforms Paris 5,PRIVATE_OFFICE,5,6,1650,48.846610,2.344632,true
+architect sticky communities Paris 18,INDEPENDENT_SPACE,18,3,600,48.896570,2.343625,false
+iterate cutting-edge blockchains Paris 19,PRIVATE_OFFICE,19,2,1100,48.884089,2.385401,false
+innovate enterprise technologies Paris 20,OPEN_SPACE,20,28,500,48.862769,2.393604,false
+facilitate integrated e-commerce Paris 18,OPEN_SPACE,18,10,1100,48.895471,2.348849,false
+extend vertical smart contracts Paris 17,PRIVATE_OFFICE,17,5,1200,48.879220,2.319046,false
+generate ubiquitous large language models Paris 3,INDEPENDENT_SPACE,3,3,900,48.859990,2.359547,false
+transition impactful applications Paris 14,OPEN_SPACE,14,25,550,48.830596,2.328487,false
+gamify extensible technologies Paris 7,PRIVATE_OFFICE,7,5,1050,48.853983,2.313762,false
+deploy world-class solutions Paris 16,OPEN_SPACE,16,20,1050,48.865808,2.274130,false
+engage one-to-one channels Paris 2,INDEPENDENT_SPACE,2,1,1000,48.864448,2.337321,true
+transform distributed systems Paris 19,INDEPENDENT_SPACE,19,1,800,48.881379,2.386159,false
+syndicate cross-platform large language models Paris 6,PRIVATE_OFFICE,6,5,1250,48.857011,2.330670,false
+evolve turn-key infrastructures Paris 18,OPEN_SPACE,18,21,950,48.889838,2.343078,true
+target distributed supply-chains Paris 5,INDEPENDENT_SPACE,5,2,650,48.849192,2.347588,false
+maximize interactive ROI Paris 14,INDEPENDENT_SPACE,14,2,850,48.833033,2.330852,false
+incubate front-end applications Paris 5,INDEPENDENT_SPACE,5,1,550,48.847714,2.347422,false
+embrace efficient channels Paris 20,PRIVATE_OFFICE,20,9,1650,48.864477,2.395995,false
+drive smart relationships Paris 19,OPEN_SPACE,19,15,1050,48.883247,2.382017,true
+harness collaborative initiatives Paris 10,INDEPENDENT_SPACE,10,1,650,48.874460,2.363403,false
+deploy value-added methodologies Paris 17,PRIVATE_OFFICE,17,8,800,48.884251,2.321403,false
+brand quantum systems Paris 14,INDEPENDENT_SPACE,14,4,600,48.834522,2.322756,false
+deliver plug-and-play markets Paris 19,OPEN_SPACE,19,19,1000,48.877138,2.378818,true
+mesh distributed AI Paris 13,INDEPENDENT_SPACE,13,1,750,48.827876,2.360560,true
+transition compelling initiatives Paris 17,PRIVATE_OFFICE,17,3,1650,48.880988,2.317289,false
+enhance compelling large language models Paris 3,PRIVATE_OFFICE,3,8,1200,48.862765,2.366498,false
+extend killer users Paris 2,PRIVATE_OFFICE,2,5,1550,48.866571,2.339069,false
+drive world-class solutions Paris 10,INDEPENDENT_SPACE,10,2,850,48.876767,2.358842,false
+cultivate mission-critical schemas Paris 5,PRIVATE_OFFICE,5,8,1250,48.843600,2.340275,false
+deliver compelling metrics Paris 12,PRIVATE_OFFICE,12,4,1300,48.842026,2.391509,false
+incentivize seamless synergies Paris 14,PRIVATE_OFFICE,14,10,1650,48.836853,2.329747,false
+enhance visionary e-commerce Paris 3,OPEN_SPACE,3,32,1050,48.861185,2.357861,false
+collaborate robust users Paris 17,INDEPENDENT_SPACE,17,2,1000,48.888587,2.318453,false
+deploy ubiquitous architectures Paris 5,INDEPENDENT_SPACE,5,5,850,48.849726,2.343675,false
+cultivate smart convergence Paris 19,OPEN_SPACE,19,18,1150,48.884523,2.386043,true
+redefine smart architectures Paris 19,OPEN_SPACE,19,16,900,48.877173,2.378523,false
+revolutionize front-end content Paris 2,PRIVATE_OFFICE,2,7,1000,48.867421,2.336942,false
+reinvent open-source markets Paris 20,PRIVATE_OFFICE,20,7,1950,48.867338,2.402586,false
+gamify B2C blockchains Paris 16,INDEPENDENT_SPACE,16,2,600,48.867712,2.273110,false
+optimize distributed markets Paris 15,OPEN_SPACE,15,39,1050,48.837876,2.301681,false
+unleash transparent large language models Paris 18,PRIVATE_OFFICE,18,7,1700,48.894055,2.344059,false
+transform rich applications Paris 14,OPEN_SPACE,14,35,500,48.832250,2.327195,true
+engage open-source synergies Paris 3,OPEN_SPACE,3,28,950,48.861901,2.362055,false
+evolve generative mindshare Paris 17,INDEPENDENT_SPACE,17,1,700,48.881243,2.321934,true
+generate decentralized solutions Paris 5,INDEPENDENT_SPACE,5,4,650,48.847089,2.346781,true
+integrate open-source convergence Paris 17,INDEPENDENT_SPACE,17,5,750,48.880066,2.323771,true
+utilize bleeding-edge experiences Paris 4,PRIVATE_OFFICE,4,3,1400,48.856762,2.352156,true
+whiteboard B2B solutions Paris 20,OPEN_SPACE,20,50,550,48.863485,2.399773,true
+revolutionize quantum blockchains Paris 6,PRIVATE_OFFICE,6,1,2000,48.856657,2.332442,true
+deploy proactive technologies Paris 15,PRIVATE_OFFICE,15,7,900,48.837518,2.300337,false
+exploit immersive initiatives Paris 5,INDEPENDENT_SPACE,5,1,600,48.846716,2.345941,false
